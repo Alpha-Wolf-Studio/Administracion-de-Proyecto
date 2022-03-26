@@ -16,6 +16,6 @@ MonoBehaviour:
   - nameUnit: Capsula
     life: 20
     damage: 1
-    velocity: 20
-    radiusSight: 5
+    velocity: 8
+    radiusSight: 10
     fireRate: 0.8

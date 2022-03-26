@@ -4,7 +4,6 @@ using UnityEngine;
 public class UnitStateShooting : MonoBehaviour
 {
     private Unit unit;
-    private float onTime = 0;
     [SerializeField] private GameObject prefabBullet;
     [SerializeField] private Transform enemyTransform;
     private void Awake()
@@ -32,7 +31,6 @@ public class UnitStateShooting : MonoBehaviour
             yield return new WaitForSeconds(unit.stats.fireRate);
         }
     }
-
     void Shoot()
     {
         Debug.Log("Dispara", gameObject);
@@ -43,7 +41,7 @@ public class UnitStateShooting : MonoBehaviour
                 enemyTransform = coll[0].transform;
             else
             {
-                Debug.LogWarning("No hay Enemigo.");
+                //Debug.LogWarning("No hay Enemigo.");
                 return;
             }
         }
