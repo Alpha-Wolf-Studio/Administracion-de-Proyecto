@@ -4,6 +4,10 @@ using UnityEngine;
 [Serializable]
 public class UnitStats
 {
+    public UnitStats()
+    {
+    }
+
     public UnitStats(UnitStats stats)
     {
         nameUnit = stats.nameUnit;
@@ -19,8 +23,8 @@ public class UnitStats
     }
 
     public string nameUnit = "No name";
-    public int life = 10;
-    public int damage = 1;
+    public float life = 10;
+    public float damage = 1;
     public float velocity = 2;
     public float radiusSight = 5;
     public float fireRate = 0.8f;

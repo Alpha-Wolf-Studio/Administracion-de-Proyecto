@@ -6,13 +6,15 @@ using UnityEditor;
 #endif
 public class Unit : MonoBehaviour
 {
+    public Action<float, float> OnTakeDamage;
     private UnitStateMoving unitStateMoving;
     private UnitStateShooting unitStateShooting;
-    private enum State { Move, Shoot };
+    private enum State { Move, Shoot, Covert };
     private State state = State.Move;
     private float onTimeCheckEnemy = 0.2f;
 
     public UnitStats stats;
+    [SerializeField] private UnitStats initialStats;
     public LayerMask layerMaskEnemy;
     public Action<Transform> onEnemyLocalizate;
     public int signDirection = 1;
@@ -79,14 +81,17 @@ public class Unit : MonoBehaviour
     public void SetValues(UnitStats stats)
     {
         this.stats = stats;
+        initialStats = new UnitStats(stats);
     }
-    public void RecibeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         stats.life -= damage;
         if (stats.life < 1)
         {
             Destroy(gameObject);
         }
+
+        OnTakeDamage?.Invoke(stats.life, initialStats.life);
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()

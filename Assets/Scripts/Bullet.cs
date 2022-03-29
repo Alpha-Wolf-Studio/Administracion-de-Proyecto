@@ -4,19 +4,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private LayerMask maskToDamage;
-    private int damage;
+    private float damage;
     private float velocity = 5;
 
     private void OnTriggerEnter(Collider other)
     {
         if (Utils.LayerEquals(maskToDamage, other.gameObject.layer))
         {
-            other.gameObject.GetComponent<Unit>().RecibeDamage(damage);
+            other.gameObject.GetComponent<Unit>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }
-
-    public void SetAttributes(LayerMask maskToDamage, int damage, float bulletSpeed)
+    public void SetAttributes(LayerMask maskToDamage, float damage, float bulletSpeed)
     {
         if (bulletSpeed != 0)
             this.velocity = bulletSpeed;
