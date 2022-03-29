@@ -16,6 +16,7 @@ public abstract class Unit : MonoBehaviour
     public LayerMask layerMaskEnemy;
     public Action<Transform> onEnemyLocalizate;
     public int signDirection = 1;
+
     private void Awake()
     {
         unitStateMoving = GetComponent<UnitStateMoving>();
