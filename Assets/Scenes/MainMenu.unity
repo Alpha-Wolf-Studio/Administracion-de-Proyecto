@@ -522,7 +522,7 @@ GameObject:
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -726,6 +726,7 @@ GameObject:
   - component: {fileID: 1398401937}
   - component: {fileID: 1398401941}
   - component: {fileID: 1398401942}
+  - component: {fileID: 1398401943}
   m_Layer: 8
   m_Name: EnemyBase
   m_TagString: Untagged
@@ -834,20 +835,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1398401936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b80cf8f22a69984fbcbed421ea6e37b, type: 3}
+  m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    nameUnit: No name
+    nameUnit: Enemy Base
     life: 10
-    damage: 1
+    damage: 2
     velocity: 0
-    radiusSight: 17
-    fireRate: 0.8
+    radiusSight: 30
+    fireRate: 0.1
+    bulletSpeed: 50
+    canMove: 0
+    canShoot: 1
   layerMaskEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   signDirection: 1
+--- !u!114 &1398401943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398401936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2984fab8f15651b4b8d70ecf8ecec653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  enemyTransform: {fileID: 0}
 --- !u!1 &1467545985
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +878,7 @@ GameObject:
   m_Layer: 6
   m_Name: TransformStart
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -920,7 +938,7 @@ GameObject:
   m_Layer: 6
   m_Name: TransformEnd
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

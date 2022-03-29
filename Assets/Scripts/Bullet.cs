@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int damage;
     private LayerMask maskToDamage;
+    private int damage;
     private float velocity = 5;
 
     private void OnTriggerEnter(Collider other)
@@ -15,8 +15,11 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SetAttributes(LayerMask maskToDamage, int damage)
+
+    public void SetAttributes(LayerMask maskToDamage, int damage, float bulletSpeed)
     {
+        if (bulletSpeed != 0)
+            this.velocity = bulletSpeed;
         this.maskToDamage = maskToDamage;
         this.damage = damage;
 

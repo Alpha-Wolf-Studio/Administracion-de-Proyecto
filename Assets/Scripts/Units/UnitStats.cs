@@ -1,4 +1,6 @@
 using System;
+using UnityEngine;
+
 [Serializable]
 public class UnitStats
 {
@@ -10,11 +12,20 @@ public class UnitStats
         velocity = stats.velocity;
         radiusSight = stats.radiusSight;
         fireRate = stats.fireRate;
+        bulletSpeed = stats.bulletSpeed;
+
+        canMove = stats.canMove;
+        canShoot = stats.canShoot;
     }
+
     public string nameUnit = "No name";
     public int life = 10;
     public int damage = 1;
     public float velocity = 2;
     public float radiusSight = 5;
     public float fireRate = 0.8f;
+    public float bulletSpeed = 10f;
+    [Space(10)] 
+    public bool canMove = true;
+    public bool canShoot = true;
 }

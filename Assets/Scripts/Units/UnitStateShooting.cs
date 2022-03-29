@@ -48,7 +48,7 @@ public class UnitStateShooting : MonoBehaviour
 
         GameObject bulletGameObject = Instantiate(prefabBullet, transform.position, Quaternion.identity, BulletParent.Get().GetTransform());
         Bullet bullet = bulletGameObject.GetComponent<Bullet>();
-        bullet.SetAttributes(GetComponent<Unit>().layerMaskEnemy, unit.stats.damage);
+        bullet.SetAttributes(GetComponent<Unit>().layerMaskEnemy, unit.stats.damage, unit.stats.bulletSpeed);
         bulletGameObject.transform.LookAt(enemyTransform, Vector3.up);
     }
 }

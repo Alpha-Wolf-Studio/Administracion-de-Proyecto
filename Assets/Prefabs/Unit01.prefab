@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2133922920519608731}
   - component: {fileID: 8602587270959641803}
   - component: {fileID: 2133922920519608728}
-  - component: {fileID: 3049735755956872955}
+  - component: {fileID: 6618137546457357630}
   - component: {fileID: 4483095625409534418}
   - component: {fileID: 2263916424886144987}
   m_Layer: 0
@@ -116,7 +116,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3049735755956872955
+--- !u!114 &6618137546457357630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,19 +125,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133922920519608729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b80cf8f22a69984fbcbed421ea6e37b, type: 3}
+  m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    nameUnit: No name
+    nameUnit: No Name
     life: 10
     damage: 1
     velocity: 2
     radiusSight: 5
     fireRate: 0.8
+    bulletSpeed: 20
+    canMove: 1
+    canShoot: 1
   layerMaskEnemy:
     serializedVersion: 2
     m_Bits: 256
+  signDirection: 1
 --- !u!114 &4483095625409534418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  enemyTransform: {fileID: 0}
