@@ -1,18 +1,31 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Unit unitToDestroy;
+    [SerializeField] private Unit unitToDefend;
+    private bool gameover;
+    [SerializeField] private TextMeshProUGUI textWin;
+    private void Start()
     {
-        
+        unitToDestroy.OnDie += GameOverWin;
+        unitToDefend.OnDie += GameOverLose;
     }
-
-    // Update is called once per frame
-    void Update()
+    void GameOverWin()
     {
-        
+        if (!gameover)
+        {
+            gameover = true;
+            textWin.text = "You Win!";
+        }
     }
-
-
+    void GameOverLose()
+    {
+        if (!gameover)
+        {
+            gameover = true;
+            textWin.text = "You Lose!";
+        }
+    }
 }
