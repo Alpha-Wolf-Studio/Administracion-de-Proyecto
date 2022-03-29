@@ -4,7 +4,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-public abstract class Unit : MonoBehaviour
+public class Unit : MonoBehaviour
 {
     private UnitStateMoving unitStateMoving;
     private UnitStateShooting unitStateShooting;
@@ -35,17 +35,23 @@ public abstract class Unit : MonoBehaviour
             {
                 if (state != State.Shoot)
                 {
-                    Debug.Log("Empieza a disparar.", gameObject);
-                    onEnemyLocalizate?.Invoke(coll[0].transform);
-                    ChangeState(State.Shoot);
+                    if (stats.canShoot)
+                    {
+                        Debug.Log("Empieza a disparar.", gameObject);
+                        onEnemyLocalizate?.Invoke(coll[0].transform);
+                        ChangeState(State.Shoot);
+                    }
                 }
             }
             else
             {
                 if (state != State.Move)
                 {
-                    Debug.Log("Empieza a moverse.", gameObject);
-                    ChangeState(State.Move);
+                    if (stats.canMove)
+                    {
+                        Debug.Log("Empieza a moverse.", gameObject);
+                        ChangeState(State.Move);
+                    }
                 }
             }
 
@@ -58,12 +64,12 @@ public abstract class Unit : MonoBehaviour
         switch (state)
         {
             case State.Shoot:
-                unitStateMoving.enabled = false;
-                unitStateShooting.enabled = true;
+                if (stats.canMove) unitStateMoving.enabled = false;
+                if (stats.canShoot) unitStateShooting.enabled = true;
                 break;
             case State.Move:
-                unitStateMoving.enabled = true;
-                unitStateShooting.enabled = false;
+                if (stats.canMove) unitStateMoving.enabled = true;
+                if (stats.canShoot) unitStateShooting.enabled = false;
                 break;
             default:
                 Debug.Log("Error en el comportamiento de la unidad!!", gameObject);
