@@ -4,10 +4,7 @@ using UnityEngine;
 [Serializable]
 public class UnitStats
 {
-    public UnitStats()
-    {
-    }
-
+    public UnitStats() { }
     public UnitStats(UnitStats stats)
     {
         nameUnit = stats.nameUnit;
