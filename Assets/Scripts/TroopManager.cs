@@ -3,21 +3,29 @@ using UnityEngine;
 
 public class TroopManager : MonoBehaviour
 {
+    [SerializeField] private Transform startPosition;
+    [SerializeField] private Transform endPosition;
+
     [SerializeField] private int layerToTroop;
     [SerializeField] private LayerMask layerToAttack;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private GameObject[] prefabUnits;
     [SerializeField] private UnitsData unitStats;
     [SerializeField] private List<Unit> unitsAlive;
+
     public void OnButtonCreateTroop(int tropIndex)
     {
+        Vector3 startPos = startPosition.position;
+        Vector3 endPos = endPosition.position; 
+
         if (!prefabUnits[tropIndex])
         {
             Debug.LogWarning("No existe el indce de esa tropa!!");
             return;
         }
 
-        Vector3 pos = transform.position; // Todo: Hacer que sea random dentro del collider.
+        float random = Random.Range(0, 1.0f);
+        Vector3 pos = Vector3.Lerp(startPos, endPos, random);
 
         GameObject unitGameObject = Instantiate(prefabUnits[tropIndex], pos, Quaternion.identity, transform);
         unitGameObject.gameObject.layer = layerToTroop;
