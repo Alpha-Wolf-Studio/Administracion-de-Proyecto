@@ -22,3 +22,12 @@ MonoBehaviour:
     bulletSpeed: 20
     canMove: 1
     canShoot: 1
+  - nameUnit: Tirito
+    life: 10
+    damage: 1
+    velocity: 5
+    radiusSight: 10
+    fireRate: 0.8
+    bulletSpeed: 20
+    canMove: 1
+    canShoot: 1
