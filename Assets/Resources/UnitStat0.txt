@@ -1,11 +1,33 @@
 {
-    "nameUnit": "No name",
-    "life": 10.0,
-    "damage": 1.0,
-    "velocity": 2.0,
-    "radiusSight": 5.0,
-    "fireRate": 0.800000011920929,
+    "nameUnit": "CuboVerde",
+    "unitType": 4,
+    "movementType": 1,
+    "attackType": 3,
+    "unitsDamageables": [
+        0,
+        1,
+        2
+    ],
+    "unitsPlusDamage": [
+        1
+    ],
+    "unitsRestDamage": [
+        2
+    ],
+    "life": 100.0,
+    "damage": 100.0,
+    "velocity": 100.0,
+    "radiusSight": 100.0,
+    "rangeAttack": 100.0,
+    "fireRate": 100.0,
     "bulletSpeed": 10.0,
     "canMove": true,
-    "canShoot": true
+    "canShoot": true,
+    "tempCurrentShape": 1,
+    "tempColor": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+    }
 }

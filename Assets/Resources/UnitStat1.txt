@@ -1,11 +1,25 @@
 {
-    "nameUnit": "No name",
+    "nameUnit": "CilindroRojo",
+    "unitType": 0,
+    "movementType": 0,
+    "attackType": 0,
+    "unitsDamageables": [],
+    "unitsPlusDamage": [],
+    "unitsRestDamage": [],
     "life": 10.0,
     "damage": 1.0,
     "velocity": 2.0,
     "radiusSight": 5.0,
-    "fireRate": 0.800000011920929,
+    "rangeAttack": 5.0,
+    "fireRate": 0.0,
     "bulletSpeed": 10.0,
     "canMove": true,
-    "canShoot": true
+    "canShoot": true,
+    "tempCurrentShape": 3,
+    "tempColor": {
+        "r": 1.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    }
 }

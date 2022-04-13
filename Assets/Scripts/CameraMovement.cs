@@ -18,6 +18,7 @@ public class CameraMovement : MonoBehaviour
     }
     void Update()
     {
+        if (Utils.IsPointerOverUIObject()) return;
         if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
