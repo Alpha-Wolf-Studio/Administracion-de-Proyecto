@@ -5,11 +5,14 @@ public class UnitStateShooting : MonoBehaviour
 {
     private Unit unit;
     [SerializeField] private GameObject prefabBullet;
-    [SerializeField] private Transform enemyTransform;
+    
+    private Transform enemyTransform;
+    public Transform GetEnemyTransform() => enemyTransform;
+
     private void Awake()
     {
         unit = GetComponent<Unit>();
-        unit.onEnemyLocalizate += SetEnemy;
+        unit.OnEnemyLocalizate += SetEnemy;
     }
     private void OnEnable()
     {
@@ -33,10 +36,9 @@ public class UnitStateShooting : MonoBehaviour
     }
     void Shoot()
     {
-        Debug.Log("Dispara", gameObject);
         if (!enemyTransform)
         {
-            Collider[] coll = Physics.OverlapSphere(transform.position, unit.stats.radiusSight, unit.layerMaskEnemy);
+            Collider[] coll = Physics.OverlapSphere(transform.position, unit.stats.radiusSight, unit.layerMaskInteraction);
             if (coll.Length > 0)
                 enemyTransform = coll[0].transform;
             else
@@ -48,7 +50,7 @@ public class UnitStateShooting : MonoBehaviour
 
         GameObject bulletGameObject = Instantiate(prefabBullet, transform.position, Quaternion.identity, BulletParent.Get().GetTransform());
         Bullet bullet = bulletGameObject.GetComponent<Bullet>();
-        bullet.SetAttributes(GetComponent<Unit>().layerMaskEnemy, unit.stats.damage, unit.stats.bulletSpeed);
+        bullet.SetAttributes(GetComponent<Unit>().layerMaskInteraction, unit.stats.damage, unit.stats.bulletSpeed);
         bulletGameObject.transform.LookAt(enemyTransform, Vector3.up);
     }
 }

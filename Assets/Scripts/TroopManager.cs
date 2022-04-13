@@ -7,7 +7,7 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private Transform endPosition;
 
     [SerializeField] private int layerToTroop;
-    [SerializeField] private LayerMask layerToAttack;
+    [SerializeField] private LayerMask layerToInteract;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private GameObject[] prefabUnits;
     [SerializeField] private UnitsData unitStats;
@@ -31,7 +31,7 @@ public class TroopManager : MonoBehaviour
         unitGameObject.gameObject.layer = layerToTroop;
         Unit unit = unitGameObject.GetComponent<Unit>();
         unit.signDirection = unitsGoToRight ? 1 : -1;
-        unit.layerMaskEnemy = layerToAttack;
+        unit.layerMaskInteraction = layerToInteract;
         unitsAlive.Add(unit);
 
         UnitStats unitStats = new UnitStats(this.unitStats.unitsStats[tropIndex]);

@@ -10,20 +10,26 @@ public class Unit : MonoBehaviour
     public Action OnDie;
     private UnitStateMoving unitStateMoving;
     private UnitStateShooting unitStateShooting;
-    private enum State { Move, Shoot, Covert };
+    public enum State { Move, Move_To_Trench, On_Trench, Shoot, Shoot_On_Trench };
     private State state = State.Move;
     private float onTimeCheckEnemy = 0.2f;
 
-    public UnitStats stats;
     private UnitStats initialStats;
-    public LayerMask layerMaskEnemy;
-    public Action<Transform> onEnemyLocalizate;
+    public LayerMask layerMaskInteraction;
+    public Action<Transform> OnEnemyLocalizate;
+    public Action<Transform> OnTrenchLocalizate;
+    public Action OnRemovedMovingTarget;
     public int signDirection = 1;
+
+    [HideInInspector] public UnitStats stats;
+    public State GetCurrentState() => state;
 
     private void Awake()
     {
         unitStateMoving = GetComponent<UnitStateMoving>();
         unitStateShooting = GetComponent<UnitStateShooting>();
+        
+        if(unitStateMoving) unitStateMoving.OnTargetPositionReached += LockInTrench;
     }
     private void Start()
     {
@@ -33,18 +39,10 @@ public class Unit : MonoBehaviour
     {
         while (true)
         {
-            Collider[] coll = Physics.OverlapSphere(transform.position, stats.radiusSight, layerMaskEnemy);
+            Collider[] coll = Physics.OverlapSphere(transform.position, stats.radiusSight, layerMaskInteraction);
             if (coll.Length > 0)
             {
-                if (state != State.Shoot)
-                {
-                    if (stats.canShoot)
-                    {
-                        Debug.Log("Empieza a disparar.", gameObject);
-                        onEnemyLocalizate?.Invoke(coll[0].transform);
-                        ChangeState(State.Shoot);
-                    }
-                }
+                ChooseColliderPriority(coll);
             }
             else
             {
@@ -52,7 +50,6 @@ public class Unit : MonoBehaviour
                 {
                     if (stats.canMove)
                     {
-                        Debug.Log("Empieza a moverse.", gameObject);
                         ChangeState(State.Move);
                     }
                 }
@@ -61,6 +58,49 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(onTimeCheckEnemy);
         }
     }
+
+    private void ChooseColliderPriority(Collider[] coll)
+    {
+        
+        
+        Transform t = transform;
+
+        for (int i = 0; i < coll.Length; i++)
+        {
+            var currentCollUnit = coll[i].GetComponent<Unit>();
+            if (currentCollUnit)
+            {
+                if (state != State.Shoot && state != State.Shoot_On_Trench)
+                {
+                    if (stats.canShoot)
+                    {
+                        OnEnemyLocalizate?.Invoke(coll[i].transform);
+                    }
+
+                    if(state == State.On_Trench) ChangeState(State.Shoot_On_Trench);
+                    else ChangeState(State.Shoot);
+                }
+                return;
+            }
+
+            var currentCollTrench = coll[i].GetComponent<Trench>();
+            if (currentCollTrench)
+            {
+                if (state != State.Move_To_Trench && state != State.On_Trench && state != State.Shoot_On_Trench)
+                {
+                    var trenchFree = currentCollTrench.GetFreePosition(this);
+                    if (trenchFree != null)
+                    {
+                        ChangeState(State.Move_To_Trench);
+                        OnTrenchLocalizate?.Invoke(trenchFree.transform);
+                    }
+                }
+            }
+        }
+    }
+
+    private void LockInTrench() => ChangeState(State.On_Trench);
+
     private void ChangeState(State newState)
     {
         state = newState;
@@ -74,6 +114,18 @@ public class Unit : MonoBehaviour
                 if (stats.canMove) unitStateMoving.enabled = true;
                 if (stats.canShoot) unitStateShooting.enabled = false;
                 break;
+            case State.Move_To_Trench:
+                if (stats.canMove) unitStateMoving.enabled = true;
+                if (stats.canShoot) unitStateShooting.enabled = false;
+                break;
+            case State.On_Trench:
+                if (stats.canMove) unitStateMoving.enabled = false;
+                if (stats.canShoot) unitStateShooting.enabled = false;
+                break;
+            case State.Shoot_On_Trench:
+                if (stats.canMove) unitStateMoving.enabled = false;
+                if (stats.canShoot) unitStateShooting.enabled = true;
+                break;
             default:
                 Debug.Log("Error en el comportamiento de la unidad!!", gameObject);
                 break;
@@ -82,7 +134,7 @@ public class Unit : MonoBehaviour
     public void SetValues(UnitStats stats)
     {
         this.stats = stats;
-        initialStats = new UnitStats(stats);
+        initialStats = stats;
     }
     public void TakeDamage(float damage)
     {
