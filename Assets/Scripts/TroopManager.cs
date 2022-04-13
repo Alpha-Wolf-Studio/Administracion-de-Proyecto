@@ -10,7 +10,6 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private LayerMask layerToInteract;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private GameObject[] prefabUnits;
-    [SerializeField] private UnitsData unitStats;
     [SerializeField] private List<Unit> unitsAlive;
 
     public void OnButtonCreateTroop(int tropIndex)
@@ -34,7 +33,7 @@ public class TroopManager : MonoBehaviour
         unit.layerMaskInteraction = layerToInteract;
         unitsAlive.Add(unit);
 
-        UnitStats unitStats = new UnitStats(this.unitStats.unitsStats[tropIndex]);
+        UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
         unit.SetValues(unitStats);
     }
 }
