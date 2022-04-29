@@ -1,23 +1,37 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
+using TMPro;
+using UnityEngine.UI;
 public class UiMainMenuManager : MonoBehaviour
 {
     [SerializeField] private float transitionTime;
     [SerializeField] private CanvasGroup[] menues;
 
+    [Header("References: ")] 
+    [SerializeField] private Button btnToMissions;
+    [SerializeField] private Button btnToCreator;
+    [SerializeField] private Button btnToSettings;
+    [SerializeField] private Button btnToCredits;
+    [SerializeField] private Button btnToProfile;
+    [SerializeField] private Button btnToBarraks;
+
+    [SerializeField] private Button btnBackSettings;
+    [SerializeField] private Button btnBackCredits;
+    [SerializeField] private Button btnBackProfile;
+    [SerializeField] private Button btnBackBarracks;
+
+    [SerializeField] private Button btnMusicOnOff;
+    [SerializeField] private Button btnEffectOnOff;
+    [SerializeField] private TextMeshProUGUI textVersion;
     enum Menu
     {
         Main,
         Settings,
-        Credits
+        Credits,
+        Profile,
+        Barracks
     }
-    private Menu menu = Menu.Main;
+    private Menu currentMenu = Menu.Main;
 
     private void Awake()
     {
@@ -26,52 +40,65 @@ public class UiMainMenuManager : MonoBehaviour
             menu.blocksRaycasts = false;
             menu.interactable = false;
             menu.alpha = 0;
+            menu.gameObject.SetActive(false);
         }
 
+        menues[(int) Menu.Main].gameObject.SetActive(true);
         menues[(int) Menu.Main].interactable = true;
         menues[(int) Menu.Main].blocksRaycasts = true;
         menues[(int) Menu.Main].alpha = 1;
     }
+
     private void Start()
     {
-        Time.timeScale = 1;
-        AudioManager.Get().PlayMenuMusic();
+        AddLiseners();
+        AudioManager.Get().PlayMusicMenu();
+        textVersion.text = "Version: " + Application.version;
     }
-    public void OnButtonPlay()
+
+    private void AddLiseners()
     {
-        CustomSceneManager.Get().LoadScene("GamePlay");
+        btnToMissions.onClick.AddListener(OnButtonPlay);
+        btnToCreator.onClick.AddListener(OnButtonCreateUnits);
+        btnToSettings.onClick.AddListener(OnButtonSetting);
+        btnToCredits.onClick.AddListener(OnButtonCredits);
+        btnToProfile.onClick.AddListener(OnButtonProfile);
+        btnToBarraks.onClick.AddListener(OnButtonBarracks);
+
+        btnBackSettings.onClick.AddListener(OnButtonBackSettings);
+        btnBackCredits.onClick.AddListener(OnButtonBackCredits);
+        btnBackProfile.onClick.AddListener(OnButtonBackProfile);
+        btnBackBarracks.onClick.AddListener(OnButtonBackBarracks);
+
+        btnMusicOnOff.onClick.AddListener(EnableMusic);
+        btnEffectOnOff.onClick.AddListener(EnableEffect);
     }
-    public void OnButtonCreateUnits()
+    private void OnButtonPlay() => CustomSceneManager.Get().LoadScene("GamePlay");
+    private void OnButtonCreateUnits()=> CustomSceneManager.Get().LoadScene("UnitsCreator");
+    private void OnButtonSetting() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Settings, (int) Menu.Main));
+    private void OnButtonCredits() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Credits, (int) Menu.Main));
+    private void OnButtonProfile() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Profile, (int) Menu.Main));
+    private void OnButtonBarracks() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Barracks, (int) Menu.Main));
+    private void OnButtonBackSettings() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Settings));
+    private void OnButtonBackCredits() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Credits));
+    private void OnButtonBackProfile() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Profile));
+    private void OnButtonBackBarracks() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Barracks));
+
+    private void EnableMusic()
     {
-        CustomSceneManager.Get().LoadScene("UnitsCreator");
+        AudioManager.Get().EnableMusic();
+
     }
-    public void OnButtonSetting()
+    private void EnableEffect()
     {
-        StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Settings, (int) Menu.Main));
+        AudioManager.Get().EnableEffect();
+
     }
-    public void OnButtonBackSettings()
-    {
-        StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int)Menu.Settings));
-    }
-    public void OnButtonCredits()
-    {
-        StartCoroutine(SwitchPanel(transitionTime, (int)Menu.Credits, (int)Menu.Main));
-    }
-    public void OnButtonBackCredits()
-    {
-        StartCoroutine(SwitchPanel(transitionTime, (int)Menu.Main, (int)Menu.Credits));
-    }
-    public void OnButtonExit()
-    {
-        Application.Quit(0);
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#endif
-    }
-    IEnumerator SwitchPanel(float maxTime, int onMenu, int offMenu)
+    private IEnumerator SwitchPanel(float maxTime, int onMenu, int offMenu)
     {
         float onTime = 0;
         CanvasGroup on = menues[onMenu];
+        on.gameObject.SetActive(true);
         CanvasGroup off = menues[offMenu];
 
         off.blocksRaycasts = false;
@@ -89,6 +116,7 @@ public class UiMainMenuManager : MonoBehaviour
         on.interactable = true;
         onTime = 0;
 
-        menu = (Menu)onMenu;
+        off.gameObject.SetActive(false);
+        currentMenu = (Menu)onMenu;
     }
 }
