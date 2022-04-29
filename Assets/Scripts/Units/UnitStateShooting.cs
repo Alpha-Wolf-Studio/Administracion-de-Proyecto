@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Unit))]
 public class UnitStateShooting : MonoBehaviour
 {
     private Unit unit;
@@ -22,11 +23,11 @@ public class UnitStateShooting : MonoBehaviour
     {
         StopAllCoroutines();
     }
-    void SetEnemy(Transform enemyTransform)
+    private void SetEnemy(Transform enemyTransform)
     {
         this.enemyTransform = enemyTransform;
     }
-    IEnumerator Shooting()
+    private IEnumerator Shooting()
     {
         while (true)
         {
@@ -34,7 +35,7 @@ public class UnitStateShooting : MonoBehaviour
             yield return new WaitForSeconds(unit.stats.fireRate);
         }
     }
-    void Shoot()
+    private void Shoot()
     {
         if (!enemyTransform)
         {

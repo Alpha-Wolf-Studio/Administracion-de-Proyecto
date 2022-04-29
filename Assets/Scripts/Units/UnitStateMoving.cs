@@ -27,7 +27,7 @@ public class UnitStateMoving : MonoBehaviour
         }
         else
         {
-            moveDirection = (target.position - groundPosition.position).normalized * unit.stats.velocity * Time.deltaTime;
+            moveDirection = (target.position - groundPosition.position).normalized * (unit.stats.velocity * Time.deltaTime);
 
             if(Vector3.Distance(target.position, groundPosition.position) < targetDistanceTolerance) 
             {

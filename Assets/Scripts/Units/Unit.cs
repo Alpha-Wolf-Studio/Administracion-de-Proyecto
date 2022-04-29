@@ -10,7 +10,16 @@ public class Unit : MonoBehaviour
     public Action OnDie;
     private UnitStateMoving unitStateMoving;
     private UnitStateShooting unitStateShooting;
-    public enum State { Move, Move_To_Trench, On_Trench, Shoot, Shoot_On_Trench };
+
+    public enum State
+    {
+        Move,
+        Move_To_Trench,
+        On_Trench,
+        Shoot,
+        Shoot_On_Trench
+    };
+
     private State state = State.Move;
     private float onTimeCheckEnemy = 0.2f;
 
@@ -28,13 +37,15 @@ public class Unit : MonoBehaviour
     {
         unitStateMoving = GetComponent<UnitStateMoving>();
         unitStateShooting = GetComponent<UnitStateShooting>();
-        
-        if(unitStateMoving) unitStateMoving.OnTargetPositionReached += LockInTrench;
+
+        if (unitStateMoving) unitStateMoving.OnTargetPositionReached += LockInTrench;
     }
+
     private void Start()
     {
         StartCoroutine(CheckChangeState());
     }
+
     private IEnumerator CheckChangeState()
     {
         while (true)
@@ -61,8 +72,8 @@ public class Unit : MonoBehaviour
 
     private void ChooseColliderPriority(Collider[] coll)
     {
-        
-        
+
+
         Transform t = transform;
 
         for (int i = 0; i < coll.Length; i++)
@@ -77,9 +88,10 @@ public class Unit : MonoBehaviour
                         OnEnemyLocalizate?.Invoke(coll[i].transform);
                     }
 
-                    if(state == State.On_Trench) ChangeState(State.Shoot_On_Trench);
+                    if (state == State.On_Trench) ChangeState(State.Shoot_On_Trench);
                     else ChangeState(State.Shoot);
                 }
+
                 return;
             }
 
@@ -131,11 +143,13 @@ public class Unit : MonoBehaviour
                 break;
         }
     }
+
     public void SetValues(UnitStats stats)
     {
         this.stats = stats;
         initialStats = stats;
     }
+
     public void TakeDamage(float damage)
     {
         stats.life -= damage;
