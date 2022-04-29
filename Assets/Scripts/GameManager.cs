@@ -10,15 +10,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Sprite[] sprites;
-
-    [SerializeField] private Unit unitToDestroy;
-    [SerializeField] private Unit unitToDefend;
-    private bool gameover;
-    [SerializeField] private TextMeshProUGUI textWin;
+    
+    public bool gameover;
     private void Start()
     {
-        unitToDestroy.OnDie += GameOverWin;
-        unitToDefend.OnDie += GameOverLose;
+        Time.timeScale = 1;
         LoadAllStatsSaved();
 
         //for (int i = 0; i < 5; i++)
@@ -49,22 +45,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             }
         }
         OnLoadedStats?.Invoke();
-    }
-    void GameOverWin()
-    {
-        if (!gameover)
-        {
-            gameover = true;
-            textWin.text = "You Win!";
-        }
-    }
-    void GameOverLose()
-    {
-        if (!gameover)
-        {
-            gameover = true;
-            textWin.text = "You Lose!";
-        }
     }
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
     public Mesh GetCurrentMesh(int index) => meshes[index];
