@@ -1168,7 +1168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &239408231 stripped
 MonoBehaviour:
@@ -1759,12 +1759,11 @@ MonoBehaviour:
   startPosition: {fileID: 1737163939}
   endPosition: {fileID: 1514434785}
   layerToTroop: 7
-  layerToAttack:
+  layerToInteract:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   unitsGoToRight: 1
-  prefabUnits:
-  - {fileID: 2133922920519608729, guid: 427d4da3719291b489bb6dd74bcd7080, type: 3}
+  prefabUnits: {fileID: 0}
   unitsAlive: []
 --- !u!23 &375359671
 MeshRenderer:
@@ -2208,7 +2207,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &494299919
 GameObject:
@@ -3467,7 +3466,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583478767
 GameObject:
@@ -4420,7 +4419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
-  enemyTransform: {fileID: 0}
 --- !u!114 &707670615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4433,6 +4431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMaskInteraction:
+    serializedVersion: 2
+    m_Bits: 0
+  signDirection: 1
   stats:
     nameUnit: Ally Base
     unitType: 0
@@ -4452,10 +4454,6 @@ MonoBehaviour:
     canShoot: 1
     tempCurrentShape: 0
     tempColor: {r: 0, g: 0, b: 0, a: 1}
-  layerMaskEnemy:
-    serializedVersion: 2
-    m_Bits: 256
-  signDirection: 1
 --- !u!54 &707670616
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4546,7 +4544,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &718860290
 GameObject:
@@ -5210,52 +5208,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763627160}
   m_CullTransparentMesh: 1
---- !u!1 &772702158
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 772702160}
-  - component: {fileID: 772702159}
-  m_Layer: 0
-  m_Name: Level
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &772702159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772702158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24dbb98efa77bad4f9079c5c901d06dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxEnemyLevel: 10
-  enemyTroopManager: {fileID: 1149957764}
-  spawnEnemyTime: {x: 0.2, y: 3}
---- !u!4 &772702160
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772702158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784533223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5404,7 +5356,7 @@ Transform:
   m_Children:
   - {fileID: 602537114}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786776561
 GameObject:
@@ -7812,12 +7764,11 @@ MonoBehaviour:
   startPosition: {fileID: 1467545986}
   endPosition: {fileID: 1576872627}
   layerToTroop: 8
-  layerToAttack:
+  layerToInteract:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   unitsGoToRight: 0
-  prefabUnits:
-  - {fileID: 2133922920519608729, guid: 427d4da3719291b489bb6dd74bcd7080, type: 3}
+  prefabUnits: {fileID: 0}
   unitsAlive: []
 --- !u!23 &1149957766
 MeshRenderer:
@@ -8975,7 +8926,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1398401941
 Rigidbody:
@@ -9005,6 +8956,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMaskInteraction:
+    serializedVersion: 2
+    m_Bits: 0
+  signDirection: 1
   stats:
     nameUnit: Enemy Base
     unitType: 0
@@ -9024,10 +8979,6 @@ MonoBehaviour:
     canShoot: 1
     tempCurrentShape: 0
     tempColor: {r: 0, g: 0, b: 0, a: 1}
-  layerMaskEnemy:
-    serializedVersion: 2
-    m_Bits: 128
-  signDirection: 1
 --- !u!114 &1398401943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9041,7 +8992,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
-  enemyTransform: {fileID: 0}
 --- !u!1 &1441376444
 GameObject:
   m_ObjectHideFlags: 0

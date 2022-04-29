@@ -3,7 +3,13 @@
     "unitType": 0,
     "movementType": 0,
     "attackType": 0,
-    "unitsDamageables": [],
+    "unitsDamageables": [
+        0,
+        1,
+        2,
+        3,
+        4
+    ],
     "unitsPlusDamage": [],
     "unitsRestDamage": [],
     "life": 10.0,

@@ -1,16 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiUnitsAvailable : MonoBehaviour
 {
-    public GameObject pfButton;
+    [SerializeField] private GameObject pfButton;
     private List<GameObject> buttonsLoaded = new List<GameObject>();
 
-    void Start()
+    private void Awake()
     {
         GameManager.Get().OnLoadedStats += LoadButtons;
         UiSetCustomUnit.Get().OnNewUnitSaved += AddNewButton;
+    }
+    void Start()
+    {
+        
     }
     void LoadButtons()
     {
