@@ -8,6 +8,7 @@ public class TroopManager : MonoBehaviour
 
     [SerializeField] private int layerToTroop;
     [SerializeField] private LayerMask layerToInteract;
+    [SerializeField] private LayerMask layerToAttack;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private GameObject prefabUnits;
     [SerializeField] private List<Unit> unitsAlive;
@@ -30,7 +31,8 @@ public class TroopManager : MonoBehaviour
         unitGameObject.gameObject.layer = layerToTroop;
         Unit unit = unitGameObject.GetComponent<Unit>();
         unit.signDirection = unitsGoToRight ? 1 : -1;
-        unit.layerMaskInteraction = layerToInteract;
+        unit.interactableMask = layerToInteract;
+        unit.enemyMask = layerToAttack;
         unitsAlive.Add(unit);
 
         int indexImage = (int)GameManager.Get().unitsStatsLoaded[tropIndex].tempCurrentShape;                                  // Temporal

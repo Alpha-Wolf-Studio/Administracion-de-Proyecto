@@ -1,0 +1,48 @@
+using UnityEngine;
+
+public class UnitShootBehaviour : UnitBehaviour
+{
+    [SerializeField] private GameObject prefabBullet = default;
+    private Unit unit = default;
+
+    private Collider[] enemyColliders = new Collider[5]; //Puse 5 para que sobre en caso de una nueva utilidad ya que estoy reutilizando el array, con tener 1 ya alcanza.
+    private int currentAmountOfEnemies = 0;
+
+    private float timeForNextShot = -1;
+
+    private void Awake()
+    {
+        unit = GetComponent<Unit>();
+    }
+
+    private void Update()
+    {
+        if (timeForNextShot > 0) timeForNextShot -= Time.deltaTime;
+    }
+    public Transform GetCurrentEnemyTransform() 
+    {
+        if(currentAmountOfEnemies > 0) 
+        {
+            return enemyColliders[0].transform;
+        }
+        return null;
+    } 
+
+    public override void Execute()
+    {
+        if(timeForNextShot < 0) 
+        {
+            GameObject bulletGameObject = Instantiate(prefabBullet, transform.position, Quaternion.identity, BulletParent.Get().GetTransform());
+            Bullet bullet = bulletGameObject.GetComponent<Bullet>();
+            bullet.SetAttributes(GetComponent<Unit>().enemyMask, unit.stats.damage, unit.stats.bulletSpeed);
+            bulletGameObject.transform.LookAt(enemyColliders[0].transform, Vector3.up);
+            timeForNextShot = unit.stats.fireRate;
+        }
+    }
+
+    public override bool IsBehaviourExecutable()
+    {
+        currentAmountOfEnemies = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.radiusSight, enemyColliders, unit.enemyMask);
+        return currentAmountOfEnemies > 0;
+    }
+}

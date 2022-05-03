@@ -21,8 +21,6 @@ public class UnitEditor : Editor
         statsTitleStyle.normal.textColor = Color.red;
         statsTitleStyle.alignment = TextAnchor.LowerLeft;
 
-        GUILayout.Space(10f);
-        GUILayout.Label("Current State: " + myScript.GetCurrentState());
         GUILayout.Space(30f);
         GUILayout.Label("-Stats-\n", statsTitleStyle);
         GUILayout.Label("Name: " + myScript.stats.nameUnit + "\n", heightOption);

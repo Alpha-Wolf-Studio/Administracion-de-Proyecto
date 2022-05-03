@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -8,145 +9,56 @@ public class Unit : MonoBehaviour
 {
     public Action<float, float> OnTakeDamage;
     public Action OnDie;
-    private UnitStateMoving unitStateMoving;
-    private UnitStateShooting unitStateShooting;
-
-    public enum State
-    {
-        Move,
-        Move_To_Trench,
-        On_Trench,
-        Shoot,
-        Shoot_On_Trench
-    };
-
-    private State state = State.Move;
-    private float onTimeCheckEnemy = 0.2f;
-
-    private UnitStats initialStats;
-    public LayerMask layerMaskInteraction;
-    public Action<Transform> OnEnemyLocalizate;
-    public Action<Transform> OnTrenchLocalizate;
-    public Action OnRemovedMovingTarget;
+    public LayerMask enemyMask;
+    public LayerMask interactableMask;
     public int signDirection = 1;
 
+    [SerializeField] private List<UnitBehaviour> unitBehaviours = default;
+
+    private UnitStats initialStats;
+
     [HideInInspector] public UnitStats stats;
-    public State GetCurrentState() => state;
 
     private void Awake()
     {
-        unitStateMoving = GetComponent<UnitStateMoving>();
-        unitStateShooting = GetComponent<UnitStateShooting>();
-
-        if (unitStateMoving) unitStateMoving.OnTargetPositionReached += LockInTrench;
+        SetUnitBehaviours();
     }
 
-    private void Start()
-    {
-        StartCoroutine(CheckChangeState());
-    }
-
-    private IEnumerator CheckChangeState()
+    private IEnumerator Start()
     {
         while (true)
         {
-            Collider[] coll = Physics.OverlapSphere(transform.position, stats.radiusSight, layerMaskInteraction);
-            if (coll.Length > 0)
+            foreach (var behaviour in unitBehaviours)
             {
-                ChooseColliderPriority(coll);
-            }
-            else
-            {
-                if (state != State.Move)
+                if (behaviour.IsBehaviourExecutable())
                 {
-                    if (stats.canMove)
-                    {
-                        ChangeState(State.Move);
-                    }
+                    behaviour.Execute();
+                    break;
                 }
             }
 
-            yield return new WaitForSeconds(onTimeCheckEnemy);
+            yield return null;
         }
     }
 
-    private void ChooseColliderPriority(Collider[] coll)
+    private void SetUnitBehaviours() 
     {
-
-
-        Transform t = transform;
-
-        for (int i = 0; i < coll.Length; i++)
+        var behavioursArray = GetComponents<UnitBehaviour>();
+        if (behavioursArray.Length > 0)
         {
-            var currentCollUnit = coll[i].GetComponent<Unit>();
-            if (currentCollUnit)
+            unitBehaviours = new List<UnitBehaviour>(behavioursArray.Length);
+            unitBehaviours.Clear();
+            foreach (var behaviour in behavioursArray)
             {
-                if (state != State.Shoot && state != State.Shoot_On_Trench)
-                {
-                    if (stats.canShoot)
-                    {
-                        OnEnemyLocalizate?.Invoke(coll[i].transform);
-                    }
-
-                    if (state == State.On_Trench) ChangeState(State.Shoot_On_Trench);
-                    else ChangeState(State.Shoot);
-                }
-
-                return;
+                unitBehaviours.Add(behaviour);
             }
-
-            var currentCollTrench = coll[i].GetComponent<Trench>();
-            if (currentCollTrench)
-            {
-                if (state != State.Move_To_Trench && state != State.On_Trench && state != State.Shoot_On_Trench)
-                {
-                    var trenchFree = currentCollTrench.GetFreePosition(this);
-                    if (trenchFree != null)
-                    {
-                        ChangeState(State.Move_To_Trench);
-                        OnTrenchLocalizate?.Invoke(trenchFree.transform);
-                    }
-                }
-            }
-        }
-    }
-
-    private void LockInTrench() => ChangeState(State.On_Trench);
-
-    private void ChangeState(State newState)
-    {
-        state = newState;
-        switch (state)
-        {
-            case State.Shoot:
-                if (stats.canMove) unitStateMoving.enabled = false;
-                if (stats.canShoot) unitStateShooting.enabled = true;
-                break;
-            case State.Move:
-                if (stats.canMove) unitStateMoving.enabled = true;
-                if (stats.canShoot) unitStateShooting.enabled = false;
-                break;
-            case State.Move_To_Trench:
-                if (stats.canMove) unitStateMoving.enabled = true;
-                if (stats.canShoot) unitStateShooting.enabled = false;
-                break;
-            case State.On_Trench:
-                if (stats.canMove) unitStateMoving.enabled = false;
-                if (stats.canShoot) unitStateShooting.enabled = false;
-                break;
-            case State.Shoot_On_Trench:
-                if (stats.canMove) unitStateMoving.enabled = false;
-                if (stats.canShoot) unitStateShooting.enabled = true;
-                break;
-            default:
-                Debug.Log("Error en el comportamiento de la unidad!!", gameObject);
-                break;
+            unitBehaviours.Sort((a, b) => b.Priority.CompareTo(a.Priority));
         }
     }
 
     public void SetValues(UnitStats stats)
     {
-        this.stats = stats;
+        this.stats =  stats;
         initialStats = stats;
     }
 

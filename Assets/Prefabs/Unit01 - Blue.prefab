@@ -76,8 +76,9 @@ GameObject:
   - component: {fileID: 8602587270959641803}
   - component: {fileID: 2133922920519608728}
   - component: {fileID: 6618137546457357630}
-  - component: {fileID: 4483095625409534418}
-  - component: {fileID: 2263916424886144987}
+  - component: {fileID: 294205130296717145}
+  - component: {fileID: 6615366590005977726}
+  - component: {fileID: 2807527497977905447}
   m_Layer: 0
   m_Name: Unit01 - Blue
   m_TagString: Untagged
@@ -193,10 +194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMaskInteraction:
+  enemyMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 0
   signDirection: 1
+  unitBehaviours: []
   stats:
     nameUnit: No Name
     unitType: 0
@@ -216,7 +221,7 @@ MonoBehaviour:
     canShoot: 1
     tempCurrentShape: 0
     tempColor: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &4483095625409534418
+--- !u!114 &294205130296717145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,25 +230,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133922920519608729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3514d515311dfc443b15168c55b3e039, type: 3}
+  m_Script: {fileID: 11500000, guid: ec7e7e3f6deda5c45a5c8b20544a0afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 8602587270959641803}
-  targetDistanceTolerance: 0.15
-  groundPosition: {fileID: 4532263293461493781}
---- !u!114 &2263916424886144987
+  priority: 2
+  prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+--- !u!114 &6615366590005977726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133922920519608729}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2984fab8f15651b4b8d70ecf8ecec653, type: 3}
+  m_Script: {fileID: 11500000, guid: ffcbc2f1c6287794db2140be52bb9701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  priority: 1
+  hideAgainTime: 2
+  targetDistanceTolerance: 0.15
+  groundPosition: {fileID: 4532263293461493781}
+--- !u!114 &2807527497977905447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133922920519608729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87442a81d026b7459a2b071649c02f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
 --- !u!1 &2602256070056786488
 GameObject:
   m_ObjectHideFlags: 0
