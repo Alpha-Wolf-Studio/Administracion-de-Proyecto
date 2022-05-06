@@ -59,7 +59,7 @@ public class UnitHideBehaviour : UnitBehaviour
         if (trenchsInSight > 0 && target == null)
         {
             var trench = trenchColliders[0].GetComponent<Trench>();
-            if (trench.IsCoverageFree()) 
+            if (trench && trench.IsCoverageFree(gameObject.layer)) 
             {
                 target = trench.GetFreePosition(unit);
             }

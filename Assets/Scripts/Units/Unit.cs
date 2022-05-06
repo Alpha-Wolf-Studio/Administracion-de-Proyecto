@@ -58,8 +58,8 @@ public class Unit : MonoBehaviour
 
     public void SetValues(UnitStats stats)
     {
-        this.stats =  stats;
-        initialStats = stats;
+        this.stats = new UnitStats(stats);
+        initialStats = new UnitStats(stats);
     }
 
     public void TakeDamage(float damage)

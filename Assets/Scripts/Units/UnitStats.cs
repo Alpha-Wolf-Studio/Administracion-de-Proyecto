@@ -5,6 +5,36 @@ using UnityEngine;
 [Serializable]
 public class UnitStats
 {
+
+    public UnitStats() 
+    {
+
+    }
+
+    public UnitStats(UnitStats unitStat) 
+    {
+        nameUnit = unitStat.nameUnit;
+        unitType = unitStat.unitType;                              // Sin uso
+        movementType = unitStat.movementType;
+        attackType = unitStat.attackType;
+        unitsDamageables = unitStat.unitsDamageables;                // Sin uso
+        unitsPlusDamage = unitStat.unitsPlusDamage;                 // Sin uso
+        unitsRestDamage = unitStat.unitsRestDamage;                 // Sin uso
+        life = unitStat.life;             // Mejorable
+        damage = unitStat.damage;            // Mejorable
+        velocity = unitStat.velocity;          // Mejorable
+        radiusSight = unitStat.radiusSight;                           // Rango de Vision
+        rangeAttack = unitStat.rangeAttack;       // Mejorable        // Rango de Ataque
+        fireRate = unitStat.fireRate;       // Mejorable
+        bulletSpeed = unitStat.bulletSpeed;
+        
+        canMove = unitStat.canMove;
+        canShoot = unitStat.canShoot;
+        
+        tempCurrentShape = unitStat.tempCurrentShape;
+        tempColor = unitStat.tempColor;
+    }
+
     public string nameUnit = "No name";
     public UnitsType unitType;                              // Sin uso
     public MovementType movementType;                       

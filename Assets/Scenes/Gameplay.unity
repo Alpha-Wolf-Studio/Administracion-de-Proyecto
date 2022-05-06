@@ -302,10 +302,10 @@ MonoBehaviour:
   layerToTroop: 7
   layerToInteract:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1024
   layerToAttack:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   unitsGoToRight: 1
   prefabUnits: {fileID: 2133922920519608729, guid: 427d4da3719291b489bb6dd74bcd7080, type: 3}
   unitsAlive: []
@@ -1268,10 +1268,10 @@ MonoBehaviour:
   layerToTroop: 8
   layerToInteract:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 1024
   layerToAttack:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   unitsGoToRight: 0
   prefabUnits: {fileID: 2133922920519608729, guid: 9ce8159b48339db4196a89d284380f8f, type: 3}
   unitsAlive: []
@@ -2109,6 +2109,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1961661326, guid: cd98fc4155bac4c4ca0f0bcf253aea0e, type: 3}
+      propertyPath: trenchLayerToShow
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2443880572045920316, guid: cd98fc4155bac4c4ca0f0bcf253aea0e, type: 3}
       propertyPath: m_Name
       value: Trench

@@ -44,8 +44,11 @@ public class Trench : MonoBehaviour
         }
     }
 
-    public bool IsCoverageFree() 
+    public bool IsCoverageFree(int layer) 
     {
+
+        if (hasTroops && layer != currentTroopsLayer) return false;
+
         foreach (var position in coveragePositions)
         {
             if (!position.occupant) return true; 
