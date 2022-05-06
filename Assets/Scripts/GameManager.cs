@@ -12,11 +12,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [SerializeField] private Sprite[] sprites;
     
     public bool gameover;
+    public override void Awake()
+    {
+        base.Awake();
+        LoadAllStatsSaved();
+    }
+
     private void Start()
     {
         Time.timeScale = 1;
-        LoadAllStatsSaved();
-
+        
         //for (int i = 0; i < 5; i++)
         //{
         //    UnitStats unit = new UnitStats();
