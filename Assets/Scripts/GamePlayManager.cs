@@ -7,9 +7,10 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
 
     [SerializeField] private Unit unitToDestroy;
     [SerializeField] private Unit unitToDefend;
-
+    [SerializeField] private TroopManager playerTroopManager;
     private void Start()
     {
+        Time.timeScale = 1; 
         unitToDestroy.OnDie += GameOverWin;
         unitToDefend.OnDie += GameOverLose;
         AudioManager.Get().PlayMusicGamePlay();
@@ -32,4 +33,6 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
             OnGameOver?.Invoke(false);
         }
     }
+
+    public TroopManager GetPlayerTroopManager() => playerTroopManager;
 }

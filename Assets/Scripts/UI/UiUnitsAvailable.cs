@@ -10,12 +10,11 @@ public class UiUnitsAvailable : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Get().OnLoadedStats += LoadButtons;
         UiSetCustomUnit.Get().OnNewUnitSaved += AddNewButton;
     }
     void Start()
     {
-        
+        LoadButtons();
     }
     void LoadButtons()
     {

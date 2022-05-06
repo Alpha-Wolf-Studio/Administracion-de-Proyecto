@@ -155,6 +155,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   unitToDestroy: {fileID: 1398401942}
   unitToDefend: {fileID: 707670615}
+  playerTroopManager: {fileID: 375359669}
 --- !u!4 &127216818
 Transform:
   m_ObjectHideFlags: 0
@@ -2318,6 +2319,10 @@ PrefabInstance:
       propertyPath: coverageTransforms.Array.data[8]
       value: 
       objectReference: {fileID: 2443880571613654915}
+    - target: {fileID: 1991184080, guid: cd98fc4155bac4c4ca0f0bcf253aea0e, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2443880572045920316, guid: cd98fc4155bac4c4ca0f0bcf253aea0e, type: 3}
       propertyPath: m_Name
       value: Trench
@@ -2336,7 +2341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2443880572045920320, guid: cd98fc4155bac4c4ca0f0bcf253aea0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.46
+      value: 6.9
       objectReference: {fileID: 0}
     - target: {fileID: 2443880572045920320, guid: cd98fc4155bac4c4ca0f0bcf253aea0e, type: 3}
       propertyPath: m_LocalPosition.y

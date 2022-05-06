@@ -1,17 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UiPanelSpawnUnits : MonoBehaviour
 {
     [SerializeField] private GameObject pfButton;
-    [SerializeField] private TroopManager troopManagerPlayer;
+    private TroopManager troopManagerPlayer;
     private List<GameObject> buttonsLoaded = new List<GameObject>();
 
-    void Start()
+    private void Start()
     {
-        GameManager.Get().OnLoadedStats += LoadButtons;
+        troopManagerPlayer = GamePlayManager.Get().GetPlayerTroopManager();
+        LoadButtons();
     }
-    void LoadButtons()
+
+    private void LoadButtons()
     {
         buttonsLoaded.Clear();
         for (int i = 0; i < GameManager.Get().unitsStatsLoaded.Count; i++)

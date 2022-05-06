@@ -51,6 +51,7 @@ public class UiMainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         AddLiseners();
         AudioManager.Get().PlayMusicMenu();
         textVersion.text = "Version: " + Application.version;
