@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
 
     private IEnumerator Start()
     {
-        while (true)
+        while (stats.life > 0)
         {
             foreach (var behaviour in unitBehaviours)
             {
@@ -77,8 +77,10 @@ public class Unit : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Handles.color = Color.red;
+        Handles.color = Color.yellow;
         Handles.DrawWireDisc(transform.position, Vector3.up, stats.radiusSight);
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(transform.position, Vector3.up, stats.rangeAttack);
     }
 #endif
 }
