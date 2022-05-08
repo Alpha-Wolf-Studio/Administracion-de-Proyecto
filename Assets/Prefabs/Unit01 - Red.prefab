@@ -184,7 +184,7 @@ MonoBehaviour:
     radiusSight: 5
     rangeAttack: 5
     fireRate: 0.8
-    bulletSpeed: 20
+    bulletSpeed: 10
     canMove: 1
     canShoot: 1
     tempCurrentShape: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 2
-  prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  prefabProjectile: {fileID: 4329516591981693134, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
 --- !u!114 &1043543336556845221
 MonoBehaviour:
   m_ObjectHideFlags: 0

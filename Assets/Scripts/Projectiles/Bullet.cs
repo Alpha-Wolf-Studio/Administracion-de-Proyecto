@@ -1,11 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectile
 {
-    private LayerMask maskToDamage;
-    private float damage;
-    private float velocity = 5;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,15 +12,12 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SetAttributes(LayerMask maskToDamage, float damage, float bulletSpeed)
-    {
-        if (bulletSpeed != 0)
-            this.velocity = bulletSpeed;
-        this.maskToDamage = maskToDamage;
-        this.damage = damage;
 
+    public override void StartProjectile() 
+    {
         StartCoroutine(MoveFoward());
     }
+
     IEnumerator MoveFoward()
     {
         while (true)
@@ -32,4 +26,13 @@ public class Bullet : MonoBehaviour
             yield return null;
         }
     }
+
+    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Transform target)
+    {
+        this.maskToDamage = maskToDamage;
+        velocity = stats.bulletSpeed;
+        damage = stats.damage;
+        transform.LookAt(target, Vector3.up);
+    }
+
 }

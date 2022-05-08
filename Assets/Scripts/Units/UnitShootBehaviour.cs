@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnitShootBehaviour : UnitBehaviour
 {
-    [SerializeField] private GameObject prefabBullet = default;
+    [SerializeField] private Projectile prefabProjectile = default;
     private Unit unit = default;
 
     private Collider[] enemyColliders = new Collider[5]; //Puse 5 para que sobre en caso de una nueva utilidad ya que estoy reutilizando el array, con tener 1 ya alcanza.
@@ -32,10 +32,10 @@ public class UnitShootBehaviour : UnitBehaviour
     {
         if(timeForNextShot < 0) 
         {
-            GameObject bulletGameObject = Instantiate(prefabBullet, transform.position, Quaternion.identity, BulletParent.Get().GetTransform());
-            Bullet bullet = bulletGameObject.GetComponent<Bullet>();
-            bullet.SetAttributes(GetComponent<Unit>().enemyMask, unit.stats.damage, unit.stats.bulletSpeed);
-            bulletGameObject.transform.LookAt(enemyColliders[0].transform, Vector3.up);
+            GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, transform.position, Quaternion.identity, BulletParent.Get().GetTransform());
+            Projectile projectile = projectileGameObject.GetComponent<Projectile>();
+            projectile.SetAttributes(GetComponent<Unit>().enemyMask, unit.stats, enemyColliders[0].transform);
+            projectile.StartProjectile();
             timeForNextShot = unit.stats.fireRate;
         }
     }
