@@ -1761,7 +1761,10 @@ MonoBehaviour:
   layerToTroop: 7
   layerToInteract:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  layerToAttack:
+    serializedVersion: 2
+    m_Bits: 256
   unitsGoToRight: 1
   prefabUnits: {fileID: 0}
   unitsAlive: []
@@ -3451,9 +3454,7 @@ MonoBehaviour:
   - {fileID: 962806293248896454, guid: 0212025b8622f4142a1edd191e95fc19, type: 3}
   - {fileID: -8138782370738992367, guid: 0212025b8622f4142a1edd191e95fc19, type: 3}
   - {fileID: -115080129212707553, guid: 0212025b8622f4142a1edd191e95fc19, type: 3}
-  unitToDestroy: {fileID: 1398401942}
-  unitToDefend: {fileID: 707670615}
-  textWin: {fileID: 6839214740791478444}
+  gameover: 0
 --- !u!4 &568172180
 Transform:
   m_ObjectHideFlags: 0
@@ -4415,10 +4416,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 707670613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2984fab8f15651b4b8d70ecf8ecec653, type: 3}
+  m_Script: {fileID: 11500000, guid: ec7e7e3f6deda5c45a5c8b20544a0afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  priority: 0
+  prefabProjectile: {fileID: 4329516591981693134, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
 --- !u!114 &707670615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4431,10 +4433,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMaskInteraction:
+  enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 1024
   signDirection: 1
+  unitBehaviours: []
   stats:
     nameUnit: Ally Base
     unitType: 0
@@ -6832,6 +6838,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7df2bc665fc3fb46848d4c815756309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  limitLeft: {fileID: 0}
+  limitRight: {fileID: 0}
   dragSpeed: 2
 --- !u!114 &966831998 stripped
 MonoBehaviour:
@@ -7766,7 +7775,10 @@ MonoBehaviour:
   layerToTroop: 8
   layerToInteract:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  layerToAttack:
+    serializedVersion: 2
+    m_Bits: 128
   unitsGoToRight: 0
   prefabUnits: {fileID: 0}
   unitsAlive: []
@@ -8956,10 +8968,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025aa8e4b4bb303458776c5430edcf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMaskInteraction:
+  enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 1024
   signDirection: 1
+  unitBehaviours: []
   stats:
     nameUnit: Enemy Base
     unitType: 0
@@ -8988,10 +9004,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1398401936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2984fab8f15651b4b8d70ecf8ecec653, type: 3}
+  m_Script: {fileID: 11500000, guid: ec7e7e3f6deda5c45a5c8b20544a0afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabBullet: {fileID: 6514157745665883519, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  priority: 0
+  prefabProjectile: {fileID: 4329516591981693134, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
 --- !u!1 &1441376444
 GameObject:
   m_ObjectHideFlags: 0
@@ -14934,6 +14951,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129a19d7345126045ad47ca8fdb75c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnToMenu: []
+  btnToReset: []
+  btnPause: {fileID: 0}
+  btnUnPause: {fileID: 0}
+  uiPanelGameplay: {fileID: 0}
+  uiPanelPause: {fileID: 0}
+  uiPanelWin: {fileID: 0}
+  uiPanelLose: {fileID: 0}
 --- !u!1 &2220166721133381699
 GameObject:
   m_ObjectHideFlags: 0
