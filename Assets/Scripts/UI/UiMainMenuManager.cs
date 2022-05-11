@@ -23,6 +23,11 @@ public class UiMainMenuManager : MonoBehaviour
     [SerializeField] private Button btnMusicOnOff;
     [SerializeField] private Button btnEffectOnOff;
     [SerializeField] private TextMeshProUGUI textVersion;
+
+    [Header("Others: ")]
+    [SerializeField] private Sprite spriteAudioOn;
+    [SerializeField] private Sprite spriteAudioOff;
+
     enum Menu
     {
         Main,
@@ -74,6 +79,7 @@ public class UiMainMenuManager : MonoBehaviour
         btnMusicOnOff.onClick.AddListener(EnableMusic);
         btnEffectOnOff.onClick.AddListener(EnableEffect);
     }
+
     private void OnButtonPlay() => CustomSceneManager.Get().LoadScene("GamePlay");
     private void OnButtonCreateUnits()=> CustomSceneManager.Get().LoadScene("UnitsCreator");
     private void OnButtonSetting() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Settings, (int) Menu.Main));
@@ -88,13 +94,15 @@ public class UiMainMenuManager : MonoBehaviour
     private void EnableMusic()
     {
         AudioManager.Get().EnableMusic();
-
+        btnMusicOnOff.image.sprite = AudioManager.Get().isMusicOn ? spriteAudioOn : spriteAudioOff;
     }
+
     private void EnableEffect()
     {
         AudioManager.Get().EnableEffect();
-
+        btnEffectOnOff.image.sprite = AudioManager.Get().isEffectOn? spriteAudioOn : spriteAudioOff;
     }
+
     private IEnumerator SwitchPanel(float maxTime, int onMenu, int offMenu)
     {
         float onTime = 0;
