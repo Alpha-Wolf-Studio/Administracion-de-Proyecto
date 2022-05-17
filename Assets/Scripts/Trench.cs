@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Trench : MonoBehaviour
 {
-    private List<Transform> coverageTransforms = new List<Transform>();
+    [SerializeField] private List<Transform> coverageTransforms = new List<Transform>();
     private List<CoveragePosition> coveragePositions = new List<CoveragePosition>();
     private bool hasTroops = false;
     private int currentTroopsLayer = -1;
@@ -17,10 +17,7 @@ public class Trench : MonoBehaviour
 
     private void Awake()
     {
-        foreach (Transform child in transform)
-        {
-            coverageTransforms.Add(child);
-        }
+
     }
 
     // Start is called before the first frame update

@@ -16,6 +16,8 @@ public class UnitMoveBehaviour : UnitBehaviour
     {
         Vector3 moveDirection = new Vector3(unit.stats.velocity * Time.deltaTime * unit.signDirection, 0, 0);
         rb.MovePosition(rb.position + moveDirection);
+        transform.LookAt(transform.position + moveDirection);
+        OnMoved?.Invoke(true);
     }
 
     public override bool IsBehaviourExecutable()

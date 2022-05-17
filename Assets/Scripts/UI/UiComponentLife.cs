@@ -16,6 +16,7 @@ public class UiComponentLife : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     private void Start()

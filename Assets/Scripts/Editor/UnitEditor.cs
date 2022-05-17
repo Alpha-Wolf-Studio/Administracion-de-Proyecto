@@ -33,6 +33,7 @@ public class UnitEditor : Editor
         GUILayout.Label("Can Shoot: " + myScript.stats.canShoot + "\n", heightOption);
         if (myScript.stats.canShoot) 
         {
+            GUILayout.Label("Attack Range: " + myScript.stats.rangeAttack + "\n", heightOption);
             GUILayout.Label("Damage: " + myScript.stats.damage + "\n", heightOption);
             GUILayout.Label("Fire Rate: " + myScript.stats.fireRate + "\n", heightOption);
             GUILayout.Label("Bullet Speed: " + myScript.stats.bulletSpeed + "\n", heightOption);
