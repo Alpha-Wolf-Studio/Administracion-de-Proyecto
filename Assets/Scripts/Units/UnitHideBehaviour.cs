@@ -33,6 +33,7 @@ public class UnitHideBehaviour : UnitBehaviour
         {
             Vector3 moveDirection = (target.position - groundPosition.position).normalized * (unit.stats.velocity * Time.deltaTime);
             rb.MovePosition(rb.position + moveDirection);
+            transform.LookAt(transform.position + moveDirection);
             if (Vector3.Distance(target.position, groundPosition.position) < targetDistanceTolerance)
             {
                 hiding = true;
