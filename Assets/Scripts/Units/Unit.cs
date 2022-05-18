@@ -64,7 +64,7 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        stats.life -= damage;
+        stats.life -= damage / stats.bonusResistance;
         if (stats.life < 0)
         {
             OnDie?.Invoke();

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Trench : MonoBehaviour
 {
+
     [SerializeField] private List<Transform> coverageTransforms = new List<Transform>();
     private List<CoveragePosition> coveragePositions = new List<CoveragePosition>();
     private bool hasTroops = false;
@@ -64,6 +65,7 @@ public class Trench : MonoBehaviour
                 coverageLocation.occupant = unit;
                 currentTroopsLayer = unit.gameObject.layer;
                 OnCurrentTroopsLayerChanged?.Invoke(currentTroopsLayer);
+                unit.stats.bonusResistance = 2f;
                 unit.OnDie += coverageLocation.Vacate;
                 unit.OnDie += CheckForTroops;
                 hasTroops = true;
@@ -79,6 +81,7 @@ public class Trench : MonoBehaviour
         {
             if (position.occupant) 
             {
+                position.occupant.stats.bonusResistance = 1f;
                 position.occupant.GetComponent<UnitHideBehaviour>().GetOut();
             }
         }

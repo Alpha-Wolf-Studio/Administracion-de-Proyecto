@@ -16,6 +16,7 @@ public class UITrench : MonoBehaviour
     private void TrenchLayerChange(int layer) 
     {
         if (layer == trenchLayerToShow) releaseButton.gameObject.SetActive(true);
+        else releaseButton.gameObject.SetActive(false);
     }
 
     private void ReleaseTrench() 
