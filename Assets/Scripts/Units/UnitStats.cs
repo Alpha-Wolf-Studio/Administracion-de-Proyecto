@@ -20,7 +20,8 @@ public class UnitStats
         unitsDamageables = unitStat.unitsDamageables;                // Sin uso
         unitsPlusDamage = unitStat.unitsPlusDamage;                 // Sin uso
         unitsRestDamage = unitStat.unitsRestDamage;                 // Sin uso
-        bonusResistance = unitStat.bonusResistance;
+        resistanceFactor = unitStat.resistanceFactor;
+        bonusRange = unitStat.bonusRange;
         life = unitStat.life;             // Mejorable
         damage = unitStat.damage;            // Mejorable
         velocity = unitStat.velocity;          // Mejorable
@@ -43,7 +44,8 @@ public class UnitStats
     public List<UnitsType> unitsDamageables;                // Sin uso
     public List<UnitsType> unitsPlusDamage;                 // Sin uso
     public List<UnitsType> unitsRestDamage;                 // Sin uso
-    public float bonusResistance = 0; // Mejorable
+    public float resistanceFactor = 1;  // Mejorable
+    public float bonusRange = 0;        // Mejorable
     public float life = 10;             // Mejorable
     public float damage = 1;            // Mejorable
     public float velocity = 2;          // Mejorable

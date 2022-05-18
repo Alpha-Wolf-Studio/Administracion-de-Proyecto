@@ -53,7 +53,7 @@ public class UnitShootBehaviour : UnitBehaviour
 
     public override bool IsBehaviourExecutable()
     {
-        currentAmountOfEnemies = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.rangeAttack, enemyColliders, unit.enemyMask);
+        currentAmountOfEnemies = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.rangeAttack + unit.stats.bonusRange, enemyColliders, unit.enemyMask);
         return currentAmountOfEnemies > 0;
     }
 }

@@ -37,10 +37,14 @@ public class UnitHideBehaviour : UnitBehaviour
             if (Vector3.Distance(target.position, groundPosition.position) < targetDistanceTolerance)
             {
                 hiding = true;
+                unit.stats.resistanceFactor = 2f;
+                unit.stats.bonusRange = unit.stats.rangeAttack;
             }
         }
         else if (shouldGetOut)
         {
+            unit.stats.resistanceFactor = 1f;
+            unit.stats.bonusRange = 0f;
             hiding = false;
             target = null;
             StartCoroutine(CanHideAgainCoroutine());
