@@ -15,10 +15,7 @@ public class UiButtonSpawnUnit : MonoBehaviour
     {
         troopManager = troopManagerPlayer;
         index = newIndex;
-
-        int indexImage = (int) GameManager.Get().unitsStatsLoaded[index].tempCurrentShape;
-        image.sprite = GameManager.Get().GetCurrentSprite(indexImage);
-        image.color = GameManager.Get().unitsStatsLoaded[index].tempColor;
+        image.sprite = GameManager.Get().GetCurrentSprite(index);
     }
     public void OnButtonSpawnUnit()
     {
