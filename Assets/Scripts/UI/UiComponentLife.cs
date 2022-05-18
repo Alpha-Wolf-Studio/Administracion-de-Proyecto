@@ -9,6 +9,7 @@ public class UiComponentLife : MonoBehaviour
     [SerializeField] private Image imageFill;
 
     private CanvasGroup canvasGroup;
+
     private float showingTime = 5f;
     private float transparencyTime = 1f;
     private IEnumerator HideProcessCor;
@@ -16,12 +17,16 @@ public class UiComponentLife : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     private void Start()
     {
         unit.OnTakeDamage += TakeDamageUI;
+    }
+
+    private void Update()
+    {
+        transform.forward = Vector3.forward;
     }
 
     void TakeDamageUI(float currentLife, float maxLife)
