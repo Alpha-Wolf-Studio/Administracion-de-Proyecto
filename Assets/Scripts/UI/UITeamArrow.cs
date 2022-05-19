@@ -21,6 +21,7 @@ public class UITeamArrow : MonoBehaviour
 
     void Update()
     {
+        transform.forward = Vector3.forward;
         Vector3 newPosition = startPosition;
         newPosition.x = transform.position.x;
         newPosition.y += Mathf.PingPong(Time.time, maxLengthMovement);
