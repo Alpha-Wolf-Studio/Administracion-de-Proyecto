@@ -47,10 +47,10 @@ public class EnemyManager : MonoBehaviour
     {
         while (maxEnemyLevel > 0)
         {
-            maxEnemyLevel--;
-            enemyTroopManager.OnButtonCreateTroop(0);
             nextTimeSpawn = Random.Range(spawnEnemyTime.x, spawnEnemyTime.y);
             yield return new WaitForSeconds(nextTimeSpawn);
+            maxEnemyLevel--;
+            enemyTroopManager.OnButtonCreateTroop(0);
         }
     }
 }
