@@ -13,6 +13,7 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private GameObject prefabUnits = default;
     [SerializeField] private List<Unit> unitsAlive = default;
+    [SerializeField] private Color troopColor = Color.blue; // Temporal
 
     private void Start()
     {
@@ -47,6 +48,9 @@ public class TroopManager : MonoBehaviour
         //int indexImage = (int)GameManager.Get().unitsStatsLoaded[tropIndex].tempCurrentShape;                                  // Temporal
         //unitGameObject.GetComponent<MeshFilter>().mesh = GameManager.Get().GetCurrentMesh(indexImage);                         // Temporal
         //unitGameObject.GetComponent<MeshRenderer>().material.color = GameManager.Get().unitsStatsLoaded[tropIndex].tempColor;  // Temporal
+
+        var arrow = unitGameObject.GetComponentInChildren<UITeamArrow>();
+        if (arrow) arrow.SetColor(troopColor);                                                                                   // Temporal
 
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
