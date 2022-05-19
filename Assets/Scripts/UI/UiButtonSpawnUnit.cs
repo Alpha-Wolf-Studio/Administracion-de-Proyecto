@@ -38,9 +38,8 @@ public class UiButtonSpawnUnit : MonoBehaviour
 
     public void OnButtonSpawnUnit()
     {
-        if (currentCooldown > 0) return;
         troopManager.OnButtonCreateTroop(index);
         currentCooldown = maxCooldown;
-        overlayImage.raycastTarget = false;
+        overlayImage.raycastTarget = true;
     }
 }

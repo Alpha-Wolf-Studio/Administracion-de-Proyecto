@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class UiComponentLife : MonoBehaviour
 {
-    [SerializeField] private Unit unit;
-    [SerializeField] private Image imageFill;
+    [SerializeField] private Unit unit = default;
+    [SerializeField] private Image imageFill = default;
+    [SerializeField] private bool isAlwaysShown = false;
 
-    private CanvasGroup canvasGroup;
+    private CanvasGroup canvasGroup = default;
 
     private float showingTime = 5f;
     private float transparencyTime = 1f;
-    private IEnumerator HideProcessCor;
+    private IEnumerator HideProcessIEnumerator = null;
 
     private void Awake()
     {
@@ -31,19 +32,20 @@ public class UiComponentLife : MonoBehaviour
 
     void TakeDamageUI(float currentLife, float maxLife)
     {
-        ShowPanel();
+        if (isAlwaysShown) canvasGroup.alpha = 1f; 
+        else ShowPanelAnimation();
         imageFill.fillAmount = currentLife / maxLife;
     }
 
-    void ShowPanel()
+    void ShowPanelAnimation()
     {
         canvasGroup.alpha = 1;
 
-        if (HideProcessCor != null)
-            StopCoroutine(HideProcessCor);
+        if (HideProcessIEnumerator != null)
+            StopCoroutine(HideProcessIEnumerator);
 
-        HideProcessCor = HideProcess();
-        StartCoroutine(HideProcessCor);
+        HideProcessIEnumerator = HideProcess();
+        StartCoroutine(HideProcessIEnumerator);
     }
 
     IEnumerator HideProcess()
