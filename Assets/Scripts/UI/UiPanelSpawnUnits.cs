@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class UiPanelSpawnUnits : MonoBehaviour
 {
-    [SerializeField] private GameObject pfButton;
-    private TroopManager troopManagerPlayer;
+    [SerializeField] private GameObject pfButton = default;
+    [SerializeField] private float spawnCooldown = 5f; //TODO llevar esto a las unidades y guardarlo como un valor de cada unidad
+    private TroopManager troopManagerPlayer = default;
     private List<GameObject> buttonsLoaded = new List<GameObject>();
 
     private void Start()
@@ -21,7 +22,7 @@ public class UiPanelSpawnUnits : MonoBehaviour
         {
             GameObject go = Instantiate(pfButton, Vector3.zero, Quaternion.identity, transform);
             buttonsLoaded.Add(go);
-            go.GetComponent<UiButtonSpawnUnit>().UpdateValues(i, troopManagerPlayer);
+            go.GetComponentInChildren<UiButtonSpawnUnit>().UpdateValues(i, spawnCooldown, troopManagerPlayer);
         }
     }
 }
