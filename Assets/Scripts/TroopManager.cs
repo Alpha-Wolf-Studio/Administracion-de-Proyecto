@@ -3,20 +3,29 @@ using UnityEngine;
 
 public class TroopManager : MonoBehaviour
 {
-    [SerializeField] private Transform startPosition;
-    [SerializeField] private Transform endPosition;
+    [SerializeField] private Unit baseSpawnUnit = default;
+    [SerializeField] private Transform startPosition = default;
+    [SerializeField] private Transform endPosition = default;
 
-    [SerializeField] private int layerToTroop;
-    [SerializeField] private LayerMask layerToInteract;
-    [SerializeField] private LayerMask layerToAttack;
+    [SerializeField] private int layerToTroop = 0;
+    [SerializeField] private LayerMask layerToInteract = default;
+    [SerializeField] private LayerMask layerToAttack = default;
     [SerializeField] private bool unitsGoToRight = true;
-    [SerializeField] private GameObject prefabUnits;
-    [SerializeField] private List<Unit> unitsAlive;
+    [SerializeField] private GameObject prefabUnits = default;
+    [SerializeField] private List<Unit> unitsAlive = default;
+
+    private void Start()
+    {
+        UnitStats unitStat = new UnitStats(); //TODO CAMBIAR STATS DE TRINCHERAS POR LEIDAS DE ALGUN LADO
+        unitStat.life = 100f;
+        baseSpawnUnit.SetValues(unitStat);        
+    }
 
     public void OnButtonCreateTroop(int tropIndex)
     {
         Vector3 startPos = startPosition.position;
-        Vector3 endPos = endPosition.position; 
+        Vector3 endPos = endPosition.position;
+
 
         if (!prefabUnits)
         {

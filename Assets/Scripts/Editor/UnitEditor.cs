@@ -40,6 +40,12 @@ public class UnitEditor : Editor
             GUILayout.Label("Bullet Speed: " + myScript.stats.bulletSpeed + "\n", heightOption);
         }
 
+        GUILayout.Space(10f);
+        if (GUILayout.Button("Test Take Damage")) 
+        {
+            myScript.TakeDamage(1);
+        }
+
     }
 
 }
