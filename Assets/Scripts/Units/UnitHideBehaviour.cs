@@ -43,8 +43,6 @@ public class UnitHideBehaviour : UnitBehaviour
         }
         else if (shouldGetOut)
         {
-            unit.stats.resistanceFactor = 1f;
-            unit.stats.bonusRange = 0f;
             hiding = false;
             target = null;
             StartCoroutine(CanHideAgainCoroutine());

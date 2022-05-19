@@ -37,6 +37,12 @@ public class UnitStats
         tempColor = unitStat.tempColor;
     }
 
+    public void ResetBonusStats() 
+    {
+        resistanceFactor = 1f;
+        bonusRange = 0f;
+    }
+
     public string nameUnit = "No name";
     public UnitsType unitType;                              // Sin uso
     public MovementType movementType;                       

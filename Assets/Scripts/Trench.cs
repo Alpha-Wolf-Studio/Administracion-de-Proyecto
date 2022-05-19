@@ -80,6 +80,7 @@ public class Trench : MonoBehaviour
         {
             if (position.occupant) 
             {
+                position.occupant.stats.ResetBonusStats();
                 position.occupant.GetComponent<UnitHideBehaviour>().GetOut();
             }
         }
