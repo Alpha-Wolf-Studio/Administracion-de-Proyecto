@@ -27,12 +27,12 @@ public class Bullet : Projectile
         }
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Transform target)
+    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
     {
         this.maskToDamage = maskToDamage;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
-        transform.LookAt(target, Vector3.up);
+        transform.LookAt(target.bounds.center, Vector3.up);
     }
 
 }

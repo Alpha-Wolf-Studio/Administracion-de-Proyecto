@@ -46,7 +46,7 @@ public class UnitShootBehaviour : UnitBehaviour
         {
             GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, projectileSpawn.position, Quaternion.identity, BulletParent.Get().GetTransform());
             Projectile projectile = projectileGameObject.GetComponent<Projectile>();
-            projectile.SetAttributes(GetComponent<Unit>().enemyMask, unit.stats, enemyColliders[0].transform);
+            projectile.SetAttributes(GetComponent<Unit>().enemyMask, unit.stats, enemyColliders[0]);
             projectile.StartProjectile();
         }
     }

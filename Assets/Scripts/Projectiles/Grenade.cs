@@ -7,7 +7,7 @@ public class Grenade : Projectile
     [Header("Grenade Specific")]
     [SerializeField] private float explosionAoe = 5f;
     [SerializeField] private float arcVariance = 5f;
-    private Transform target;
+    private Collider target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,7 +32,7 @@ public class Grenade : Projectile
         while(t < 1) 
         {
             t += Time.deltaTime * velocity;
-            Vector3 nextPosition = Vector3.Lerp(startPosition, target.position, t);
+            Vector3 nextPosition = Vector3.Lerp(startPosition, target.transform.position, t);
             nextPosition.y += Mathf.Sin(Mathf.PI * t) * arcVariance;
             transform.position = nextPosition;
 
@@ -46,13 +46,13 @@ public class Grenade : Projectile
         StartCoroutine(ArcCoroutine());
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Transform target)
+    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
     {
         this.maskToDamage = maskToDamage;
         this.target = target;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
-        transform.LookAt(target, Vector3.up);
+        transform.LookAt(target.bounds.center, Vector3.up);
     }
 
 }

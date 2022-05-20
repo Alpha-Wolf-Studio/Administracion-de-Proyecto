@@ -7,7 +7,7 @@ public class DropBomb : Projectile
 
     [Header("Drop Bomb Specific")]
     [SerializeField] private float explosionAoe = 5f;
-    private Transform target;
+    private Collider target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,13 +23,13 @@ public class DropBomb : Projectile
         }
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Transform target)
+    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
     {
         this.maskToDamage = maskToDamage;
         this.target = target;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
-        transform.LookAt(target, Vector3.up);
+        transform.LookAt(target.bounds.center, Vector3.up);
     }
 
     public override void StartProjectile()

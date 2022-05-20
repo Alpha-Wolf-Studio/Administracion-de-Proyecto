@@ -7,7 +7,7 @@ public class Rocket : Projectile
     [Header("Rocket Specific")]
     [SerializeField] private float timeBeforeAiming = .5f;
     [SerializeField] private float explosionAoe = 5f;
-    private Transform target;
+    private Collider target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,15 +43,15 @@ public class Rocket : Projectile
 
         t = 0;
         Vector3 position = transform.position;
-        transform.LookAt(target);
+        transform.LookAt(target.bounds.center);
         Debug.Break();
         while (t < 1) 
         {
             t += Time.deltaTime * velocity;
-            transform.position = Vector3.Lerp(position, target.position, t);
+            transform.position = Vector3.Lerp(position, target.bounds.center, t);
             yield return null;
         }
-        transform.position = target.position;
+        transform.position = target.bounds.center;
     }
 
     public override void StartProjectile()
@@ -59,7 +59,7 @@ public class Rocket : Projectile
         StartCoroutine(LaunchCoroutine());
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Transform target)
+    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
     {
         this.maskToDamage = maskToDamage;
         this.target = target;

@@ -9,7 +9,7 @@ public abstract class Projectile : MonoBehaviour
     protected float damage;
     protected float velocity = 5;
 
-    abstract public void SetAttributes(LayerMask maskToDamage, UnitStats stats, Transform target);
+    abstract public void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target);
 
     abstract public void StartProjectile();  
 

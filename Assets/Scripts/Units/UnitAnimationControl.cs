@@ -7,9 +7,7 @@ public class UnitAnimationControl : MonoBehaviour
 
     [SerializeField] private UnitShootBehaviour rangeAttackBehaviour = default;
 
-    private Animator animator;
-
-    private bool movement = false;
+    private Animator animator = default;
 
     private void Awake()
     {
