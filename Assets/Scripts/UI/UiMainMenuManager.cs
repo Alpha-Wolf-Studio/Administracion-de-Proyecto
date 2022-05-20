@@ -60,6 +60,8 @@ public class UiMainMenuManager : MonoBehaviour
         AddLiseners();
         AudioManager.Get().PlayMusicMenu();
         textVersion.text = "Version: " + Application.version;
+        btnMusicOnOff.image.sprite = AudioManager.Get().isMusicOn ? spriteAudioOn : spriteAudioOff;
+        btnEffectOnOff.image.sprite = AudioManager.Get().isEffectOn ? spriteAudioOn : spriteAudioOff;
     }
 
     private void AddLiseners()
