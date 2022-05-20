@@ -8,12 +8,16 @@ public class UiComponentLife : MonoBehaviour
     [SerializeField] private Unit unit = default;
     [SerializeField] private Image imageFill = default;
     [SerializeField] private bool isAlwaysShown = false;
+    [SerializeField] private Gradient lifeColors = default;
 
     private CanvasGroup canvasGroup = default;
 
     private float showingTime = 5f;
     private float transparencyTime = 1f;
     private IEnumerator HideProcessIEnumerator = null;
+
+    private IEnumerator lifeBarRecieveDamageAnimationIEnumerator = null;
+    private float lastLifeFill = 1f;
 
     private void Awake()
     {
@@ -23,6 +27,7 @@ public class UiComponentLife : MonoBehaviour
     private void Start()
     {
         unit.OnTakeDamage += TakeDamageUI;
+        imageFill.color = lifeColors.Evaluate(1);
     }
 
     private void Update()
@@ -34,7 +39,17 @@ public class UiComponentLife : MonoBehaviour
     {
         if (isAlwaysShown) canvasGroup.alpha = 1f; 
         else ShowPanelAnimation();
-        imageFill.fillAmount = currentLife / maxLife;
+
+
+        if (lifeBarRecieveDamageAnimationIEnumerator != null)
+        {
+            imageFill.fillAmount = lastLifeFill;
+            StopCoroutine(lifeBarRecieveDamageAnimationIEnumerator);
+        }
+        lifeBarRecieveDamageAnimationIEnumerator = lifeBarRecieveDamageAnimation(currentLife, maxLife);
+        StartCoroutine(lifeBarRecieveDamageAnimationIEnumerator);
+
+
     }
 
     void ShowPanelAnimation()
@@ -46,6 +61,22 @@ public class UiComponentLife : MonoBehaviour
 
         HideProcessIEnumerator = HideProcess();
         StartCoroutine(HideProcessIEnumerator);
+    }
+
+    private IEnumerator lifeBarRecieveDamageAnimation(float currentLife, float maxLife) 
+    {
+        float t = imageFill.fillAmount;
+        float fillAmount = currentLife / maxLife;
+        lastLifeFill = fillAmount;
+        while (t > fillAmount) 
+        {
+            t -= Time.deltaTime;
+            imageFill.fillAmount = t;
+            imageFill.color = lifeColors.Evaluate(t);
+            yield return null;
+        }
+        imageFill.fillAmount = fillAmount;
+        imageFill.color = lifeColors.Evaluate(fillAmount);
     }
 
     IEnumerator HideProcess()
