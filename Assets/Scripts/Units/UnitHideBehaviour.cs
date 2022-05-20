@@ -48,7 +48,8 @@ public class UnitHideBehaviour : UnitBehaviour
             StartCoroutine(CanHideAgainCoroutine());
         }
 
-        OnMoved?.Invoke(!hiding);
+        OnMoving?.Invoke(!hiding);
+        OnAttacking?.Invoke(false);
     }
 
     private IEnumerator CanHideAgainCoroutine() 

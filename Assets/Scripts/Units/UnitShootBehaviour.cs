@@ -34,10 +34,10 @@ public class UnitShootBehaviour : UnitBehaviour
         if(timeForNextShot < 0) 
         {
             timeForNextShot = unit.stats.fireRate;
-            OnAttacked?.Invoke();
+            OnAttacking?.Invoke(true);
         }
         if (enemyColliders[0] != null) transform.LookAt(enemyColliders[0].transform);
-        OnMoved?.Invoke(false);
+        OnMoving?.Invoke(false);
     }
 
     public void SpawnProjectile() 

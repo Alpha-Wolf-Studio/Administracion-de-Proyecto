@@ -17,8 +17,8 @@ public class UnitAnimationControl : MonoBehaviour
 
         foreach (var behaviour in possibleBehaviours)
         {
-            behaviour.OnMoved += OnMovementChange;
-            behaviour.OnAttacked += OnAttack;
+            behaviour.OnMoving += OnMovementChange;
+            behaviour.OnAttacking += OnAttack;
         }
     }
 
@@ -26,14 +26,14 @@ public class UnitAnimationControl : MonoBehaviour
     {
         foreach (var behaviour in possibleBehaviours)
         {
-            behaviour.OnMoved -= OnMovementChange;
-            behaviour.OnAttacked -= OnAttack;
+            behaviour.OnMoving -= OnMovementChange;
+            behaviour.OnAttacking -= OnAttack;
         }
     }
 
     private void OnMovementChange(bool move)  => animator.SetBool("Moving", move);
 
-    private void OnAttack() => animator.SetTrigger("Attack");
+    private void OnAttack(bool attack) => animator.SetBool("Attacking", attack);
 
     private void RangeAttack() => rangeAttackBehaviour.SpawnProjectile();
 

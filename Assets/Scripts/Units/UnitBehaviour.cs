@@ -5,8 +5,8 @@ public abstract class UnitBehaviour : MonoBehaviour
 {
     [SerializeField] private int priority = 0;
 
-    public System.Action<bool> OnMoved;
-    public System.Action OnAttacked;
+    public System.Action<bool> OnMoving;
+    public System.Action<bool> OnAttacking;
 
     public int Priority => priority; 
 
