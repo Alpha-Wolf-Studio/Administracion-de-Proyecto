@@ -6,12 +6,12 @@ public class UITeamArrow : MonoBehaviour
 {
     [SerializeField] private float maxLengthMovement = 1f;
     
-    private SpriteRenderer renderer = default;
+    private SpriteRenderer rend = default;
     private Vector3 startPosition = Vector3.zero;
 
     private void Awake()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        rend = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -31,7 +31,7 @@ public class UITeamArrow : MonoBehaviour
 
     public void SetColor(Color color) 
     {
-        renderer.color = color;
+        rend.color = color;
     }
 
 }
