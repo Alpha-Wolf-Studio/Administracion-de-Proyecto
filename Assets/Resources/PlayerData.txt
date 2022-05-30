@@ -1,0 +1,12 @@
+{
+    "currentLevel": 0,
+    "currentMoney": 0,
+    "levelUnits": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ]
+}

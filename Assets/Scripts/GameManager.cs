@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Sprite[] sprites;
-    
+
+    private string pathPlayerData = "PlayerData";
+    private PlayerData playerData;
+
     public bool gameover;
+
     public override void Awake()
     {
         base.Awake();
@@ -20,8 +24,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void Start()
     {
+        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
+
         Time.timeScale = 1;
-        
+
         //for (int i = 0; i < 5; i++)
         //{
         //    UnitStats unit = new UnitStats();
@@ -29,6 +35,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         //    LoadAndSave.SaveToFile(unitsStatsPath + i, data);
         //}
     }
+
     void LoadAllStatsSaved()
     {
         bool noMoreTexts = false;
@@ -49,8 +56,34 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                 noMoreTexts = true;
             }
         }
+
         OnLoadedStats?.Invoke();
     }
+
+    public void AddLevelPlayer()
+    {
+        playerData.currentLevel++;
+        SavePlayerData();
+    }
+
+    /// <summary>
+    /// Dinero que se suma o se resta.
+    /// </summary>
+    /// <param name="plusMoney"></param>
+    /// <returns>Si se pudo restar el dinero. Lo resta y guarda en caso de que si</returns>
+    public bool ModifyMoneyPlayer(int plusMoney)
+    {
+        if (playerData.currentMoney + plusMoney < 0)
+            return false;
+        playerData.currentMoney += plusMoney;
+        SavePlayerData();
+        return true;
+    }
+
+    public int[] GetLevelPlayer() => playerData.levelUnits;
+    public float GetLevelsUnits(int i) => playerData.levelUnits[i];
+    public float GetMoneyPlayer() => playerData.currentMoney;
+    private void SavePlayerData() => LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
