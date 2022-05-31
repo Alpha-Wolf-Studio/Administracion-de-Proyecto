@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-    public Action OnLoadedStats;
+    public Action onLoadedStats;
     public static string unitsStatsPath = "UnitStat";
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             }
         }
 
-        OnLoadedStats?.Invoke();
+        onLoadedStats?.Invoke();
     }
 
     public void AddLevelPlayer()
@@ -81,10 +81,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     }
 
     public int[] GetLevelPlayer() => playerData.levelUnits;
-    public float GetLevelsUnits(int i) => playerData.levelUnits[i];
-    public float GetMoneyPlayer() => playerData.currentMoney;
+
+    public void AddLevelUnit(int i)
+    {
+        playerData.levelUnits[i]++;
+        SavePlayerData();
+    } 
     private void SavePlayerData() => LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
+    public int GetLevelsUnits(int i) => playerData.levelUnits[i];
+    public float GetMoneyPlayer() => playerData.currentMoney;
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
 }

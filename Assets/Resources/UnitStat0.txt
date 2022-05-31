@@ -1,5 +1,5 @@
 {
-    "nameUnit": "CuboVerde",
+    "nameUnit": "Guerrilla",
     "unitType": 1,
     "movementType": 1,
     "attackType": 0,

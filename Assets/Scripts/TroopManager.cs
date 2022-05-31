@@ -19,7 +19,7 @@ public class TroopManager : MonoBehaviour
     {
         UnitStats unitStat = new UnitStats(); //TODO CAMBIAR STATS DE TRINCHERAS POR LEIDAS DE ALGUN LADO
         unitStat.life = 100f;
-        baseSpawnUnit.SetValues(unitStat);        
+        baseSpawnUnit.SetValues(unitStat, 0);
     }
 
     public void OnButtonCreateTroop(int tropIndex)
@@ -54,6 +54,6 @@ public class TroopManager : MonoBehaviour
 
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
-        unit.SetValues(unitStats);
+        unit.SetValues(unitStats, GameManager.Get().GetLevelPlayer()[tropIndex]);
     }
 }

@@ -1,6 +1,6 @@
 {
     "currentLevel": 0,
-    "currentMoney": 0,
+    "currentMoney": 200,
     "levelUnits": [
         0,
         0,

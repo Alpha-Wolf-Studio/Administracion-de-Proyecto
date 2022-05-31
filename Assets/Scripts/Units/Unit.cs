@@ -56,10 +56,10 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void SetValues(UnitStats stats)
+    public void SetValues(UnitStats stats, int unitLevel)
     {
-        this.stats = new UnitStats(stats);
-        initialStats = new UnitStats(stats);
+        this.stats = new UnitStats(stats, unitLevel);
+        initialStats = new UnitStats(stats, unitLevel);
     }
 
     public void TakeDamage(float damage)
