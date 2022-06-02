@@ -20,12 +20,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         base.Awake();
         LoadAllStatsSaved();
+        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
     }
 
     private void Start()
     {
-        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
-
         Time.timeScale = 1;
 
         //for (int i = 0; i < 5; i++)
@@ -80,8 +79,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public int[] GetLevelPlayer() => playerData.levelUnits;
+    public void SetPlayerDataName(string newName)
+    {
+        playerData.playerName = newName;
+        SavePlayerData();
+    }
 
+    public string GetPlayerName() => playerData.playerName;
+    public int[] GetLevelUnitsPlayer() => playerData.levelUnits;
+    public int GetLevelPlayer() => playerData.currentLevel;
     public void AddLevelUnit(int i)
     {
         playerData.levelUnits[i]++;

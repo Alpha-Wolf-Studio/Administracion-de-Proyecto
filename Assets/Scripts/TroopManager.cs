@@ -54,6 +54,6 @@ public class TroopManager : MonoBehaviour
 
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
-        unit.SetValues(unitStats, GameManager.Get().GetLevelPlayer()[tropIndex]);
+        unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsPlayer()[tropIndex]);
     }
 }
