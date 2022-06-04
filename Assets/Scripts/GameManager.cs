@@ -10,10 +10,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Sprite[] sprites;
+    [Space(10)]
+    [SerializeField] private int currentMissionsAmount = 4; 
 
     private string pathPlayerData = "PlayerData";
     private PlayerData playerData;
-
 
     public override void Awake()
     {
@@ -101,4 +102,5 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public float GetMoneyPlayer() => playerData.currentMoney;
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
+    public int GetCurrentMissionsAmount() => currentMissionsAmount;
 }

@@ -3645,7 +3645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  currentLevel: 3
+  currentMission: 3
   unitToDestroy: {fileID: 1398401942}
   unitToDefend: {fileID: 707670615}
   playerTroopManager: {fileID: 375359669}
@@ -18664,6 +18664,7 @@ MonoBehaviour:
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   sprites:
   - {fileID: 21300000, guid: 7935bfa5378986f448bd00b370a54f49, type: 3}
+  currentMissionsAmount: 4
 --- !u!4 &568172180
 Transform:
   m_ObjectHideFlags: 0
