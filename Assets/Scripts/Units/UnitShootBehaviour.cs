@@ -11,6 +11,8 @@ public class UnitShootBehaviour : UnitBehaviour
 
     private float timeForNextShot = -1;
 
+    public float TimeForNextShot => timeForNextShot;
+
     public void SetPrefabProjectile(Projectile proj) => prefabProjectile = proj;
 
     private void Awake()

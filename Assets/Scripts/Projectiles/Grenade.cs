@@ -27,12 +27,13 @@ public class Grenade : Projectile
     {
         float t = 0;
         Vector3 startPosition = transform.position;
-        
+        Vector3 targetPosition = target.transform.position;
 
-        while(t < 1) 
+        while (t < 1) 
         {
             t += Time.deltaTime * velocity;
-            Vector3 nextPosition = Vector3.Lerp(startPosition, target.transform.position, t);
+            if (target != null) targetPosition = target.transform.position;
+            Vector3 nextPosition = Vector3.Lerp(startPosition, targetPosition, t);
             nextPosition.y += Mathf.Sin(Mathf.PI * t) * arcVariance;
             transform.position = nextPosition;
 
