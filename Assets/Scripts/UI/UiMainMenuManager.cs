@@ -7,19 +7,17 @@ public class UiMainMenuManager : MonoBehaviour
     [SerializeField] private float transitionTime;
     [SerializeField] private CanvasGroup[] menues;
 
-    [Header("References: ")] 
+    [Header("References Menu Buttons: ")] 
     [SerializeField] private Button btnToMissions;
     [SerializeField] private Button btnToCreator;
     [SerializeField] private Button btnToSettings;
     [SerializeField] private Button btnToCredits;
     [SerializeField] private Button btnToProfile;
-    [SerializeField] private Button btnToBarraks;
+    [SerializeField] private Button btnToBarracks;
 
-    [SerializeField] private Button btnBackSettings;
-    [SerializeField] private Button btnBackCredits;
-    [SerializeField] private Button btnBackProfile;
-    [SerializeField] private Button btnBackBarracks;
+    [SerializeField] private Button[] buttonsToMenu;
 
+    [Header("Reference Options Buttons")]
     [SerializeField] private Button btnMusicOnOff;
     [SerializeField] private Button btnEffectOnOff;
     [SerializeField] private TextMeshProUGUI textVersion;
@@ -34,7 +32,8 @@ public class UiMainMenuManager : MonoBehaviour
         Settings,
         Credits,
         Profile,
-        Barracks
+        Barracks,
+        Missions
     }
     private Menu currentMenu = Menu.Main;
 
@@ -57,41 +56,38 @@ public class UiMainMenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        AddLiseners();
+        AddListeners();
         AudioManager.Get().PlayMusicMenu();
         textVersion.text = "Version: " + Application.version;
         btnMusicOnOff.image.sprite = AudioManager.Get().isMusicOn ? spriteAudioOn : spriteAudioOff;
         btnEffectOnOff.image.sprite = AudioManager.Get().isEffectOn ? spriteAudioOn : spriteAudioOff;
     }
 
-    private void AddLiseners()
+    private void AddListeners()
     {
         btnToMissions.onClick.AddListener(OnButtonPlay);
         btnToCreator.onClick.AddListener(OnButtonCreateUnits);
         btnToSettings.onClick.AddListener(OnButtonSetting);
         btnToCredits.onClick.AddListener(OnButtonCredits);
         btnToProfile.onClick.AddListener(OnButtonProfile);
-        btnToBarraks.onClick.AddListener(OnButtonBarracks);
+        btnToBarracks.onClick.AddListener(OnButtonBarracks);
 
-        btnBackSettings.onClick.AddListener(OnButtonBackSettings);
-        btnBackCredits.onClick.AddListener(OnButtonBackCredits);
-        btnBackProfile.onClick.AddListener(OnButtonBackProfile);
-        btnBackBarracks.onClick.AddListener(OnButtonBackBarracks);
+        foreach (var button in buttonsToMenu)
+        {
+            button.onClick.AddListener(OnButtonToMainMenu);
+        }
 
         btnMusicOnOff.onClick.AddListener(EnableMusic);
         btnEffectOnOff.onClick.AddListener(EnableEffect);
     }
 
-    private void OnButtonPlay() => CustomSceneManager.Get().LoadScene("GamePlay");
+    private void OnButtonPlay() => StartCoroutine(SwitchPanel(transitionTime, (int)Menu.Missions));
     private void OnButtonCreateUnits()=> CustomSceneManager.Get().LoadScene("UnitsCreator");
-    private void OnButtonSetting() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Settings, (int) Menu.Main));
-    private void OnButtonCredits() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Credits, (int) Menu.Main));
-    private void OnButtonProfile() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Profile, (int) Menu.Main));
-    private void OnButtonBarracks() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Barracks, (int) Menu.Main));
-    private void OnButtonBackSettings() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Settings));
-    private void OnButtonBackCredits() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Credits));
-    private void OnButtonBackProfile() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Profile));
-    private void OnButtonBackBarracks() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main, (int) Menu.Barracks));
+    private void OnButtonSetting() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Settings));
+    private void OnButtonCredits() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Credits));
+    private void OnButtonProfile() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Profile));
+    private void OnButtonBarracks() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Barracks));
+    private void OnButtonToMainMenu() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Main));
 
     private void EnableMusic()
     {
@@ -105,12 +101,12 @@ public class UiMainMenuManager : MonoBehaviour
         btnEffectOnOff.image.sprite = AudioManager.Get().isEffectOn? spriteAudioOn : spriteAudioOff;
     }
 
-    private IEnumerator SwitchPanel(float maxTime, int onMenu, int offMenu)
+    private IEnumerator SwitchPanel(float maxTime, int onMenu)
     {
         float onTime = 0;
         CanvasGroup on = menues[onMenu];
         on.gameObject.SetActive(true);
-        CanvasGroup off = menues[offMenu];
+        CanvasGroup off = menues[(int)currentMenu];
 
         off.blocksRaycasts = false;
         off.interactable = false;

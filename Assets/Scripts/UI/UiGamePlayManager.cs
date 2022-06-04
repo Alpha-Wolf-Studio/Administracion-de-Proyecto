@@ -23,7 +23,7 @@ public class UiGamePlayManager : MonoBehaviour
         foreach (Button btnMenu in btnToMenu)
             btnMenu.onClick.AddListener(OnButtonToMainMenu);
         foreach (Button btnReset in btnToReset)
-            btnReset.onClick.AddListener(OnButtonResetScene);
+            btnReset.onClick.AddListener(OnButtonContinue);
 
         btnPause.onClick.AddListener(OnButtonPause);
         btnUnPause.onClick.AddListener(OnButtonDisablePause);
@@ -32,7 +32,7 @@ public class UiGamePlayManager : MonoBehaviour
     }
 
     private void OnButtonToMainMenu() => SceneManager.LoadScene("MainMenu");
-    private void OnButtonResetScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    private void OnButtonContinue() => SceneManager.LoadScene("Level " + (GamePlayManager.Get().CurrentLevel + 1).ToString());
 
     void GameOverUi(bool isWin)
     {

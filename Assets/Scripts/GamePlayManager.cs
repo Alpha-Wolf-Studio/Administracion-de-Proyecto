@@ -12,6 +12,8 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
 
     private bool isGameOver = false;
 
+    public int CurrentLevel => currentLevel;
+
     private void Start()
     {
         Time.timeScale = 1; 
