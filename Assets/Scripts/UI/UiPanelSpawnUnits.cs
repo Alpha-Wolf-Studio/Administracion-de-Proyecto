@@ -19,7 +19,7 @@ public class UiPanelSpawnUnits : MonoBehaviour
     private void LoadButtons()
     {
         buttonsLoaded.Clear();
-        for (int i = 0; i < GameManager.Get().unitsStatsLoaded.Count; i++)
+        for (int i = 0; i < GamePlayManager.Get().CurrentLevelPrefabUnits.Length; i++)
         {
             GameObject go = Instantiate(pfButton, Vector3.zero, Quaternion.identity, transform);
             buttonsLoaded.Add(go);

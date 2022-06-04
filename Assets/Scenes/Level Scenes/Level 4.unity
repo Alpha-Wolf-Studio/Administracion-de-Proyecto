@@ -3649,6 +3649,12 @@ MonoBehaviour:
   unitToDestroy: {fileID: 1398401942}
   unitToDefend: {fileID: 707670615}
   playerTroopManager: {fileID: 375359669}
+  currentLevelPrefabUnits:
+  - {fileID: 3486362038803053825, guid: 6932dcec0c30b2241977ffe3807d9eb4, type: 3}
+  - {fileID: 3486362038803053825, guid: 1b122f452abc6fc44909cf29fcb872f5, type: 3}
+  currentLevelPrefabProjectiles:
+  - {fileID: 4329516591981693134, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
+  - {fileID: 8611562074029808673, guid: eb4bfbbba6fd3344abc01e019f05a3f4, type: 3}
 --- !u!4 &127216818
 Transform:
   m_ObjectHideFlags: 0
@@ -11582,7 +11588,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   unitsGoToRight: 1
-  prefabUnits: {fileID: 3486362038803053854, guid: 6932dcec0c30b2241977ffe3807d9eb4, type: 3}
   unitsAlive: []
   troopColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!23 &375359671
@@ -38982,7 +38987,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   unitsGoToRight: 0
-  prefabUnits: {fileID: 3486362038803053854, guid: 6932dcec0c30b2241977ffe3807d9eb4, type: 3}
   unitsAlive: []
   troopColor: {r: 1, g: 0.04438324, b: 0, a: 1}
 --- !u!65 &1149957765

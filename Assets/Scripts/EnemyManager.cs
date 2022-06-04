@@ -50,7 +50,8 @@ public class EnemyManager : MonoBehaviour
             nextTimeSpawn = Random.Range(spawnEnemyTime.x, spawnEnemyTime.y);
             yield return new WaitForSeconds(nextTimeSpawn);
             maxEnemyLevel--;
-            enemyTroopManager.OnButtonCreateTroop(0);
+            int currentSpawn = Random.Range(0, GamePlayManager.Get().CurrentLevelPrefabUnits.Length);
+            enemyTroopManager.OnButtonCreateTroop(currentSpawn);
         }
     }
 }

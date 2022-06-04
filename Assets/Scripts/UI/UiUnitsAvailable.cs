@@ -16,7 +16,7 @@ public class UiUnitsAvailable : MonoBehaviour
     {
         LoadButtons();
     }
-    void LoadButtons()
+    private void LoadButtons()
     {
         buttonsLoaded.Clear();
         for (int i = 0; i < GameManager.Get().unitsStatsLoaded.Count; i++)
@@ -34,7 +34,7 @@ public class UiUnitsAvailable : MonoBehaviour
         }
     }
 
-    void AddNewButton(int i)
+    private void AddNewButton(int i)
     {
         GameObject go = Instantiate(pfButton, Vector3.zero, Quaternion.identity, transform);
         buttonsLoaded.Add(go);

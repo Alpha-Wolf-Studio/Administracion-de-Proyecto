@@ -10,6 +10,12 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     [SerializeField] private Unit unitToDefend;
     [SerializeField] private TroopManager playerTroopManager;
 
+    [SerializeField] private Unit[] currentLevelPrefabUnits = default;
+    [SerializeField] private Projectile[] currentLevelPrefabProjectiles = default;
+
+    public Unit[] CurrentLevelPrefabUnits => currentLevelPrefabUnits;
+    public Projectile[] CurrentLevelPrefabProjectiles => currentLevelPrefabProjectiles;
+
     private bool isGameOver = false;
 
     public int CurrentLevel => currentLevel;

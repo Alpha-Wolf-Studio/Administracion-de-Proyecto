@@ -11,7 +11,6 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private LayerMask layerToInteract = default;
     [SerializeField] private LayerMask layerToAttack = default;
     [SerializeField] private bool unitsGoToRight = true;
-    [SerializeField] private GameObject prefabUnits = default;
     [SerializeField] private List<Unit> unitsAlive = default;
     [SerializeField] private Color troopColor = Color.blue; // Temporal
 
@@ -27,8 +26,10 @@ public class TroopManager : MonoBehaviour
         Vector3 startPos = startPosition.position;
         Vector3 endPos = endPosition.position;
 
+        var prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
+        var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
 
-        if (!prefabUnits)
+        if (prefabUnits == null || prefabUnits.Length <= tropIndex)
         {
             Debug.LogWarning("No existe el indice de esa tropa!!");
             return;
@@ -37,9 +38,8 @@ public class TroopManager : MonoBehaviour
         float random = Random.Range(0, 1.0f);
         Vector3 pos = Vector3.Lerp(startPos, endPos, random);
 
-        GameObject unitGameObject = Instantiate(prefabUnits, pos, Quaternion.identity, transform);
-        unitGameObject.gameObject.layer = layerToTroop;
-        Unit unit = unitGameObject.GetComponent<Unit>();
+        Unit unit = Instantiate(prefabUnits[tropIndex], pos, Quaternion.identity, transform);
+        unit.gameObject.layer = layerToTroop;
         unit.signDirection = unitsGoToRight ? 1 : -1;
         unit.interactableMask = layerToInteract;
         unit.enemyMask = layerToAttack;
@@ -49,11 +49,17 @@ public class TroopManager : MonoBehaviour
         //unitGameObject.GetComponent<MeshFilter>().mesh = GameManager.Get().GetCurrentMesh(indexImage);                         // Temporal
         //unitGameObject.GetComponent<MeshRenderer>().material.color = GameManager.Get().unitsStatsLoaded[tropIndex].tempColor;  // Temporal
 
-        var arrow = unitGameObject.GetComponentInChildren<UITeamArrow>();
+        var arrow = unit.gameObject.GetComponentInChildren<UITeamArrow>();
         if (arrow) arrow.SetColor(troopColor);                                                                                   // Temporal
-
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
         unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsPlayer()[tropIndex]);
+
+        var unitShootBehaviour = unit.GetComponent<UnitShootBehaviour>();
+        if (unitShootBehaviour) 
+        {
+            Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
+            unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
+        }
     }
 }

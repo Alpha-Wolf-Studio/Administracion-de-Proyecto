@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class UnitShootBehaviour : UnitBehaviour
 {
-    [SerializeField] private Projectile prefabProjectile = default;
     [SerializeField] private Transform projectileSpawn = default;
+    private Projectile prefabProjectile = default;
     private Unit unit = default;
 
     private Collider[] enemyColliders = new Collider[5]; //Puse 5 para que sobre en caso de una nueva utilidad ya que estoy reutilizando el array, con tener 1 ya alcanza.
     private int currentAmountOfEnemies = 0;
 
     private float timeForNextShot = -1;
+
+    public void SetPrefabProjectile(Projectile proj) => prefabProjectile = proj;
 
     private void Awake()
     {
