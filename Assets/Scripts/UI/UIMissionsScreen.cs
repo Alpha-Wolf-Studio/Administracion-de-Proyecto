@@ -10,6 +10,11 @@ public class UIMissionsScreen : MonoBehaviour
 
         missionButtons = GetComponentsInChildren<UIMissionButton>();
         
+    }
+
+    private void Start()
+    {
+
         int currentLevel = GameManager.Get().GetLevelPlayer();
         foreach (var button in missionButtons)
         {
@@ -24,7 +29,7 @@ public class UIMissionsScreen : MonoBehaviour
 
             button.OnMissionSelected += MissionSelect;
         }
-
+        
     }
 
     private void MissionSelect(int missionIndex) 
