@@ -82,8 +82,10 @@ public class Trench : MonoBehaviour
             {
                 position.occupant.stats.ResetBonusStats();
                 position.occupant.GetComponent<UnitHideBehaviour>().GetOut();
+                position.occupant = null;
             }
         }
+        hasTroops = false;
     }
 
     [System.Serializable]
