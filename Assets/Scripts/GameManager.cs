@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private string pathPlayerData = "PlayerData";
     private PlayerData playerData;
 
-    public bool gameover;
 
     public override void Awake()
     {
@@ -59,10 +58,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         onLoadedStats?.Invoke();
     }
 
-    public void AddLevelPlayer()
+    public void CompleteLevelPlayer(int level)
     {
-        playerData.currentLevel++;
-        SavePlayerData();
+        if(playerData.currentLevel < level) 
+        {
+            playerData.currentLevel = level;
+            SavePlayerData();
+        }
     }
 
     /// <summary>
