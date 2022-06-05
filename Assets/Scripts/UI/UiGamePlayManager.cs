@@ -18,6 +18,10 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private GameObject uiPanelWinLastLevel;
     [SerializeField] private CanvasGroup uiPanelLose;
 
+    [Space(10)]
+    [SerializeField] private TMPro.TextMeshProUGUI levelTextComponent;
+
+
     private void Start()
     {
         uiPanelWin.gameObject.SetActive(false);
@@ -33,6 +37,9 @@ public class UiGamePlayManager : MonoBehaviour
         btnToContinue.onClick.AddListener(OnButtonContinue);
 
         GamePlayManager.OnGameOver += GameOverUi;
+
+        levelTextComponent.text = "Mission " + GamePlayManager.Get().CurrentMission.ToString();
+
     }
 
     private void OnDestroy()
