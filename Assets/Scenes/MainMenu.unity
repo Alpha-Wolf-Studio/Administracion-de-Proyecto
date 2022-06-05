@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 3
+  m_text: Mission 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
   m_sharedMaterial: {fileID: 4194795003234147218, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
@@ -8658,7 +8658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 2
+  m_text: Mission 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
   m_sharedMaterial: {fileID: 4194795003234147218, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
@@ -9003,7 +9003,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 4
+  m_text: Mission 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
   m_sharedMaterial: {fileID: 4194795003234147218, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
@@ -17784,7 +17784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: Mission 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
   m_sharedMaterial: {fileID: 4194795003234147218, guid: b40fd42d068c3614ca384e8c458118dc, type: 2}
@@ -20409,10 +20409,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   unitsStatsLoaded: []
-  currentMissionsAmount: 4
   meshes:
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   sprites:
   - {fileID: 21300000, guid: 7935bfa5378986f448bd00b370a54f49, type: 3}
   - {fileID: 21300000, guid: 94a642b81c8449d4db62ce2fc88356dc, type: 3}
+  currentMissionsAmount: 4
