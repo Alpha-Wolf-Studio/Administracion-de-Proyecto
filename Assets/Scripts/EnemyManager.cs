@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int maxEnemyLevel = 10;
     [SerializeField] private TroopManager enemyTroopManager = default;
     [SerializeField] private Vector2 spawnEnemyTime = Vector2.zero;
+    [SerializeField] private bool autoSpawnEnemy = true;
     private float nextTimeSpawn = 0;
 
     [Header("Trenches Configurations")]
@@ -19,7 +20,7 @@ public class EnemyManager : MonoBehaviour
         levelTrenches = FindObjectsOfType<Trench>();
         timeToUnloadTrenches = maxTimeToUnloadTrenches;
 
-        StartCoroutine(SpawnEnemy());
+        if(autoSpawnEnemy) StartCoroutine(SpawnRandomEnemy());
     }
 
     private void Update()
@@ -43,7 +44,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnEnemy()
+    private IEnumerator SpawnRandomEnemy()
     {
         while (maxEnemyLevel > 0)
         {

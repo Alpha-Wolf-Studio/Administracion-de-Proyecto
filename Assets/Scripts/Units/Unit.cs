@@ -14,6 +14,9 @@ public class Unit : MonoBehaviour
     public int signDirection = 1;
 
     [SerializeField] private List<UnitBehaviour> unitBehaviours = default;
+    [SerializeField] private SkinnedMeshRenderer baseTroopMeshRenderer = default;
+
+    public void SetBaseTroopMaterial(Material mat) => baseTroopMeshRenderer.material = mat;
 
     private UnitStats initialStats;
 

@@ -11587,7 +11587,7 @@ MonoBehaviour:
     m_Bits: 256
   unitsGoToRight: 1
   unitsAlive: []
-  troopColor: {r: 0, g: 0, b: 1, a: 1}
+  baseUnitMaterial: {fileID: 2100000, guid: d5b7afe5bd447b64f8ff14a4c65b460b, type: 2}
 --- !u!23 &375359671
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23921,6 +23921,7 @@ MonoBehaviour:
     m_Bits: 1024
   signDirection: 1
   unitBehaviours: []
+  baseTroopMeshRenderer: {fileID: 0}
   stats:
     nameUnit: Ally Base
     unitType: 0
@@ -26973,6 +26974,7 @@ MonoBehaviour:
   maxEnemyLevel: 10
   enemyTroopManager: {fileID: 1149957764}
   spawnEnemyTime: {x: 6, y: 10}
+  autoSpawnEnemy: 1
   maxTimeToUnloadTrenches: 10
 --- !u!4 &772702160
 Transform:
@@ -38987,7 +38989,7 @@ MonoBehaviour:
     m_Bits: 128
   unitsGoToRight: 0
   unitsAlive: []
-  troopColor: {r: 1, g: 0.04438324, b: 0, a: 1}
+  baseUnitMaterial: {fileID: 2100000, guid: 30132e99b91ed80429d6ba8616e03e50, type: 2}
 --- !u!65 &1149957765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46776,6 +46778,7 @@ MonoBehaviour:
     m_Bits: 1024
   signDirection: 1
   unitBehaviours: []
+  baseTroopMeshRenderer: {fileID: 0}
   stats:
     nameUnit: Enemy Base
     unitType: 0
