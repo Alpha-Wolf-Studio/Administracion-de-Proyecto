@@ -4,6 +4,8 @@ using UnityEngine;
 public class TerrainManager : MonoBehaviour
 {
 
+    public System.Action<HexagonTerrain> OnResetTerrainStates;
+
     private WorldBuilderHexagon worldBuilder = default;
     private List<HexagonTerrain> currentHexagons = default;
 

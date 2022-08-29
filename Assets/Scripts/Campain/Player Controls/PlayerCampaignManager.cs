@@ -3,11 +3,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerCampaignManager : MonoBehaviour
 {
-
+    [Header("Terrain")]
     [SerializeField] private TerrainManager terrainManager = default;
     [SerializeField] private LayerMask terrainLayer = default;
     [SerializeField] private float cursorMaxDistance = 100f;
 
+    [Header("Camera")]
+    [SerializeField] private PlayerCampaignCameraController cameraController;
     private Camera mainCamera = default;
 
     TerrainEventsHandler currentSelectedTerrain = null;
@@ -39,6 +41,7 @@ public class PlayerCampaignManager : MonoBehaviour
                         currentSelectedTerrain?.Deselect();
                         currentSelectedTerrain = terrainEventHandler;
                         currentSelectedTerrain?.Select();
+                        cameraController.SetTarget(currentSelectedTerrain.transform);
                     }
                 }
             }
