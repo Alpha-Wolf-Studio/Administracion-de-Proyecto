@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Sprite[] sprites;
     [Space(10)]
-    [SerializeField] private int currentMissionsAmount = 4; 
+    [SerializeField] private int currentMissionsAmount = 4;
+    [SerializeField] private WorldBuilderData worldData = default;
 
     private string pathPlayerData = "PlayerData";
     private PlayerData playerData;
@@ -85,6 +86,61 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void SetPlayerDataName(string newName)
     {
         playerData.playerName = newName;
+        SavePlayerData();
+    }
+
+    public void SetTerrainStates(List<HexagonTerrain> hexagonTerrains) 
+    {
+        playerData.campaingStatus = new int[hexagonTerrains.Count];
+        for (int i = 0; i < hexagonTerrains.Count; i++)
+        {
+            playerData.campaingStatus[i] = (int)hexagonTerrains[i].CurrentState;
+        }
+        SavePlayerData();
+    }
+
+    public int[] GetTerrainStates() => playerData.campaingStatus;
+
+    public void OnLevelWin(int level) 
+    {
+
+        int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
+        for (int i = 0; i < worldData.Rows; i++)
+        {
+            for (int j = 0; j < worldData.Columns; j++)
+            {
+                twoDCampaingStatusArray[i, j] = playerData.campaingStatus[i * worldData.Columns + j];
+            }
+        }
+
+        int levelX = level / worldData.Columns;
+        int levelY = level % worldData.Columns;
+
+        for (int i = levelX - 1; i < levelX + 2; i++)
+        {
+            for (int j = levelY - 1; j < levelY + 2; j++)
+            {
+                if(i >= 0 && i < worldData.Columns && j >= 0 && j < worldData.Rows) 
+                {
+                    if(twoDCampaingStatusArray[i, j] == (int)TerrainManager.TerrainState.Unavailable) 
+                    {
+                        twoDCampaingStatusArray[i, j] = (int)TerrainManager.TerrainState.Locked;
+                    }
+                }
+            }
+        }
+
+        twoDCampaingStatusArray[levelX, levelY] = (int)TerrainManager.TerrainState.Unlocked;
+
+        int write = 0;
+        for (int i = 0; i <= twoDCampaingStatusArray.GetUpperBound(0); i++)
+        {
+            for (int z = 0; z <= twoDCampaingStatusArray.GetUpperBound(1); z++)
+            {
+                playerData.campaingStatus[write++] = twoDCampaingStatusArray[i, z];
+            }
+        }
+
         SavePlayerData();
     }
 
