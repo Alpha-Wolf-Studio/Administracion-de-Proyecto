@@ -116,12 +116,17 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         int levelX = level / worldData.Columns;
         int levelY = level % worldData.Columns;
 
-        for (int i = levelX - 1; i < levelX + 2; i++)
+        for (int i = levelX - 1; i <= levelX + 1; i++)
         {
-            for (int j = levelY - 1; j < levelY + 2; j++)
+            for (int j = levelY - 1; j <= levelY + 1; j++)
             {
-                if(i >= 0 && i < worldData.Columns && j >= 0 && j < worldData.Rows) 
+
+                bool isPositionValid = i >= 0 && i < worldData.Columns && j >= 0 && j < worldData.Rows;
+                bool isPositionNeighbours = IsPositionNeighbourHexagonal(i, j, levelX, levelY);
+
+                if (isPositionValid && isPositionNeighbours) 
                 {
+
                     if(twoDCampaingStatusArray[i, j] == (int)TerrainManager.TerrainState.Unavailable) 
                     {
                         twoDCampaingStatusArray[i, j] = (int)TerrainManager.TerrainState.Locked;
@@ -142,6 +147,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
 
         SavePlayerData();
+    }
+
+    private bool IsPositionNeighbourHexagonal(int i, int j, int levelX, int levelY) 
+    {
+
+        if (levelX % 2 != 0)
+        {
+            if (j >= levelY + 1 && i != levelX) return false;
+        }
+        else
+        {
+            if (j <= levelY - 1 && i != levelX) return false;
+        }
+
+        return true;
     }
 
     public string GetPlayerName() => playerData.playerName;
