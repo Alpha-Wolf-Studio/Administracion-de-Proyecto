@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void Start()
     {
+        Application.quitting += SavePlayerData;
         Time.timeScale = 1;
 
         //for (int i = 0; i < 5; i++)
@@ -171,12 +172,22 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         playerData.levelUnits[i]++;
         SavePlayerData();
+    }
+
+    private void SavePlayerData ()
+    {
+        playerData.lastSavedTime = System.DateTime.Now.DayOfYear;       // Todo: Actualmente solo guarda el día del año, hay que tomar el dato de algún lado más fiable que el local del jugador.
+        LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
     } 
-    private void SavePlayerData() => LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
     public int GetLevelsUnits(int i) => playerData.levelUnits[i];
     public float GetMoneyPlayer() => playerData.currentMoney;
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
     public int GetCurrentMissionsAmount() => currentMissionsAmount;
+
+    private void OnDestroy ()   // Todo: Probar que esto funcione cuando android te cierra el proceso
+    {
+        SavePlayerData();
+    }
 }
