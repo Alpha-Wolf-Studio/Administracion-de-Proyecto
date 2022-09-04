@@ -28,13 +28,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         Application.quitting += SavePlayerData;
         Time.timeScale = 1;
-
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    UnitStats unit = new UnitStats();
-        //    string data = JsonUtility.ToJson(unit,true);
-        //    LoadAndSave.SaveToFile(unitsStatsPath + i, data);
-        //}
     }
 
     void LoadAllStatsSaved()
@@ -104,7 +97,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void OnLevelWin(int level) 
     {
-
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
         for (int i = 0; i < worldData.Rows; i++)
         {
@@ -185,6 +177,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
     public int GetCurrentMissionsAmount() => currentMissionsAmount;
+
+    public void HealAllUnits ()
+    {
+        foreach (UnitData army in playerData.dataArmies)
+        {
+
+        }
+    }
 
     private void OnDestroy ()   // Todo: Probar que esto funcione cuando android te cierra el proceso
     {
