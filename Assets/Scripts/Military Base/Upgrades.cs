@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class Upgrades : MonoBehaviour
 {
-    public int currentUnit = 0;
+    [SerializeField] private UnitSelector unitSelector;
     [SerializeField] private Button btnLevelUp;
     [SerializeField] private Button btnBuyMercenary;
     [SerializeField] private Button btnBuyArmy;
     [SerializeField] private Button btnHealAllUnits;
 
-    private void Start()
+    private void Start ()
     {
         btnLevelUp.onClick.AddListener(LevelUpUnit);
         btnBuyMercenary.onClick.AddListener(BuyMercenary);
@@ -25,23 +25,23 @@ public class Upgrades : MonoBehaviour
         btnHealAllUnits.onClick.RemoveAllListeners();
     }
 
-    private void HealAllUnits()
+    private void HealAllUnits ()
     {
         GameManager.Get().HealAllUnits();
     }
 
-    private void BuyArmy()
+    private void BuyArmy ()
     {
-
+        GameManager.Get().BuyArmy(unitSelector.currentUnit);
     }
 
-    private void BuyMercenary()
+    private void BuyMercenary ()
     {
-
+        GameManager.Get().BuyMercenary(unitSelector.currentUnit);
     }
 
-    private void LevelUpUnit()
+    private void LevelUpUnit ()
     {
-
+        GameManager.Get().LevelUpUnit(unitSelector.currentUnit);
     }
 }

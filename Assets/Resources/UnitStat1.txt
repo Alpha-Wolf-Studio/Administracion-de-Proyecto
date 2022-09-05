@@ -1,5 +1,6 @@
 {
     "nameUnit": "Grenade Launcher",
+    "idUnit":1,
     "unitType": 1,
     "movementType": 1,
     "attackType": 1,
@@ -16,7 +17,7 @@
     "unitsRestDamage": [
         2
     ],
-    "life": 10.0,
+    "life": 15.0,
     "damage": 2,
     "velocity": 3.0,
     "radiusSight": 20.0,

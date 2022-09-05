@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": 242,
+    "lastSavedTime": 247,
     "currentLevel": 0,
     "campaingStatus": [
         1,
@@ -105,12 +105,116 @@
     ],
     "currentMoney": 0,
     "levelUnits": [
-        2,
-        0,
+        3,
+        1,
         0,
         0,
         0,
         0
     ],
-    "playerName": "TestName"
+    "playerName": "TestName",
+    "dataArmies": [
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        }
+    ],
+    "dataMercenaries": [
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 0,
+            "unitType": 1,
+            "life": 10.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        },
+        {
+            "idUnit": 1,
+            "unitType": 1,
+            "life": 15.0
+        }
+    ]
 }

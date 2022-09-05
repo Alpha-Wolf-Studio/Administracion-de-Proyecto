@@ -1,5 +1,6 @@
 {
     "nameUnit": "Guerrilla",
+    "idUnit":0,
     "unitType": 1,
     "movementType": 1,
     "attackType": 0,

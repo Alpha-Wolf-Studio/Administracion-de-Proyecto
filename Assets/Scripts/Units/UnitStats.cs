@@ -14,6 +14,7 @@ public class UnitStats
     public UnitStats(UnitStats unitStat, int unitLevel)
     {
         nameUnit = unitStat.nameUnit;
+        idUnit = unitStat.idUnit;
         unitType = unitStat.unitType; // Sin uso
         movementType = unitStat.movementType;
         attackType = unitStat.attackType;
@@ -46,6 +47,7 @@ public class UnitStats
     }
 
     public string nameUnit = "No name";
+    public int idUnit = 0;
     public UnitsType unitType; // Sin uso
     public MovementType movementType;
     public AttackType attackType;

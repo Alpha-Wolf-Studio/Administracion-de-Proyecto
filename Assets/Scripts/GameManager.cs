@@ -1,36 +1,39 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public Action onLoadedStats;
+    public event Action OnHealtAllUnits;
+    public event Action OnAddLevelUnit;
+    public event Action OnAddUnitArmy;
+    public event Action OnAddUnitMercenary;
     public static string unitsStatsPath = "UnitStat";
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Sprite[] sprites;
-    [Space(10)]
+    [Space(10)] 
     [SerializeField] private int currentMissionsAmount = 4;
     [SerializeField] private WorldBuilderData worldData = default;
 
     private string pathPlayerData = "PlayerData";
-    private PlayerData playerData;
+    [SerializeField] private PlayerData playerData;
 
-    public override void Awake()
+    public override void Awake ()
     {
         base.Awake();
         LoadAllStatsSaved();
         playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
     }
 
-    private void Start()
+    private void Start ()
     {
         Application.quitting += SavePlayerData;
         Time.timeScale = 1;
     }
 
-    void LoadAllStatsSaved()
+    void LoadAllStatsSaved ()
     {
         bool noMoreTexts = false;
         int index = 0;
@@ -54,9 +57,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         onLoadedStats?.Invoke();
     }
 
-    public void CompleteLevelPlayer(int level)
+    public void CompleteLevelPlayer (int level)
     {
-        if(playerData.currentLevel < level) 
+        if (playerData.currentLevel < level)
         {
             playerData.currentLevel = level;
             SavePlayerData();
@@ -68,7 +71,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     /// </summary>
     /// <param name="plusMoney"></param>
     /// <returns>Si se pudo restar el dinero. Lo resta y guarda en caso de que si</returns>
-    public bool ModifyMoneyPlayer(int plusMoney)
+    public bool ModifyMoneyPlayer (int plusMoney)
     {
         if (playerData.currentMoney + plusMoney < 0)
             return false;
@@ -77,25 +80,26 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public void SetPlayerDataName(string newName)
+    public void SetPlayerDataName (string newName)
     {
         playerData.playerName = newName;
         SavePlayerData();
     }
 
-    public void SetTerrainStates(List<HexagonTerrain> hexagonTerrains) 
+    public void SetTerrainStates (List<HexagonTerrain> hexagonTerrains)
     {
         playerData.campaingStatus = new int[hexagonTerrains.Count];
         for (int i = 0; i < hexagonTerrains.Count; i++)
         {
-            playerData.campaingStatus[i] = (int)hexagonTerrains[i].CurrentState;
+            playerData.campaingStatus[i] = (int) hexagonTerrains[i].CurrentState;
         }
+
         SavePlayerData();
     }
 
-    public int[] GetTerrainStates() => playerData.campaingStatus;
+    public int[] GetTerrainStates () => playerData.campaingStatus;
 
-    public void OnLevelWin(int level) 
+    public void OnLevelWin (int level)
     {
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
         for (int i = 0; i < worldData.Rows; i++)
@@ -117,18 +121,18 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                 bool isPositionValid = i >= 0 && i < worldData.Columns && j >= 0 && j < worldData.Rows;
                 bool isPositionNeighbours = IsPositionNeighbourHexagonal(i, j, levelX, levelY);
 
-                if (isPositionValid && isPositionNeighbours) 
+                if (isPositionValid && isPositionNeighbours)
                 {
 
-                    if(twoDCampaingStatusArray[i, j] == (int)TerrainManager.TerrainState.Unavailable) 
+                    if (twoDCampaingStatusArray[i, j] == (int) TerrainManager.TerrainState.Unavailable)
                     {
-                        twoDCampaingStatusArray[i, j] = (int)TerrainManager.TerrainState.Locked;
+                        twoDCampaingStatusArray[i, j] = (int) TerrainManager.TerrainState.Locked;
                     }
                 }
             }
         }
 
-        twoDCampaingStatusArray[levelX, levelY] = (int)TerrainManager.TerrainState.Unlocked;
+        twoDCampaingStatusArray[levelX, levelY] = (int) TerrainManager.TerrainState.Unlocked;
 
         int write = 0;
         for (int i = 0; i <= twoDCampaingStatusArray.GetUpperBound(0); i++)
@@ -142,7 +146,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SavePlayerData();
     }
 
-    private bool IsPositionNeighbourHexagonal(int i, int j, int levelX, int levelY) 
+    private bool IsPositionNeighbourHexagonal (int i, int j, int levelX, int levelY)
     {
 
         if (levelX % 2 != 0)
@@ -157,10 +161,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public string GetPlayerName() => playerData.playerName;
-    public int[] GetLevelUnitsPlayer() => playerData.levelUnits;
-    public int GetLevelPlayer() => playerData.currentLevel;
-    public void AddLevelUnit(int i)
+    public string GetPlayerName () => playerData.playerName;
+    public int[] GetLevelUnitsPlayer () => playerData.levelUnits;
+    public int GetLevelPlayer () => playerData.currentLevel;
+
+    public void AddLevelUnit (int i)
     {
         playerData.levelUnits[i]++;
         SavePlayerData();
@@ -168,26 +173,79 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void SavePlayerData ()
     {
-        playerData.lastSavedTime = System.DateTime.Now.DayOfYear;       // Todo: Actualmente solo guarda el día del año, hay que tomar el dato de algún lado más fiable que el local del jugador.
+        playerData.lastSavedTime = System.DateTime.Now.DayOfYear; // Todo: Actualmente solo guarda el día del año, hay que tomar el dato de algún lado más fiable que el local del jugador.
         LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
+    }
+
+    public UnitStats GetUnitStats (int index) => unitsStatsLoaded[index];
+    public int GetLevelsUnits (int i) => playerData.levelUnits[i];
+    public float GetMoneyPlayer () => playerData.currentMoney;
+    public Mesh GetCurrentMesh (int index) => meshes[index];
+
+    public Sprite GetCurrentSprite (int index)
+    {
+        return index < sprites.Length ? sprites[index] : sprites[sprites.Length - 1];
     } 
-    public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
-    public int GetLevelsUnits(int i) => playerData.levelUnits[i];
-    public float GetMoneyPlayer() => playerData.currentMoney;
-    public Mesh GetCurrentMesh(int index) => meshes[index];
-    public Sprite GetCurrentSprite(int index) => sprites[index];
-    public int GetCurrentMissionsAmount() => currentMissionsAmount;
+    public int GetCurrentMissionsAmount () => currentMissionsAmount;
 
     public void HealAllUnits ()
     {
         foreach (UnitData army in playerData.dataArmies)
         {
-
+            army.life = unitsStatsLoaded[army.idUnit].life;
         }
+        foreach (UnitData mercenaries in playerData.dataMercenaries)
+        {
+            mercenaries.life = unitsStatsLoaded[mercenaries.idUnit].life;
+        }
+
+        SavePlayerData();
+        OnHealtAllUnits?.Invoke();
     }
 
-    private void OnDestroy ()   // Todo: Probar que esto funcione cuando android te cierra el proceso
+    public void BuyArmy (int idUnit)
+    {
+        UnitData[] newUnitData = new UnitData[playerData.dataArmies.Length + 1];
+
+        for (int i = 0; i < playerData.dataArmies.Length; i++)
+        {
+            newUnitData[i] = playerData.dataArmies[i];
+        }
+        newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, unitsStatsLoaded[idUnit].life);
+
+        playerData.dataArmies = newUnitData;
+        SavePlayerData();
+        OnAddUnitArmy?.Invoke();
+    }
+
+    public void BuyMercenary (int idUnit)
+    {
+        UnitData[] newUnitData = new UnitData[playerData.dataMercenaries.Length + 1];
+
+        for (int i = 0; i < playerData.dataMercenaries.Length; i++)
+        {
+            newUnitData[i] = playerData.dataMercenaries[i];
+        }
+
+        newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, unitsStatsLoaded[idUnit].life);
+
+        playerData.dataMercenaries = newUnitData;
+        SavePlayerData();
+        OnAddUnitMercenary?.Invoke();
+    }
+
+    public void LevelUpUnit (int idUnit)
+    {
+        playerData.levelUnits[idUnit]++;
+        SavePlayerData();
+        OnAddLevelUnit?.Invoke();
+    }
+
+    private void OnDestroy () // Todo: Probar que esto funcione cuando android te cierra el proceso
     {
         SavePlayerData();
     }
+
+    public UnitData[] GetUnitsArmy () => playerData.dataArmies;
+    public UnitData[] GetUnitsMercenary() => playerData.dataMercenaries;
 }
