@@ -10,7 +10,7 @@ public class PlayerCampaignManager : MonoBehaviour
     [SerializeField] private float cursorMaxDistance = 100f;
 
     [Header("Camera")]
-    [SerializeField] private float campaingSelectionStartTime = .5f;
+    [SerializeField] private float campaignSelectionStartTime = .5f;
     [SerializeField] private PlayerCampaignCameraController cameraController = default;
     private Camera mainCamera = default;
     private int lastLevelCompleted = 0;
@@ -21,23 +21,15 @@ public class PlayerCampaignManager : MonoBehaviour
     private void Awake ()
     {
         mainCamera = Camera.main;
+        terrainManager.OnResetTerrainStates += OnResetTerrain;
+        terrainManager.OnSaveTerrainStates += OnSaveTerrain;
     }
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(campaingSelectionStartTime);
+        yield return new WaitForSeconds(campaignSelectionStartTime);
         StartCamera();
     }
-
-    private void StartCamera() 
-    {
-        lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
-        var hexagon = terrainManager.GetHexagonByIndex(lastLevelCompleted);
-        hexagon.Select();
-        cameraController.SetTarget(hexagon.transform);
-        selectionStarted = true;
-    }
-
     private void Update ()
     {
 
@@ -66,6 +58,31 @@ public class PlayerCampaignManager : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnDestroy()
+    {
+        terrainManager.OnResetTerrainStates -= OnResetTerrain;
+    }
+
+    private void OnResetTerrain(HexagonTerrain terrain) 
+    {
+        terrain.Select();
+        cameraController.SetTarget(terrain.transform);
+    }
+
+    private void OnSaveTerrain()
+    {
+        GameManager.Get().SetLastLevelPlayer(0);
+    }
+
+    private void StartCamera()
+    {
+        lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
+        var hexagon = terrainManager.GetHexagonByIndex(lastLevelCompleted);
+        hexagon.Select();
+        cameraController.SetTarget(hexagon.transform);
+        selectionStarted = true;
     }
 
     public void CompleteCurrentLevel() 

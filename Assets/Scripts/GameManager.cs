@@ -174,7 +174,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public string GetPlayerName() => playerData.PlayerName;
     public int[] GetLevelUnitsPlayer() => playerData.LevelUnits;
-    public int GetLevelPlayer() => playerData.LastLevelComplete;
+    public int GetLastLevelPlayer() => playerData.LastLevelComplete;
+    public int SetLastLevelPlayer(int level) => playerData.LastLevelComplete = level;
+
     public void AddLevelUnit(int i)
     {
         playerData.LevelUnits[i]++;

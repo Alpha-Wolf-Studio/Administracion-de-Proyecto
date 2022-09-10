@@ -5,6 +5,7 @@ public class TerrainManager : MonoBehaviour
 {
 
     public System.Action<HexagonTerrain> OnResetTerrainStates;
+    public System.Action OnSaveTerrainStates;
 
     private WorldBuilderHexagon worldBuilder = default;
     private List<HexagonTerrain> currentHexagons = default;
@@ -25,13 +26,16 @@ public class TerrainManager : MonoBehaviour
         foreach (var currentHexagon in currentHexagons)
         {
             currentHexagon.CurrentState = TerrainState.Unavailable;
+            currentHexagon.Deselect();
         }
         currentHexagons[0].CurrentState = TerrainState.Locked;
+        OnResetTerrainStates?.Invoke(currentHexagons[0]);
     }
 
     public void SaveCurrentHexagonStates () 
     {
         GameManager.Get().SetTerrainStates(currentHexagons);
+        OnSaveTerrainStates?.Invoke();
     }
 
     public void GetCurrentHexagonStates () 

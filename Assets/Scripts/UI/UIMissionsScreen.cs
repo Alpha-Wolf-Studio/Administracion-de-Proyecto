@@ -15,7 +15,7 @@ public class UIMissionsScreen : MonoBehaviour
     private void Start()
     {
 
-        int currentLevel = GameManager.Get().GetLevelPlayer();
+        int currentLevel = GameManager.Get().GetLastLevelPlayer();
         foreach (var button in missionButtons)
         {
             if(button.MissionLevel <= currentLevel + 1) 

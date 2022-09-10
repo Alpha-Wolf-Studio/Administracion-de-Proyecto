@@ -23,7 +23,7 @@ public class UiPanelProfile : MonoBehaviour
         inputFieldName.onValueChanged.AddListener(ChangePlayerName);
         btnConfirm.onClick.AddListener(ButtonConfirm);
 
-        int level = GameManager.Get().GetLevelPlayer();
+        int level = GameManager.Get().GetLastLevelPlayer();
         if (level < 10)
             textlevel.text = "00" + level;
         else if (level < 100)
