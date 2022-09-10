@@ -58,6 +58,7 @@ public class UiGamePlayManager : MonoBehaviour
 
         if (isWin) 
         {
+            /*
             if(GamePlayManager.Get().CurrentMission == GameManager.Get().GetCurrentMissionsAmount()) 
             {
                 uiPanelWinLastLevel.SetActive(true);
@@ -68,6 +69,7 @@ public class UiGamePlayManager : MonoBehaviour
                 uiPanelWinLastLevel.SetActive(false);
                 uiPanelWinNormal.SetActive(true);
             }
+            */
         }
 
     }

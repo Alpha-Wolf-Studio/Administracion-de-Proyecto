@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Sprite[] sprites;
-    [Space(10)] 
-    [SerializeField] private int currentMissionsAmount = 4;
+    [Space(10)]
     [SerializeField] private WorldBuilderData worldData = default;
 
     private string pathPlayerData = "PlayerData";
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         base.Awake();
         LoadAllStatsSaved();
-        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
+        LoadAllPlayerData();
     }
 
     private void Start ()
@@ -33,7 +32,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Time.timeScale = 1;
     }
 
-    void LoadAllStatsSaved ()
+    private void LoadAllPlayerData() 
+    {
+        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
+        if(playerData.CampaingStatus == null) 
+        {
+            playerData.CampaingStatus = TerrainManager.GetDefaultTerrainEnumIndexes(worldData.Rows, worldData.Columns);
+        }
+    }
+
+    void LoadAllStatsSaved()
     {
         bool noMoreTexts = false;
         int index = 0;
@@ -59,9 +67,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void CompleteLevelPlayer (int level)
     {
-        if (playerData.currentLevel < level)
+        if(playerData.LastLevelComplete < level) 
         {
-            playerData.currentLevel = level;
+            playerData.LastLevelComplete = level;
             SavePlayerData();
         }
     }
@@ -73,40 +81,43 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     /// <returns>Si se pudo restar el dinero. Lo resta y guarda en caso de que si</returns>
     public bool ModifyMoneyPlayer (int plusMoney)
     {
-        if (playerData.currentMoney + plusMoney < 0)
+        if (playerData.CurrentMoney + plusMoney < 0)
             return false;
-        playerData.currentMoney += plusMoney;
+        playerData.CurrentMoney += plusMoney;
         SavePlayerData();
         return true;
     }
 
     public void SetPlayerDataName (string newName)
     {
-        playerData.playerName = newName;
+        playerData.PlayerName = newName;
         SavePlayerData();
     }
 
     public void SetTerrainStates (List<HexagonTerrain> hexagonTerrains)
     {
-        playerData.campaingStatus = new int[hexagonTerrains.Count];
+        playerData.CampaingStatus = new int[hexagonTerrains.Count];
         for (int i = 0; i < hexagonTerrains.Count; i++)
         {
-            playerData.campaingStatus[i] = (int) hexagonTerrains[i].CurrentState;
+            playerData.CampaingStatus[i] = (int)hexagonTerrains[i].CurrentState;
         }
 
         SavePlayerData();
     }
 
-    public int[] GetTerrainStates () => playerData.campaingStatus;
+    public int[] GetTerrainStates() => playerData.CampaingStatus;
 
     public void OnLevelWin (int level)
     {
+
+        playerData.LastLevelComplete = level;
+
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
         for (int i = 0; i < worldData.Rows; i++)
         {
             for (int j = 0; j < worldData.Columns; j++)
             {
-                twoDCampaingStatusArray[i, j] = playerData.campaingStatus[i * worldData.Columns + j];
+                twoDCampaingStatusArray[i, j] = playerData.CampaingStatus[i * worldData.Columns + j];
             }
         }
 
@@ -134,12 +145,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
         twoDCampaingStatusArray[levelX, levelY] = (int) TerrainManager.TerrainState.Unlocked;
 
-        int write = 0;
+        int index = 0;
         for (int i = 0; i <= twoDCampaingStatusArray.GetUpperBound(0); i++)
         {
             for (int z = 0; z <= twoDCampaingStatusArray.GetUpperBound(1); z++)
             {
-                playerData.campaingStatus[write++] = twoDCampaingStatusArray[i, z];
+                playerData.CampaingStatus[index++] = twoDCampaingStatusArray[i, z];
             }
         }
 
@@ -161,42 +172,37 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public string GetPlayerName () => playerData.playerName;
-    public int[] GetLevelUnitsPlayer () => playerData.levelUnits;
-    public int GetLevelPlayer () => playerData.currentLevel;
-
-    public void AddLevelUnit (int i)
+    public string GetPlayerName() => playerData.PlayerName;
+    public int[] GetLevelUnitsPlayer() => playerData.LevelUnits;
+    public int GetLevelPlayer() => playerData.LastLevelComplete;
+    public void AddLevelUnit(int i)
     {
-        playerData.levelUnits[i]++;
+        playerData.LevelUnits[i]++;
         SavePlayerData();
     }
 
     private void SavePlayerData ()
     {
-        playerData.lastSavedTime = System.DateTime.Now.DayOfYear; // Todo: Actualmente solo guarda el día del año, hay que tomar el dato de algún lado más fiable que el local del jugador.
+        playerData.LastSavedTime = System.DateTime.Now.DayOfYear; // Todo: Actualmente solo guarda el dï¿½a del aï¿½o, hay que tomar el dato de algï¿½n lado mï¿½s fiable que el local del jugador.
         LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
     }
 
-    public UnitStats GetUnitStats (int index) => unitsStatsLoaded[index];
-    public int GetLevelsUnits (int i) => playerData.levelUnits[i];
-    public float GetMoneyPlayer () => playerData.currentMoney;
-    public Mesh GetCurrentMesh (int index) => meshes[index];
-
-    public Sprite GetCurrentSprite (int index)
-    {
-        return index < sprites.Length ? sprites[index] : sprites[sprites.Length - 1];
-    } 
-    public int GetCurrentMissionsAmount () => currentMissionsAmount;
+    public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
+    public int GetLevelsUnits(int i) => playerData.LevelUnits[i];
+    public float GetMoneyPlayer() => playerData.CurrentMoney;
+    public Mesh GetCurrentMesh(int index) => meshes[index];
+    public Sprite GetCurrentSprite(int index) => sprites[index];
+    public int GetLastLevelCompleted() => playerData.LastLevelComplete;
 
     public void HealAllUnits ()
     {
-        foreach (UnitData army in playerData.dataArmies)
+        foreach (UnitData army in playerData.DataArmies)
         {
-            army.life = unitsStatsLoaded[army.idUnit].life;
+            army.Life = unitsStatsLoaded[army.IdUnit].life;
         }
-        foreach (UnitData mercenaries in playerData.dataMercenaries)
+        foreach (UnitData mercenaries in playerData.DataMercenaries)
         {
-            mercenaries.life = unitsStatsLoaded[mercenaries.idUnit].life;
+            mercenaries.Life = unitsStatsLoaded[mercenaries.IdUnit].life;
         }
 
         SavePlayerData();
@@ -205,38 +211,38 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void BuyArmy (int idUnit)
     {
-        UnitData[] newUnitData = new UnitData[playerData.dataArmies.Length + 1];
+        UnitData[] newUnitData = new UnitData[playerData.DataArmies.Length + 1];
 
-        for (int i = 0; i < playerData.dataArmies.Length; i++)
+        for (int i = 0; i < playerData.DataArmies.Length; i++)
         {
-            newUnitData[i] = playerData.dataArmies[i];
+            newUnitData[i] = playerData.DataArmies[i];
         }
         newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, unitsStatsLoaded[idUnit].life);
 
-        playerData.dataArmies = newUnitData;
+        playerData.DataArmies = newUnitData;
         SavePlayerData();
         OnAddUnitArmy?.Invoke();
     }
 
     public void BuyMercenary (int idUnit)
     {
-        UnitData[] newUnitData = new UnitData[playerData.dataMercenaries.Length + 1];
+        UnitData[] newUnitData = new UnitData[playerData.DataMercenaries.Length + 1];
 
-        for (int i = 0; i < playerData.dataMercenaries.Length; i++)
+        for (int i = 0; i < playerData.DataMercenaries.Length; i++)
         {
-            newUnitData[i] = playerData.dataMercenaries[i];
+            newUnitData[i] = playerData.DataMercenaries[i];
         }
 
         newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, unitsStatsLoaded[idUnit].life);
 
-        playerData.dataMercenaries = newUnitData;
+        playerData.DataMercenaries = newUnitData;
         SavePlayerData();
         OnAddUnitMercenary?.Invoke();
     }
 
     public void LevelUpUnit (int idUnit)
     {
-        playerData.levelUnits[idUnit]++;
+        playerData.LevelUnits[idUnit]++;
         SavePlayerData();
         OnAddLevelUnit?.Invoke();
     }
@@ -246,6 +252,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SavePlayerData();
     }
 
-    public UnitData[] GetUnitsArmy () => playerData.dataArmies;
-    public UnitData[] GetUnitsMercenary() => playerData.dataMercenaries;
+    public UnitData[] GetUnitsArmy () => playerData.DataArmies;
+    public UnitData[] GetUnitsMercenary() => playerData.DataMercenaries;
 }

@@ -3,36 +3,37 @@ using System.Collections.Generic;
 [System.Serializable]
 public class PlayerData
 {
-    public long lastSavedTime;
-    public int currentLevel;
-    public int[] campaingStatus;
+    public long LastSavedTime;
 
-    public int currentMoney;
-    public int[] levelUnits = new int[8];
-    public string playerName;
+    public int LastLevelComplete;
+    public int[] CampaingStatus;
 
-    public UnitData[] dataArmies;
-    public UnitData[] dataMercenaries;
+    public int CurrentMoney;
+    public int[] LevelUnits = new int[8];
+    public string PlayerName;
+
+    public UnitData[] DataArmies;
+    public UnitData[] DataMercenaries;
 
     public void SaveUnitsArmy (List<Unit> units)
     {
-        dataArmies = new UnitData[units.Count];
+        DataArmies = new UnitData[units.Count];
         for (int i = 0; i < units.Count; i++)
         {
-            dataArmies[i].idUnit = units[i].stats.idUnit;
-            dataArmies[i].unitType = units[i].stats.unitType;
-            dataArmies[i].life = units[i].stats.life;
+            DataArmies[i].IdUnit = units[i].stats.idUnit;
+            DataArmies[i].UnitType = units[i].stats.unitType;
+            DataArmies[i].Life = units[i].stats.life;
         }
     }
 
     public void SaveUnitsMercenaries (List<Unit> units)
     {
-        dataMercenaries = new UnitData[units.Count];
+        DataMercenaries = new UnitData[units.Count];
         for (int i = 0; i < units.Count; i++)
         {
-            dataMercenaries[i].idUnit = units[i].stats.idUnit;
-            dataMercenaries[i].unitType = units[i].stats.unitType;
-            dataMercenaries[i].life = units[i].stats.life;
+            DataMercenaries[i].IdUnit = units[i].stats.idUnit;
+            DataMercenaries[i].UnitType = units[i].stats.unitType;
+            DataMercenaries[i].Life = units[i].stats.life;
         }
     }
 }
@@ -40,14 +41,14 @@ public class PlayerData
 [System.Serializable]
 public class UnitData
 {
-    public int idUnit;
-    public UnitsType unitType;
-    public float life;
+    public int IdUnit;
+    public UnitsType UnitType;
+    public float Life;
 
     public UnitData (int newIdUnit, UnitsType newUnitType, float newLife)
     {
-        idUnit = newIdUnit;
-        unitType = newUnitType;
-        life = newLife;
+        IdUnit = newIdUnit;
+        UnitType = newUnitType;
+        Life = newLife;
     }
 }

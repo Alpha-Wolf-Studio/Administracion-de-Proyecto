@@ -1,7 +1,7 @@
 {
-    "lastSavedTime": 247,
-    "currentLevel": 0,
-    "campaingStatus": [
+    "LastSavedTime": 253,
+    "LastLevelComplete": 44,
+    "CampaingStatus": [
         1,
         2,
         2,
@@ -103,118 +103,18 @@
         2,
         2
     ],
-    "currentMoney": 0,
-    "levelUnits": [
-        3,
-        1,
+    "CurrentMoney": 0,
+    "LevelUnits": [
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
         0
     ],
-    "playerName": "TestName",
-    "dataArmies": [
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        }
-    ],
-    "dataMercenaries": [
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 0,
-            "unitType": 1,
-            "life": 10.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        },
-        {
-            "idUnit": 1,
-            "unitType": 1,
-            "life": 15.0
-        }
-    ]
+    "PlayerName": "",
+    "DataArmies": [],
+    "DataMercenaries": []
 }
