@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,8 +10,11 @@ public class PlayerCampaignManager : MonoBehaviour
     [SerializeField] private float cursorMaxDistance = 100f;
 
     [Header("Camera")]
-    [SerializeField] private PlayerCampaignCameraController cameraController;
+    [SerializeField] private float campaingSelectionStartTime = .5f;
+    [SerializeField] private PlayerCampaignCameraController cameraController = default;
     private Camera mainCamera = default;
+    private int lastLevelCompleted = 0;
+    private bool selectionStarted = false;
 
     TerrainEventsHandler currentSelectedTerrain = null;
 
@@ -19,10 +23,25 @@ public class PlayerCampaignManager : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(campaingSelectionStartTime);
+        StartCamera();
+    }
+
+    private void StartCamera() 
+    {
+        lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
+        var hexagon = terrainManager.GetHexagonByIndex(lastLevelCompleted);
+        hexagon.Select();
+        cameraController.SetTarget(hexagon.transform);
+        selectionStarted = true;
+    }
+
     private void Update ()
     {
 
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject() || !selectionStarted) return;
 
         if (Input.GetMouseButtonDown(0)) 
         {

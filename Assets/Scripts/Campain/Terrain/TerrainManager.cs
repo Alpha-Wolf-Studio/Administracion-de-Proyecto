@@ -20,7 +20,7 @@ public class TerrainManager : MonoBehaviour
         GetCurrentHexagonStates();
     }
 
-    public void ResetCurrentHexagonStates() 
+    public void ResetCurrentHexagonStates () 
     {
         foreach (var currentHexagon in currentHexagons)
         {
@@ -43,11 +43,29 @@ public class TerrainManager : MonoBehaviour
         }
     }
 
+    public HexagonTerrain GetHexagonByIndex(int index) => currentHexagons.Find(i => i.TerrainIndex == index);
+
     public enum TerrainState 
     {
         Unlocked,
         Locked,
         Unavailable
+    }
+
+    public static int[] GetDefaultTerrainEnumIndexes (int rows, int columns) 
+    {
+
+        int[] terrainStatus = new int[rows * columns];
+
+        for (int i = 0; i < terrainStatus.Length; i++)
+        {
+            terrainStatus[i] = (int)TerrainState.Unavailable;
+        }
+
+        terrainStatus[0] = (int)TerrainState.Locked;
+        
+        return terrainStatus;
+
     }
 
 }

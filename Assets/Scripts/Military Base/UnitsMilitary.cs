@@ -51,12 +51,12 @@ public class UnitsMilitary : MonoBehaviour
         switch (militaryType)
         {
             case MilitaryType.Army:
-                idUnit = GameManager.Get().GetUnitsArmy()[index].idUnit;
-                btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsArmy()[index].life);
+                idUnit = GameManager.Get().GetUnitsArmy()[index].IdUnit;
+                btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsArmy()[index].Life);
                 break;
             case MilitaryType.Mercenary:
-                idUnit = GameManager.Get().GetUnitsMercenary()[index].idUnit;
-                btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsMercenary()[index].life);
+                idUnit = GameManager.Get().GetUnitsMercenary()[index].IdUnit;
+                btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsMercenary()[index].Life);
                 break;
         }
 
