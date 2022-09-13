@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 public class PlayerCampaignManager : MonoBehaviour
 {
+
+    public System.Action<HexagonTerrain> OnSelectionChange;
+
     [Header("Terrain")]
     [SerializeField] private TerrainManager terrainManager = default;
     [SerializeField] private LayerMask terrainLayer = default;
@@ -17,6 +20,11 @@ public class PlayerCampaignManager : MonoBehaviour
     private bool selectionStarted = false;
 
     TerrainEventsHandler currentSelectedTerrain = null;
+    public HexagonTerrain GetCurrentSelectedTerrain()
+    {
+        if (currentSelectedTerrain != null) return currentSelectedTerrain.Terrain;
+        else return null;
+    }
 
     private void Awake ()
     {
@@ -27,6 +35,11 @@ public class PlayerCampaignManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
+        var hexagon = terrainManager.GetHexagonByIndex(lastLevelCompleted);
+        var hexagonEventHandler = hexagon.GetComponentInChildren<TerrainEventsHandler>();
+        currentSelectedTerrain = hexagonEventHandler;
+        OnSelectionChange?.Invoke(currentSelectedTerrain.Terrain);
         yield return new WaitForSeconds(campaignSelectionStartTime);
         StartCamera();
     }
@@ -37,22 +50,26 @@ public class PlayerCampaignManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) 
         {
+
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = mainCamera.ScreenPointToRay(mousePosition);
 
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit, cursorMaxDistance, terrainLayer)) 
+            if (Physics.Raycast(ray, out hit, cursorMaxDistance, terrainLayer))
             {
                 var terrainEventHandler = hit.collider.GetComponent<TerrainEventsHandler>();
-                if (terrainEventHandler) 
+                if (terrainEventHandler)
                 {
-                    if(terrainEventHandler.Terrain.CurrentState != TerrainManager.TerrainState.Unavailable) 
+                    if (terrainEventHandler.Terrain.CurrentState != TerrainManager.TerrainState.Unavailable)
                     {
                         currentSelectedTerrain?.Deselect();
                         currentSelectedTerrain = terrainEventHandler;
                         currentSelectedTerrain?.Select();
                         cameraController.SetTarget(currentSelectedTerrain.transform);
+                        GameManager.Get().CurrentSelectedLevel = currentSelectedTerrain.Terrain.GetLevelData();
+                        OnSelectionChange?.Invoke(currentSelectedTerrain.Terrain);
+
                     }
                 }
             }
@@ -69,6 +86,7 @@ public class PlayerCampaignManager : MonoBehaviour
     {
         terrain.Select();
         cameraController.SetTarget(terrain.transform);
+        currentSelectedTerrain = null;
     }
 
     private void OnSaveTerrain()
@@ -78,10 +96,8 @@ public class PlayerCampaignManager : MonoBehaviour
 
     private void StartCamera()
     {
-        lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
-        var hexagon = terrainManager.GetHexagonByIndex(lastLevelCompleted);
-        hexagon.Select();
-        cameraController.SetTarget(hexagon.transform);
+        currentSelectedTerrain.Select();
+        cameraController.SetTarget(currentSelectedTerrain.transform);
         selectionStarted = true;
     }
 

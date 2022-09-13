@@ -1,6 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -18,6 +23,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private string pathPlayerData = "PlayerData";
     [SerializeField] private PlayerData playerData;
+    public LevelData CurrentSelectedLevel = new LevelData();
 
     public override void Awake ()
     {
@@ -29,7 +35,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void Start ()
     {
         Application.quitting += SavePlayerData;
+        StartCoroutine(IncomeExtraGold());
         Time.timeScale = 1;
+    }
+
+    private void OnDestroy() // Todo: Probar que esto funcione cuando android te cierra el proceso
+    {
+        SavePlayerData();
     }
 
     private void LoadAllPlayerData() 
@@ -39,6 +51,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             playerData.CampaingStatus = TerrainManager.GetDefaultTerrainEnumIndexes(worldData.Rows, worldData.Columns);
         }
+        CurrentSelectedLevel = worldData.LevelsData.GetLevelData(playerData.LastLevelComplete);
     }
 
     void LoadAllStatsSaved()
@@ -65,15 +78,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         onLoadedStats?.Invoke();
     }
 
-    public void CompleteLevelPlayer (int level)
-    {
-        if(playerData.LastLevelComplete < level) 
-        {
-            playerData.LastLevelComplete = level;
-            SavePlayerData();
-        }
-    }
-
     /// <summary>
     /// Dinero que se suma o se resta.
     /// </summary>
@@ -87,6 +91,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SavePlayerData();
         return true;
     }
+
+    public int GetPlayerGold() => playerData.CurrentMoney;
 
     public void SetPlayerDataName (string newName)
     {
@@ -107,10 +113,42 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public int[] GetTerrainStates() => playerData.CampaingStatus;
 
+    public LevelData GetLevelData(int index) => worldData.LevelsData.GetLevelData(index);
+    public void SaveLevelData(LevelData data)
+    {
+        worldData.LevelsData.AddTerrainData(data);
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(worldData.LevelsData);
+#endif
+    }
+
+    public void SaveProvinceData(List<LevelData> data) 
+    {
+        worldData.ProvincesData.SaveProvinceData(data);
+    }
+
+    public ProvinceSettings GetProvinceSetting(int index) => worldData.ProvincesData.Provinces[index];
+
+    public void TriggerIncomeGoldRecalculation() => GoldCalculations.RecalculateIncomeGold(worldData, playerData);
+
+    private IEnumerator IncomeExtraGold() 
+    {
+
+        int incomeTerraingGold = GoldCalculations.GetOfflineGold(worldData, playerData);
+        playerData.CurrentMoney += incomeTerraingGold;
+
+        while (gameObject) 
+        {
+            yield return new WaitForSecondsRealtime(GoldCalculations.SecondsBetweenIncome);
+            playerData.CurrentMoney += GoldCalculations.IncomeGold;
+        }
+    }
+
     public void OnLevelWin (int level)
     {
 
         playerData.LastLevelComplete = level;
+        playerData.CurrentMoney += worldData.LevelsData.GetLevelData(level).GoldOnComplete;
 
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
         for (int i = 0; i < worldData.Rows; i++)
@@ -154,6 +192,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             }
         }
 
+        GoldCalculations.RecalculateIncomeGold(worldData, playerData);
+
         SavePlayerData();
     }
 
@@ -185,13 +225,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void SavePlayerData ()
     {
-        playerData.LastSavedTime = System.DateTime.Now.DayOfYear; // Todo: Actualmente solo guarda el d�a del a�o, hay que tomar el dato de alg�n lado m�s fiable que el local del jugador.
+        DateTimeOffset now = DateTimeOffset.UtcNow;
+        long unixTimeMilliseconds = now.ToUnixTimeMilliseconds();
+        playerData.LastSavedTime = unixTimeMilliseconds;
+
         LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
     }
 
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
     public int GetLevelsUnits(int i) => playerData.LevelUnits[i];
-    public float GetMoneyPlayer() => playerData.CurrentMoney;
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
@@ -247,11 +289,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         playerData.LevelUnits[idUnit]++;
         SavePlayerData();
         OnAddLevelUnit?.Invoke();
-    }
-
-    private void OnDestroy () // Todo: Probar que esto funcione cuando android te cierra el proceso
-    {
-        SavePlayerData();
     }
 
     public UnitData[] GetUnitsArmy () => playerData.DataArmies;

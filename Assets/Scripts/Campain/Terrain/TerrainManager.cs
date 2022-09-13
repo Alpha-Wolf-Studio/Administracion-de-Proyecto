@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,17 @@ public class TerrainManager : MonoBehaviour
 
     void Start ()
     {
+        GetCurrentHexagonData();
         GetCurrentHexagonStates();
+    }
+
+    public void UnlockAllHexagons()
+    {
+        foreach (var currentHexagon in currentHexagons)
+        {
+            currentHexagon.CurrentState = TerrainState.Unlocked;
+            currentHexagon.Deselect();
+        }
     }
 
     public void ResetCurrentHexagonStates () 
@@ -38,12 +49,50 @@ public class TerrainManager : MonoBehaviour
         OnSaveTerrainStates?.Invoke();
     }
 
+    public void SaveCurrentHexagonData()
+    {
+        List<LevelData> allLevelsData = new List<LevelData>();
+        foreach (var currentHexagon in currentHexagons)
+        {
+            GameManager.Get().SaveLevelData(currentHexagon.GetLevelData());
+            allLevelsData.Add(currentHexagon.GetLevelData());
+        }
+
+        GameManager.Get().SaveProvinceData(allLevelsData);
+    }
+
+    public void ResetCurrentHexagonData()
+    {
+        List<LevelData> allLevelsData = new List<LevelData>();
+        foreach (var currentHexagon in currentHexagons)
+        {
+            currentHexagon.ResetHexagonData();
+            allLevelsData.Add(currentHexagon.GetLevelData());
+        }
+
+        GameManager.Get().SaveProvinceData(allLevelsData);
+    }
+
+
+    private void GetCurrentHexagonData()
+    {
+        for (int i = 0; i < currentHexagons.Count; i++)
+        {
+            LevelData data = new LevelData();
+            data = GameManager.Get().GetLevelData(i);
+            if (data == null) data = new LevelData();
+            data.Index = i;
+            currentHexagons[i].SetData(data);
+        }
+    }
+
     public void GetCurrentHexagonStates () 
     {
         var campaignState = GameManager.Get().GetTerrainStates();
+
         for (int i = 0; i < campaignState.Length; i++)
         {
-            currentHexagons[i].Init((TerrainState)campaignState[i], i);
+            currentHexagons[i].InitStatus((TerrainState)campaignState[i]);
         }
     }
 

@@ -18,14 +18,35 @@ public class TerrainManagerEditor : Editor
 
         GUILayout.Space(20);
 
+        GUILayout.Label("States Configurations");
+
+        if (GUILayout.Button("Reset Current Hexagon States")) 
+        {
+            script.ResetCurrentHexagonStates();
+        }
+
         if (GUILayout.Button("Save Current Hexagon States"))
         {
             script.SaveCurrentHexagonStates();
         }
 
-        if (GUILayout.Button("Reset Current Hexagon States")) 
+        if (GUILayout.Button("Unlock All Hexagons"))
         {
-            script.ResetCurrentHexagonStates();
+            script.UnlockAllHexagons();
+        }
+
+        GUILayout.Space(20);
+
+        GUILayout.Label("Data Configurations");
+
+        if (GUILayout.Button("Reset All Hexagons Data"))
+        {
+            script.ResetCurrentHexagonData();
+        }
+
+        if (GUILayout.Button("Save All Hexagons Data"))
+        {
+            script.SaveCurrentHexagonData();
         }
 
     }

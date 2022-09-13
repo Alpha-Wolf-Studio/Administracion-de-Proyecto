@@ -6,7 +6,7 @@ public class UiGamePlayManager : MonoBehaviour
 {
     [SerializeField] private Button[] btnToMenu;
     [SerializeField] private Button[] btnToReset;
-    [SerializeField] private Button btnToContinue;
+    [SerializeField] private Button btnToCampaign;
 
     [SerializeField] private Button btnPause;
     [SerializeField] private Button btnUnPause;
@@ -14,8 +14,6 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private CanvasGroup uiPanelGameplay;
     [SerializeField] private CanvasGroup uiPanelPause;
     [SerializeField] private CanvasGroup uiPanelWin;
-    [SerializeField] private GameObject uiPanelWinNormal;
-    [SerializeField] private GameObject uiPanelWinLastLevel;
     [SerializeField] private CanvasGroup uiPanelLose;
 
     [Space(10)]
@@ -32,13 +30,14 @@ public class UiGamePlayManager : MonoBehaviour
         foreach (Button btnReset in btnToReset)
             btnReset.onClick.AddListener(OnButtonReset);
 
+        btnToCampaign.onClick.AddListener(OnButtonCampaign);
+
         btnPause.onClick.AddListener(OnButtonPause);
         btnUnPause.onClick.AddListener(OnButtonDisablePause);
-        btnToContinue.onClick.AddListener(OnButtonContinue);
 
         GamePlayManager.OnGameOver += GameOverUi;
 
-        levelTextComponent.text = "Mission " + GamePlayManager.Get().CurrentMission.ToString();
+        levelTextComponent.text = GameManager.Get().CurrentSelectedLevel.LevelName;
 
     }
 
@@ -47,31 +46,14 @@ public class UiGamePlayManager : MonoBehaviour
         GamePlayManager.OnGameOver -= GameOverUi;
     }
 
-    private void OnButtonToMainMenu() => SceneManager.LoadScene("MainMenu");
-    private void OnButtonReset() => SceneManager.LoadScene("Level " + GamePlayManager.Get().CurrentMission.ToString());
-    private void OnButtonContinue() => SceneManager.LoadScene("Level " + (GamePlayManager.Get().CurrentMission + 1).ToString());
+    private void OnButtonToMainMenu() => CustomSceneManager.Get().LoadScene("MainMenu");
+    private void OnButtonReset() => CustomSceneManager.Get().LoadScene("Gameplay");
+    private void OnButtonCampaign() => CustomSceneManager.Get().LoadScene("Campaign");
 
     void GameOverUi(bool isWin)
     {
         uiPanelWin.gameObject.SetActive(isWin);
         uiPanelLose.gameObject.SetActive(!isWin);
-
-        if (isWin) 
-        {
-            /*
-            if(GamePlayManager.Get().CurrentMission == GameManager.Get().GetCurrentMissionsAmount()) 
-            {
-                uiPanelWinLastLevel.SetActive(true);
-                uiPanelWinNormal.SetActive(false);
-            }
-            else 
-            {
-                uiPanelWinLastLevel.SetActive(false);
-                uiPanelWinNormal.SetActive(true);
-            }
-            */
-        }
-
     }
 
     void OnButtonPause()

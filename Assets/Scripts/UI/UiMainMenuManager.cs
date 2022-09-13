@@ -32,8 +32,7 @@ public class UiMainMenuManager : MonoBehaviour
         Settings,
         Credits,
         Profile,
-        Barracks,
-        Missions
+        Barracks
     }
     private Menu currentMenu = Menu.Main;
 
@@ -81,7 +80,7 @@ public class UiMainMenuManager : MonoBehaviour
         btnEffectOnOff.onClick.AddListener(EnableEffect);
     }
 
-    private void OnButtonPlay() => StartCoroutine(SwitchPanel(transitionTime, (int)Menu.Missions));
+    private void OnButtonPlay() => CustomSceneManager.Get().LoadScene("Campaign");
     private void OnButtonCreateUnits()=> CustomSceneManager.Get().LoadScene("UnitsCreator");
     private void OnButtonSetting() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Settings));
     private void OnButtonCredits() => StartCoroutine(SwitchPanel(transitionTime, (int) Menu.Credits));

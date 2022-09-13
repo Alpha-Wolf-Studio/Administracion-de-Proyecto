@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2272a39d12e80e74fbf7eb3137040971, type: 3}
   m_Name: World Builder Data
   m_EditorClassIdentifier: 
-  Rows: 10
-  Columns: 10
-  xDistance: 2.035
-  zDistance: -1.17
-  pfHexagon: {fileID: 1549248571516260941, guid: 991c53e4c8dec3d46ae513e7ebdedabe, type: 3}
+  Rows: 4
+  Columns: 4
+  XDistance: 2.035
+  ZDistance: -1.17
+  PfHexagon: {fileID: 1549248571516260941, guid: 991c53e4c8dec3d46ae513e7ebdedabe, type: 3}
+  ProvincesData: {fileID: 11400000, guid: dea96ceeefa1ffb428bb15440c57425a, type: 2}
+  LevelsData: {fileID: 11400000, guid: 8179e8703b2800347abd8d303d9e84f5, type: 2}

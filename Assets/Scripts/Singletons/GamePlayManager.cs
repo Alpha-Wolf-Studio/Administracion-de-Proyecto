@@ -5,7 +5,6 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
 {
     public static Action<bool> OnGameOver;
 
-    [SerializeField] private int currentMission = 1;
     [SerializeField] private Unit unitToDestroy;
     [SerializeField] private Unit unitToDefend;
     [SerializeField] private TroopManager playerTroopManager;
@@ -18,7 +17,13 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
 
     private bool isGameOver = false;
 
-    public int CurrentMission => currentMission;
+    private LevelData levelSelected;
+
+    private new void Awake()
+    {
+        base.Awake();
+        levelSelected = GameManager.Get().CurrentSelectedLevel;
+    }
 
     private void Start()
     {
@@ -33,7 +38,7 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     {
         if (!isGameOver)
         {
-            GameManager.Get().CompleteLevelPlayer(currentMission);
+            GameManager.Get().OnLevelWin(levelSelected.Index);
             OnGameOver?.Invoke(true);
         }
     }

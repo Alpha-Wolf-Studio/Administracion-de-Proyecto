@@ -8,15 +8,45 @@ public class HexagonTerrain : MonoBehaviour
 
     [SerializeField] private MeshRenderer stateMesh = default;
     [SerializeField] private MeshRenderer provinceMesh = default;
-    [SerializeField] int provinceIndex = 0;
 
     private TerrainManager.TerrainState currentState = default;
 
+    private LevelData levelData = new LevelData();
+    public LevelData GetLevelData() => levelData;
+
+    public void ResetHexagonData() 
+    {
+        int previousIndex = levelData.Index;
+        levelData = new LevelData();
+        levelData.Index = previousIndex;
+        SetData(levelData);
+    }
+
     public int TerrainIndex 
     {
-        get;
-        set;
-    } 
+        get 
+        {
+            return levelData.Index;
+        }
+        private set 
+        {
+            levelData.Index = value;
+        }
+    }
+
+    public int ProvinceIndex
+    {
+        get 
+        {
+            return levelData.ProvinceIndex;
+        }
+        private set
+        {
+            levelData.ProvinceIndex = value;
+            ChangeProvinceIndex(value);
+        }
+    }
+
 
     public TerrainManager.TerrainState CurrentState
     {
@@ -24,18 +54,29 @@ public class HexagonTerrain : MonoBehaviour
         {
             return currentState;
         }
-        set 
+        set
         {
             currentState = value;
-            ChangeTerrainState(currentState);
+            ChangeTerrainState(value);
         }
     }
 
-    public void Init (TerrainManager.TerrainState terrainStatus, int terrainIndex)
+    public string TerrainName => levelData.LevelName;
+    public int GoldIncome => levelData.GoldIncome;
+    public int GoldOnComplete => levelData.GoldOnComplete;
+
+    public void InitStatus (TerrainManager.TerrainState terrainStatus)
     {
         ChangeTerrainState(terrainStatus);
-        TerrainIndex = terrainIndex;
-        provinceMesh.material.color = Province.GetProvinceColor(provinceIndex);
+    }
+
+    public void SetData(LevelData data) 
+    {
+        TerrainIndex = data.Index;
+        levelData.LevelName = data.LevelName;
+        ProvinceIndex = data.ProvinceIndex;
+        levelData.GoldIncome = data.GoldIncome;
+        levelData.GoldOnComplete = data.GoldOnComplete;
     }
 
     private void ChangeTerrainState (TerrainManager.TerrainState terrainState) 
@@ -56,6 +97,12 @@ public class HexagonTerrain : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void ChangeProvinceIndex(int index) 
+    {
+        var color = GameManager.Get().GetProvinceSetting(index).Color;
+        provinceMesh.material.color = color;
     }
 
     public void Select () => OnSelect?.Invoke();

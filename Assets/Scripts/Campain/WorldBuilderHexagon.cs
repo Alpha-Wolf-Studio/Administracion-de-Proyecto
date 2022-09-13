@@ -22,18 +22,16 @@ public class WorldBuilderHexagon : MonoBehaviour
             if (!isPar)
                 pos.z = 0;
             else
-                pos.z = -worldData.zDistance;
-            pos.x += worldData.xDistance;
+                pos.z = -worldData.ZDistance;
+            pos.x += worldData.XDistance;
 
             for (int j = 0; j < worldData.Rows; j++)
             {
-                HexagonTerrain hexagon = Instantiate(worldData.pfHexagon);
+                HexagonTerrain hexagon = Instantiate(worldData.PfHexagon);
                 hexagon.transform.parent = transform;
                 hexagon.transform.position = pos;
                 hexagon.transform.rotation = Quaternion.identity;
-                pos.z += worldData.zDistance * 2;
-
-                hexagon.TerrainIndex = hexagons.Count;
+                pos.z += worldData.ZDistance * 2;
                 hexagons.Add(hexagon);
             }
         }
