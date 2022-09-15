@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class TroopManager : MonoBehaviour
 {
-    [SerializeField] private Unit baseSpawnUnit = default;
-    [SerializeField] private Transform startPosition = default;
-    [SerializeField] private Transform endPosition = default;
+
+    [SerializeField] private Lane[] lanes = default;
+    private int selectedLaneIndex = 0;
 
     [SerializeField] private int layerToTroop = 0;
     [SerializeField] private LayerMask layerToInteract = default;
@@ -15,17 +15,32 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private Material baseUnitMaterial = default;
     //[SerializeField] private Color troopColor = Color.blue; // Temporal
 
+    private void Awake()
+    {
+        for (int i = 0; i < lanes.Length; i++)
+        {
+            lanes[i].SetLaneIndex(i);
+            lanes[i].OnLaneSelected += (index) =>
+            {
+                selectedLaneIndex = index;
+
+                for (int j = 0; j < lanes.Length; j++)
+                {
+                    lanes[j].Selected = j == selectedLaneIndex;
+                }
+
+            };
+        }
+    }
+
     private void Start()
     {
-        UnitStats unitStat = new UnitStats(); //TODO CAMBIAR STATS DE TRINCHERAS POR LEIDAS DE ALGUN LADO
-        unitStat.life = 100f;
-        baseSpawnUnit.SetValues(unitStat, 0);
+        lanes[selectedLaneIndex].Selected = true;
     }
 
     public void OnButtonCreateTroop(int tropIndex)
     {
-        Vector3 startPos = startPosition.position;
-        Vector3 endPos = endPosition.position;
+
 
         var prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
         var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
@@ -36,10 +51,10 @@ public class TroopManager : MonoBehaviour
             return;
         }
 
-        float random = Random.Range(0, 1.0f);
-        Vector3 pos = Vector3.Lerp(startPos, endPos, random);
 
-        Unit unit = Instantiate(prefabUnits[tropIndex], pos, Quaternion.identity, transform);
+        Vector3 spawnPosition = lanes[selectedLaneIndex].StartTransform.position;
+
+        Unit unit = Instantiate(prefabUnits[tropIndex], spawnPosition, Quaternion.identity, transform);
         unit.gameObject.layer = layerToTroop;
         unit.signDirection = unitsGoToRight ? 1 : -1;
         unit.interactableMask = layerToInteract;
