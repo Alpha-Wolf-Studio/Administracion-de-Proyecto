@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class UnitShootBehaviour : UnitBehaviour
@@ -58,6 +59,11 @@ public class UnitShootBehaviour : UnitBehaviour
     public override bool IsBehaviourExecutable()
     {
         currentAmountOfEnemies = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.rangeAttack + unit.stats.bonusRange, enemyColliders, unit.enemyMask);
+
+        enemyColliders = enemyColliders.Where(collider => IsEnemyValid(collider)).ToArray();
+        
         return currentAmountOfEnemies > 0;
     }
+
+    private bool IsEnemyValid(Collider collider) => collider != null && collider.GetComponent<Unit>().OwnLaneFlags.HasFlag(unit.AttackLaneFlags);
 }

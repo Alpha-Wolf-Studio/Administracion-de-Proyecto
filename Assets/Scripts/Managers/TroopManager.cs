@@ -59,6 +59,8 @@ public class TroopManager : MonoBehaviour
         unit.signDirection = unitsGoToRight ? 1 : -1;
         unit.interactableMask = layerToInteract;
         unit.enemyMask = layerToAttack;
+        unit.AttackLaneFlags = lanes[selectedLaneIndex].LaneFlags;
+        unit.OwnLaneFlags = lanes[selectedLaneIndex].LaneFlags;
         unitsAlive.Add(unit);
 
         //int indexImage = (int)GameManager.Get().unitsStatsLoaded[tropIndex].tempCurrentShape;                                  // Temporal

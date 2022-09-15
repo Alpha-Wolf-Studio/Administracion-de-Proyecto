@@ -13,6 +13,9 @@ public class Lane : MonoBehaviour
     [SerializeField] private Color deSelectedColor = default;
     [Header("Spawn Configurations")]
     [SerializeField] private Transform startTransform = default;
+    [SerializeField] private LanesFlags laneFlag = default;
+
+    public LanesFlags LaneFlags => laneFlag;
 
     public Transform StartTransform 
     {

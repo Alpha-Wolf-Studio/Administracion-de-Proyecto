@@ -12,6 +12,8 @@ public class Unit : MonoBehaviour
     public LayerMask enemyMask;
     public LayerMask interactableMask;
     public int signDirection = 1;
+    public LanesFlags AttackLaneFlags;
+    public LanesFlags OwnLaneFlags;
 
     [SerializeField] private List<UnitBehaviour> unitBehaviours = default;
     [SerializeField] private SkinnedMeshRenderer baseTroopMeshRenderer = default;
