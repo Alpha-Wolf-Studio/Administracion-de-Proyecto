@@ -60,8 +60,12 @@ public class UnitShootBehaviour : UnitBehaviour
     {
         currentAmountOfEnemies = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.rangeAttack + unit.stats.bonusRange, enemyColliders, unit.enemyMask);
 
-        enemyColliders = enemyColliders.Where(collider => IsEnemyValid(collider)).ToArray();
-        
+        //enemyColliders = enemyColliders.Where(collider => IsEnemyValid(collider)).ToArray(); // LINQ
+
+        enemyColliders = System.Array.FindAll(enemyColliders, IsEnemyValid).ToArray(); // SYSTEM ARRAY
+
+        currentAmountOfEnemies = enemyColliders.Length;
+
         return currentAmountOfEnemies > 0;
     }
 

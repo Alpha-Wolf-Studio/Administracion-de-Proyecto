@@ -4479,8 +4479,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7352094312617412977, guid: bd378a3f9bc89ad4aba3e7a1bc7b66e2, type: 3}
-      propertyPath: flashSpeed
-      value: 1
+      propertyPath: laneFlag
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7352094312617412988, guid: bd378a3f9bc89ad4aba3e7a1bc7b66e2, type: 3}
       propertyPath: m_Name
@@ -13906,7 +13906,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7352094312617412977, guid: bd378a3f9bc89ad4aba3e7a1bc7b66e2, type: 3}
-      propertyPath: flashSpeed
+      propertyPath: laneFlag
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7352094312617412988, guid: bd378a3f9bc89ad4aba3e7a1bc7b66e2, type: 3}
@@ -46614,6 +46614,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   signDirection: 1
+  AttackLaneFlags: 0
+  OwnLaneFlags: 1
   unitBehaviours: []
   baseTroopMeshRenderer: {fileID: 0}
   stats:
@@ -97662,8 +97664,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7352094312617412977, guid: bd378a3f9bc89ad4aba3e7a1bc7b66e2, type: 3}
-      propertyPath: flashSpeed
-      value: 1
+      propertyPath: laneFlag
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7352094312617412988, guid: bd378a3f9bc89ad4aba3e7a1bc7b66e2, type: 3}
       propertyPath: m_Name
