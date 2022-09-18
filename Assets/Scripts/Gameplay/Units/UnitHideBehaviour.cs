@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Linq;
 using System.Collections;
 public class UnitHideBehaviour : UnitBehaviour
 {
@@ -10,11 +12,9 @@ public class UnitHideBehaviour : UnitBehaviour
     private Unit unit = default;
     private Rigidbody rb = default;
 
-    private Collider[] trenchColliders = new Collider[5]; //Puse 5 para que sobre en caso de una nueva utilidad ya que estoy reutilizando el array, con tener 1 ya alcanza.
+    private Collider[] trenchColliders;
 
     private Transform target = null;
-    
-    private int trenchsInSight = 0;
 
     private bool hiding = false;
 
@@ -61,8 +61,12 @@ public class UnitHideBehaviour : UnitBehaviour
     public override bool IsBehaviourExecutable()
     {
         if (shouldGetOut) return false;
-        trenchsInSight = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.radiusSight, trenchColliders, unit.interactableMask);
-        if (trenchsInSight > 0 && target == null)
+
+        trenchColliders = Physics.OverlapSphere(transform.position, unit.stats.radiusSight, unit.interactableMask);
+        trenchColliders = Array.FindAll(trenchColliders, IsTrenchValid).ToArray(); // SYSTEM ARRAY
+        //trenchColliders = trenchColliders.Where(collider => IsEnemyValid(collider)).ToArray(); // LINQ
+
+        if (trenchColliders.Length > 0 && target == null)
         {
             var trench = trenchColliders[0].GetComponent<Trench>();
             if (trench && trench.IsCoverageFree(gameObject.layer)) 
@@ -74,6 +78,14 @@ public class UnitHideBehaviour : UnitBehaviour
                 return false;
             }
         }
-        return trenchsInSight > 0;
+        return trenchColliders.Length > 0;
     }
+
+    private bool IsTrenchValid(Collider collider) => collider != null && AnyFlagContained(collider.GetComponent<Unit>().OwnLaneFlags, unit.AttackLaneFlags);
+
+    private bool AnyFlagContained(Enum me, Enum other)
+    {
+        return (Convert.ToInt32(me) & Convert.ToInt32(other)) != 0;
+    }
+
 }

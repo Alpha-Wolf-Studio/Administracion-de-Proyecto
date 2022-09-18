@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -7,8 +8,7 @@ public class UnitShootBehaviour : UnitBehaviour
     private Projectile prefabProjectile = default;
     private Unit unit = default;
 
-    private Collider[] enemyColliders = new Collider[5]; //Puse 5 para que sobre en caso de una nueva utilidad ya que estoy reutilizando el array, con tener 1 ya alcanza.
-    private int currentAmountOfEnemies = 0;
+    private Collider[] enemyColliders;
 
     private float timeForNextShot = -1;
 
@@ -27,7 +27,7 @@ public class UnitShootBehaviour : UnitBehaviour
     }
     public Transform GetCurrentEnemyTransform() 
     {
-        if(currentAmountOfEnemies > 0) 
+        if(enemyColliders.Length > 0) 
         {
             return enemyColliders[0].transform;
         }
@@ -58,16 +58,18 @@ public class UnitShootBehaviour : UnitBehaviour
 
     public override bool IsBehaviourExecutable()
     {
-        currentAmountOfEnemies = Physics.OverlapSphereNonAlloc(transform.position, unit.stats.rangeAttack + unit.stats.bonusRange, enemyColliders, unit.enemyMask);
-
+        enemyColliders = Physics.OverlapSphere(transform.position, unit.stats.rangeAttack + unit.stats.bonusRange, unit.enemyMask);
         //enemyColliders = enemyColliders.Where(collider => IsEnemyValid(collider)).ToArray(); // LINQ
 
         enemyColliders = System.Array.FindAll(enemyColliders, IsEnemyValid).ToArray(); // SYSTEM ARRAY
-
-        currentAmountOfEnemies = enemyColliders.Length;
-
-        return currentAmountOfEnemies > 0;
+        return enemyColliders.Length > 0;
     }
 
-    private bool IsEnemyValid(Collider collider) => collider != null && collider.GetComponent<Unit>().OwnLaneFlags.HasFlag(unit.AttackLaneFlags);
+    private bool IsEnemyValid(Collider collider) => collider != null && AnyFlagContained(collider.GetComponent<Unit>().OwnLaneFlags, unit.AttackLaneFlags);
+
+    private bool AnyFlagContained(Enum me, Enum other)
+    {
+        return (Convert.ToInt32(me) & Convert.ToInt32(other)) != 0;
+    }
+
 }
