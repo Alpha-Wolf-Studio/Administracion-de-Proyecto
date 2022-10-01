@@ -47,7 +47,7 @@ public class UnitShootBehaviour : UnitBehaviour
 
     public void SpawnProjectile() 
     {
-        if(enemyColliders[0] != null) 
+        if(enemyColliders.Length > 0 && enemyColliders[0] != null) 
         {
             GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, projectileSpawn.position, Quaternion.identity, BulletParent.Get().GetTransform());
             Projectile projectile = projectileGameObject.GetComponent<Projectile>();

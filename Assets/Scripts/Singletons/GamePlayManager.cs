@@ -30,6 +30,10 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
         unitToDestroy.OnDie += GameOverWin;
         AudioManager.Get().PlayMusicGamePlay();
         isGameOver = false;
+
+        UnitStats enemyBaseStats = new UnitStats();
+        enemyBaseStats.life = 100;
+        unitToDestroy.SetValues(enemyBaseStats, 0);
     }
 
     void GameOverWin()
