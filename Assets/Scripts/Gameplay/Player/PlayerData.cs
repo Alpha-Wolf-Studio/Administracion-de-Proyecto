@@ -8,7 +8,8 @@ public class PlayerData
     public int LastLevelComplete;
     public int[] CampaingStatus;
 
-    public int CurrentMoney;
+    public int CurrentGold;
+    public int CurrentDiamond;
     public int[] LevelUnits = new int[8];
     public string PlayerName;
 

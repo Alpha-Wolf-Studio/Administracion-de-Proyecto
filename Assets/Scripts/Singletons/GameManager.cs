@@ -83,16 +83,27 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     /// </summary>
     /// <param name="plusMoney"></param>
     /// <returns>Si se pudo restar el dinero. Lo resta y guarda en caso de que si</returns>
-    public bool ModifyMoneyPlayer (int plusMoney)
+    public bool ModifyGoldPlayer (int plusMoney)
     {
-        if (playerData.CurrentMoney + plusMoney < 0)
+        if (playerData.CurrentGold + plusMoney < 0)
             return false;
-        playerData.CurrentMoney += plusMoney;
+        playerData.CurrentGold += plusMoney;
         SavePlayerData();
         return true;
     }
 
-    public int GetPlayerGold() => playerData.CurrentMoney;
+    public int GetPlayerGold() => playerData.CurrentGold;
+    
+    public bool ModifyDiamondPlayer (int plusMoney)
+    {
+        if (playerData.CurrentDiamond + plusMoney < 0)
+            return false;
+        playerData.CurrentDiamond += plusMoney;
+        SavePlayerData();
+        return true;
+    }
+
+    public int GetPlayerDiamond() => playerData.CurrentDiamond;
 
     public void SetPlayerDataName (string newName)
     {
@@ -135,12 +146,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
 
         int incomeTerraingGold = GoldCalculations.GetOfflineGold(worldData, playerData);
-        playerData.CurrentMoney += incomeTerraingGold;
+        playerData.CurrentGold += incomeTerraingGold;
 
         while (gameObject) 
         {
             yield return new WaitForSecondsRealtime(GoldCalculations.SecondsBetweenIncome);
-            playerData.CurrentMoney += GoldCalculations.IncomeGold;
+            playerData.CurrentGold += GoldCalculations.IncomeGold;
         }
     }
 
@@ -148,7 +159,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
 
         playerData.LastLevelComplete = level;
-        playerData.CurrentMoney += worldData.LevelsData.GetLevelData(level).GoldOnComplete;
+        playerData.CurrentGold += worldData.LevelsData.GetLevelData(level).GoldOnComplete;
 
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
         for (int i = 0; i < worldData.Rows; i++)

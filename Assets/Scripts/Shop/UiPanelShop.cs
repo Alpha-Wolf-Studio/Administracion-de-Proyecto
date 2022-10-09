@@ -58,13 +58,13 @@ public class UiPanelShop : MonoBehaviour
 
     public void AddMoney(int value)
     {
-        GameManager.Get().ModifyMoneyPlayer(value);
+        GameManager.Get().ModifyGoldPlayer(value);
     }
 
     private void ButtonUpgrade()
     {
         int moneyDecrease = GameManager.Get().unitsStatsLoaded[currentUnit].moneyPerLevel;
-        if (GameManager.Get().ModifyMoneyPlayer(-moneyDecrease))
+        if (GameManager.Get().ModifyGoldPlayer(-moneyDecrease))
         {
             GameManager.Get().AddLevelUnit(currentUnit);
             LoadUnitUi(currentUnit);
