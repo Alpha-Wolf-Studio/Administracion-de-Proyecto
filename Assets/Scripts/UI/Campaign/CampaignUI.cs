@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CampaignUI : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CampaignUI : MonoBehaviour
     [SerializeField] GameObject panelGeneralStats = default;
     [SerializeField] TMPro.TextMeshProUGUI incomeTextComponent = default;
     [SerializeField] TMPro.TextMeshProUGUI currentGoldTextComponent = default;
+    [SerializeField] TMP_Text currentDiamondTextComponent;
     [Header("Army and Mercenary Panel")]
     [SerializeField] GameObject panelArmyAndMercenary = default;
     [Header("Selected Stats Panel")]
@@ -42,6 +44,7 @@ public class CampaignUI : MonoBehaviour
     private void Update()
     {
         currentGoldTextComponent.text = "Current Gold: " + GameManager.Get().GetPlayerGold();
+        currentDiamondTextComponent.text = "Current Diamond: " + GameManager.Get().GetPlayerDiamond();
     }
 
     private void ChangeCurrentIncome() 
