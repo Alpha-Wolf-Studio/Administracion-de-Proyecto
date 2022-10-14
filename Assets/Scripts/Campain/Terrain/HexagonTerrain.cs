@@ -77,6 +77,7 @@ public class HexagonTerrain : MonoBehaviour
         ProvinceIndex = data.ProvinceIndex;
         levelData.GoldIncome = data.GoldIncome;
         levelData.GoldOnComplete = data.GoldOnComplete;
+        levelData.Enemies = data.Enemies;
     }
 
     private void ChangeTerrainState (TerrainManager.TerrainState terrainState) 

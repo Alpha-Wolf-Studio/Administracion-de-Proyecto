@@ -83,7 +83,7 @@ public class UiSetCustomUnit : MonoBehaviourSingleton<UiSetCustomUnit>
             GameManager.Get().unitsStatsLoaded[newIndex] = unitStats;
         }
         string data = JsonUtility.ToJson(unitStats, true);
-        LoadAndSave.SaveToFile(GameManager.unitsStatsPath + newIndex, data);
+        LoadAndSave.SaveToFile(GameManager.unitsStatsPath + newIndex, data, true);
     }
 
     public void LoadValues(int newIndex)

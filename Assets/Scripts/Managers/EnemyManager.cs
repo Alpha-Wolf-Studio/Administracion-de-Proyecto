@@ -1,58 +1,67 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [Header("Spawn Configurations")]
-    [SerializeField] private int maxEnemyLevel = 10;
-    [SerializeField] private TroopManager enemyTroopManager = default;
-    [SerializeField] private Vector2 spawnEnemyTime = Vector2.zero;
-    [SerializeField] private bool autoSpawnEnemy = true;
-    private float nextTimeSpawn = 0;
-
-    [Header("Trenches Configurations")]
-    [SerializeField] private float maxTimeToUnloadTrenches = 10f;
-    private Trench[] levelTrenches = default;
-    private float timeToUnloadTrenches = 0f;
+    [SerializeField] private LayerMask alliesLayer = default;
+    [SerializeField] private int enemiesLayerIndex = 8;
+    [SerializeField] private List<Unit> enemyPrefabs;
+    private LevelData currentLevel = default;
 
     void Start()
     {
-        levelTrenches = FindObjectsOfType<Trench>();
-        timeToUnloadTrenches = maxTimeToUnloadTrenches;
-
-        if(autoSpawnEnemy) StartCoroutine(SpawnRandomEnemy());
-    }
-
-    private void Update()
-    {
-        TrenchReleaseLogic();
-    }
-
-    private void TrenchReleaseLogic() 
-    {
-        timeToUnloadTrenches -= Time.deltaTime;
-        if(timeToUnloadTrenches < 0) 
+        currentLevel = GameManager.Get().CurrentSelectedLevel;
+        foreach (var enemy in currentLevel.Enemies)
         {
-            timeToUnloadTrenches = maxTimeToUnloadTrenches;
-            foreach (var trench in levelTrenches)
+            
+            var unit = Instantiate(enemyPrefabs[(int)enemy.TypeOfEnemy], enemy.EnemyPosition, Quaternion.Euler(enemy.EnemyRotation));
+            
+            var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
+
+            unit.gameObject.layer = enemiesLayerIndex;
+            unit.signDirection = -1;
+            unit.interactableMask = 0;
+            unit.enemyMask = alliesLayer;
+
+            UnitStats unitStats = GameManager.Get().GetUnitStats((int)enemy.TypeOfEnemy);
+            unit.SetValues(unitStats, 0);
+
+            var unitShootBehaviour = unit.GetComponent<UnitShootBehaviour>();
+            if (unitShootBehaviour) 
             {
-                if(trench.CurrentTroopsLayer == gameObject.layer) 
-                {
-                    trench.ReleaseUnitsFromTrench();
-                }
+                Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
+                unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
             }
+
+            unit.AttackLaneFlags = enemy.AttackLaneFlags;
+            unit.OwnLaneFlags = enemy.OwnLaneFlags;
+
         }
     }
 
-    private IEnumerator SpawnRandomEnemy()
+    public void SaveAllEnemiesInLevel()
     {
-        while (maxEnemyLevel > 0)
+        currentLevel.Enemies.Clear();
+        
+        var newEnemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in newEnemies)
         {
-            nextTimeSpawn = Random.Range(spawnEnemyTime.x, spawnEnemyTime.y);
-            yield return new WaitForSeconds(nextTimeSpawn);
-            maxEnemyLevel--;
-            int currentSpawn = Random.Range(0, GamePlayManager.Get().CurrentLevelPrefabUnits.Length);
-            enemyTroopManager.OnButtonCreateTroop(currentSpawn);
+            currentLevel.Enemies.Add(enemy.GetCurrentConfiguration());
+        }
+        
+        GameManager.Get().SaveEnemyLevelData(currentLevel.Enemies, currentLevel.Index);
+    }
+    
+    public void ClearAllEnemiesInLevel()
+    {
+        currentLevel.Enemies.Clear();
+        
+        var newEnemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in newEnemies)
+        {
+            Destroy(enemy.gameObject);
         }
     }
+    
+
 }

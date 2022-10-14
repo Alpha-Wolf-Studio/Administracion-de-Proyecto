@@ -4,6 +4,14 @@ using UnityEngine.UI;
 
 public class UiGamePlayManager : MonoBehaviour
 {
+
+    [Header("Enemies")] 
+    [SerializeField] private EnemyManager enemyManager = default;
+    [SerializeField] private GameObject enemiesDebugPanel = default; 
+    [SerializeField] private Button saveAllCurrentEnemiesButton = default;
+    [SerializeField] private Button clearAllCurrentEnemiesButton = default;
+    [Space(10)]
+    
     [SerializeField] private Button[] btnToMenu;
     [SerializeField] private Button[] btnToReset;
     [SerializeField] private Button btnToCampaign;
@@ -38,11 +46,22 @@ public class UiGamePlayManager : MonoBehaviour
         GamePlayManager.OnGameOver += GameOverUi;
 
         levelTextComponent.text = GameManager.Get().CurrentSelectedLevel.LevelName;
+        
+#if UNITY_EDITOR
+        saveAllCurrentEnemiesButton.onClick.AddListener(enemyManager.SaveAllEnemiesInLevel);
+        clearAllCurrentEnemiesButton.onClick.AddListener(enemyManager.ClearAllEnemiesInLevel);
+#else
+        enemiesDebugPanel.gameObject.SetActive(false);
+#endif
 
     }
 
     private void OnDestroy()
     {
+#if UNITY_EDITOR
+        saveAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.SaveAllEnemiesInLevel);
+        clearAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.ClearAllEnemiesInLevel);
+#endif
         GamePlayManager.OnGameOver -= GameOverUi;
     }
 

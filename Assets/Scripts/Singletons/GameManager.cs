@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private void LoadAllPlayerData() 
     {
-        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData));
+        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData, true));
         if(playerData.CampaingStatus == null) 
         {
             playerData.CampaingStatus = TerrainManager.GetDefaultTerrainEnumIndexes(worldData.Rows, worldData.Columns);
@@ -125,6 +125,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public int[] GetTerrainStates() => playerData.CampaingStatus;
 
     public LevelData GetLevelData(int index) => worldData.LevelsData.GetLevelData(index);
+
+    public void SaveEnemyLevelData(List<EnemyConfigurations> data, int index)
+    {
+        worldData.LevelsData.AddEnemiesData(data, index);
+        Debug.Log("Save Data");
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(worldData.LevelsData);
+#endif
+    }
+    
     public void SaveLevelData(LevelData data)
     {
         worldData.LevelsData.AddTerrainData(data);

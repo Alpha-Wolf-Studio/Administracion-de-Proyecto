@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "All Levels Data", menuName = "Editor/All Levels Data")]
 public class LevelsData : ScriptableObject
@@ -9,6 +12,19 @@ public class LevelsData : ScriptableObject
 
     public void ClearTerrainData() => levelsList.Clear();
 
+
+    public void AddEnemiesData(List<EnemyConfigurations> enemies, int index)
+    {
+        levelsList[index].Enemies.Clear();
+        foreach (var enemy in enemies)
+        {
+            levelsList[index].Enemies.Add(enemy);
+        }
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+#endif
+    }
+    
     public void AddTerrainData(LevelData data) 
     {
         if(levelsList.Exists(i => i.Index == data.Index)) 
@@ -37,12 +53,30 @@ public class LevelsData : ScriptableObject
 
     public void SortListByIndex()
     {
-        levelsList.Sort((a, b) => a.Index < b.Index ? 0 : 1);
+        levelsList.Sort((a, b) => a.Index.CompareTo(b.Index));
     }
 
     public void SortListByName()
     {
-        levelsList.Sort((a, b) => string.Compare(a.LevelName, b.LevelName));
+        levelsList.Sort(delegate(LevelData a, LevelData b)
+        {
+            var aSplit = a.LevelName.Split(' ');
+            var bSplit = b.LevelName.Split(' ');
+
+            Debug.Log(aSplit[1]);
+            
+            int aLevelValue = 0;
+            if (int.TryParse(aSplit[1], out aLevelValue))
+            {
+                int bLevelValue = 0;
+                if (int.TryParse(bSplit[1], out bLevelValue))
+                {
+                    return aLevelValue.CompareTo(bLevelValue);
+                }
+            }
+
+            return 0;
+        });
     }
 
 }
