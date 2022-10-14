@@ -28,6 +28,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public override void Awake ()
     {
         base.Awake();
+        
+        #if UNITY_STANDALONE
+        
+        Screen.SetResolution(960, 540, false);
+        
+        #endif
+        
         LoadAllStatsSaved();
         LoadAllPlayerData();
     }
