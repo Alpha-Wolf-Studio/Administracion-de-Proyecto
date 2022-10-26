@@ -12,12 +12,12 @@ public class UiPanelProfile : MonoBehaviour
     [SerializeField] private TMP_InputField inputFieldName;
     [SerializeField] private Button btnConfirm;
 
-    private void Awake()
+    private void Awake ()
     {
         ChangePlayerName(GameManager.Get().GetPlayerName());
     }
 
-    void Start()
+    private void Start ()
     {
         inputFieldName.text = GameManager.Get().GetPlayerName();
         inputFieldName.onValueChanged.AddListener(ChangePlayerName);
@@ -32,7 +32,7 @@ public class UiPanelProfile : MonoBehaviour
             textlevel.text = level.ToString();
     }
 
-    void ChangePlayerName(string newName)
+    private void ChangePlayerName (string newName)
     {
         foreach (TMP_Text textName in textPlayerName)
         {
@@ -40,8 +40,9 @@ public class UiPanelProfile : MonoBehaviour
         }
     }
 
-    public void ButtonConfirm()
+    private void ButtonConfirm ()
     {
         GameManager.Get().SetPlayerDataName(inputFieldName.text);
+        gameObject.SetActive(false);
     }
 }

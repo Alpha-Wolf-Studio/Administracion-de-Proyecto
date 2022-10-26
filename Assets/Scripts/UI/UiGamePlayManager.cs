@@ -65,7 +65,7 @@ public class UiGamePlayManager : MonoBehaviour
         GamePlayManager.OnGameOver -= GameOverUi;
     }
 
-    private void OnButtonToMainMenu() => CustomSceneManager.Get().LoadScene("MainMenu");
+    private void OnButtonToMainMenu() => CustomSceneManager.Get().LoadScene("Campaign");
     private void OnButtonReset() => CustomSceneManager.Get().LoadScene("Gameplay");
     private void OnButtonCampaign() => CustomSceneManager.Get().LoadScene("Campaign");
 

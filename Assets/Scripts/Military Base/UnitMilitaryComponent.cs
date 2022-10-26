@@ -6,6 +6,7 @@ public class UnitMilitaryComponent : MonoBehaviour
 {
     public Image imageUnit;
     public Image imageFillLife;
+    public GameObject imageContentLife;
 
     private void Start ()
     {
@@ -17,10 +18,15 @@ public class UnitMilitaryComponent : MonoBehaviour
         imageFillLife.fillAmount = 1;
     }
 
+    public void ShowLifeBar (bool isEnable)
+    {
+        imageContentLife.SetActive(isEnable);
+    }
+
     public void UpdateFillLife (int idUnit, float currentLife)
     {
+        imageContentLife.SetActive(true);
         float maxLife = imageFillLife.fillAmount = GameManager.Get().unitsStatsLoaded[idUnit].life;
-
         imageFillLife.fillAmount = currentLife / maxLife;
     }
 }
