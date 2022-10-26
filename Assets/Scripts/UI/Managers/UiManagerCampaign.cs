@@ -12,6 +12,6 @@ public class UiManagerCampaign : MonoBehaviour
         btnGoToMilitaryBase.onClick.AddListener(GoToMenuMilitaryBase);
     }
 
-    private void GoToMenuGameplay () => CustomSceneManager.LoadScene("Gameplay");
-    private void GoToMenuMilitaryBase () => CustomSceneManager.LoadScene("MilitaryBase");
+    private void GoToMenuGameplay () => CustomSceneManager.Get().LoadScene("Gameplay");
+    private void GoToMenuMilitaryBase () => CustomSceneManager.Get().LoadScene("MilitaryBase");
 }

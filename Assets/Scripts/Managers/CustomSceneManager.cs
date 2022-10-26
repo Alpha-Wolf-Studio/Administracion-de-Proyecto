@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
 {
-    public static void LoadScene(string scene)
+    public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
         Time.timeScale = 1;

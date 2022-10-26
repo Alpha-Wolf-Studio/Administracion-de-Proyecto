@@ -10,6 +10,6 @@ public class UiManagerMilitaryBase : MonoBehaviour
         btnGoToCampaing.onClick.AddListener(GoToMenuCampaing);
     }
 
-    void GoToMenuCampaing ()=> CustomSceneManager.LoadScene("Campaign");
+    void GoToMenuCampaing ()=> CustomSceneManager.Get().LoadScene("Campaign");
     
 }
