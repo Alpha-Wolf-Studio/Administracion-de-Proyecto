@@ -3,6 +3,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class PlayerData
 {
+    private const int diferentsOtters = 4;
+
     public long LastSavedTime;
 
     public int LastLevelComplete;
@@ -10,8 +12,13 @@ public class PlayerData
 
     public int CurrentGold;
     public int CurrentDiamond;
-    public int[] LevelUnits = new int[8];
     public string PlayerName;
+
+    public int[] LevelUnitsArmy = new int[diferentsOtters];
+    public int[] LevelUnitsMercenary = new int[diferentsOtters];
+
+    public int[] maxAmountArmy = new int[diferentsOtters];
+    public int[] maxAmountMercenary = new int[diferentsOtters];
 
     public UnitData[] DataArmies;
     public UnitData[] DataMercenaries;

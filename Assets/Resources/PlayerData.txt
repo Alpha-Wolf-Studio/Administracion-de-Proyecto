@@ -1,36 +1,154 @@
 {
-    "LastSavedTime": 1663217905410,
-    "LastLevelComplete": 0,
+    "LastSavedTime": 1666743112307,
+    "LastLevelComplete": 10,
     "CampaingStatus": [
+        0,
+        0,
         1,
         2,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
         2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2
+        1,
+        1,
+        1
     ],
-    "CurrentMoney": 0,
-    "LevelUnits": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+    "CurrentGold": 202195,
+    "CurrentDiamond": 50,
+    "PlayerName": "Sauron",
+    "LevelUnitsArmy": [
+        1,
         0,
         0
     ],
-    "PlayerName": "",
-    "DataArmies": [],
-    "DataMercenaries": []
+    "LevelUnitsMercenary": [
+        0,
+        2,
+        0
+    ],
+    "maxAmountArmy": [
+        8,
+        5,
+        0
+    ],
+    "maxAmountMercenary": [
+        8,
+        6,
+        0
+    ],
+    "DataArmies": [
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        }
+    ],
+    "DataMercenaries": [
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 0,
+            "UnitType": 1,
+            "Life": 10.0
+        },
+        {
+            "IdUnit": 1,
+            "UnitType": 1,
+            "Life": 15.0
+        }
+    ]
 }
