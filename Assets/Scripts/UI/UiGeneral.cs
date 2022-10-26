@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
     [SerializeField] private GameObject panelSettings;
     [SerializeField] private Button btnProfile;
     [SerializeField] private Button btnSettings;
+
+    [SerializeField] private List<GameObject> hideToGameplay = new List<GameObject>();
 
     private void Start ()
     {
@@ -43,6 +46,15 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
 
     private void OnPressSettings ()
     {
+        Time.timeScale = 0;
         panelSettings.SetActive(true);
+    }
+
+    public void HideToGameplay (bool hide)
+    {
+        for (int i = 0; i < hideToGameplay.Count; i++)
+        {
+            hideToGameplay[i].SetActive(hide);
+        }
     }
 }

@@ -27,7 +27,7 @@ public class UiGamePlayManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private TMPro.TextMeshProUGUI levelTextComponent;
 
-
+    private UiGeneral uiGeneral;
     private void Start()
     {
         uiPanelWin.gameObject.SetActive(false);
@@ -53,7 +53,11 @@ public class UiGamePlayManager : MonoBehaviour
 #else
         enemiesDebugPanel.gameObject.SetActive(false);
 #endif
-
+        uiGeneral = FindObjectOfType<UiGeneral>();
+        if (uiGeneral)
+        {
+            uiGeneral.HideToGameplay(true);
+        }
     }
 
     private void OnDestroy()
@@ -63,6 +67,11 @@ public class UiGamePlayManager : MonoBehaviour
         clearAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.ClearAllEnemiesInLevel);
 #endif
         GamePlayManager.OnGameOver -= GameOverUi;
+
+        if (uiGeneral)
+        {
+            uiGeneral.HideToGameplay(false);
+        }
     }
 
     private void OnButtonToMainMenu() => CustomSceneManager.Get().LoadScene("Campaign");

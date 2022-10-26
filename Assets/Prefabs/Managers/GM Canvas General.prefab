@@ -8000,6 +8000,9 @@ MonoBehaviour:
   panelSettings: {fileID: 864845804}
   btnProfile: {fileID: 3331426309787653158}
   btnSettings: {fileID: 3331426307754180847}
+  hideToGameplay:
+  - {fileID: 3331426309787653156}
+  - {fileID: 3068566333575934079}
 --- !u!1 &3331426309327254259
 GameObject:
   m_ObjectHideFlags: 0

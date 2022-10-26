@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UiManagerMilitaryBase : MonoBehaviour
@@ -11,6 +10,6 @@ public class UiManagerMilitaryBase : MonoBehaviour
         btnGoToCampaing.onClick.AddListener(GoToMenuCampaing);
     }
 
-    void GoToMenuCampaing ()=>SceneManager.LoadScene("Campaign");
+    void GoToMenuCampaing ()=> CustomSceneManager.LoadScene("Campaign");
     
 }

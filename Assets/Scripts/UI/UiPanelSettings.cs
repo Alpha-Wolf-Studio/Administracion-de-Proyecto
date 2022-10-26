@@ -23,6 +23,7 @@ public class UiPanelSettings : MonoBehaviour
     private void OnPressBack()
     {
         gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     private void EnableMusic()
