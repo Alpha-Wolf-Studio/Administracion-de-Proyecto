@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageUnit: {fileID: 6692119751103386590}
   imageFillLife: {fileID: 950267524899959512}
+  imageContentLife: {fileID: 6798843832589258002}
 --- !u!1 &6692119751313346471
 GameObject:
   m_ObjectHideFlags: 0
