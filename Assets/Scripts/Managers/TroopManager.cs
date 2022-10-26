@@ -40,8 +40,6 @@ public class TroopManager : MonoBehaviour
 
     public void OnButtonCreateTroop(int tropIndex)
     {
-
-
         var prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
         var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
 
@@ -73,7 +71,9 @@ public class TroopManager : MonoBehaviour
         unit.SetBaseTroopMaterial(baseUnitMaterial);
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
-        unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsPlayer()[tropIndex]);
+
+        // Todo: Acá solo agarra el nivel de las Army, debe agarrar el correspondiente
+        unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]); 
 
         var unitShootBehaviour = unit.GetComponent<UnitShootBehaviour>();
         if (unitShootBehaviour) 

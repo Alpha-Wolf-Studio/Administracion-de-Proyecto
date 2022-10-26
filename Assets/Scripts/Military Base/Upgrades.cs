@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Upgrades : MonoBehaviour
 {
+    // Todo: Este script está deprecado
+
     [SerializeField] private UnitSelector unitSelector;
     [SerializeField] private Button btnLevelUp;
     [SerializeField] private Button btnBuyMercenary;
@@ -42,6 +44,6 @@ public class Upgrades : MonoBehaviour
 
     private void LevelUpUnit ()
     {
-        GameManager.Get().LevelUpUnit(unitSelector.currentUnit);
+        //GameManager.Get().LevelUpUnit(unitSelector.currentUnit);
     }
 }

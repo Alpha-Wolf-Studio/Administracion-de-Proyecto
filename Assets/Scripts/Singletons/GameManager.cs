@@ -241,13 +241,23 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     }
 
     public string GetPlayerName() => playerData.PlayerName;
-    public int[] GetLevelUnitsPlayer() => playerData.LevelUnits;
+    public int[] GetLevelUnitsArmyPlayer() => playerData.LevelUnitsArmy;
+    public int[] GetLevelUnitsMercenaryPlayer() => playerData.LevelUnitsMercenary;
     public int GetLastLevelPlayer() => playerData.LastLevelComplete;
     public int SetLastLevelPlayer(int level) => playerData.LastLevelComplete = level;
 
-    public void AddLevelUnit(int i)
+    public void AddLevelUnit (int idUnit, MilitaryType militaryType)
     {
-        playerData.LevelUnits[i]++;
+        switch (militaryType)
+        {
+            case MilitaryType.Army:
+                playerData.LevelUnitsArmy[idUnit]++;
+                break;
+            case MilitaryType.Mercenary:
+                playerData.LevelUnitsMercenary[idUnit]++;
+                break;
+        }
+
         SavePlayerData();
     }
 
@@ -261,7 +271,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     }
 
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
-    public int GetLevelsUnits(int i) => playerData.LevelUnits[i];
+    public int GetLevelsUnitsArmy(int i) => playerData.LevelUnitsArmy[i];
+    public int GetLevelsUnitsMercenary(int i) => playerData.LevelUnitsMercenary[i];
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite(int index) => sprites[index];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
@@ -312,13 +323,53 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         OnAddUnitMercenary?.Invoke();
     }
 
-    public void LevelUpUnit (int idUnit)
+    public void LevelUpUnit (int idUnit, MilitaryType militaryType)
     {
-        playerData.LevelUnits[idUnit]++;
+        switch (militaryType)
+        {
+            case MilitaryType.Army:
+                playerData.LevelUnitsArmy[idUnit]++;
+                break;
+            case MilitaryType.Mercenary:
+                playerData.LevelUnitsMercenary[idUnit]++;
+                break;
+        }
+
         SavePlayerData();
         OnAddLevelUnit?.Invoke();
     }
 
     public UnitData[] GetUnitsArmy () => playerData.DataArmies;
     public UnitData[] GetUnitsMercenary() => playerData.DataMercenaries;
+
+    public bool BuySlot (int idUnit, MilitaryType militaryType)
+    {
+        switch (militaryType)
+        {
+            case MilitaryType.Army:
+                playerData.maxAmountArmy[idUnit]++;
+                break;
+            case MilitaryType.Mercenary:
+                playerData.maxAmountMercenary[idUnit]++;
+                break;
+            default:
+                Debug.LogWarning("No existe este Military Type!");
+                return false;
+        }
+        return true;
+    }
+
+    public int GetMaxUnits (int idUnit, MilitaryType militaryType)
+    {
+        switch (militaryType)
+        {
+            case MilitaryType.Army:
+                return playerData.maxAmountArmy[idUnit];
+            case MilitaryType.Mercenary:
+                return playerData.maxAmountMercenary[idUnit];
+            default:
+                return 0;
+        }
+    }
+
 }

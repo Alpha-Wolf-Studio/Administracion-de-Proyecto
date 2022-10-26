@@ -5,26 +5,20 @@ using TMPro;
 public class CampaignUI : MonoBehaviour
 {
 
-    [Header("General Stats Panel")]
-    [SerializeField] GameObject panelGeneralStats = default;
-    [SerializeField] TMPro.TextMeshProUGUI incomeTextComponent = default;
-    [SerializeField] TMPro.TextMeshProUGUI currentGoldTextComponent = default;
-    [SerializeField] TMP_Text currentDiamondTextComponent;
-    [Header("Army and Mercenary Panel")]
-    [SerializeField] GameObject panelArmyAndMercenary = default;
     [Header("Selected Stats Panel")]
-    [SerializeField] GameObject panelSelected = default;
-    [SerializeField] TMPro.TextMeshProUGUI selectedNameTextComponent = default;
-    [SerializeField] TMPro.TextMeshProUGUI selectedWinGoldTextComponent = default;
-    [SerializeField] TMPro.TextMeshProUGUI selectedIncomeTextComponent = default;
-    [SerializeField] PlayerCampaignManager campaignManager = default;
+    [SerializeField] GameObject panelSelected;
+    [SerializeField] TMP_Text textTitleLevel;
+    [SerializeField] TMP_Text textGoldReward;
+    [SerializeField] TMP_Text textIncomeReward;
+    [SerializeField] TMP_Text textDiamondReward;
+
+    [SerializeField] PlayerCampaignManager campaignManager;
 
     [Space(10)]
     [SerializeField] private Button selectMisionButton = default;
 
     private void Awake()
     {
-        GoldCalculations.OnIncomeGoldChange += ChangeCurrentIncome;
         campaignManager.OnSelectionChange += OnSelectionChanged;
         selectMisionButton.onClick.AddListener(StartLevel);
     }
@@ -36,20 +30,8 @@ public class CampaignUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        GoldCalculations.OnIncomeGoldChange -= ChangeCurrentIncome;
         campaignManager.OnSelectionChange -= OnSelectionChanged;
         selectMisionButton.onClick.RemoveListener(StartLevel);
-    }
-
-    private void Update()
-    {
-        currentGoldTextComponent.text = "Current Gold: " + GameManager.Get().GetPlayerGold();
-        currentDiamondTextComponent.text = "Current Diamond: " + GameManager.Get().GetPlayerDiamond();
-    }
-
-    private void ChangeCurrentIncome() 
-    {
-        incomeTextComponent.text = "Current Income: " + GoldCalculations.IncomeGold;
     }
 
     private void StartLevel() 
@@ -62,10 +44,10 @@ public class CampaignUI : MonoBehaviour
         if(terrain != null) 
         {
             panelSelected.SetActive(true);
-            var terrainData = terrain.GetLevelData();
-            selectedNameTextComponent.text = terrainData.LevelName;
-            selectedIncomeTextComponent.text = "Terrain Income: " + terrainData.GoldIncome;
-            selectedWinGoldTextComponent.text = "Terrain Gold: " + terrainData.GoldOnComplete;
+            LevelData terrainData = terrain.GetLevelData();
+            textTitleLevel.text = terrainData.LevelName;
+            textIncomeReward.text = "Terrain Income: " + terrainData.GoldIncome;
+            textGoldReward.text = "Terrain Gold: " + terrainData.GoldOnComplete;
         }
         else 
         {

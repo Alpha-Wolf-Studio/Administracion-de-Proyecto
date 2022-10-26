@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UiPanelShop : MonoBehaviour
 {
+    // Todo: Script deprecado
     [SerializeField] private TMP_Text textNameUnit;
     [SerializeField] private List<Button> btnUnitsHeader = new List<Button>();
     [SerializeField] private List<UiPanelShopStat> shopStat = new List<UiPanelShopStat>();
@@ -37,7 +38,7 @@ public class UiPanelShop : MonoBehaviour
         int maxLevelUnits = 10;
         currentUnit = unitIndex;
 
-        int unitLevel = GameManager.Get().GetLevelsUnits(unitIndex);
+        int unitLevel = GameManager.Get().GetLevelsUnitsArmy(unitIndex);
         int unitNextLevel = unitLevel + 1 > maxLevelUnits ? maxLevelUnits : unitLevel + 1;
 
         btnUpgrade.interactable = unitLevel != maxLevelUnits;
@@ -66,7 +67,7 @@ public class UiPanelShop : MonoBehaviour
         int moneyDecrease = GameManager.Get().unitsStatsLoaded[currentUnit].moneyPerLevel;
         if (GameManager.Get().ModifyGoldPlayer(-moneyDecrease))
         {
-            GameManager.Get().AddLevelUnit(currentUnit);
+            //GameManager.Get().AddLevelUnit(currentUnit);
             LoadUnitUi(currentUnit);
         }
     }
