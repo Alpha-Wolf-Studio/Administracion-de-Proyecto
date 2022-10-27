@@ -10,6 +10,7 @@ public class UiManagerCampaign : MonoBehaviour
     {
         btnGoToGameplay.onClick.AddListener(GoToMenuGameplay);
         btnGoToMilitaryBase.onClick.AddListener(GoToMenuMilitaryBase);
+        AudioManager.Get().PlayMusicMenu();
     }
 
     private void GoToMenuGameplay () => CustomSceneManager.Get().LoadScene("Gameplay");

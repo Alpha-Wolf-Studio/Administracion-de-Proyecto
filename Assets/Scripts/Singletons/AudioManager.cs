@@ -1,7 +1,7 @@
-using System.Security.Cryptography;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     public bool isMusicOn = true;
     public bool isEffectOn = true;
 
+    private AudioSource sourceMusic;
+    private List<AudioSource> sourceSfx = new List<AudioSource>();
+
     private float minVolume = -80;
     private float maxVolume = 0;
 
@@ -20,7 +23,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         base.Awake();
         audioSource = GetComponent<AudioSource>();
     }
-
+    
     public void PlayMusicMenu()
     {
         audioSource.clip = clipMainMenu;
