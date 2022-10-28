@@ -35,8 +35,9 @@ public class PlayerCampaignManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        yield return null;
         lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
-        var hexagon = terrainManager.GetHexagonByIndex(lastLevelCompleted);
+        var hexagon = terrainManager.GetHexagonByLevel(lastLevelCompleted);
         var hexagonEventHandler = hexagon.GetComponentInChildren<TerrainEventsHandler>();
         currentSelectedTerrain = hexagonEventHandler;
         OnSelectionChange?.Invoke(currentSelectedTerrain.Terrain);
@@ -59,7 +60,7 @@ public class PlayerCampaignManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit, cursorMaxDistance, terrainLayer))
             {
                 var terrainEventHandler = hit.collider.GetComponent<TerrainEventsHandler>();
-                if (terrainEventHandler)
+                if (terrainEventHandler && terrainEventHandler.Terrain.IsValid)
                 {
                     if (terrainEventHandler.Terrain.CurrentState != TerrainManager.TerrainState.Unavailable)
                     {

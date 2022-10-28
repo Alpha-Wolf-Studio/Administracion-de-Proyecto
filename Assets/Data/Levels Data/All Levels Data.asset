@@ -15,157 +15,83 @@ MonoBehaviour:
   levelsList:
   - LevelName: Level 1
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 0
+    GoldOnComplete: 50
+    Index: 95
     ProvinceIndex: 1
-    Enemies:
-    - EnemyPosition: {x: -7.1136856, y: -0.75, z: -0.15772676}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
+    Enemies: []
+    ControlPoints: []
   - LevelName: Level 2
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 1
+    GoldOnComplete: 50
+    Index: 96
     ProvinceIndex: 1
-    Enemies:
-    - EnemyPosition: {x: 28.0447, y: -0.75, z: 10.312952}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyPosition: {x: 28.538393, y: -0.75, z: -10.124778}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyPosition: {x: 11.573816, y: -0.75, z: -0.16864872}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
-    - EnemyPosition: {x: -2.9639912, y: -0.75, z: 10.357588}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyPosition: {x: -3.6526718, y: -0.75, z: -10.244928}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
+    Enemies: []
+    ControlPoints: []
   - LevelName: Level 3
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 5
+    GoldOnComplete: 100
+    Index: 111
     ProvinceIndex: 1
     Enemies:
-    - EnemyPosition: {x: 11.503511, y: -0.75, z: 10.2501955}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyPosition: {x: 11.296991, y: -0.75, z: -10.075296}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyPosition: {x: 2.1042976, y: -0.7500019, z: 0.025810242}
+    - EnemyIndex: 0
+      EnemyPosition: {x: -9.645911, y: -0.7499981, z: 0.6285801}
       EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 1
       AttackLaneFlags: 2
       OwnLaneFlags: 2
+    ControlPoints: []
   - LevelName: Level 4
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 4
+    GoldOnComplete: 125
+    Index: 126
     ProvinceIndex: 2
     Enemies: []
+    ControlPoints: []
   - LevelName: Level 5
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 8
+    GoldOnComplete: 150
+    Index: 112
     ProvinceIndex: 2
     Enemies: []
+    ControlPoints: []
   - LevelName: Level 6
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 9
+    GoldOnComplete: 150
+    Index: 97
     ProvinceIndex: 2
     Enemies:
-    - EnemyPosition: {x: 11.503511, y: -0.75, z: 10.2501955}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyPosition: {x: 11.296991, y: -0.75, z: -10.075296}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyPosition: {x: 2.1042976, y: -0.7500019, z: 0.025810242}
+    - EnemyIndex: 0
+      EnemyPosition: {x: -9.645911, y: -0.7499981, z: 0.6285801}
       EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 1
       AttackLaneFlags: 2
       OwnLaneFlags: 2
+    ControlPoints: []
   - LevelName: Level 7
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 6
+    GoldOnComplete: 150
+    Index: 113
     ProvinceIndex: 2
     Enemies: []
+    ControlPoints: []
   - LevelName: Level 8
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 2
+    GoldOnComplete: 150
+    Index: 127
     ProvinceIndex: 3
     Enemies: []
+    ControlPoints: []
   - LevelName: Level 9
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 3
+    GoldOnComplete: 200
+    Index: 128
     ProvinceIndex: 3
     Enemies: []
+    ControlPoints: []
   - LevelName: Level 10
     GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 10
+    GoldOnComplete: 200
+    Index: 114
     ProvinceIndex: 0
     Enemies: []
-  - LevelName: Level 11
-    GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 12
-    ProvinceIndex: 4
-    Enemies: []
-  - LevelName: Level 12
-    GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 13
-    ProvinceIndex: 4
-    Enemies: []
-  - LevelName: Level 13
-    GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 7
-    ProvinceIndex: 3
-    Enemies: []
-  - LevelName: Level 14
-    GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 11
-    ProvinceIndex: 0
-    Enemies: []
-  - LevelName: Level 15
-    GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 14
-    ProvinceIndex: 0
-    Enemies: []
-  - LevelName: Level 16
-    GoldIncome: 1
-    GoldOnComplete: 1
-    Index: 15
-    ProvinceIndex: 0
-    Enemies: []
+    ControlPoints: []

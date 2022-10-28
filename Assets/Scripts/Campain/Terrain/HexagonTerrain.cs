@@ -8,11 +8,15 @@ public class HexagonTerrain : MonoBehaviour
 
     [SerializeField] private MeshRenderer stateMesh = default;
     [SerializeField] private MeshRenderer provinceMesh = default;
-
+    
+    public int index = 0;
+    
     private TerrainManager.TerrainState currentState = default;
 
     private LevelData levelData = new LevelData();
     public LevelData GetLevelData() => levelData;
+    
+    public bool IsValid { get; set; }
 
     public void ResetHexagonData() 
     {
@@ -78,6 +82,7 @@ public class HexagonTerrain : MonoBehaviour
         levelData.GoldIncome = data.GoldIncome;
         levelData.GoldOnComplete = data.GoldOnComplete;
         levelData.Enemies = data.Enemies;
+        IsValid = true;
     }
 
     private void ChangeTerrainState (TerrainManager.TerrainState terrainState) 

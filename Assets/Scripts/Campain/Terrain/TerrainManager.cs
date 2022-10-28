@@ -8,6 +8,7 @@ public class TerrainManager : MonoBehaviour
     public System.Action<HexagonTerrain> OnResetTerrainStates;
     public System.Action OnSaveTerrainStates;
 
+    
     private WorldBuilderHexagon worldBuilder = default;
     private List<HexagonTerrain> currentHexagons = default;
 
@@ -27,8 +28,11 @@ public class TerrainManager : MonoBehaviour
     {
         foreach (var currentHexagon in currentHexagons)
         {
-            currentHexagon.CurrentState = TerrainState.Unlocked;
-            currentHexagon.Deselect();
+            if (currentHexagon.IsValid)
+            {
+                currentHexagon.CurrentState = TerrainState.Unlocked;
+                currentHexagon.Deselect();
+            }
         }
     }
 
@@ -36,11 +40,17 @@ public class TerrainManager : MonoBehaviour
     {
         foreach (var currentHexagon in currentHexagons)
         {
-            currentHexagon.CurrentState = TerrainState.Unavailable;
-            currentHexagon.Deselect();
+            if (currentHexagon.IsValid)
+            {
+                currentHexagon.CurrentState = TerrainState.Unavailable;
+                currentHexagon.Deselect();
+            }
         }
-        currentHexagons[0].CurrentState = TerrainState.Locked;
-        OnResetTerrainStates?.Invoke(currentHexagons[0]);
+
+        int startIndex = GameManager.Get().StartingLevelIndex;
+        
+        currentHexagons[startIndex].CurrentState = TerrainState.Locked;
+        OnResetTerrainStates?.Invoke(currentHexagons[startIndex]);
     }
 
     public void SaveCurrentHexagonStates () 
@@ -80,9 +90,16 @@ public class TerrainManager : MonoBehaviour
         {
             LevelData data = new LevelData();
             data = GameManager.Get().GetLevelData(i);
-            if (data == null) data = new LevelData();
-            data.Index = i;
-            currentHexagons[i].SetData(data);
+            if (data == null)
+            {
+                currentHexagons[i].IsValid = false;
+            }
+            else
+            {
+                data.Index = i;
+                currentHexagons[i].SetData(data);
+            } 
+            currentHexagons[i].index = i;
         }
     }
 
@@ -92,11 +109,15 @@ public class TerrainManager : MonoBehaviour
 
         for (int i = 0; i < campaignState.Length; i++)
         {
-            currentHexagons[i].InitStatus((TerrainState)campaignState[i]);
+            if(currentHexagons[i].IsValid) currentHexagons[i].InitStatus((TerrainState)campaignState[i]);
         }
     }
 
+    public HexagonTerrain GetHexagonByLevel(int level) => currentHexagons.Find(i => i.TerrainIndex == GameManager.Get().StartingLevelIndex + level);
+    
     public HexagonTerrain GetHexagonByIndex(int index) => currentHexagons.Find(i => i.TerrainIndex == index);
+    
+    public HexagonTerrain GetStartingHexagonByIndex() => currentHexagons.Find(i => i.TerrainIndex == GameManager.Get().StartingLevelIndex);
 
     public enum TerrainState 
     {

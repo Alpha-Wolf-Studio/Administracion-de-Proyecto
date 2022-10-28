@@ -25,6 +25,18 @@ public class LevelsData : ScriptableObject
 #endif
     }
     
+    public void AddControlPointsData(List<ControlPointConfigurations> controlPoints, int index)
+    {
+        levelsList[index].ControlPoints.Clear();
+        foreach (var controlPoint in controlPoints)
+        {
+            levelsList[index].ControlPoints.Add(controlPoint);
+        }
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+#endif
+    }
+    
     public void AddTerrainData(LevelData data) 
     {
         if(levelsList.Exists(i => i.Index == data.Index)) 
@@ -63,8 +75,6 @@ public class LevelsData : ScriptableObject
             var aSplit = a.LevelName.Split(' ');
             var bSplit = b.LevelName.Split(' ');
 
-            Debug.Log(aSplit[1]);
-            
             int aLevelValue = 0;
             if (int.TryParse(aSplit[1], out aLevelValue))
             {

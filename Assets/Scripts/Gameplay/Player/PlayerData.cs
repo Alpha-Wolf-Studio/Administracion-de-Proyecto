@@ -7,7 +7,7 @@ public class PlayerData
 
     public long LastSavedTime;
 
-    public int LastLevelComplete;
+    public int LastLevelComplete = 97;
     public int[] CampaingStatus;
 
     public int CurrentGold;

@@ -9,6 +9,7 @@ public class WorldBuilderData : ScriptableObject
     public int Columns;
     public float XDistance = 2.035f;
     public float ZDistance = -1.17f;
+    public int startingLevelIndex = 97;
     public HexagonTerrain PfHexagon;
     public ProvincesData ProvincesData;
     public LevelsData LevelsData;
