@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void Start ()
     {
         Application.quitting += SavePlayerData;
-        StartCoroutine(IncomeExtraGold());
+        StartCoroutine(IncomeExtraGoldCoroutine());
+        StartCoroutine(HealUnitsCoroutine());
         Time.timeScale = 1;
     }
 
@@ -136,9 +137,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void SaveEnemyLevelData(List<EnemyConfigurations> data, int index)
     {
         worldData.LevelsData.AddEnemiesData(data, index);
-        Debug.Log("Save Data");
 #if UNITY_EDITOR
-        EditorUtility.SetDirty(worldData.LevelsData);
+        EditorUtility.SetDirty(worldData);
+#endif
+    }
+    
+    public void SaveControlPointsLevelData(List<ControlPointConfigurations> data, int index)
+    {
+        worldData.LevelsData.AddControlPointsData(data, index);
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(worldData);
 #endif
     }
     
@@ -157,25 +165,37 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public ProvinceSettings GetProvinceSetting(int index) => worldData.ProvincesData.Provinces[index];
 
-    public void TriggerIncomeGoldRecalculation() => GoldCalculations.RecalculateIncomeGold(worldData, playerData);
+    public void TriggerIncomeGoldRecalculation() => GoldCalculator.RecalculateIncomeGold(worldData, playerData);
 
-    private IEnumerator IncomeExtraGold() 
+    private IEnumerator IncomeExtraGoldCoroutine() 
     {
 
-        int incomeTerraingGold = GoldCalculations.GetOfflineGold(worldData, playerData);
+        int incomeTerraingGold = GoldCalculator.GetOfflineGold(worldData, playerData);
         playerData.CurrentGold += incomeTerraingGold;
 
         while (gameObject) 
         {
-            yield return new WaitForSecondsRealtime(GoldCalculations.SecondsBetweenIncome);
-            playerData.CurrentGold += GoldCalculations.IncomeGold;
+            yield return new WaitForSecondsRealtime(GoldCalculator.SecondsBetweenIncome);
+            playerData.CurrentGold += GoldCalculator.IncomeGold;
+        }
+    }
+    
+    private IEnumerator HealUnitsCoroutine() 
+    {
+        HealthRecoverCalculator.GetOfflineHealth(playerData);
+        while (gameObject) 
+        {
+            yield return new WaitForSecondsRealtime(HealthRecoverCalculator.SecondsBetweenHeal);
+            HealthRecoverCalculator.RecalculateHealth(playerData, HealthRecoverCalculator.SecondsBetweenHeal);
         }
     }
 
+    public int StartingLevelIndex => worldData.startingLevelIndex;
+    
     public void OnLevelWin (int level)
     {
 
-        playerData.LastLevelComplete = level;
+        playerData.LastLevelComplete = level - worldData.startingLevelIndex;
         playerData.CurrentGold += worldData.LevelsData.GetLevelData(level).GoldOnComplete;
 
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
@@ -220,7 +240,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             }
         }
 
-        GoldCalculations.RecalculateIncomeGold(worldData, playerData);
+        GoldCalculator.RecalculateIncomeGold(worldData, playerData);
 
         SavePlayerData();
     }

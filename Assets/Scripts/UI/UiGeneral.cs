@@ -19,7 +19,7 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
 
     private void Start ()
     {
-        GoldCalculations.OnIncomeGoldChange += ChangeCurrentIncome;
+        GoldCalculator.OnIncomeGoldChange += ChangeCurrentIncome;
         textNickName.text = GameManager.Get().GetPlayerName();
         btnProfile.onClick.AddListener(OnPressProfile);
         btnSettings.onClick.AddListener(OnPressSettings);
@@ -36,7 +36,7 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
 
     private void ChangeCurrentIncome ()
     {
-        textIncome.text = GoldCalculations.IncomeGold.ToString("F0");
+        textIncome.text = GoldCalculator.IncomeGold.ToString("F0");
     }
 
     private void OnPressProfile ()

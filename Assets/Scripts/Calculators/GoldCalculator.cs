@@ -1,12 +1,12 @@
 using System;
 
-static public class GoldCalculations
+public static class GoldCalculator
 {
 
     public static Action OnIncomeGoldChange;
 
-    private static int incomeGold;
-    public static int IncomeGold => incomeGold;
+    private static int _incomeGold;
+    public static int IncomeGold => _incomeGold;
 
     public static readonly int SecondsBetweenIncome = 1;
 
@@ -25,10 +25,10 @@ static public class GoldCalculations
 
     }
 
-    static public void RecalculateIncomeGold(WorldBuilderData worldData, PlayerData playerData) 
+    public static void RecalculateIncomeGold(WorldBuilderData worldData, PlayerData playerData) 
     {
 
-        incomeGold = 0;
+        _incomeGold = 0;
         var provinces = worldData.ProvincesData.Provinces;
         int[] provincesTerrainsAmount = new int[provinces.Count];
 
@@ -40,13 +40,13 @@ static public class GoldCalculations
                 var levelData = worldData.LevelsData.GetLevelData(i);
                 if (levelData != null)
                 {
-                    incomeGold += levelData.GoldIncome;
-                }
+                    _incomeGold += levelData.GoldIncome;
 
-                int provinceIndex = levelData.ProvinceIndex;
-                if (provinceIndex < provincesTerrainsAmount.Length)
-                {
-                    provincesTerrainsAmount[provinceIndex]++;
+                    int provinceIndex = levelData.ProvinceIndex;
+                    if (provinceIndex < provincesTerrainsAmount.Length)
+                    {
+                        provincesTerrainsAmount[provinceIndex]++;
+                    }
                 }
 
             }
@@ -58,7 +58,7 @@ static public class GoldCalculations
 
             if (provincesTerrainsAmount[i] == provinces[i].CurrentTerrainsAmount)
             {
-                incomeGold += provinces[i].BonusIncomeGold;
+                _incomeGold += provinces[i].BonusIncomeGold;
             }
         }
 
