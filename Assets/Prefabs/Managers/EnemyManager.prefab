@@ -50,3 +50,5 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 3486362038803053825, guid: 13dcf529dac40fc4897f62bfcd2dc7b3, type: 3}
   - {fileID: 3486362038803053825, guid: 14426e74e40640a45bf4a2ab139ddfd0, type: 3}
+  controlPointPrefabs:
+  - {fileID: 7351243334342493929, guid: 2a174b4248e9457428dd3e0281f0df6c, type: 3}

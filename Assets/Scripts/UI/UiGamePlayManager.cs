@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UiGamePlayManager : MonoBehaviour
 {
 
-    [Header("Enemies")] 
+    [Header("Level Data")] 
     [SerializeField] private EnemyManager enemyManager = default;
     [SerializeField] private GameObject enemiesDebugPanel = default; 
     [SerializeField] private Button saveAllCurrentEnemiesButton = default;
@@ -48,8 +48,8 @@ public class UiGamePlayManager : MonoBehaviour
         levelTextComponent.text = GameManager.Get().CurrentSelectedLevel.LevelName;
         
 #if UNITY_EDITOR
-        saveAllCurrentEnemiesButton.onClick.AddListener(enemyManager.SaveAllEnemiesInLevel);
-        clearAllCurrentEnemiesButton.onClick.AddListener(enemyManager.ClearAllEnemiesInLevel);
+        saveAllCurrentEnemiesButton.onClick.AddListener(enemyManager.SaveAllDataInLevel);
+        clearAllCurrentEnemiesButton.onClick.AddListener(enemyManager.ClearAllDataInLevel);
 #else
         enemiesDebugPanel.gameObject.SetActive(false);
 #endif
@@ -63,8 +63,8 @@ public class UiGamePlayManager : MonoBehaviour
     private void OnDestroy()
     {
 #if UNITY_EDITOR
-        saveAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.SaveAllEnemiesInLevel);
-        clearAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.ClearAllEnemiesInLevel);
+        saveAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.SaveAllDataInLevel);
+        clearAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.ClearAllDataInLevel);
 #endif
         GamePlayManager.OnGameOver -= GameOverUi;
 

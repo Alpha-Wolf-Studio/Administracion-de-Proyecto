@@ -4,21 +4,24 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyType enemyType = default;
 
-    private Unit unit = default;
+    public Unit Unit { get; private set; } = default;
+
+    public int EnemyIndex { get; set; }
     
     private void Start()
     {
-        unit = GetComponent<Unit>();
+        Unit = GetComponent<Unit>();
     }
 
     public EnemyConfigurations GetCurrentConfiguration()
     {
         EnemyConfigurations config = new EnemyConfigurations();
+        config.EnemyIndex = EnemyIndex;
         config.EnemyPosition = transform.position;
         config.EnemyRotation = transform.eulerAngles;
         config.TypeOfEnemy = enemyType;
-        config.AttackLaneFlags = unit.AttackLaneFlags;
-        config.OwnLaneFlags = unit.OwnLaneFlags;
+        config.AttackLaneFlags = Unit.AttackLaneFlags;
+        config.OwnLaneFlags = Unit.OwnLaneFlags;
         return config;
     }
     

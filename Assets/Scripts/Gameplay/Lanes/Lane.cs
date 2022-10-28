@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class Lane : MonoBehaviour
 {
 
-    public System.Action<int> OnLaneSelected;
+    public Action<int> OnLaneSelected;
 
     [Header("Flash Configurations")]
     [SerializeField] private float flashSpeed = 1f;
@@ -17,25 +18,30 @@ public class Lane : MonoBehaviour
     [SerializeField] private LanesFlags laneFlag = default;
 
     public LanesFlags LaneFlags => laneFlag;
-
-    public Transform StartTransform 
+    public void SetLaneIndex(int newLaneIndex) => laneIndex = newLaneIndex;
+    public Vector3 StartPosition
     {
-        get 
+        get => startPosition;
+        set
         {
-            return startTransform;
-        }
-        set 
-        {
-            startTransform = value;
+            startPosition = value;
+            startTransform.position = startPosition;
         }
     }
-
+    public bool Selected 
+    {
+        set 
+        {
+            selected = value;
+            SelectLogic();
+        }
+    }
 
     private Material material;
     private bool selected = false;
     private int laneIndex = 0;
+    private Vector3 startPosition = Vector3.zero;
 
-    public void SetLaneIndex(int laneIndex) => this.laneIndex = laneIndex;
 
     private void Awake()
     {
@@ -43,18 +49,11 @@ public class Lane : MonoBehaviour
         material.color = deSelectedColor;
     }
 
-    public bool Selected 
+    private void Start()
     {
-        get 
-        {
-            return selected;
-        }
-        set 
-        {
-            selected = value;
-            SelectLogic();
-        }
+        StartPosition = startTransform.position;
     }
+
 
     private void SelectLogic() 
     {

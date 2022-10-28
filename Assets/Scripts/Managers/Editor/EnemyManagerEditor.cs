@@ -13,7 +13,7 @@ public class EnemyManagerEditor : Editor
         if(GUILayout.Button("Save All Enemies"))
         {
             var script = (EnemyManager)target;
-            script.SaveAllEnemiesInLevel();
+            script.SaveAllDataInLevel();
         }
         
     }

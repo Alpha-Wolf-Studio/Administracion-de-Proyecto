@@ -50,7 +50,7 @@ public class TroopManager : MonoBehaviour
         }
 
 
-        Vector3 spawnPosition = lanes[selectedLaneIndex].StartTransform.position;
+        Vector3 spawnPosition = lanes[selectedLaneIndex].StartPosition;
 
         Unit unit = Instantiate(prefabUnits[tropIndex], spawnPosition, Quaternion.identity, transform);
         unit.gameObject.layer = layerToTroop;
@@ -72,7 +72,7 @@ public class TroopManager : MonoBehaviour
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
 
-        // Todo: Acá solo agarra el nivel de las Army, debe agarrar el correspondiente
+        // Todo: Acï¿½ solo agarra el nivel de las Army, debe agarrar el correspondiente
         unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]); 
 
         var unitShootBehaviour = unit.GetComponent<UnitShootBehaviour>();
