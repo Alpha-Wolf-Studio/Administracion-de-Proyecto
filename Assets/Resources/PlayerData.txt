@@ -1,5 +1,5 @@
 {
-    "LastSavedTime": 1666992529998,
+    "LastSavedTime": 1667966363537,
     "LastLevelComplete": 0,
     "CampaingStatus": [
         0,
@@ -242,7 +242,7 @@
         0
     ],
     "maxAmountArmy": [
-        8,
+        12,
         5,
         0
     ],

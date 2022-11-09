@@ -13,6 +13,6 @@ public class UiManagerCampaign : MonoBehaviour
         AudioManager.Get().PlayMusicMenu();
     }
 
-    private void GoToMenuGameplay () => CustomSceneManager.Get().LoadScene("Gameplay");
-    private void GoToMenuMilitaryBase () => CustomSceneManager.Get().LoadScene("MilitaryBase");
+    public void GoToMenuGameplay () => CustomSceneManager.Get().LoadScene("Gameplay");
+    public void GoToMenuMilitaryBase () => CustomSceneManager.Get().LoadScene("MilitaryBase");
 }
