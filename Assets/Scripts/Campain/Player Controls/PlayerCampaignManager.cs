@@ -37,7 +37,7 @@ public class PlayerCampaignManager : MonoBehaviour
     {
         yield return null;
         lastLevelCompleted = GameManager.Get().GetLastLevelCompleted();
-        var hexagon = terrainManager.GetHexagonByLevel(lastLevelCompleted);
+        var hexagon = terrainManager.GetHexagonByFalseIndex(lastLevelCompleted);
         var hexagonEventHandler = hexagon.GetComponentInChildren<TerrainEventsHandler>();
         currentSelectedTerrain = hexagonEventHandler;
         OnSelectionChange?.Invoke(currentSelectedTerrain.Terrain);

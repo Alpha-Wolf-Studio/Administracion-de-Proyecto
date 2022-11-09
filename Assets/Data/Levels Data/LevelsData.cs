@@ -15,11 +15,6 @@ public class LevelsData : ScriptableObject
 
     public void AddEnemiesData(List<EnemyConfigurations> enemies, int index)
     {
-        levelsList[index].Enemies.Clear();
-        foreach (var enemy in enemies)
-        {
-            levelsList[index].Enemies.Add(enemy);
-        }
 #if UNITY_EDITOR
         EditorUtility.SetDirty(this);
 #endif
@@ -27,11 +22,6 @@ public class LevelsData : ScriptableObject
     
     public void AddControlPointsData(List<ControlPointConfigurations> controlPoints, int index)
     {
-        levelsList[index].ControlPoints.Clear();
-        foreach (var controlPoint in controlPoints)
-        {
-            levelsList[index].ControlPoints.Add(controlPoint);
-        }
 #if UNITY_EDITOR
         EditorUtility.SetDirty(this);
 #endif
@@ -52,17 +42,24 @@ public class LevelsData : ScriptableObject
 
     public LevelData GetLevelData(int index) 
     {
+        if (levelsList.Count > index)
+        {
+            var level = levelsList[index];
+            return level;
+        }
+        return null;
+    }
 
-        if(levelsList.Exists(i => i.Index == index)) 
+    public LevelData GetLevelDataByFalseIndex(int index)
+    {
+        if (levelsList.Exists(i => i.Index == index))
         {
             var level = levelsList.Find(i => i.Index == index);
             return level;
         }
-
         return null;
-
     }
-
+    
     public void SortListByIndex()
     {
         levelsList.Sort((a, b) => a.Index.CompareTo(b.Index));

@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public int[] GetTerrainStates() => playerData.CampaingStatus;
 
-    public LevelData GetLevelData(int index) => worldData.LevelsData.GetLevelData(index);
+    public LevelData GetLevelDataByFalseIndex(int index) => worldData.LevelsData.GetLevelDataByFalseIndex(index);
 
     public void SaveEnemyLevelData(List<EnemyConfigurations> data, int index)
     {

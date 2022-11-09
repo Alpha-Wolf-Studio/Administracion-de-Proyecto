@@ -17,13 +17,7 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     private bool isGameOver = false;
 
     private LevelData levelSelected;
-
-    private new void Awake()
-    {
-        base.Awake();
-        levelSelected = GameManager.Get().CurrentSelectedLevel;
-    }
-
+    
     private void Start()
     {
         Time.timeScale = 1; 
@@ -34,6 +28,8 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
         UnitStats enemyBaseStats = new UnitStats();
         enemyBaseStats.life = 100;
         unitToDestroy.SetValues(enemyBaseStats, 0);
+        
+        levelSelected = GameManager.Get().CurrentSelectedLevel;
     }
 
     void GameOverWin()

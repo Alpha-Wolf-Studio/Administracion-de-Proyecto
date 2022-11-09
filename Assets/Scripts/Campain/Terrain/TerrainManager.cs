@@ -89,7 +89,7 @@ public class TerrainManager : MonoBehaviour
         for (int i = 0; i < currentHexagons.Count; i++)
         {
             LevelData data = new LevelData();
-            data = GameManager.Get().GetLevelData(i);
+            data = GameManager.Get().GetLevelDataByFalseIndex(i);
             if (data == null)
             {
                 currentHexagons[i].IsValid = false;
@@ -113,11 +113,8 @@ public class TerrainManager : MonoBehaviour
         }
     }
 
-    public HexagonTerrain GetHexagonByLevel(int level) => currentHexagons.Find(i => i.TerrainIndex == GameManager.Get().StartingLevelIndex + level);
-    
-    public HexagonTerrain GetHexagonByIndex(int index) => currentHexagons.Find(i => i.TerrainIndex == index);
-    
-    public HexagonTerrain GetStartingHexagonByIndex() => currentHexagons.Find(i => i.TerrainIndex == GameManager.Get().StartingLevelIndex);
+    public HexagonTerrain GetHexagonByLevel(int level) => currentHexagons.Find(i => i.TerrainIndex == level);
+    public HexagonTerrain GetHexagonByFalseIndex(int index) => currentHexagons.Find(i => i.TerrainIndex == index + GameManager.Get().StartingLevelIndex);
 
     public enum TerrainState 
     {
