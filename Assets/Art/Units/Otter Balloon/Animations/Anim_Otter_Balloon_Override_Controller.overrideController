@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Anim_Otter_Balloon_Override_Controller
+  m_Controller: {fileID: 9100000, guid: 86c6a1051546eef478d6b699165eb345, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bb877f3a30f363444b3ef078eecd3e5f, type: 2}
+    m_OverrideClip: {fileID: -5252816984213320552, guid: ae6bbc81fb511194b804431eb9e268f8, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 0d0a8ed94b34599468a5890fbdb6fed6, type: 2}
+    m_OverrideClip: {fileID: -6239216113759591374, guid: d59f48ccac8e1644aa11213592fea0aa, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 10ad2443249d34f4281a27b76c972198, type: 2}
+    m_OverrideClip: {fileID: -5252816984213320552, guid: ae6bbc81fb511194b804431eb9e268f8, type: 3}
+  - m_OriginalClip: {fileID: 1827226128182048838, guid: d43fa7c36a94c3b458576332550186df, type: 3}
+    m_OverrideClip: {fileID: -5252816984213320552, guid: ae6bbc81fb511194b804431eb9e268f8, type: 3}

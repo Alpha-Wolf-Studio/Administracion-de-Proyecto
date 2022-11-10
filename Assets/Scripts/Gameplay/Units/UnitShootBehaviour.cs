@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class UnitShootBehaviour : UnitBehaviour
+public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
 {
     [SerializeField] private Transform projectileSpawn = default;
     private Projectile prefabProjectile = default;

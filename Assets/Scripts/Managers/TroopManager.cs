@@ -75,8 +75,8 @@ public class TroopManager : MonoBehaviour
         // Todo: Ac� solo agarra el nivel de las Army, debe agarrar el correspondiente
         unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]); 
 
-        var unitShootBehaviour = unit.GetComponent<UnitShootBehaviour>();
-        if (unitShootBehaviour) 
+        var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
+        if (unitShootBehaviour != null) 
         {
             Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
             unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);

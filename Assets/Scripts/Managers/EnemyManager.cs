@@ -29,8 +29,8 @@ public class EnemyManager : MonoBehaviour
             UnitStats unitStats = GameManager.Get().GetUnitStats((int)enemy.TypeOfEnemy);
             unit.SetValues(unitStats, 0);
 
-            var unitShootBehaviour = unit.GetComponent<UnitShootBehaviour>();
-            if (unitShootBehaviour) 
+            var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
+            if (unitShootBehaviour != null) 
             {
                 Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
                 unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);

@@ -7,7 +7,6 @@ public class DropBomb : Projectile
 
     [Header("Drop Bomb Specific")]
     [SerializeField] private float explosionAoe = 5f;
-    private Collider target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,13 +22,11 @@ public class DropBomb : Projectile
         }
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
+    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target = null)
     {
         this.maskToDamage = maskToDamage;
-        this.target = target;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
-        transform.LookAt(target.bounds.center, Vector3.up);
     }
 
     public override void StartProjectile()
@@ -39,9 +36,9 @@ public class DropBomb : Projectile
 
     IEnumerator MoveFoward()
     {
-        while (true)
+        while (gameObject.activeSelf)
         {
-            transform.position += transform.forward * (velocity * Time.deltaTime);
+            transform.position -= Vector3.up * (velocity * Time.deltaTime);
             yield return null;
         }
     }

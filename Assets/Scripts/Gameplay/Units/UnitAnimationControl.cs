@@ -5,13 +5,16 @@ public class UnitAnimationControl : MonoBehaviour
 
     [SerializeField] private UnitBehaviour[] possibleBehaviours = default;
 
-    [SerializeField] private UnitShootBehaviour rangeAttackBehaviour = default;
+    [SerializeField] private UnitBehaviour rangeAttackBehaviour = default;
 
+    private IShootBehaviour shootBehaviour = default;
     private Animator animator = default;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+
+        shootBehaviour = (IShootBehaviour)rangeAttackBehaviour; 
 
         foreach (var behaviour in possibleBehaviours)
         {
@@ -30,9 +33,8 @@ public class UnitAnimationControl : MonoBehaviour
     }
 
     private void OnMovementChange(bool move)  => animator.SetBool("Moving", move);
-
     private void OnAttack(bool attack) => animator.SetBool("Attacking", attack);
 
-    private void RangeAttack() => rangeAttackBehaviour.SpawnProjectile();
+    private void RangeAttack() => shootBehaviour.SpawnProjectile();
 
 }
