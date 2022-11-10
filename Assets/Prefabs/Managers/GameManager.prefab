@@ -51,6 +51,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 7935bfa5378986f448bd00b370a54f49, type: 3}
   - {fileID: 21300000, guid: 94a642b81c8449d4db62ce2fc88356dc, type: 3}
+  - {fileID: 21300000, guid: 7b701825e99eed143852599a5fcec1d8, type: 3}
   - {fileID: 21300000, guid: ab0e4ad447d3d444582cd92d8870cbc9, type: 3}
   worldData: {fileID: 11400000, guid: 5da217c790ee20d40b0f5317af3f53c1, type: 2}
   playerData:
@@ -76,3 +77,4 @@ MonoBehaviour:
     Index: 0
     ProvinceIndex: 0
     Enemies: []
+    ControlPoints: []
