@@ -1797,7 +1797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleBehaviours:
   - {fileID: 3486362038803053826}
-  - {fileID: 3486362038803053852}
   - {fileID: 3486362038803053827}
   rangeAttackBehaviour: {fileID: 3486362038803053827}
 --- !u!1 &3437561248543384651
@@ -1872,7 +1871,6 @@ GameObject:
   - component: {fileID: 3486362038803053853}
   - component: {fileID: 3486362038803053825}
   - component: {fileID: 3486362038803053826}
-  - component: {fileID: 3486362038803053852}
   - component: {fileID: 3486362038803053827}
   - component: {fileID: 3486362038803053824}
   - component: {fileID: 3486362038803053831}
@@ -1898,7 +1896,6 @@ Transform:
   - {fileID: 3486362038892318368}
   - {fileID: 3486362040233799675}
   - {fileID: 4576157016957174491}
-  - {fileID: 2002183577539311082}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1921,10 +1918,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   signDirection: 1
+  AttackLaneFlags: 0
+  OwnLaneFlags: 0
   unitBehaviours: []
   baseTroopMeshRenderer: {fileID: 948333490759813929}
   stats:
     nameUnit: No name
+    idUnit: 0
     unitType: 0
     movementType: 0
     attackType: 0
@@ -1959,22 +1959,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
---- !u!114 &3486362038803053852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3486362038803053854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffcbc2f1c6287794db2140be52bb9701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  priority: 1
-  hideAgainTime: 2
-  targetDistanceTolerance: 0.25
-  groundPosition: {fileID: 3486362038892318368}
 --- !u!114 &3486362038803053827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,7 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7e7e3f6deda5c45a5c8b20544a0afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 2
+  priority: 1
   projectileSpawn: {fileID: 4576157016957174491}
 --- !u!54 &3486362038803053824
 Rigidbody:
@@ -3833,36 +3817,6 @@ Transform:
   - {fileID: 2629161227980509387}
   m_Father: {fileID: 7467236986985374049}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7646834750929518185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2002183577539311082}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2002183577539311082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7646834750929518185}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3486362038803053853}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7651215995907273595
 GameObject:
