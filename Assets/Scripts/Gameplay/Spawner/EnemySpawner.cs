@@ -112,7 +112,7 @@ public class EnemySpawner : MonoBehaviour
     {
         float variance = Random.Range(0, Configuration.spawnVariance);
         yield return new WaitForSeconds(variance);
-        enemyManager.SpawnEnemy(enemyType, position, rotation, lane);
+        enemyManager.SpawnEnemy(enemyType, position, rotation, lane, transform);
     }
     
     

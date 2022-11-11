@@ -58,11 +58,11 @@ public class EnemyManager : MonoBehaviour
         OnLevelLoaded?.Invoke();
     }
     
-    public void SpawnEnemy(EnemyType enemyType, Vector3 position, Quaternion rotation, LanesFlags lanes)
+    public void SpawnEnemy(EnemyType enemyType, Vector3 position, Quaternion rotation, LanesFlags lanes, Transform trans)
     {
         var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
         
-        var unit = Instantiate(enemyPrefabs[(int)enemyType], position, rotation);
+        var unit = Instantiate(enemyPrefabs[(int)enemyType], position, rotation, trans);
 
         unit.gameObject.layer = enemiesLayerIndex;
         unit.signDirection = -1;
