@@ -1,5 +1,5 @@
 {
-    "LastSavedTime": 1667966363537,
+    "LastSavedTime": 1668132183844,
     "LastLevelComplete": 0,
     "CampaingStatus": [
         0,
@@ -228,7 +228,7 @@
         0,
         0
     ],
-    "CurrentGold": 202195,
+    "CurrentGold": 1859615,
     "CurrentDiamond": 50,
     "PlayerName": "Sauron",
     "LevelUnitsArmy": [

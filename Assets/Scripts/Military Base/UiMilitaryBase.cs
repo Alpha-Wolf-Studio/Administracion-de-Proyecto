@@ -46,7 +46,7 @@ public class UiMilitaryBase : MonoBehaviour
             subCategories[i].onClick.AddListener(() => OnPressSubCategories(index));
         }
 
-        btnCategoryUpgrade.onClick.AddListener(OnPressUpgradeCategory);
+        //btnCategoryUpgrade.onClick.AddListener(OnPressUpgradeCategory);
 
         SetSelectable();
         UpdateUnitsFiltered();

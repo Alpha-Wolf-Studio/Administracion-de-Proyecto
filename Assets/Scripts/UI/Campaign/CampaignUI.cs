@@ -1,21 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class CampaignUI : MonoBehaviour
 {
-
-    [Header("Selected Stats Panel")]
-    [SerializeField] GameObject panelSelected;
-    [SerializeField] TMP_Text textTitleLevel;
-    [SerializeField] TMP_Text textGoldReward;
-    [SerializeField] TMP_Text textIncomeReward;
-    [SerializeField] TMP_Text textDiamondReward;
-
-    [SerializeField] PlayerCampaignManager campaignManager;
-
-    [Space(10)]
-    [SerializeField] private Button selectMisionButton = default;
+    [SerializeField] private GameObject panelSelected;
+    [SerializeField] private TMP_Text textTitleLevel;
+    [SerializeField] private UiPanelReward[] panelReward;
+    [SerializeField] private PlayerCampaignManager campaignManager;
+    [SerializeField] private UiPanelShowUnitsTerrain[] uiPanelShowUnitsTerrain;
+    [SerializeField] private Button selectMisionButton;
 
     private void Awake()
     {
@@ -41,19 +36,39 @@ public class CampaignUI : MonoBehaviour
 
     private void OnSelectionChanged(HexagonTerrain terrain) 
     {
-        if(terrain != null) 
+        if (terrain != null)
         {
             panelSelected.SetActive(true);
             LevelData terrainData = terrain.GetLevelData();
             textTitleLevel.text = terrainData.LevelName;
-            textIncomeReward.text = "Terrain Income: " + terrainData.GoldIncome;
-            textGoldReward.text = "Terrain Gold: " + terrainData.GoldOnComplete;
+
+            panelReward[0].SetText(terrainData.GoldIncome);
+            panelReward[1].SetText(terrainData.GoldOnComplete);
+            panelReward[2].SetText(terrainData.DiamondOnComplete);
+
+            List<int> amountForDiferentsEnemies = new List<int>();
+            for (int i = 0; i < (int) EnemyType.Size; i++)
+                amountForDiferentsEnemies.Add(0);
+
+            for (int i = 0; i < terrainData.Enemies.Count; i++)
+                amountForDiferentsEnemies[(int) (terrainData.Enemies[i].TypeOfEnemy)]++;
+
+            for (int i = 0; i < uiPanelShowUnitsTerrain.Length; i++)
+            {
+                if (amountForDiferentsEnemies.Count - 1 >= i)
+                {
+                    uiPanelShowUnitsTerrain[i].Set(amountForDiferentsEnemies[i]);
+                }
+                else
+                {
+                    uiPanelShowUnitsTerrain[i].Set(0);
+                    Debug.Log("Panel: " + i + " no tiene Unidad");
+                }
+            }
         }
         else 
         {
             panelSelected.SetActive(false);
         }
-
     }
-
 }
