@@ -992,10 +992,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GM Tutorial
       objectReference: {fileID: 0}
-    - target: {fileID: 5654877783157906111, guid: 5bc5023b09b22144493da8bb3399ff6e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bc5023b09b22144493da8bb3399ff6e, type: 3}
 --- !u!114 &518081857 stripped
@@ -1314,8 +1310,6 @@ MonoBehaviour:
   - {fileID: 1342998320}
   - {fileID: 834292689}
   - {fileID: 1099952337}
-  btnCategoryUpgrade: {fileID: 0}
-  isInUpgrade: 0
   mainCategorySelect: 0
   subCategorySelect: 0
   buttonsUpgrades:
@@ -3805,6 +3799,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3733661279344261103, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387919717414046795, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387919717414046795, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387919717414046795, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387919717414046795, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387919717414046795, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387919717414046795, guid: 235ccfcab340c2749aa41e4c9576c18c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}

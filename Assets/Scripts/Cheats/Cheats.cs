@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Cheats : MonoBehaviour
 {
+    [SerializeField] private Button btnActiveTutorial;
     [SerializeField] private Button btnCheatOpener;
     [SerializeField] private Button btnGold;
     [SerializeField] private Button btnDiam;
@@ -21,6 +22,7 @@ public class Cheats : MonoBehaviour
 
     private void Start ()
     {
+        btnActiveTutorial.onClick.AddListener(ActivateTutorial);
         panelCheats.SetActive(isOpen);
 
         btnCheatOpener.onClick.AddListener(PanelCheats);
@@ -48,12 +50,12 @@ public class Cheats : MonoBehaviour
         panelCheats.SetActive(isOpen);
     }
 
-    private void AddGold()
+    private void AddGold ()
     {
         GameManager.Get().ModifyGoldPlayer(valueAddGold);
     }
 
-    private void AddDiam()
+    private void AddDiam ()
     {
         GameManager.Get().ModifyDiamondPlayer(valueAddDiam);
     }
@@ -61,5 +63,10 @@ public class Cheats : MonoBehaviour
     private void AddTerritory ()
     {
         playerCampaignManager.CompleteCurrentLevel();
+    }
+
+    void ActivateTutorial ()
+    {
+        TutorialManager.Get().TestInitialTutorial = true;
     }
 }
