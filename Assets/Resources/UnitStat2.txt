@@ -3,7 +3,7 @@
     "idUnit":2,
     "unitType": 1,
     "movementType": 1,
-    "attackType": 4,
+    "attackType": 2,
     "unitsDamageables": [
         0,
         1,
