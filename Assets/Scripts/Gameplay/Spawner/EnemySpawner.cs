@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
 
     [SerializeField] private EnemySpawnerConfiguration configuration;
+    [SerializeField] private EnemySpawnerTrigger triggerForSpawning;
 
     public EnemySpawnerConfiguration Configuration
     {
@@ -22,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
     private readonly Vector3 midPosition = new Vector3(100, 0, 0);
     private readonly Vector3 botPosition = new Vector3(100, 0, -10);
     
-    private EnemySpawnerTrigger triggerForSpawning;
     private EnemyManager enemyManager;
     private bool triggered = false;
 
@@ -30,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyManager = FindObjectOfType<EnemyManager>();
         triggerForSpawning = GetComponentInChildren<EnemySpawnerTrigger>();
-        
         triggerForSpawning.gameObject.SetActive(false);
     }
 
@@ -46,6 +45,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnValidate()
     {
+        if(triggerForSpawning)
+            triggerForSpawning.gameObject.SetActive(Configuration.spawnerClass == SpawnerClass.Trigger);
+        
         if(Application.isPlaying)
             RecalculateSpawnType();
     }
