@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 public class UiMilitaryBase : MonoBehaviour
 {
+    private readonly int maxUnitsStatic = 3;
     [SerializeField] private GameObject prefabUnitComponent;
     [SerializeField] private Transform panelContentUnit;
 
-    [Space(15)] 
-    [SerializeField] private List<Button> mainCategories = new List<Button>();
+    [Space(15)] [SerializeField] private List<Button> mainCategories = new List<Button>();
     [SerializeField] private List<Button> subCategories = new List<Button>();
     [SerializeField] private List<UnitMilitaryComponent> units = new List<UnitMilitaryComponent>();
 
-    [SerializeField] private Button btnCategoryUpgrade;
-    public bool isInUpgrade;
     public int mainCategorySelect;
     public int subCategorySelect;
 
@@ -51,7 +49,7 @@ public class UiMilitaryBase : MonoBehaviour
         SetSelectable();
         UpdateUnitsFiltered();
     }
-    
+
     private void OnPressMainCategory (int index)
     {
         mainCategorySelect = index;
@@ -126,7 +124,7 @@ public class UiMilitaryBase : MonoBehaviour
         for (int i = unitsFiltered.Count; i < maxUnits; i++)
         {
             units[i].gameObject.SetActive(true);
-            units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(2);
+            units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(maxUnitsStatic);
         }
 
         for (int i = 0; i < buttonsUpgrades.Count; i++)
@@ -138,10 +136,5 @@ public class UiMilitaryBase : MonoBehaviour
         {
             modelsUnits[i].SetActive(i == subCategorySelect);
         }
-    }
-
-    void OnPressUpgradeCategory ()
-    {
-        isInUpgrade = true;
     }
 }
