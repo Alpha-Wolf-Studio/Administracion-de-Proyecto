@@ -3665,9 +3665,8 @@ MonoBehaviour:
   currentLevelPrefabProjectiles:
   - {fileID: 4329516591981693134, guid: 3cad775f8381cb346b15f8250109a5d4, type: 3}
   - {fileID: 8611562074029808673, guid: eb4bfbbba6fd3344abc01e019f05a3f4, type: 3}
-  - {fileID: 8413289019403773858, guid: d56830eee51c1674fa4b7bb47210305c, type: 3}
-  - {fileID: 5930536030137825314, guid: 5a996b1f0d75b03498715640a647636b, type: 3}
   - {fileID: -4898679318284499715, guid: ff83f4ec898c838489fcaddd7a9ea921, type: 3}
+  - {fileID: 8413289019403773858, guid: d56830eee51c1674fa4b7bb47210305c, type: 3}
 --- !u!4 &127216818
 Transform:
   m_ObjectHideFlags: 0
@@ -6736,7 +6735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215135970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55, y: 0, z: 0}
+  m_LocalPosition: {x: 55, y: 1.5, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 294814674}
@@ -52623,7 +52622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596148935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 7, y: 1.5, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 294814674}

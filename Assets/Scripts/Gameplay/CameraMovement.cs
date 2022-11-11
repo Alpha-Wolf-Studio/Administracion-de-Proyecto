@@ -28,11 +28,17 @@ public class CameraMovement : MonoBehaviour
         Vector3 pos = cam.ScreenToViewportPoint(Input.mousePosition - dragStart);
         Vector3 move = new Vector3(pos.x * -dragSpeed, 0, 0);
 
-        cam.transform.Translate(move, Space.World);
+        Transform cameraTransform = cam.transform;
+        cameraTransform.Translate(move, Space.World);
 
-        if (cam.transform.position.x < limitLeft.position.x)
-            cam.transform.position = limitLeft.transform.position;
-        else if (cam.transform.position.x > limitRight.position.x)
-            cam.transform.position = limitRight.transform.position;
+        Vector3 cameraPosition = cameraTransform.position;
+
+        if (cameraPosition.x < limitLeft.position.x)
+            cameraPosition.x = limitLeft.position.x;
+        
+        else if (cameraPosition.x > limitRight.position.x)
+            cameraPosition.x = limitRight.position.x;
+
+        cameraTransform.position = cameraPosition;
     }
 }
