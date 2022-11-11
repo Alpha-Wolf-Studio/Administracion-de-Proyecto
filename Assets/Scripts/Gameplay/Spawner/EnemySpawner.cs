@@ -29,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
-        triggerForSpawning = GetComponentInChildren<EnemySpawnerTrigger>();
         triggerForSpawning.gameObject.SetActive(false);
     }
 

@@ -102,12 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abf84bc301365046ab44df703eecbf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerClass: 2
-  spawnLanes: -1
-  enemyToSpawn: 3
-  spawnVariance: 2
-  timeForSpawn: 8
-  repeatAfterTime: 1
+  configuration:
+    spawnerClass: 1
+    spawnLanes: 2
+    enemyToSpawn: 3
+    spawnVariance: 2
+    timeForSpawn: 8
+    repeatAfterTime: 1
+    timeForTriggerSpawn: 8
+    repeatAfterTrigger: 1
   triggerForSpawning: {fileID: 8843792245242167013}
-  timeForTriggerSpawn: 8
-  repeatAfterTrigger: 1
