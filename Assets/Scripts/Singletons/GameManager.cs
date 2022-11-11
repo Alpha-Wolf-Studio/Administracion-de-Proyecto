@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
 
         playerData.LastLevelComplete = level - worldData.startingLevelIndex;
-        playerData.CurrentGold += worldData.LevelsData.GetLevelData(level).GoldOnComplete;
+        playerData.CurrentGold += worldData.LevelsData.GetLevelDataByFalseIndex(level).GoldOnComplete;
 
         int[,] twoDCampaingStatusArray = new int[worldData.Rows, worldData.Columns];
         for (int i = 0; i < worldData.Rows; i++)
