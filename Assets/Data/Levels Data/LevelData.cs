@@ -7,6 +7,7 @@ public class LevelData
     public string LevelName = "Level 1";
     public int GoldIncome = 1;
     public int GoldOnComplete = 1;
+    public int DiamondOnComplete = 1;
     public int Index = 0;
     public int ProvinceIndex = 0;
     public List<EnemyConfigurations> Enemies = new List<EnemyConfigurations>();
