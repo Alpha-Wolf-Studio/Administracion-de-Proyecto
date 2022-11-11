@@ -10,23 +10,6 @@ public class LevelsData : ScriptableObject
 
     public List<LevelData> levelsList = new List<LevelData>();
 
-    public void ClearTerrainData() => levelsList.Clear();
-
-
-    public void AddEnemiesData(List<EnemyConfigurations> enemies, int index)
-    {
-#if UNITY_EDITOR
-        EditorUtility.SetDirty(this);
-#endif
-    }
-    
-    public void AddControlPointsData(List<ControlPointConfigurations> controlPoints, int index)
-    {
-#if UNITY_EDITOR
-        EditorUtility.SetDirty(this);
-#endif
-    }
-    
     public void AddTerrainData(LevelData data) 
     {
         if(levelsList.Exists(i => i.Index == data.Index)) 

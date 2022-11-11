@@ -9,6 +9,8 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     [SerializeField] private float groundOffset = 2f;
     [SerializeField] private float upDownHeight = 1f;
     [SerializeField] private float upDownSpeed = 1f;
+    [SerializeField] private float limitXRight = 110f;
+    [SerializeField] private float limitXLeft = -50f;
     
     [Header("Projectile")]
     [SerializeField] private Transform projectileSpawn = default;
@@ -54,5 +56,8 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
         position.y = upDownPosition + startHeight;
         
         ownTransform.position = position;
+        
+        if(ownTransform.position.x > limitXRight || ownTransform.position.x < limitXLeft)
+            Destroy(gameObject);
     }
 }

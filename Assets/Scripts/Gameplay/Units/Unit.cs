@@ -70,7 +70,7 @@ public class Unit : MonoBehaviour
     public void TakeDamage(float damage)
     {
         stats.life -= damage / stats.resistanceFactor;
-        if (stats.life < 0)
+        if (stats.life <= 0)
         {
             OnDie?.Invoke();
             Destroy(gameObject);

@@ -16,20 +16,41 @@ MonoBehaviour:
   - LevelName: Level 1
     GoldIncome: 1
     GoldOnComplete: 50
+    DiamondOnComplete: 1
     Index: 95
     ProvinceIndex: 1
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 2
     GoldIncome: 1
     GoldOnComplete: 50
+    DiamondOnComplete: 1
     Index: 96
     ProvinceIndex: 1
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 3
     GoldIncome: 1
     GoldOnComplete: 100
+    DiamondOnComplete: 1
     Index: 111
     ProvinceIndex: 1
     Enemies:
@@ -40,23 +61,53 @@ MonoBehaviour:
       AttackLaneFlags: 2
       OwnLaneFlags: 2
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 4
     GoldIncome: 1
     GoldOnComplete: 125
+    DiamondOnComplete: 1
     Index: 126
     ProvinceIndex: 2
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 5
     GoldIncome: 1
     GoldOnComplete: 150
+    DiamondOnComplete: 1
     Index: 112
     ProvinceIndex: 2
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 6
     GoldIncome: 1
     GoldOnComplete: 150
+    DiamondOnComplete: 1
     Index: 97
     ProvinceIndex: 2
     Enemies:
@@ -67,31 +118,80 @@ MonoBehaviour:
       AttackLaneFlags: 2
       OwnLaneFlags: 2
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 7
     GoldIncome: 1
     GoldOnComplete: 150
+    DiamondOnComplete: 1
     Index: 113
     ProvinceIndex: 2
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 8
     GoldIncome: 1
     GoldOnComplete: 150
+    DiamondOnComplete: 1
     Index: 127
     ProvinceIndex: 3
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 9
     GoldIncome: 1
     GoldOnComplete: 200
+    DiamondOnComplete: 1
     Index: 128
     ProvinceIndex: 3
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1
   - LevelName: Level 10
     GoldIncome: 1
     GoldOnComplete: 200
+    DiamondOnComplete: 1
     Index: 114
     ProvinceIndex: 0
     Enemies: []
     ControlPoints: []
+    EnemySpawner:
+      spawnerClass: 2
+      spawnLanes: 2
+      enemyToSpawn: 3
+      spawnVariance: 2
+      timeForSpawn: 8
+      repeatAfterTime: 1
+      timeForTriggerSpawn: 8
+      repeatAfterTrigger: 1

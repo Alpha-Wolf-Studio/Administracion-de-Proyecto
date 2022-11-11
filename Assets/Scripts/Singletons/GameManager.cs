@@ -134,22 +134,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public LevelData GetLevelDataByFalseIndex(int index) => worldData.LevelsData.GetLevelDataByFalseIndex(index);
 
-    public void SaveEnemyLevelData(List<EnemyConfigurations> data, int index)
+    public void SaveLevelEnemiesData()
     {
-        worldData.LevelsData.AddEnemiesData(data, index);
 #if UNITY_EDITOR
         EditorUtility.SetDirty(worldData);
 #endif
     }
-    
-    public void SaveControlPointsLevelData(List<ControlPointConfigurations> data, int index)
-    {
-        worldData.LevelsData.AddControlPointsData(data, index);
-#if UNITY_EDITOR
-        EditorUtility.SetDirty(worldData);
-#endif
-    }
-    
+
     public void SaveLevelData(LevelData data)
     {
         worldData.LevelsData.AddTerrainData(data);

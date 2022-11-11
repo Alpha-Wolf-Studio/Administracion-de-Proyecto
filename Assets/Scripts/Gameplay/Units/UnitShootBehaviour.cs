@@ -41,7 +41,10 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
             timeForNextShot = unit.stats.fireRate;
             OnAttacking?.Invoke(true);
         }
-        if (enemyColliders[0] != null) transform.LookAt(enemyColliders[0].transform);
+        else
+        {
+            OnAttacking?.Invoke(false);
+        } 
         OnMoving?.Invoke(false);
     }
 
@@ -65,7 +68,21 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
         return enemyColliders.Length > 0;
     }
 
-    private bool IsEnemyValid(Collider collider) => collider != null && AnyFlagContained(collider.GetComponent<Unit>().OwnLaneFlags, unit.AttackLaneFlags);
+    private bool IsEnemyValid(Collider collider)
+    {
+        bool colliderIsNotNull = collider != null;
+        if (colliderIsNotNull)
+        {
+            var unitComponent = collider.GetComponent<Unit>();
+            bool isUnit = unitComponent != null;
+            
+            if (isUnit)
+            {
+               return AnyFlagContained(unitComponent.OwnLaneFlags, unit.AttackLaneFlags);
+            }
+        }
+        return false;
+    }
 
     private bool AnyFlagContained(Enum me, Enum other)
     {

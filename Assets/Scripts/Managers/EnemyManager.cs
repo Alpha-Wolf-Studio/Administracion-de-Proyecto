@@ -52,9 +52,37 @@ public class EnemyManager : MonoBehaviour
             controlPointGo.AssignData(controlPoint.ControlData, controlPointEnemies);
         }
         
+        var spawner = FindObjectOfType<EnemySpawner>();
+        spawner.Configuration.CopySpawner(currentLevel.EnemySpawner);
+        
         OnLevelLoaded?.Invoke();
     }
+    
+    public void SpawnEnemy(EnemyType enemyType, Vector3 position, Quaternion rotation, LanesFlags lanes)
+    {
+        var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
+        
+        var unit = Instantiate(enemyPrefabs[(int)enemyType], position, rotation);
 
+        unit.gameObject.layer = enemiesLayerIndex;
+        unit.signDirection = -1;
+        unit.interactableMask = 0;
+        unit.enemyMask = alliesLayer;
+
+        UnitStats unitStats = GameManager.Get().GetUnitStats((int)enemyType);
+        unit.SetValues(unitStats, 0);
+
+        var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
+        if (unitShootBehaviour != null) 
+        {
+            Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
+            unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
+        }
+
+        unit.AttackLaneFlags = lanes;
+        unit.OwnLaneFlags = lanes;
+    }
+    
     public void SaveAllDataInLevel()
     {
         currentLevel.Enemies.Clear();
@@ -73,15 +101,17 @@ public class EnemyManager : MonoBehaviour
             currentLevel.ControlPoints.Add(controlPoint.GetCurrentConfiguration());
         }
         
-        
-        GameManager.Get().SaveEnemyLevelData(currentLevel.Enemies, currentLevel.Index);
-        GameManager.Get().SaveControlPointsLevelData(currentLevel.ControlPoints, currentLevel.Index);
+        var spawner = FindObjectOfType<EnemySpawner>();
+        currentLevel.EnemySpawner.CopySpawner(spawner.Configuration);
+
+        GameManager.Get().SaveLevelEnemiesData();
     }
     
     public void ClearAllDataInLevel()
     {
         currentLevel.Enemies.Clear();
         currentLevel.ControlPoints.Clear();
+        currentLevel.EnemySpawner = new EnemySpawnerConfiguration();
         
         var newEnemies = FindObjectsOfType<Enemy>();
         foreach (var enemy in newEnemies)
@@ -94,6 +124,9 @@ public class EnemyManager : MonoBehaviour
         {
             Destroy(controlPoint.gameObject);
         }
+
+        var spawner = FindObjectOfType<EnemySpawner>();
+        spawner.Configuration = new EnemySpawnerConfiguration();
     }
     
 

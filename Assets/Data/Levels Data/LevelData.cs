@@ -12,6 +12,7 @@ public class LevelData
     public int ProvinceIndex = 0;
     public List<EnemyConfigurations> Enemies = new List<EnemyConfigurations>();
     public List<ControlPointConfigurations> ControlPoints = new List<ControlPointConfigurations>();
+    public EnemySpawnerConfiguration EnemySpawner = new EnemySpawnerConfiguration();
 }
 
 [System.Serializable]
@@ -41,4 +42,35 @@ public class ControlPointConfigurations
         if (ControlData.controlLanesFlags.HasFlag(LanesFlags.Top)) lanesAmount++;
         return lanesAmount;
     }
+}
+
+[System.Serializable]
+public class EnemySpawnerConfiguration
+{
+    [Header("Spawner General Configuration")]
+    public EnemySpawner.SpawnerClass spawnerClass = EnemySpawner.SpawnerClass.None;
+    public LanesFlags spawnLanes = LanesFlags.Mid;
+    public EnemyType enemyToSpawn = EnemyType.Balloon;
+    public float spawnVariance = 2f; 
+    
+    [Header("Spawn With Time")]
+    public float timeForSpawn = 8;
+    public bool repeatAfterTime = true;
+
+    [Header("Spawn With Trigger")]
+    public float timeForTriggerSpawn = 8;
+    public bool repeatAfterTrigger = true;
+
+    public void CopySpawner(EnemySpawnerConfiguration spawnerToCopy)
+    {
+        spawnerClass = spawnerToCopy.spawnerClass;
+        spawnLanes = spawnerToCopy.spawnLanes;
+        enemyToSpawn = spawnerToCopy.enemyToSpawn;
+        spawnVariance = spawnerToCopy.spawnVariance;
+        timeForSpawn = spawnerToCopy.timeForSpawn;
+        repeatAfterTime = spawnerToCopy.repeatAfterTime;
+        timeForTriggerSpawn = spawnerToCopy.timeForTriggerSpawn;
+        repeatAfterTrigger = spawnerToCopy.repeatAfterTrigger;
+    }
+    
 }
