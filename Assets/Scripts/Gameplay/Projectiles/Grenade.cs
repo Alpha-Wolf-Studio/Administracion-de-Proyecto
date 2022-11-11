@@ -7,8 +7,10 @@ public class Grenade : Projectile
     [Header("Grenade Specific")]
     [SerializeField] private float explosionAoe = 5f;
     [SerializeField] private float arcVariance = 5f;
+    
     private Collider target;
-
+    private UnitStats attackerStats;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (Utils.LayerEquals(maskToDamage, other.gameObject.layer) || other.gameObject.layer == groundLayer)
@@ -17,7 +19,7 @@ public class Grenade : Projectile
 
             foreach (var collider in colliders)
             {
-                collider.gameObject.GetComponent<Unit>().TakeDamage(damage);
+                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
             }
             Destroy(gameObject);
         }
@@ -53,6 +55,7 @@ public class Grenade : Projectile
         this.target = target;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
+        attackerStats = stats;
         transform.LookAt(target.bounds.center, Vector3.up);
     }
 

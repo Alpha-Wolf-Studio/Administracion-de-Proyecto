@@ -7,7 +7,9 @@ public class Rocket : Projectile
     [Header("Rocket Specific")]
     [SerializeField] private float timeBeforeAiming = .5f;
     [SerializeField] private float explosionAoe = 5f;
+    
     private Collider target;
+    private UnitStats attackerStats;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,7 +19,7 @@ public class Rocket : Projectile
 
             foreach (var collider in colliders)
             {
-                collider.gameObject.GetComponent<Unit>().TakeDamage(damage);
+                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
             }
             Destroy(gameObject);
         }
@@ -65,6 +67,7 @@ public class Rocket : Projectile
         this.target = target;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
+        attackerStats = stats;
     }
 
 }

@@ -67,8 +67,16 @@ public class Unit : MonoBehaviour
         initialStats = new UnitStats(stats, unitLevel);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, UnitStats attackerStats)
     {
+
+        if (!attackerStats.unitsDamageables.Exists(i => i == stats.unitType)) return;
+
+        if (attackerStats.unitsPlusDamage.Exists(i => i == stats.unitType))
+            damage *= 2;
+        else if (attackerStats.unitsRestDamage.Exists(i => i == stats.unitType))
+            damage /= 2;
+
         stats.life -= damage / stats.resistanceFactor;
         if (stats.life <= 0)
         {

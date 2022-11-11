@@ -43,7 +43,7 @@ public class UnitEditor : Editor
         GUILayout.Space(10f);
         if (GUILayout.Button("Test Take Damage")) 
         {
-            myScript.TakeDamage(1);
+            myScript.TakeDamage(1, myScript.stats);
         }
 
     }

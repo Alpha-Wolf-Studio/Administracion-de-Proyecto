@@ -8,6 +8,8 @@ public class DropBomb : Projectile
     [Header("Drop Bomb Specific")]
     [SerializeField] private float explosionAoe = 5f;
 
+    private UnitStats attackerStats;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (Utils.LayerEquals(maskToDamage, other.gameObject.layer) || other.gameObject.layer == groundLayer)
@@ -16,7 +18,7 @@ public class DropBomb : Projectile
 
             foreach (var collider in colliders)
             {
-                collider.gameObject.GetComponent<Unit>().TakeDamage(damage);
+                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
             }
             Destroy(gameObject);
         }
@@ -25,6 +27,7 @@ public class DropBomb : Projectile
     public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target = null)
     {
         this.maskToDamage = maskToDamage;
+        attackerStats = stats;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
     }
