@@ -9,6 +9,6 @@ public class UiPanelReward : MonoBehaviour
     public void SetText (int amount)
     {
         gameObject.SetActive(amount != 0);
-        textReward.text = baseText + "\n" + amount;
+        textReward.text = baseText + amount;
     }
 }
