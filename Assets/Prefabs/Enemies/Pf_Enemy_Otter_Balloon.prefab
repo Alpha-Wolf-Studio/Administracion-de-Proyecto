@@ -23576,6 +23576,7 @@ GameObject:
   - component: {fileID: 5809654170788168975}
   - component: {fileID: 1600999654067641830}
   - component: {fileID: -5079743436808283856}
+  - component: {fileID: 4854258525843630101}
   m_Layer: 0
   m_Name: Pf_Enemy_Otter_Balloon
   m_TagString: Untagged
@@ -23713,6 +23714,19 @@ MonoBehaviour:
   timeFalling: 4
   fallSpeed: 2
   fallAcceleration: 0.2
+--- !u!114 &4854258525843630101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074129834336665140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb7573bda25f964e972ad332f021d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 3
 --- !u!1 &7091896433994099923
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
 {
+    
     [Header("Movement")]
     [SerializeField] private float groundOffset = 2f;
     [SerializeField] private float upDownHeight = 1f;
@@ -18,8 +19,16 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     private Unit unit = default;
 
     private float startHeight = 0;
-    
-    public void SetPrefabProjectile(Projectile proj) => prefabProjectile = proj;
+
+    private const float TopZPosition = 10f;
+    private const float MidZPosition = 0f;
+    private const float BotZPosition = -10f;
+
+    public void SetPrefabProjectile(Projectile proj)
+    {
+        prefabProjectile = proj;
+        OnAttacking?.Invoke(true);
+    } 
 
     private void Awake()
     {
@@ -29,7 +38,16 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     private void Start()
     {
         startHeight = transform.position.y + groundOffset;
-        OnAttacking?.Invoke(true);
+        Vector3 startPosition = new Vector3(limitXRight, startHeight, 0);
+
+        if (unit.OwnLaneFlags.HasFlag(LanesFlags.Bottom))
+            startPosition.z = BotZPosition;
+        else if (unit.OwnLaneFlags.HasFlag(LanesFlags.Mid))
+            startPosition.z = MidZPosition;
+        else //if (unit.OwnLaneFlags.HasFlag(LanesFlags.Top))
+            startPosition.z = TopZPosition;
+
+        transform.position = startPosition;
     }
 
     public void SpawnProjectile() 
@@ -56,8 +74,13 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
         position.y = upDownPosition + startHeight;
         
         ownTransform.position = position;
-        
-        if(ownTransform.position.x > limitXRight || ownTransform.position.x < limitXLeft)
-            Destroy(gameObject);
+
+        if (ownTransform.position.x < limitXLeft)
+        {
+            Vector3 newPosition = ownTransform.position;
+            newPosition.x = limitXRight;
+            ownTransform.position = newPosition;
+        }
+            
     }
 }

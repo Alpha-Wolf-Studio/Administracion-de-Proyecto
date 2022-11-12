@@ -52,9 +52,6 @@ public class EnemyManager : MonoBehaviour
             controlPointGo.AssignData(controlPoint.ControlData, controlPointEnemies);
         }
         
-        var spawner = FindObjectOfType<EnemySpawner>();
-        spawner.Configuration.CopySpawner(currentLevel.EnemySpawner);
-        
         OnLevelLoaded?.Invoke();
     }
     
@@ -100,9 +97,6 @@ public class EnemyManager : MonoBehaviour
         {
             currentLevel.ControlPoints.Add(controlPoint.GetCurrentConfiguration());
         }
-        
-        var spawner = FindObjectOfType<EnemySpawner>();
-        currentLevel.EnemySpawner.CopySpawner(spawner.Configuration);
 
         GameManager.Get().SaveLevelEnemiesData();
     }
@@ -111,7 +105,6 @@ public class EnemyManager : MonoBehaviour
     {
         currentLevel.Enemies.Clear();
         currentLevel.ControlPoints.Clear();
-        currentLevel.EnemySpawner = new EnemySpawnerConfiguration();
         
         var newEnemies = FindObjectsOfType<Enemy>();
         foreach (var enemy in newEnemies)
@@ -124,9 +117,6 @@ public class EnemyManager : MonoBehaviour
         {
             Destroy(controlPoint.gameObject);
         }
-
-        var spawner = FindObjectOfType<EnemySpawner>();
-        spawner.Configuration = new EnemySpawnerConfiguration();
     }
     
 
