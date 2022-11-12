@@ -25,26 +25,27 @@ public class EnemySpawner : MonoBehaviour
     
     private EnemyManager enemyManager;
     private bool triggered = false;
+    private bool recalculateSpawn = false;
 
     private void Awake()
     {
-        Configuration.OnSpawnerCopied += RecalculateSpawnType;
+        Configuration.OnSpawnerCopied += delegate
+        {
+            recalculateSpawn = true;
+        };
         enemyManager = FindObjectOfType<EnemyManager>();
         triggerForSpawning.gameObject.SetActive(false);
     }
 
     private void Start()
     {
+
+        if (recalculateSpawn) RecalculateSpawnType();
+        
         triggerForSpawning.OnTriggered += delegate
         {
             triggered = true;
         };
-    }
-
-    private void OnValidate()
-    {
-        if(Application.isPlaying)
-            RecalculateSpawnType();
     }
 
     private void RecalculateSpawnType()
