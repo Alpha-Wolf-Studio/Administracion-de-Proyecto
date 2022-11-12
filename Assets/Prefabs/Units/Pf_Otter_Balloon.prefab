@@ -23712,7 +23712,7 @@ MonoBehaviour:
   priority: 1
   timeBeforeFalling: 0
   timeFalling: 4
-  fallSpeed: 4
+  fallSpeed: -10
   fallAcceleration: 0.2
 --- !u!1 &7091896433994099923
 GameObject:

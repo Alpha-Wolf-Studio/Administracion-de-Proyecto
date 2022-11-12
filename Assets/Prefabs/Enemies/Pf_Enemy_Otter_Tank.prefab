@@ -7533,8 +7533,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 1
-  fallTime: 1
-  fallSpeed: 1
+  timeBeforeFalling: 1
+  timeFalling: 3
+  fallSpeed: 3
+  fallAcceleration: 0
 --- !u!54 &5317859934208570365
 Rigidbody:
   m_ObjectHideFlags: 0
