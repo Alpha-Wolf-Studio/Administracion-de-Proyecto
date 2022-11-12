@@ -40,6 +40,8 @@ public class UiComponentLife : MonoBehaviour
         if (isAlwaysShown) canvasGroup.alpha = 1f; 
         else ShowPanelAnimation();
 
+        if (currentLife < 0) 
+            currentLife = 0;
 
         if (lifeBarRecieveDamageAnimationIEnumerator != null)
         {

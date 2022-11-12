@@ -25,15 +25,6 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
     {
         if (timeForNextShot > 0) timeForNextShot -= Time.deltaTime;
     }
-    public Transform GetCurrentEnemyTransform() 
-    {
-        if(enemyColliders.Length > 0) 
-        {
-            return enemyColliders[0].transform;
-        }
-        return null;
-    } 
-
     public override void Execute()
     {
         if(timeForNextShot < 0) 

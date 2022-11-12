@@ -1870,6 +1870,7 @@ GameObject:
   - component: {fileID: 3486362038803053853}
   - component: {fileID: 3486362038803053825}
   - component: {fileID: 3486362038803053827}
+  - component: {fileID: 3245352742512527988}
   - component: {fileID: 3486362038803053824}
   - component: {fileID: 3486362038803053831}
   - component: {fileID: -3234809923170392161}
@@ -1959,6 +1960,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   projectileSpawn: {fileID: 4576157016957174491}
+--- !u!114 &3245352742512527988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486362038803053854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d185a5f6cb363c2419d279114d370daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  fallTime: 1
+  fallSpeed: 1
 --- !u!54 &3486362038803053824
 Rigidbody:
   m_ObjectHideFlags: 0

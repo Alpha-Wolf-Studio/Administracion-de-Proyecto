@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,6 +48,9 @@ public class ControlPointConfigurations
 [System.Serializable]
 public class EnemySpawnerConfiguration
 {
+
+    public Action OnSpawnerCopied;
+    
     [Header("Spawner General Configuration")]
     public EnemySpawner.SpawnerClass spawnerClass = EnemySpawner.SpawnerClass.None;
     public LanesFlags spawnLanes = LanesFlags.Mid;
@@ -71,6 +75,8 @@ public class EnemySpawnerConfiguration
         repeatAfterTime = spawnerToCopy.repeatAfterTime;
         timeForTriggerSpawn = spawnerToCopy.timeForTriggerSpawn;
         repeatAfterTrigger = spawnerToCopy.repeatAfterTrigger;
+        
+        OnSpawnerCopied?.Invoke();
     }
     
 }

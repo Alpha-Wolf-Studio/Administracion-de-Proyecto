@@ -23575,6 +23575,7 @@ GameObject:
   - component: {fileID: 6001986187764850255}
   - component: {fileID: 5809654170788168975}
   - component: {fileID: 1600999654067641830}
+  - component: {fileID: 2792718557445937307}
   m_Layer: 0
   m_Name: Pf_Otter_Balloon
   m_TagString: Untagged
@@ -23621,6 +23622,7 @@ MonoBehaviour:
   AttackLaneFlags: 0
   OwnLaneFlags: 0
   unitBehaviours:
+  - {fileID: 2792718557445937307}
   - {fileID: 1600999654067641830}
   baseTroopMeshRenderer: {fileID: 1261063069776617664}
   stats:
@@ -23692,7 +23694,26 @@ MonoBehaviour:
   groundOffset: 8
   upDownHeight: 1
   upDownSpeed: 1
+  limitXRight: 110
+  limitXLeft: -110
   projectileSpawn: {fileID: 2212438054193975962}
+--- !u!114 &2792718557445937307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074129834336665140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d185a5f6cb363c2419d279114d370daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  timeBeforeFalling: 0
+  timeFalling: 4
+  fallSpeed: 4
+  fallAcceleration: 0.2
 --- !u!1 &7091896433994099923
 GameObject:
   m_ObjectHideFlags: 0

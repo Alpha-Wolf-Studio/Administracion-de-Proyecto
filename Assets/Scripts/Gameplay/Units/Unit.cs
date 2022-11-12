@@ -21,17 +21,19 @@ public class Unit : MonoBehaviour
     public void SetBaseTroopMaterial(Material mat) => baseTroopMeshRenderer.material = mat;
 
     private UnitStats initialStats;
+    private Collider collider;
 
     [HideInInspector] public UnitStats stats;
 
     private void Awake()
     {
         SetUnitBehaviours();
+        collider = GetComponent<Collider>();
     }
 
     private IEnumerator Start()
     {
-        while (stats.life > 0)
+        while (gameObject)
         {
             foreach (var behaviour in unitBehaviours)
             {
@@ -81,8 +83,7 @@ public class Unit : MonoBehaviour
         if (stats.life <= 0)
         {
             OnDie?.Invoke();
-            Destroy(gameObject);
-            return;
+            collider.enabled = false;
         }
 
         OnTakeDamage?.Invoke(stats.life, initialStats.life);

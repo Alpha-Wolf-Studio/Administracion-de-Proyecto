@@ -28,14 +28,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        Configuration.OnSpawnerCopied += RecalculateSpawnType;
         enemyManager = FindObjectOfType<EnemyManager>();
         triggerForSpawning.gameObject.SetActive(false);
     }
 
     private void Start()
     {
-        RecalculateSpawnType();
-        
         triggerForSpawning.OnTriggered += delegate
         {
             triggered = true;
@@ -44,9 +43,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnValidate()
     {
-        if(triggerForSpawning)
-            triggerForSpawning.gameObject.SetActive(Configuration.spawnerClass == SpawnerClass.Trigger);
-        
         if(Application.isPlaying)
             RecalculateSpawnType();
     }
