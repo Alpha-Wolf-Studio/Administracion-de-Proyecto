@@ -12,7 +12,6 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private LayerMask layerToAttack = default;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private List<Unit> unitsAlive = default;
-    [SerializeField] private Material baseUnitMaterial = default;
     //[SerializeField] private Color troopColor = Color.blue; // Temporal
 
     private void Awake()
@@ -67,8 +66,6 @@ public class TroopManager : MonoBehaviour
 
         //var arrow = unit.gameObject.GetComponentInChildren<UITeamArrow>();                                                     // Temporal
         //if (arrow) arrow.SetColor(troopColor);                                                                                 // Temporal
-
-        unit.SetBaseTroopMaterial(baseUnitMaterial);
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
 

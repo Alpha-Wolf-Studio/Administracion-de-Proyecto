@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Grenade Launcher_Animator_Override_Controller
+  m_Controller: {fileID: 9100000, guid: 86c6a1051546eef478d6b699165eb345, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 1827226128182048838, guid: d43fa7c36a94c3b458576332550186df, type: 3}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: d54a6846372221f4da6200fb490942a2, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 10ad2443249d34f4281a27b76c972198, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 005828cbe98e0584491773e4d5f16a01, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: bb877f3a30f363444b3ef078eecd3e5f, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 12ee4bc0404730247afe8cb979f1a4b0, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 1ce425f5dee3ca14db5a3c63f839e7ff, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 40af1fca0fc02764fae4298198f37904, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 0d0a8ed94b34599468a5890fbdb6fed6, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: c118a8e83e4ee7c4cb956623116f7f9f, type: 3}
