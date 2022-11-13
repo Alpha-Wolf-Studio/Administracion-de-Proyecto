@@ -23619,7 +23619,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 0
-  signDirection: 1
+  signDirection: -1
   AttackLaneFlags: 2
   OwnLaneFlags: 2
   unitBehaviours:

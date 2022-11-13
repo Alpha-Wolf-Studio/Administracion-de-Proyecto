@@ -32,10 +32,6 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
             timeForNextShot = unit.stats.fireRate;
             OnAttacking?.Invoke(true);
         }
-        else
-        {
-            OnAttacking?.Invoke(false);
-        } 
         OnMoving?.Invoke(false);
     }
 
@@ -56,7 +52,14 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
         //enemyColliders = enemyColliders.Where(collider => IsEnemyValid(collider)).ToArray(); // LINQ
 
         enemyColliders = System.Array.FindAll(enemyColliders, IsEnemyValid).ToArray(); // SYSTEM ARRAY
-        return enemyColliders.Length > 0;
+
+        if (enemyColliders.Length > 0)
+        {
+            return enemyColliders.Length > 0;
+        }
+        
+        OnAttacking?.Invoke(false);
+        return false;
     }
 
     private bool IsEnemyValid(Collider collider)

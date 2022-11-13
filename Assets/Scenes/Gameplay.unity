@@ -11740,7 +11740,6 @@ MonoBehaviour:
     m_Bits: 256
   unitsGoToRight: 1
   unitsAlive: []
-  baseUnitMaterial: {fileID: 2100000, guid: d5b7afe5bd447b64f8ff14a4c65b460b, type: 2}
 --- !u!23 &375359671
 MeshRenderer:
   m_ObjectHideFlags: 0
