@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ public class UiGamePlayManager : MonoBehaviour
 
     [Header("Level Data")] 
     [SerializeField] private EnemyManager enemyManager = default;
-    [SerializeField] private GameObject enemiesDebugPanel = default; 
+    [SerializeField] private GameObject enemiesDebugPanel = default;
     [SerializeField] private Button saveAllCurrentEnemiesButton = default;
     [SerializeField] private Button clearAllCurrentEnemiesButton = default;
     [Space(10)]
@@ -24,10 +25,19 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private CanvasGroup uiPanelWin;
     [SerializeField] private CanvasGroup uiPanelLose;
 
+    [Header("Win Panel")] 
+    [SerializeField] private GameObject panelWinGold;
+    [SerializeField] private GameObject panelWinIncomeGold;
+    [SerializeField] private GameObject panelWinDiamond;
+    
     [Space(10)]
-    [SerializeField] private TMPro.TextMeshProUGUI levelTextComponent;
+    [SerializeField] private TextMeshProUGUI levelTextComponent;
 
     private UiGeneral uiGeneral;
+    private TextMeshProUGUI winGoldText = default;
+    private TextMeshProUGUI winGoldIncomeText = default;
+    private TextMeshProUGUI WinDiamondText = default;
+    
     private void Start()
     {
         uiPanelWin.gameObject.SetActive(false);
@@ -58,6 +68,11 @@ public class UiGamePlayManager : MonoBehaviour
         {
             uiGeneral.HideToGameplay(true);
         }
+
+        winGoldText = panelWinGold.GetComponentInChildren<TextMeshProUGUI>();
+        winGoldIncomeText = panelWinIncomeGold.GetComponentInChildren<TextMeshProUGUI>();
+        WinDiamondText = panelWinDiamond.GetComponentInChildren<TextMeshProUGUI>();
+        
     }
 
     private void OnDestroy()
@@ -82,6 +97,22 @@ public class UiGamePlayManager : MonoBehaviour
     {
         uiPanelWin.gameObject.SetActive(isWin);
         uiPanelLose.gameObject.SetActive(!isWin);
+        if (isWin)
+        {
+            var currentSelectedLevel = GameManager.Get().CurrentSelectedLevel;
+
+            int currentWonGold = currentSelectedLevel.GoldOnComplete;
+            int currentWonIncomeGold = currentSelectedLevel.GoldIncome;
+            int currentWonDiamond = currentSelectedLevel.DiamondOnComplete;
+            
+            panelWinGold.SetActive(currentWonGold > 0);
+            panelWinIncomeGold.SetActive(currentWonIncomeGold > 0);
+            panelWinDiamond.SetActive(currentWonDiamond > 0);
+
+            winGoldText.text = currentWonGold.ToString();
+            winGoldIncomeText.text = currentWonIncomeGold.ToString();
+            WinDiamondText.text = currentWonDiamond.ToString();
+        }
     }
 
     void OnButtonPause()
