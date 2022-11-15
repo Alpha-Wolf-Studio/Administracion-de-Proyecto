@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void SaveLevelEnemiesData()
     {
 #if UNITY_EDITOR
-        EditorUtility.SetDirty(worldData);
+        EditorUtility.SetDirty(worldData.LevelsData);
 #endif
     }
 
