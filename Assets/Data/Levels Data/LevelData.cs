@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class LevelData
 {
     public string LevelName = "Level 1";
@@ -11,11 +11,12 @@ public class LevelData
     public int DiamondOnComplete = 1;
     public int Index = 0;
     public int ProvinceIndex = 0;
+    public TerrainGraphicType TerrainType = TerrainGraphicType.Forest;
     public List<EnemyConfigurations> Enemies = new List<EnemyConfigurations>();
     public List<ControlPointConfigurations> ControlPoints = new List<ControlPointConfigurations>();
 }
 
-[System.Serializable]
+[Serializable]
 public class EnemyConfigurations
 {
     public int EnemyIndex;
@@ -26,7 +27,7 @@ public class EnemyConfigurations
     public LanesFlags OwnLaneFlags;
 }
 
-[System.Serializable]
+[Serializable]
 public class ControlPointConfigurations
 {
     public Vector3 ControlPosition;
@@ -42,4 +43,11 @@ public class ControlPointConfigurations
         if (ControlData.controlLanesFlags.HasFlag(LanesFlags.Top)) lanesAmount++;
         return lanesAmount;
     }
+}
+
+public enum TerrainGraphicType
+{
+    Forest,
+    Desert,
+    Snow
 }
