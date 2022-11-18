@@ -2020,6 +2020,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
+  renderers:
+  - {fileID: 948333490759813929}
+  - {fileID: 7290863353377846120}
+  materials:
+  - {fileID: 2100000, guid: 1da6c4026f0781b4ba181650d3b748e4, type: 2}
 --- !u!1 &3486362038892318369
 GameObject:
   m_ObjectHideFlags: 0

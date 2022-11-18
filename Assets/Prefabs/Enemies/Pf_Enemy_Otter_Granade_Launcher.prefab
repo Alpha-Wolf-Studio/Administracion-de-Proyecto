@@ -992,6 +992,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  renderers:
+  - {fileID: 3743291510313254343}
+  - {fileID: 8755918269422646780}
+  - {fileID: 3025015404094081503}
+  materials:
+  - {fileID: 2100000, guid: c5428ed8a95c2dd488161ff8fb848723, type: 2}
 --- !u!1 &3486362038892318369
 GameObject:
   m_ObjectHideFlags: 0
