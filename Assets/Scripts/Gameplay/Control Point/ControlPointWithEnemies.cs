@@ -46,6 +46,8 @@ public class ControlPointWithEnemies : MonoBehaviour
     private int checkPointSize = 0;
     private Unit unit = null;
 
+    private bool isUnlocked = false;
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -94,6 +96,9 @@ public class ControlPointWithEnemies : MonoBehaviour
 
         unit.OnDie += delegate
         {
+            if (isUnlocked) return;
+            isUnlocked = true;
+            
             OnControlPointGet?.Invoke(controlPointData, unlockPointsTransforms);
 
             foreach (var enemy in enemiesInControlPoint)
