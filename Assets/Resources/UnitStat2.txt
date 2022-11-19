@@ -21,7 +21,7 @@
     "damage": 5,
     "velocity": 1.5,
     "radiusSight": 30.0,
-    "rangeAttack": 30.0,
+    "rangeAttack": 20.0,
     "fireRate": 1.0,
     "bulletSpeed": 30.0,
     "canMove": true,
