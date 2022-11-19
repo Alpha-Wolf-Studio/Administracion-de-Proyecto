@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     public int EnemyIndex { get; set; }
     
-    private void Start()
+    private void Awake()
     {
         Unit = GetComponent<Unit>();
     }
@@ -26,6 +26,26 @@ public class Enemy : MonoBehaviour
         return config;
     }
 
+    public void SetControlPoint(ControlPointWithEnemies controlPoint)
+    {
+        RedirectDamageUnit(controlPoint.Unit);
+        SetOwnLanes(controlPoint.ControlPointData.controlLanesFlags);
+        SetBonuses(controlPoint.ControlPointData);
+    }
+    
+    
+    private void RedirectDamageUnit(Unit unitToRedirect) => Unit.RedirectDamageUnit = unitToRedirect;
+    public void UnlockRedirectDamageUnit() => Unit.RedirectDamageUnit = null;
+
+    private void SetOwnLanes(LanesFlags lanes) => Unit.OwnLaneFlags = lanes;
+    private void SetAttackLanes(LanesFlags lanes) => Unit.AttackLaneFlags = lanes;
+
+    private void SetBonuses(ControlPointData data)
+    {
+        Unit.stats.damage += (Unit.stats.damage * data.controlBonusDamage) / 100;
+        Unit.stats.bonusRange += (Unit.stats.rangeAttack * data.controlBonusRange) / 100;
+    }
+    
     public void SetRenderers(int terrainIndex)
     {
         foreach (var rend in renderers)

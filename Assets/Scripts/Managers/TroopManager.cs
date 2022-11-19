@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,12 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private List<Unit> unitsAlive = default;
     //[SerializeField] private Color troopColor = Color.blue; // Temporal
 
+    private ControlPointData currentControlPointData = new ControlPointData(); 
+    
     private void Awake()
     {
+        currentControlPointData.ResetControlPointBonus();
+        
         for (int i = 0; i < lanes.Length; i++)
         {
             lanes[i].SetLaneIndex(i);
@@ -30,6 +35,13 @@ public class TroopManager : MonoBehaviour
 
             };
         }
+
+        ControlPointWithEnemies.OnControlPointGet += ControlPointUnlocked;
+    }
+
+    private void OnDestroy()
+    {
+        ControlPointWithEnemies.OnControlPointGet -= ControlPointUnlocked;
     }
 
     private void Start()
@@ -37,6 +49,17 @@ public class TroopManager : MonoBehaviour
         lanes[selectedLaneIndex].Selected = true;
     }
 
+    private void ControlPointUnlocked(ControlPointData controlPointData, Transform[] unlockPoints)
+    {
+        currentControlPointData.AddControlPointBonus(controlPointData);
+
+        foreach (var unit in unitsAlive)
+        {
+            SetUnitBonuses(unit);
+        }
+        
+    }
+    
     public void OnButtonCreateTroop(int tropIndex)
     {
         var prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
@@ -70,13 +93,22 @@ public class TroopManager : MonoBehaviour
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
 
         // Todo: Ac� solo agarra el nivel de las Army, debe agarrar el correspondiente
-        unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]); 
-
+        unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]);
+        
         var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
         if (unitShootBehaviour != null) 
         {
             Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
             unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
         }
+        
+        SetUnitBonuses(unit);
+    }
+
+    private void SetUnitBonuses(Unit unit)
+    {
+        unit.stats.damage += unit.stats.damage * currentControlPointData.unlockBonusDamage / 100;
+        unit.stats.bonusRange += (unit.stats.rangeAttack * currentControlPointData.unlockBonusRange) / 100;
+        unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);
     }
 }

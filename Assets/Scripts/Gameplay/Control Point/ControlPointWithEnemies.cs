@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,57 +10,100 @@ public class ControlPointWithEnemies : MonoBehaviour
     public static Action<ControlPointData, Transform[]> OnControlPointGet = default;
 
     [SerializeField] private ControlPointData controlPointData = default;
-    [SerializeField] private List<Enemy> enemiesToControl = default;
+    [Space(20)]
+    [SerializeField] private List<Enemy> enemiesInControlPoint = default;
+
+    [Header("Control Point Stats")] 
+    [SerializeField] private float controlPointLife = 25f;
     
-    [Header("Unlock Points Configurations")]
-    [SerializeField] private Transform[] controlUnlockPositions = default;
-    [SerializeField] private GameObject graphic = default;
-    [SerializeField] private float laneZOffset = 10f;
-    [SerializeField] private float size1Lane = 10f;
-    [SerializeField] private float size2Lanes = 20f;
-    [SerializeField] private float size3Lanes = 30f;
+    [Header("Unlock Configuration")]
+    [SerializeField] private Transform[] unlockPointsTransforms;
+    [SerializeField] private int flagMaterialIndex = 1;
+    [SerializeField] private List<Renderer> flagsRenderers;
+    [SerializeField] private float changeFlagSpeed = 1;
+    [SerializeField] private Color enemiesColor;
+    [SerializeField] private Color alliesColor;
+    
+    [Header("3 Lanes Control Point")]
+    [SerializeField] private GameObject baseControlPoint3Lanes;
+
+    
+    [Header("2 Lanes Control Point")]
+    [SerializeField] private GameObject baseControlPoint2Lanes;
+    [SerializeField] private GameObject controlPoint2LanesTop;
+    [SerializeField] private GameObject controlPoint2LanesBot;
+    
+    [Header("1 Lane Control Point")]
+    [SerializeField] private GameObject baseControlPoint1Lane;
+    [SerializeField] private GameObject controlPoint1LaneTop;
+    [SerializeField] private GameObject controlPoint1LaneMid;
+    [SerializeField] private GameObject controlPoint1LaneBot;
+    
+    public Unit Unit => unit;
+    public ControlPointData ControlPointData => controlPointData;
     
     private int unitsToUnlock = 0;
     private int checkPointSize = 0;
-    
+    private Unit unit = null;
+
+#if UNITY_EDITOR
     private void OnValidate()
     {
-        SetCheckpointSize();
-        SetCheckpointLocation();
+        UnityEditor.EditorApplication.delayCall += CustomValidate;
     }
+#endif
 
-    private void OnDestroy()
+    private void CustomValidate()
     {
-        foreach (var enemy in enemiesToControl)
-        {
-            enemy.Unit.OnDie -= OnControllingUnitDestroyed;
-        }
+        if (this == null) 
+            return;
+        
+        SetCheckpointSize();
     }
 
     public void AssignData(ControlPointData controlData, List<Enemy> enemies)
     {
         controlPointData = controlData;
         
-        enemiesToControl = enemies;
+        enemiesInControlPoint = enemies;
         unitsToUnlock = enemies.Count;
-        
-        foreach (var enemy in enemiesToControl)
+
+        foreach (var rend in flagsRenderers)
         {
-            enemy.Unit.OnDie += OnControllingUnitDestroyed;
+            rend.materials[flagMaterialIndex].color = enemiesColor;
         }
         
         SetCheckpointSize();
-        SetCheckpointLocation();
-    }
 
-    private void OnControllingUnitDestroyed()
-    {
-        unitsToUnlock--;
-        if (unitsToUnlock == 0)
+        unit = GetComponent<Unit>();
+        UnitStats stats = new UnitStats
         {
-            OnControlPointGet?.Invoke(controlPointData, controlUnlockPositions);
-            Destroy(gameObject);
+            life = controlPointLife * (checkPointSize + 1),
+            rangeAttack = 0,
+            radiusSight = 0,
+            unitType = UnitsType.Edification
+        };
+        unit.OwnLaneFlags = controlPointData.controlLanesFlags;
+        unit.SetValues(stats, 0);
+        
+
+        foreach (var enemy in enemiesInControlPoint)
+        {
+            enemy.SetControlPoint(this);
         }
+
+        unit.OnDie += delegate
+        {
+            OnControlPointGet?.Invoke(controlPointData, unlockPointsTransforms);
+
+            foreach (var enemy in enemiesInControlPoint)
+            {
+                enemy.UnlockRedirectDamageUnit();
+                enemy.Unit.TakeDamage(float.MaxValue, enemy.Unit.stats);
+            }
+            
+            StartCoroutine(ControlChangeCoroutine());
+        };
     }
 
     public ControlPointConfigurations GetCurrentConfiguration()
@@ -72,11 +116,30 @@ public class ControlPointWithEnemies : MonoBehaviour
         configuration.ControlPosition = ownTransform.position;
         configuration.ControlRotation = ownTransform.eulerAngles;
             
-        var controlEnemyIndexes = enemiesToControl.Select(enemy => enemy.EnemyIndex).ToList();
+        var controlEnemyIndexes = enemiesInControlPoint.Select(enemy => enemy.EnemyIndex).ToList();
         configuration.ControlEnemiesIndex = controlEnemyIndexes;
         return configuration;
     }
 
+    private IEnumerator ControlChangeCoroutine()
+    {
+        float t = 0;
+        while (t < 1)
+        {
+            foreach (var rend in flagsRenderers)
+            {
+                rend.materials[flagMaterialIndex].color = Color.Lerp(enemiesColor, alliesColor, t);
+            }
+            t += Time.deltaTime * changeFlagSpeed;
+            yield return null;
+        }
+        
+        foreach (var rend in flagsRenderers)
+        {
+            rend.materials[flagMaterialIndex].color = alliesColor;
+        }
+        
+    }
 
     private void SetCheckpointSize()
     {
@@ -85,60 +148,72 @@ public class ControlPointWithEnemies : MonoBehaviour
         if(LaneFlagSelected(LanesFlags.Mid)) checkPointSize++;
         if(LaneFlagSelected(LanesFlags.Top)) checkPointSize++;
 
-        Vector3 newScale = graphic.transform.localScale;
-        
         switch (checkPointSize)
         {
-            case 1:
-                newScale.z = size1Lane;
+            case 3:
+                baseControlPoint1Lane.SetActive(false);
+                baseControlPoint2Lanes.SetActive(false);
+                baseControlPoint3Lanes.SetActive(true);
                 break;
             
             case 2:
-                if (LaneFlagSelected(LanesFlags.Bottom) && LaneFlagSelected(LanesFlags.Top))
-                    newScale.z = size3Lanes;
+                bool isBotSelected = LaneFlagSelected(LanesFlags.Bottom);
+                bool isTopSelected = LaneFlagSelected(LanesFlags.Top);
+
+                if (isBotSelected && isTopSelected)
+                {
+                    baseControlPoint1Lane.SetActive(true);
+                    baseControlPoint2Lanes.SetActive(false);
+                    baseControlPoint3Lanes.SetActive(false);
+                    
+                    controlPoint1LaneTop.SetActive(true);
+                    controlPoint1LaneMid.SetActive(false);
+                    controlPoint1LaneBot.SetActive(true);
+                }
                 else
-                    newScale.z = size2Lanes;
+                {
+                    
+                    baseControlPoint1Lane.SetActive(false);
+                    baseControlPoint2Lanes.SetActive(true);
+                    baseControlPoint3Lanes.SetActive(false);
+                    
+                    if (isBotSelected)
+                    {
+                        controlPoint2LanesBot.SetActive(true);
+                        controlPoint2LanesTop.SetActive(false);
+                    }
+                    else
+                    {
+                        controlPoint2LanesBot.SetActive(false);
+                        controlPoint2LanesTop.SetActive(true);
+                    }
+                }
+                
                 break;
             
-            case 3:
-                newScale.z = size3Lanes;
+            case 1:
+                baseControlPoint1Lane.SetActive(true);
+                baseControlPoint2Lanes.SetActive(false);
+                baseControlPoint3Lanes.SetActive(false);
+            
+                controlPoint1LaneTop.SetActive(false);
+                controlPoint1LaneMid.SetActive(false);
+                controlPoint1LaneBot.SetActive(false);
+
+                if (LaneFlagSelected(LanesFlags.Top)) controlPoint1LaneTop.SetActive(true);
+                if(LaneFlagSelected(LanesFlags.Mid)) controlPoint1LaneMid.SetActive(true);
+                if(LaneFlagSelected(LanesFlags.Bottom)) controlPoint1LaneBot.SetActive(true);
                 break;
             
             default:
-                newScale.z = size1Lane;
+                baseControlPoint1Lane.SetActive(false);
+                baseControlPoint2Lanes.SetActive(false);
+                baseControlPoint3Lanes.SetActive(false);
                 break;
-            
         }
-
-        graphic.transform.localScale = newScale;
-    }
-
-    private void SetCheckpointLocation()
-    {
-
-        Vector3 newPosition = graphic.transform.localPosition;
-        newPosition.x = 0;
-        newPosition.z = 0;
         
-        switch (checkPointSize)
-        {
-            case 1:
-                if(LaneFlagSelected(LanesFlags.Top)) newPosition.z += laneZOffset;
-                if(LaneFlagSelected(LanesFlags.Bottom)) newPosition.z -= laneZOffset;
-                break;
-            
-            case 2:
-                if (LaneFlagSelected(LanesFlags.Mid))
-                {
-                    if(LaneFlagSelected(LanesFlags.Top)) newPosition.z += laneZOffset / 2;
-                    if(LaneFlagSelected(LanesFlags.Bottom)) newPosition.z -= laneZOffset / 2;
-                }
-                break;
-
-        }
-        graphic.transform.localPosition = newPosition;
-
     }
+    
 
     private bool LaneFlagSelected(LanesFlags flag)
     {

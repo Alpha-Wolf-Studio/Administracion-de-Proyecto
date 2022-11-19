@@ -16,12 +16,17 @@ public class UiComponentLife : MonoBehaviour
     private float transparencyTime = 1f;
     private IEnumerator HideProcessIEnumerator = null;
 
-    private IEnumerator lifeBarRecieveDamageAnimationIEnumerator = null;
+    private IEnumerator lifeBarReceiveDamageAnimationIEnumerator = null;
     private float lastLifeFill = 1f;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        unit.OnDamageRedirect += delegate
+        {
+            StopAllCoroutines();
+            canvasGroup.alpha = 0;
+        };
     }
 
     private void Start()
@@ -43,15 +48,13 @@ public class UiComponentLife : MonoBehaviour
         if (currentLife < 0) 
             currentLife = 0;
 
-        if (lifeBarRecieveDamageAnimationIEnumerator != null)
+        if (lifeBarReceiveDamageAnimationIEnumerator != null)
         {
             imageFill.fillAmount = lastLifeFill;
-            StopCoroutine(lifeBarRecieveDamageAnimationIEnumerator);
+            StopCoroutine(lifeBarReceiveDamageAnimationIEnumerator);
         }
-        lifeBarRecieveDamageAnimationIEnumerator = lifeBarRecieveDamageAnimation(currentLife, maxLife);
-        StartCoroutine(lifeBarRecieveDamageAnimationIEnumerator);
-
-
+        lifeBarReceiveDamageAnimationIEnumerator = lifeBarRecieveDamageAnimation(currentLife, maxLife);
+        StartCoroutine(lifeBarReceiveDamageAnimationIEnumerator);
     }
 
     void ShowPanelAnimation()
