@@ -18,11 +18,11 @@
         2
     ],
     "life": 30.0,
-    "damage": 5,
+    "damage": 10,
     "velocity": 1.5,
     "radiusSight": 30.0,
     "rangeAttack": 20.0,
-    "fireRate": 1.0,
+    "fireRate": 0.7,
     "bulletSpeed": 30.0,
     "canMove": true,
     "canShoot": true,
