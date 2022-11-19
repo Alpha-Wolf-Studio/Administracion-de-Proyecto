@@ -6,6 +6,7 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     public static Action<bool> OnGameOver;
 
     [SerializeField] private Unit unitToDestroy;
+    [SerializeField] private float enemyBaseLife = 100;
     [SerializeField] private TroopManager playerTroopManager;
 
     [SerializeField] private Unit[] currentLevelPrefabUnits = default;
@@ -26,7 +27,7 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
         isGameOver = false;
 
         UnitStats enemyBaseStats = new UnitStats();
-        enemyBaseStats.life = 100;
+        enemyBaseStats.life = enemyBaseLife;
         unitToDestroy.SetValues(enemyBaseStats, 0);
         
         levelSelected = GameManager.Get().CurrentSelectedLevel;
