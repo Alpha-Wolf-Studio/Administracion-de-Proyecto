@@ -12,14 +12,19 @@ public class UnitAnimationControl : MonoBehaviour
     private Unit unit = default;
     private static readonly int Die = Animator.StringToHash("Die");
     private static readonly int Attacking = Animator.StringToHash("Attacking");
+    private static readonly int ReAttackTrigger = Animator.StringToHash("ReAttack");
     private static readonly int Moving = Animator.StringToHash("Moving");
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
 
-        shootBehaviour = (IShootBehaviour)rangeAttackBehaviour; 
-
+        if (rangeAttackBehaviour)
+        {
+            shootBehaviour = (IShootBehaviour)rangeAttackBehaviour;
+            shootBehaviour.OnReAttack += ReAttack;
+        }
+        
         foreach (var behaviour in possibleBehaviours)
         {
             behaviour.OnMoving += OnMovementChange;
@@ -32,6 +37,9 @@ public class UnitAnimationControl : MonoBehaviour
 
     private void OnDisable()
     {
+        if (rangeAttackBehaviour)
+            shootBehaviour.OnReAttack -= ReAttack;
+        
         foreach (var behaviour in possibleBehaviours)
         {
             behaviour.OnMoving -= OnMovementChange;
@@ -47,7 +55,14 @@ public class UnitAnimationControl : MonoBehaviour
         unit.OnDie -= OnDie;
         animator.SetTrigger(Die);   
     }
+
+    private void ReAttack() => animator.SetTrigger(ReAttackTrigger);
     
     private void RangeAttack() => shootBehaviour.SpawnProjectile();
+
+    private void CheckReAttack()
+    {
+        shootBehaviour.CheckReAttack = true;
+    }
 
 }
