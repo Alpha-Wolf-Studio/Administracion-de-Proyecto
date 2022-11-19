@@ -29,7 +29,25 @@ MonoBehaviour:
     Index: 96
     ProvinceIndex: 1
     TerrainType: 0
-    Enemies: []
+    Enemies:
+    - EnemyIndex: 0
+      EnemyPosition: {x: 57.59, y: -0.75, z: -0.36}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 1
+      EnemyPosition: {x: 12.731089, y: -0.75, z: -0.35522145}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 2
+      EnemyPosition: {x: 13.043025, y: -0.75, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
     ControlPoints: []
   - LevelName: Level 3
     GoldIncome: 1
@@ -40,11 +58,41 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: -9.645911, y: -0.7499981, z: 0.6285801}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 1
+      EnemyPosition: {x: 59.65, y: -0.75, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 1
+      EnemyPosition: {x: 59.65, y: -0.75, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
       AttackLaneFlags: 2
       OwnLaneFlags: 2
+    - EnemyIndex: 2
+      EnemyPosition: {x: 55.97, y: -0.75, z: 0}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 3
+      EnemyPosition: {x: 5.459754, y: -0.75, z: -0.26999995}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 2
+      OwnLaneFlags: 2
+    - EnemyIndex: 4
+      EnemyPosition: {x: 5.88, y: -0.75, z: 3.07}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 5
+      EnemyPosition: {x: 5.88, y: -0.75, z: -3.19}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
     ControlPoints: []
   - LevelName: Level 4
     GoldIncome: 1
@@ -53,7 +101,43 @@ MonoBehaviour:
     Index: 126
     ProvinceIndex: 2
     TerrainType: 0
-    Enemies: []
+    Enemies:
+    - EnemyIndex: 0
+      EnemyPosition: {x: 60.14, y: -0.7499962, z: 8.56}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 1
+      EnemyPosition: {x: 60.14, y: -0.7499962, z: -8.56}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 2
+      EnemyPosition: {x: 16.380001, y: -0.7499962, z: 11.92}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 1
+      OwnLaneFlags: 1
+    - EnemyIndex: 3
+      EnemyPosition: {x: 16.2, y: -0.7499981, z: 7.4}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 4
+      EnemyPosition: {x: 26.92, y: -0.7499981, z: -13.08}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 4
+      OwnLaneFlags: 4
+    - EnemyIndex: 5
+      EnemyPosition: {x: 26.951754, y: -0.7499962, z: -8.56}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
     ControlPoints: []
   - LevelName: Level 5
     GoldIncome: 1
