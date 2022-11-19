@@ -32,6 +32,14 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
             timeForNextShot = unit.stats.fireRate;
             OnAttacking?.Invoke(true);
         }
+        
+        Vector3 enemyPosition = enemyColliders[0].transform.position;
+        Vector3 ownPosition = transform.position;
+
+        enemyPosition.y = ownPosition.y;
+            
+        transform.forward = (enemyPosition - ownPosition).normalized;
+        
         OnMoving?.Invoke(false);
     }
 
@@ -53,13 +61,8 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
 
         enemyColliders = System.Array.FindAll(enemyColliders, IsEnemyValid).ToArray(); // SYSTEM ARRAY
 
-        if (enemyColliders.Length > 0)
-        {
-            return enemyColliders.Length > 0;
-        }
-        
-        OnAttacking?.Invoke(false);
-        return false;
+        OnAttacking?.Invoke(enemyColliders.Length > 0);
+        return enemyColliders.Length > 0;
     }
 
     private bool IsEnemyValid(Collider collider)

@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
 {
     public Action<float, float> OnTakeDamage;
     public Action OnDie;
+    public Action OnDamageRedirect;
     public LayerMask enemyMask;
     public LayerMask interactableMask;
     public int signDirection = 1;
@@ -20,10 +21,24 @@ public class Unit : MonoBehaviour
 
     public void SetBaseTroopMaterial(Material mat) => baseTroopMeshRenderer.material = mat;
 
-    private UnitStats initialStats;
+    private Unit redirectDamageUnit = null;
+    
+    public Unit RedirectDamageUnit
+    {
+        get => redirectDamageUnit;
+        set
+        {
+            redirectDamageUnit = value;
+            
+            if(redirectDamageUnit)
+                OnDamageRedirect?.Invoke();
+        }
+    } 
+
     private Collider collider;
 
     [HideInInspector] public UnitStats stats;
+    [HideInInspector] public UnitStats initialStats;
 
     private void Awake()
     {
@@ -68,10 +83,22 @@ public class Unit : MonoBehaviour
         this.stats = new UnitStats(stats, unitLevel);
         initialStats = new UnitStats(stats, unitLevel);
     }
-
+    
+    public void Heal(float amount)
+    {
+        stats.life += amount;
+        if (stats.life > initialStats.life)
+            stats.life = initialStats.life;
+    }
+    
     public void TakeDamage(float damage, UnitStats attackerStats)
     {
-
+        if (RedirectDamageUnit)
+        {
+            RedirectDamageUnit.TakeDamage(damage, attackerStats);
+            return;
+        }
+        
         if (!attackerStats.unitsDamageables.Exists(i => i == stats.unitType)) return;
 
         if (attackerStats.unitsPlusDamage.Exists(i => i == stats.unitType))
@@ -83,7 +110,8 @@ public class Unit : MonoBehaviour
         if (stats.life <= 0)
         {
             OnDie?.Invoke();
-            collider.enabled = false;
+            if(collider)
+                collider.enabled = false;
         }
 
         OnTakeDamage?.Invoke(stats.life, initialStats.life);

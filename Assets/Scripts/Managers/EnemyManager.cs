@@ -9,8 +9,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private LayerMask alliesLayer = default;
     [SerializeField] private int enemiesLayerIndex = 8;
     [SerializeField] private List<Unit> enemyPrefabs;
-    [SerializeField] private List<ControlPointWithEnemies> controlPointPrefabs;
+    [SerializeField] private ControlPointWithEnemies controlPointPrefab;
     private LevelData currentLevel = default;
+
+    private List<Enemy> enemies = new List<Enemy>();
+    private List<ControlPointWithEnemies> controlPoints = new List<ControlPointWithEnemies>();
 
     void Start()
     {
@@ -41,14 +44,24 @@ public class EnemyManager : MonoBehaviour
 
             var enemyComponent = unit.GetComponent<Enemy>();
             enemyComponent.EnemyIndex = enemy.EnemyIndex;
+            enemies.Add(enemyComponent);
         }
 
         foreach (var controlPoint in currentLevel.ControlPoints)
         {
-            int lanesAmount = controlPoint.GetControlLanesAmount();
-            var controlPointGo = Instantiate(controlPointPrefabs[lanesAmount], controlPoint.ControlPosition, Quaternion.Euler(controlPoint.ControlRotation));
+            var controlPointGo = Instantiate(controlPointPrefab, controlPoint.ControlPosition, Quaternion.Euler(controlPoint.ControlRotation));
+            controlPoints.Add(controlPointGo);
+            
             if (controlPoint.ControlEnemiesIndex.Count <= 0) continue;
+
             var controlPointEnemies = new List<Enemy>();
+            
+            foreach (var enemyIndex in controlPoint.ControlEnemiesIndex)
+            {
+                var enemy = enemies.Find(i => i.EnemyIndex == enemyIndex);
+                controlPointEnemies.Add(enemy);
+            }
+            
             controlPointGo.AssignData(controlPoint.ControlData, controlPointEnemies);
         }
         
@@ -92,6 +105,7 @@ public class EnemyManager : MonoBehaviour
             currentLevel.Enemies.Add(newEnemies[i].GetCurrentConfiguration());
         }
 
+        currentLevel.ControlPoints.Clear();
         var controlPoints = FindObjectsOfType<ControlPointWithEnemies>();
         foreach (var controlPoint in controlPoints)
         {
