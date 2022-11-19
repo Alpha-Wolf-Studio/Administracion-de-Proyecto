@@ -31,23 +31,26 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 57.59, y: -0.75, z: -0.36}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 1
-      EnemyPosition: {x: 12.731089, y: -0.75, z: -0.35522145}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 6
-    - EnemyIndex: 2
+      UnitLevel: 0
       EnemyPosition: {x: 13.043025, y: -0.75, z: 10}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
       OwnLaneFlags: 3
+    - EnemyIndex: 1
+      UnitLevel: 0
+      EnemyPosition: {x: 12.731089, y: -0.75, z: -0.35522145}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 57.59, y: -0.75, z: -0.36}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     ControlPoints: []
   - LevelName: Level 3
     GoldIncome: 1
@@ -58,41 +61,47 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 59.65, y: -0.75, z: -10}
+      UnitLevel: 0
+      EnemyPosition: {x: 5.88, y: -0.75, z: -3.19}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 1
-      EnemyPosition: {x: 59.65, y: -0.75, z: 10}
+      UnitLevel: 0
+      EnemyPosition: {x: 5.88, y: -0.75, z: 3.07}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 2
-      EnemyPosition: {x: 55.97, y: -0.75, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 5.459754, y: -0.75, z: -0.26999995}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 3
-      EnemyPosition: {x: 5.459754, y: -0.75, z: -0.26999995}
+      UnitLevel: 0
+      EnemyPosition: {x: 55.97, y: -0.75, z: 0}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 4
-      EnemyPosition: {x: 5.88, y: -0.75, z: 3.07}
+      UnitLevel: 0
+      EnemyPosition: {x: 59.65, y: -0.75, z: 10}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 3
-      OwnLaneFlags: 3
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 5
-      EnemyPosition: {x: 5.88, y: -0.75, z: -3.19}
+      UnitLevel: 0
+      EnemyPosition: {x: 59.65, y: -0.75, z: -10}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 6
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     ControlPoints: []
   - LevelName: Level 4
     GoldIncome: 1
@@ -103,41 +112,47 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 60.14, y: -0.7499962, z: 8.56}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 6
-    - EnemyIndex: 1
-      EnemyPosition: {x: 60.14, y: -0.7499962, z: -8.56}
+      UnitLevel: 0
+      EnemyPosition: {x: 60.95, y: -0.7499962, z: -10}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
-    - EnemyIndex: 2
-      EnemyPosition: {x: 16.380001, y: -0.7499962, z: 11.92}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 3
-      EnemyPosition: {x: 16.2, y: -0.7499981, z: 7.4}
+    - EnemyIndex: 1
+      UnitLevel: 0
+      EnemyPosition: {x: 16.62, y: -0.7499962, z: 8}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
       OwnLaneFlags: 3
-    - EnemyIndex: 4
-      EnemyPosition: {x: 26.92, y: -0.7499981, z: -13.08}
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 61.49, y: -0.75, z: 10}
       EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 5
-      EnemyPosition: {x: 26.951754, y: -0.7499962, z: -8.56}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 3
+      UnitLevel: 0
+      EnemyPosition: {x: 26.959997, y: -0.7499962, z: -8.56}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 6
       OwnLaneFlags: 6
+    - EnemyIndex: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 27.028244, y: -0.7499981, z: -13.08}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 5
+      UnitLevel: 0
+      EnemyPosition: {x: 16.380001, y: -0.7499962, z: 12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
     ControlPoints: []
   - LevelName: Level 5
     GoldIncome: 1
@@ -148,73 +163,57 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
+      UnitLevel: 0
       EnemyPosition: {x: 5.45, y: -0.75, z: 7.9121804}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
-      OwnLaneFlags: 1
+      OwnLaneFlags: 3
     - EnemyIndex: 1
-      EnemyPosition: {x: 5.6, y: -0.75, z: 9.943976}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 3
-      OwnLaneFlags: 1
-    - EnemyIndex: 2
+      UnitLevel: 0
       EnemyPosition: {x: 5.5, y: -0.75, z: 12.346125}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
-      OwnLaneFlags: 1
+      OwnLaneFlags: 3
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 5.28, y: 0, z: -8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
     - EnemyIndex: 3
-      EnemyPosition: {x: 5.45, y: -0.75, z: -11.84}
+      UnitLevel: 0
+      EnemyPosition: {x: 5.283799, y: 0, z: -12}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 6
-      OwnLaneFlags: 4
+      OwnLaneFlags: 6
     - EnemyIndex: 4
-      EnemyPosition: {x: 5.5, y: -0.75, z: -9.68}
+      UnitLevel: 0
+      EnemyPosition: {x: 55.36, y: -0.88, z: 10}
       EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 4
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 5
-      EnemyPosition: {x: 5.6148863, y: -0.7499962, z: -7.3347073}
+      UnitLevel: 0
+      EnemyPosition: {x: 57.33, y: -0.97, z: -10}
       EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 4
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 6
-      EnemyPosition: {x: 13.91, y: -0.75, z: -2.144106}
+      UnitLevel: 0
+      EnemyPosition: {x: 49.1, y: -0.89, z: -2.1316282e-14}
       EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
+      TypeOfEnemy: 0
       AttackLaneFlags: -1
-      OwnLaneFlags: 2
+      OwnLaneFlags: -1
     - EnemyIndex: 7
-      EnemyPosition: {x: 13.84, y: -0.7499962, z: 1.5156994}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: -1
-      OwnLaneFlags: 2
-    - EnemyIndex: 8
-      EnemyPosition: {x: 62.35, y: -0.7499981, z: -8.62}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 9
-      EnemyPosition: {x: 57.46, y: -0.75, z: 3.56}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 10
-      EnemyPosition: {x: 57.250546, y: -0.75, z: -1.0256329}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 11
-      EnemyPosition: {x: 62.26, y: -0.75, z: 10.563208}
+      UnitLevel: 0
+      EnemyPosition: {x: 13.8230715, y: -0.94, z: -0.40730208}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 1
       AttackLaneFlags: -1
@@ -229,75 +228,66 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 9.9145565, y: -0.75, z: -0.15}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
+      UnitLevel: 0
+      EnemyPosition: {x: 55.02, y: -0.75, z: -10}
+      EnemyRotation: {x: 0, y: 270, z: 0}
+      TypeOfEnemy: 1
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 1
-      EnemyPosition: {x: 10.5, y: -0.7499981, z: -6.84}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 55.02, y: -0.75, z: 10}
+      EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 1
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 2
-      EnemyPosition: {x: 10.464497, y: -0.75, z: -14.261992}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
+      UnitLevel: 0
+      EnemyPosition: {x: 50.314117, y: -0.75, z: -2.1316282e-14}
+      EnemyRotation: {x: 0, y: 270, z: 0}
+      TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 3
-      EnemyPosition: {x: 10.462146, y: -0.75, z: -10.2}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 22.294989, y: -0.75, z: 2.25}
+      EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 4
-      EnemyPosition: {x: 9.99, y: -0.75, z: -3.41}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
+      UnitLevel: 0
+      EnemyPosition: {x: 22.29, y: -0.75, z: -2.3}
+      EnemyRotation: {x: 0, y: 270, z: 0}
+      TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 5
-      EnemyPosition: {x: 33.04, y: -0.75, z: 0.09526205}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 4.3600006, y: -0.75, z: -12}
+      EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
     - EnemyIndex: 6
-      EnemyPosition: {x: 40.439377, y: -0.75, z: -0.113966465}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 4.364988, y: -0.75, z: -8}
+      EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
     - EnemyIndex: 7
-      EnemyPosition: {x: 25.476238, y: -0.75, z: 0.32}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
+      UnitLevel: 0
+      EnemyPosition: {x: 4.775156, y: -0.75, z: -2.150869}
+      EnemyRotation: {x: 0, y: 270, z: 0}
+      TypeOfEnemy: 1
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     - EnemyIndex: 8
-      EnemyPosition: {x: 60, y: -0.75, z: -2.34}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 9
-      EnemyPosition: {x: 65.26, y: -0.75, z: -7.741201}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 4.9, y: -0.75, z: 2}
+      EnemyRotation: {x: 0, y: 270, z: 0}
       TypeOfEnemy: 1
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 10
-      EnemyPosition: {x: 65.47, y: -0.75, z: 10.615515}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 11
-      EnemyPosition: {x: 60, y: -0.75, z: 3.73}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: -1
     ControlPoints: []
@@ -308,7 +298,63 @@ MonoBehaviour:
     Index: 113
     ProvinceIndex: 2
     TerrainType: 0
-    Enemies: []
+    Enemies:
+    - EnemyIndex: 0
+      UnitLevel: 0
+      EnemyPosition: {x: 55.67501, y: 8.160767, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
+      AttackLaneFlags: 4
+      OwnLaneFlags: 4
+    - EnemyIndex: 1
+      UnitLevel: 0
+      EnemyPosition: {x: 50, y: -0.75, z: 12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 50, y: -0.75, z: 8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 3
+      UnitLevel: 0
+      EnemyPosition: {x: 50, y: -0.75000334, z: -12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 50, y: -0.75000334, z: -8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 5
+      UnitLevel: 0
+      EnemyPosition: {x: 15, y: -0.75, z: 2}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 6
+      UnitLevel: 0
+      EnemyPosition: {x: 15, y: -0.7500024, z: -1.9999999}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 7
+      UnitLevel: 0
+      EnemyPosition: {x: -1.2299914, y: -0.75000954, z: 12.66609}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
     ControlPoints: []
   - LevelName: Level 8
     GoldIncome: 1
@@ -319,105 +365,73 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 69.09241, y: -0.75, z: 10.012594}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 1
-      EnemyPosition: {x: 68.9, y: -0.75, z: -10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 2
-      EnemyPosition: {x: 28.954678, y: -0.75, z: -10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 3
-      EnemyPosition: {x: 35.038345, y: -0.75, z: -13.887043}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 4
-      EnemyPosition: {x: 34.8, y: -0.75, z: -11.938451}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 5
-      EnemyPosition: {x: 34.468323, y: -0.75, z: -8.089439}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 6
-      EnemyPosition: {x: 34.270103, y: -0.75, z: -5.7530403}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: -6.7885933, y: -0.75, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 6
       OwnLaneFlags: 6
-    - EnemyIndex: 7
-      EnemyPosition: {x: 34.37596, y: -0.75, z: 6.408019}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 5
-      OwnLaneFlags: 5
-    - EnemyIndex: 8
-      EnemyPosition: {x: 34.665962, y: -0.7499962, z: 13.26}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 9
-      EnemyPosition: {x: 34.649277, y: -0.75, z: 9.4978895}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 10
-      EnemyPosition: {x: -2.3974276, y: -0.95, z: -14.92}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 11
-      EnemyPosition: {x: -2.67002, y: -1.01, z: -5.8178105}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 5
-    - EnemyIndex: 12
-      EnemyPosition: {x: -2.673427, y: -1.01, z: 15.827575}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 13
-      EnemyPosition: {x: -2.3369837, y: -0.95, z: 5.418284}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+    - EnemyIndex: 1
+      UnitLevel: 0
+      EnemyPosition: {x: -6.7, y: -0.7500553, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
       OwnLaneFlags: 3
-    - EnemyIndex: 14
-      EnemyPosition: {x: 0.18012284, y: -0.75, z: 10.400247}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 15
-      EnemyPosition: {x: -0.07945214, y: -0.75, z: -9.773119}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 16
-      EnemyPosition: {x: -0.45349234, y: -0.75, z: -0.0744756}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 12.618663, y: -0.75, z: 2}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 3
+      UnitLevel: 0
+      EnemyPosition: {x: 12.61, y: -0.75, z: -1.9999999}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 52.731293, y: -0.75, z: -8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 5
+      UnitLevel: 0
+      EnemyPosition: {x: 52.729996, y: -0.75, z: -12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 6
+      UnitLevel: 0
+      EnemyPosition: {x: 52.93, y: -0.75, z: 7.2600007}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 7
+      UnitLevel: 0
+      EnemyPosition: {x: 52.93137, y: -0.75, z: 12.064732}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 8
+      UnitLevel: 0
+      EnemyPosition: {x: 52.93, y: -0.75, z: 9.7}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 9
+      UnitLevel: 0
+      EnemyPosition: {x: 90.38721, y: 7.4985156, z: 0}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
       AttackLaneFlags: 2
       OwnLaneFlags: 2
     ControlPoints: []
@@ -430,101 +444,110 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 70.32491, y: -0.75, z: 10.012594}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 1
-      EnemyPosition: {x: 69.494316, y: -0.75, z: -10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 2
-      EnemyPosition: {x: 19.969204, y: -0.75, z: 13.785131}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 2.83, y: -0.75, z: -12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 1
+      UnitLevel: 0
+      EnemyPosition: {x: 2.83, y: -0.75, z: -8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 2.456355, y: -0.75, z: -2.1757884}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 3
-      EnemyPosition: {x: 19.266434, y: -0.75, z: 6.0378222}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 2.630025, y: -0.75, z: 1.9973528}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 2.83, y: -0.75, z: 8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
       OwnLaneFlags: 3
-    - EnemyIndex: 4
-      EnemyPosition: {x: 19.34791, y: -0.75, z: 10.047244}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
     - EnemyIndex: 5
-      EnemyPosition: {x: 27.173199, y: -0.75, z: -10.1586895}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: 2.83712, y: -0.75, z: 12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
     - EnemyIndex: 6
-      EnemyPosition: {x: 17.199469, y: -0.75, z: -6.49}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 6
+      UnitLevel: 0
+      EnemyPosition: {x: 12.030338, y: -0.7500119, z: -0.016821845}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 7
-      EnemyPosition: {x: 16.36, y: 1.7829151, z: -10.86}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 8
-      EnemyPosition: {x: 17.03, y: -0.75, z: -13.92}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 9
-      EnemyPosition: {x: 17.25, y: -0.75, z: -9.14}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 10
-      EnemyPosition: {x: -20.21, y: -1, z: -13.99}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 11
-      EnemyPosition: {x: -20.59342, y: -0.75, z: -5.93}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
+      UnitLevel: 0
+      EnemyPosition: {x: 11.6, y: -0.75003815, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
       AttackLaneFlags: 6
       OwnLaneFlags: 6
+    - EnemyIndex: 8
+      UnitLevel: 0
+      EnemyPosition: {x: 10.8927, y: -0.75, z: 10.364277}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 9
+      UnitLevel: 0
+      EnemyPosition: {x: 42.42367, y: -0.75, z: 3.01}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 10
+      UnitLevel: 0
+      EnemyPosition: {x: 42.25, y: -0.75, z: -3.4}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 11
+      UnitLevel: 0
+      EnemyPosition: {x: 48.67, y: -0.7500119, z: -0.01}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 12
-      EnemyPosition: {x: -19.86733, y: -0.7500019, z: -10.033643}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 42.25, y: -0.75, z: -0.25}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 13
-      EnemyPosition: {x: -20.020868, y: -0.7500019, z: -0.19}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
-    - EnemyIndex: 14
-      EnemyPosition: {x: -20.664513, y: -0.75, z: 6.953841}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 5
-      OwnLaneFlags: 5
-    - EnemyIndex: 15
-      EnemyPosition: {x: -20.57, y: -0.75, z: 12.42}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
+      UnitLevel: 0
+      EnemyPosition: {x: -2.5466437, y: 8.035593, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
       AttackLaneFlags: 1
       OwnLaneFlags: 1
+    - EnemyIndex: 14
+      UnitLevel: 0
+      EnemyPosition: {x: -2.5466437, y: 8.035593, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
+      AttackLaneFlags: 4
+      OwnLaneFlags: 4
     ControlPoints: []
   - LevelName: Level 10
     GoldIncome: 1
@@ -535,135 +558,143 @@ MonoBehaviour:
     TerrainType: 0
     Enemies:
     - EnemyIndex: 0
-      EnemyPosition: {x: 69.15, y: -0.75, z: -10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 1
-      EnemyPosition: {x: 69.33559, y: -0.75, z: 10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 2
-      EnemyPosition: {x: -25.010489, y: 8.535858, z: 0}
-      EnemyRotation: {x: -0, y: 270, z: -0}
-      TypeOfEnemy: 3
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
-    - EnemyIndex: 3
-      EnemyPosition: {x: 95.404495, y: 7.8658752, z: 0}
-      EnemyRotation: {x: -0, y: 270, z: -0}
-      TypeOfEnemy: 3
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
-    - EnemyIndex: 4
-      EnemyPosition: {x: -22.280027, y: 16.209412, z: 0}
-      EnemyRotation: {x: -0, y: 270, z: -0}
-      TypeOfEnemy: 3
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
-    - EnemyIndex: 5
-      EnemyPosition: {x: 80.47452, y: 8.03772, z: 0}
-      EnemyRotation: {x: -0, y: 270, z: -0}
-      TypeOfEnemy: 3
-      AttackLaneFlags: 2
-      OwnLaneFlags: 2
-    - EnemyIndex: 6
-      EnemyPosition: {x: 35.29, y: -0.75, z: 6.31}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 5
-      OwnLaneFlags: 6
-    - EnemyIndex: 7
-      EnemyPosition: {x: 34.98, y: -0.75, z: 13.200008}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 8
-      EnemyPosition: {x: 35.29, y: -0.75, z: 10.130003}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 5
-      OwnLaneFlags: 5
-    - EnemyIndex: 9
-      EnemyPosition: {x: 35.39713, y: -0.75, z: -9.61}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 10
-      EnemyPosition: {x: 35.48, y: -0.75, z: -5.838679}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 0
-    - EnemyIndex: 11
-      EnemyPosition: {x: 35.386406, y: -0.75, z: -13.18}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 12
-      EnemyPosition: {x: 42.799564, y: -0.75, z: 0}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 0
-      OwnLaneFlags: 0
-    - EnemyIndex: 13
-      EnemyPosition: {x: 30.194601, y: -0.75, z: 0}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 2
-      AttackLaneFlags: 0
-      OwnLaneFlags: 0
-    - EnemyIndex: 14
-      EnemyPosition: {x: 9.379999, y: -0.75, z: -11.7}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 4
-      OwnLaneFlags: 4
-    - EnemyIndex: 15
-      EnemyPosition: {x: 8.94, y: -0.75, z: -6.95}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 0
-    - EnemyIndex: 16
-      EnemyPosition: {x: 9.671668, y: -0.75, z: -2.4089417}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+      UnitLevel: 0
+      EnemyPosition: {x: -13.87, y: -0.7500019, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 1
       AttackLaneFlags: 6
       OwnLaneFlags: 6
-    - EnemyIndex: 17
-      EnemyPosition: {x: 9.356708, y: -0.75, z: 2.62}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+    - EnemyIndex: 1
+      UnitLevel: 0
+      EnemyPosition: {x: -13.870858, y: -0.75, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 1
       AttackLaneFlags: 3
       OwnLaneFlags: 3
-    - EnemyIndex: 18
-      EnemyPosition: {x: 9.47, y: -0.75, z: 6.52}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+    - EnemyIndex: 2
+      UnitLevel: 0
+      EnemyPosition: {x: 2.900001, y: -0.75, z: 1.9566792}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 3
+      UnitLevel: 0
+      EnemyPosition: {x: 3.2184246, y: -0.75000954, z: -2.504664}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 3.3044481, y: -0.75, z: 12.385433}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 5
+      UnitLevel: 0
+      EnemyPosition: {x: 3.3044481, y: -0.74999905, z: 8.293678}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 6
+      UnitLevel: 0
+      EnemyPosition: {x: 2.675754, y: -0.74999905, z: -12.040001}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 6
       OwnLaneFlags: 6
-    - EnemyIndex: 19
-      EnemyPosition: {x: 9.5869465, y: -0.75, z: 13.02}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+    - EnemyIndex: 7
+      UnitLevel: 0
+      EnemyPosition: {x: 2.675754, y: -0.75, z: -8.04}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 1
-      OwnLaneFlags: 1
-    - EnemyIndex: 20
-      EnemyPosition: {x: -10.979719, y: -0.75, z: -10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 8
+      UnitLevel: 0
+      EnemyPosition: {x: 20.76, y: -0.75, z: -7.291754}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 9
+      UnitLevel: 0
+      EnemyPosition: {x: 20.76, y: -0.74999905, z: -12.04}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 10
+      UnitLevel: 0
+      EnemyPosition: {x: 20.359999, y: -0.75, z: -9.68}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 11
+      UnitLevel: 0
+      EnemyPosition: {x: 20.76, y: -0.74999905, z: 8.317562}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 12
+      UnitLevel: 0
+      EnemyPosition: {x: 20.76, y: -0.75, z: 12.409317}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 3
+      OwnLaneFlags: 3
+    - EnemyIndex: 13
+      UnitLevel: 0
+      EnemyPosition: {x: 40.29, y: -0.75, z: -9.68}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 6
+    - EnemyIndex: 14
+      UnitLevel: 0
+      EnemyPosition: {x: 40.29, y: -0.75, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 15
+      UnitLevel: 0
+      EnemyPosition: {x: 39.8, y: -0.7500305, z: -2.51}
+      EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 16
+      UnitLevel: 0
+      EnemyPosition: {x: 39.481575, y: -0.75, z: 1.9513432}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
+    - EnemyIndex: 17
+      UnitLevel: 0
+      EnemyPosition: {x: 19.226675, y: 8.384201, z: -10}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
       AttackLaneFlags: 4
       OwnLaneFlags: 4
-    - EnemyIndex: 21
-      EnemyPosition: {x: -10.68, y: -0.75, z: 10}
-      EnemyRotation: {x: 0, y: 270, z: 0}
-      TypeOfEnemy: 1
+    - EnemyIndex: 18
+      UnitLevel: 0
+      EnemyPosition: {x: 19.226675, y: 8.384201, z: 10}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
       AttackLaneFlags: 1
       OwnLaneFlags: 1
+    - EnemyIndex: 19
+      UnitLevel: 0
+      EnemyPosition: {x: 19.226675, y: 8.384201, z: 0}
+      EnemyRotation: {x: -0, y: 270, z: -0}
+      TypeOfEnemy: 3
+      AttackLaneFlags: 2
+      OwnLaneFlags: 2
     ControlPoints: []
