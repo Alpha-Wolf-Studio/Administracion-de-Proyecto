@@ -856,7 +856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfButtomEmpty: {fileID: 4352846904780198421, guid: 4d8ea5b217660ff4cb2b1ff262540faf, type: 3}
   pfButton: {fileID: 4352846904780198421, guid: 731e4096385fe0e4fb295f39c568151a, type: 3}
-  spawnCooldown: 5
+  spawnCooldown: 1
 --- !u!114 &1615710476
 MonoBehaviour:
   m_ObjectHideFlags: 0
