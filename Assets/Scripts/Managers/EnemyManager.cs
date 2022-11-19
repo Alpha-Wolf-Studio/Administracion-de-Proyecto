@@ -13,59 +13,10 @@ public class EnemyManager : MonoBehaviour
     private LevelData currentLevel = default;
 
     private List<Enemy> enemies = new List<Enemy>();
-    private List<ControlPointWithEnemies> controlPoints = new List<ControlPointWithEnemies>();
 
     void Start()
     {
-        currentLevel = GameManager.Get().CurrentSelectedLevel;
-        foreach (var enemy in currentLevel.Enemies)
-        {
-            var unit = Instantiate(enemyPrefabs[(int)enemy.TypeOfEnemy], enemy.EnemyPosition, Quaternion.Euler(enemy.EnemyRotation));
-                
-            var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
-
-            unit.gameObject.layer = enemiesLayerIndex;
-            unit.signDirection = -1;
-            unit.interactableMask = 0;
-            unit.enemyMask = alliesLayer;
-
-            UnitStats unitStats = GameManager.Get().GetUnitStats((int)enemy.TypeOfEnemy);
-            unit.SetValues(unitStats, 0);
-
-            var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
-            if (unitShootBehaviour != null) 
-            {
-                Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
-                unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
-            }
-
-            unit.AttackLaneFlags = enemy.AttackLaneFlags;
-            unit.OwnLaneFlags = enemy.OwnLaneFlags;
-
-            var enemyComponent = unit.GetComponent<Enemy>();
-            enemyComponent.EnemyIndex = enemy.EnemyIndex;
-            enemies.Add(enemyComponent);
-        }
-
-        foreach (var controlPoint in currentLevel.ControlPoints)
-        {
-            var controlPointGo = Instantiate(controlPointPrefab, controlPoint.ControlPosition, Quaternion.Euler(controlPoint.ControlRotation));
-            controlPoints.Add(controlPointGo);
-            
-            if (controlPoint.ControlEnemiesIndex.Count <= 0) continue;
-
-            var controlPointEnemies = new List<Enemy>();
-            
-            foreach (var enemyIndex in controlPoint.ControlEnemiesIndex)
-            {
-                var enemy = enemies.Find(i => i.EnemyIndex == enemyIndex);
-                controlPointEnemies.Add(enemy);
-            }
-            
-            controlPointGo.AssignData(controlPoint.ControlData, controlPointEnemies);
-        }
-        
-        OnLevelLoaded?.Invoke();
+        ResetAllDataInLevel();
     }
     
     public void SpawnEnemy(EnemyType enemyType, Vector3 position, Quaternion rotation, LanesFlags lanes, Transform trans)
@@ -92,6 +43,69 @@ public class EnemyManager : MonoBehaviour
         unit.AttackLaneFlags = lanes;
         unit.OwnLaneFlags = lanes;
     }
+
+    public void ResetAllDataInLevel()
+    {
+        currentLevel = GameManager.Get().CurrentSelectedLevel;
+        
+        var newEnemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in newEnemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        
+        var newControlPoints = FindObjectsOfType<ControlPointWithEnemies>();
+        foreach (var controlPoint in newControlPoints)
+        {
+            Destroy(controlPoint.gameObject);
+        }
+        
+        foreach (var enemy in currentLevel.Enemies)
+        {
+            var unit = Instantiate(enemyPrefabs[(int)enemy.TypeOfEnemy], enemy.EnemyPosition, Quaternion.Euler(enemy.EnemyRotation));
+                
+            var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
+
+            unit.gameObject.layer = enemiesLayerIndex;
+            unit.signDirection = -1;
+            unit.interactableMask = 0;
+            unit.enemyMask = alliesLayer;
+
+            UnitStats unitStats = GameManager.Get().GetUnitStats((int)enemy.TypeOfEnemy);
+            unit.SetValues(unitStats, enemy.UnitLevel);
+
+            var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
+            if (unitShootBehaviour != null) 
+            {
+                Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
+                unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
+            }
+
+            unit.AttackLaneFlags = enemy.AttackLaneFlags;
+            unit.OwnLaneFlags = enemy.OwnLaneFlags;
+
+            var enemyComponent = unit.GetComponent<Enemy>();
+            enemyComponent.EnemyIndex = enemy.EnemyIndex;
+            enemies.Add(enemyComponent);
+        }
+
+        foreach (var controlPoint in currentLevel.ControlPoints)
+        {
+            var controlPointGo = Instantiate(controlPointPrefab, controlPoint.ControlPosition, Quaternion.Euler(controlPoint.ControlRotation));
+
+            var controlPointEnemies = new List<Enemy>();
+            
+            foreach (var enemyIndex in controlPoint.ControlEnemiesIndex)
+            {
+                var enemy = enemies.Find(i => i.EnemyIndex == enemyIndex);
+                controlPointEnemies.Add(enemy);
+            }
+            
+            controlPointGo.AssignData(controlPoint.ControlData, controlPointEnemies);
+        }
+        
+        OnLevelLoaded?.Invoke();
+    }
     
     public void SaveAllDataInLevel()
     {
@@ -106,10 +120,11 @@ public class EnemyManager : MonoBehaviour
         }
 
         currentLevel.ControlPoints.Clear();
-        var controlPoints = FindObjectsOfType<ControlPointWithEnemies>();
-        foreach (var controlPoint in controlPoints)
+        var newControlPoints = FindObjectsOfType<ControlPointWithEnemies>();
+        foreach (var controlPoint in newControlPoints)
         {
-            currentLevel.ControlPoints.Add(controlPoint.GetCurrentConfiguration());
+            var configuration = controlPoint.GetCurrentConfiguration();
+            currentLevel.ControlPoints.Add(configuration);
         }
 
         GameManager.Get().SaveLevelEnemiesData();
@@ -126,8 +141,8 @@ public class EnemyManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
         
-        var controlPoints = FindObjectsOfType<ControlPointWithEnemies>();
-        foreach (var controlPoint in controlPoints)
+        var newControlPoints = FindObjectsOfType<ControlPointWithEnemies>();
+        foreach (var controlPoint in newControlPoints)
         {
             Destroy(controlPoint.gameObject);
         }
