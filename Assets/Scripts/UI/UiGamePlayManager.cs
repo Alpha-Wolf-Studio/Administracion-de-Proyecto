@@ -10,6 +10,7 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager = default;
     [SerializeField] private GameObject enemiesDebugPanel = default;
     [SerializeField] private Button saveAllCurrentEnemiesButton = default;
+    [SerializeField] private Button resetAllCurrentEnemiesButton = default;
     [SerializeField] private Button clearAllCurrentEnemiesButton = default;
     [Space(10)]
     
@@ -60,6 +61,7 @@ public class UiGamePlayManager : MonoBehaviour
 #if UNITY_EDITOR
         saveAllCurrentEnemiesButton.onClick.AddListener(enemyManager.SaveAllDataInLevel);
         clearAllCurrentEnemiesButton.onClick.AddListener(enemyManager.ClearAllDataInLevel);
+        resetAllCurrentEnemiesButton.onClick.AddListener(enemyManager.ResetAllDataInLevel);
 #else
         enemiesDebugPanel.gameObject.SetActive(false);
 #endif
@@ -80,6 +82,7 @@ public class UiGamePlayManager : MonoBehaviour
 #if UNITY_EDITOR
         saveAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.SaveAllDataInLevel);
         clearAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.ClearAllDataInLevel);
+        resetAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.ResetAllDataInLevel);
 #endif
         GamePlayManager.OnGameOver -= GameOverUi;
 
