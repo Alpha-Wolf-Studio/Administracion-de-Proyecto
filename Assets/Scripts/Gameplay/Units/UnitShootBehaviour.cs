@@ -11,7 +11,9 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
     private Collider[] enemyColliders;
 
     private float timeForNextShot = -1;
-
+    public bool CheckReAttack { get; set; } = false;
+    public Action OnReAttack { get; set; }
+    
     public float TimeForNextShot => timeForNextShot;
 
     public void SetPrefabProjectile(Projectile proj) => prefabProjectile = proj;
@@ -23,13 +25,20 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
 
     private void Update()
     {
+        if (!CheckReAttack) return;
         if (timeForNextShot > 0) timeForNextShot -= Time.deltaTime;
     }
+
     public override void Execute()
     {
-        if(timeForNextShot < 0) 
+        if (timeForNextShot < 0)
         {
-            timeForNextShot = unit.stats.fireRate;
+            if (CheckReAttack)
+            {
+                OnReAttack?.Invoke();
+                CheckReAttack = false;
+            }
+            timeForNextShot = 1 / unit.stats.fireRate;
             OnAttacking?.Invoke(true);
         }
         
@@ -37,9 +46,9 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
         Vector3 ownPosition = transform.position;
 
         enemyPosition.y = ownPosition.y;
-            
+
         transform.forward = (enemyPosition - ownPosition).normalized;
-        
+
         OnMoving?.Invoke(false);
     }
 
@@ -61,8 +70,10 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
 
         enemyColliders = System.Array.FindAll(enemyColliders, IsEnemyValid).ToArray(); // SYSTEM ARRAY
 
-        OnAttacking?.Invoke(enemyColliders.Length > 0);
-        return enemyColliders.Length > 0;
+        bool enemyInSight = enemyColliders.Length > 0;
+        
+        OnAttacking?.Invoke(enemyInSight);
+        return enemyInSight;
     }
 
     private bool IsEnemyValid(Collider collider)

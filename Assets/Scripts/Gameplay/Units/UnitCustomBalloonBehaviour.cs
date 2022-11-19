@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
 {
+    public Action OnReAttack { get; set; }
+    public bool CheckReAttack { get; set; } = false;
     
     [Header("Movement")]
     [SerializeField] private float groundOffset = 2f;
@@ -18,6 +20,8 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     private Projectile prefabProjectile = default;
     private Unit unit = default;
 
+    private float timeForNextShot = -1;
+    
     private float startHeight = 0;
 
     private const float TopZPosition = 10f;
@@ -50,6 +54,12 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
         transform.position = startPosition;
     }
 
+    private void Update()
+    {
+        if (!CheckReAttack) return;
+        if (timeForNextShot > 0) timeForNextShot -= Time.deltaTime;
+    }
+
     public void SpawnProjectile() 
     {
         GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, projectileSpawn.position, Quaternion.identity, BulletParent.Get().GetTransform());
@@ -62,6 +72,17 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
 
     public override void Execute()
     {
+        if (timeForNextShot < 0)
+        {
+            if (CheckReAttack)
+            {
+                OnReAttack?.Invoke();
+                CheckReAttack = false;
+            }
+            timeForNextShot = 1 / unit.stats.fireRate;
+            OnAttacking?.Invoke(true);
+        }
+        
         Transform ownTransform = transform;
         
         float upDownPosition = Mathf.PingPong(Time.time * upDownSpeed, upDownHeight) - upDownHeight / 2;
@@ -81,6 +102,5 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
             newPosition.x = limitXRight;
             ownTransform.position = newPosition;
         }
-            
     }
 }
