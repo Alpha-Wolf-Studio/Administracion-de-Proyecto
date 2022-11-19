@@ -9,7 +9,7 @@ public class UiButtonSpawnUnit : MonoBehaviour
     private TroopManager troopManager;
 
     private float currentCooldown = -1;
-    private float maxCooldown = 5;
+    private float maxCooldown = 1;
 
     private void Update()
     {
