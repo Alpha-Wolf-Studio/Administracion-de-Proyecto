@@ -1,7 +1,7 @@
 {
     "nameUnit": "Tank",
     "idUnit":2,
-    "unitType": 1,
+    "unitType": 4,
     "movementType": 1,
     "attackType": 2,
     "unitsDamageables": [

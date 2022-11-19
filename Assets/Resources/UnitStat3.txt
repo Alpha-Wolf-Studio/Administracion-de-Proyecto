@@ -12,7 +12,7 @@
         4
     ],
     "unitsPlusDamage": [
-        1
+        4
     ],
     "unitsRestDamage": [
         2
