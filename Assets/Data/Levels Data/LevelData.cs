@@ -20,6 +20,7 @@ public class LevelData
 public class EnemyConfigurations
 {
     public int EnemyIndex;
+    public int UnitLevel;
     public Vector3 EnemyPosition;
     public Vector3 EnemyRotation;
     public EnemyType TypeOfEnemy;

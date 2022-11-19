@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyType enemyType = default;
+    [SerializeField] private int enemyLevel = 0;
     [SerializeField] private Renderer[] renderers;
     [SerializeField] private Material[] materials;
     public Unit Unit { get; private set; } = default;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
         config.EnemyPosition = transform.position;
         config.EnemyRotation = transform.eulerAngles;
         config.TypeOfEnemy = enemyType;
+        config.UnitLevel = enemyLevel;
         config.AttackLaneFlags = Unit.AttackLaneFlags;
         config.OwnLaneFlags = Unit.OwnLaneFlags;
         return config;
