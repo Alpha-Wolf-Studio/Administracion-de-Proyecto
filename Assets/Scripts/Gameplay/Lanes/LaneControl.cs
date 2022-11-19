@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LaneControl : MonoBehaviour
@@ -6,15 +7,21 @@ public class LaneControl : MonoBehaviour
 
     private void Awake()
     {
-        ControlPointWithEnemies.OnControlPointGet += delegate(ControlPointData data, Transform[] controlUnLockPoints)
-        {
-            if (data.controlLanesFlags.HasFlag(LanesFlags.Top))
-                allLanes[0].StartPosition = controlUnLockPoints[0].position;
-            if(data.controlLanesFlags.HasFlag(LanesFlags.Mid))
-                allLanes[1].StartPosition = controlUnLockPoints[1].position;
-            if(data.controlLanesFlags.HasFlag(LanesFlags.Bottom))
-                allLanes[2].StartPosition = controlUnLockPoints[2].position;
-        };
+        ControlPointWithEnemies.OnControlPointGet += OnControlPointGet;
     }
 
+    private void OnDestroy()
+    {
+        ControlPointWithEnemies.OnControlPointGet -= OnControlPointGet;
+    }
+
+    private void OnControlPointGet(ControlPointData data, Transform[] controlUnlockPoint)
+    {
+        if (data.controlLanesFlags.HasFlag(LanesFlags.Top))
+            allLanes[0].StartPosition = controlUnlockPoint[0].position;
+        if(data.controlLanesFlags.HasFlag(LanesFlags.Mid))
+            allLanes[1].StartPosition = controlUnlockPoint[1].position;
+        if(data.controlLanesFlags.HasFlag(LanesFlags.Bottom))
+            allLanes[2].StartPosition = controlUnlockPoint[2].position;
+    }
 }
