@@ -408,7 +408,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 113
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
