@@ -150,7 +150,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 126
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 112
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 97
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 127
     ProvinceIndex: 3
-    TerrainType: 0
+    TerrainType: 2
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 128
     ProvinceIndex: 3
-    TerrainType: 0
+    TerrainType: 2
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
@@ -745,8 +745,8 @@ MonoBehaviour:
     GoldOnComplete: 200
     DiamondOnComplete: 1
     Index: 114
-    ProvinceIndex: 0
-    TerrainType: 0
+    ProvinceIndex: 3
+    TerrainType: 2
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
