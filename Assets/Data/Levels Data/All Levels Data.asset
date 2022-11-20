@@ -100,7 +100,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 126
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       EnemyPosition: {x: 60.14, y: -0.7499962, z: 8.56}
@@ -145,7 +145,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 112
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       EnemyPosition: {x: 5.45, y: -0.75, z: 7.9121804}
@@ -226,7 +226,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 97
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies:
     - EnemyIndex: 0
       EnemyPosition: {x: 9.9145565, y: -0.75, z: -0.15}
@@ -307,7 +307,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 113
     ProvinceIndex: 2
-    TerrainType: 0
+    TerrainType: 1
     Enemies: []
     ControlPoints: []
   - LevelName: Level 8
@@ -316,7 +316,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 127
     ProvinceIndex: 3
-    TerrainType: 0
+    TerrainType: 2
     Enemies:
     - EnemyIndex: 0
       EnemyPosition: {x: 69.09241, y: -0.75, z: 10.012594}
@@ -427,7 +427,7 @@ MonoBehaviour:
     DiamondOnComplete: 1
     Index: 128
     ProvinceIndex: 3
-    TerrainType: 0
+    TerrainType: 2
     Enemies:
     - EnemyIndex: 0
       EnemyPosition: {x: 70.32491, y: -0.75, z: 10.012594}
@@ -531,8 +531,8 @@ MonoBehaviour:
     GoldOnComplete: 200
     DiamondOnComplete: 1
     Index: 114
-    ProvinceIndex: 0
-    TerrainType: 0
+    ProvinceIndex: 3
+    TerrainType: 2
     Enemies:
     - EnemyIndex: 0
       EnemyPosition: {x: 69.15, y: -0.75, z: -10}

@@ -50,5 +50,7 @@ public enum TerrainGraphicType
 {
     Forest,
     Desert,
-    Snow
+    Snow,
+    UnreachableWater,
+    UnreachableMountain
 }
