@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Province 3 Settings
   m_EditorClassIdentifier: 
   ProvinceName: Province 3
-  Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
-  BonusGold: 1
+  Color: {r: 0, g: 0.013520718, b: 1, a: 1}
+  BonusGetGold: 10
+  BonusIncomeGold: 10
+  CurrentTerrainsAmount: 0

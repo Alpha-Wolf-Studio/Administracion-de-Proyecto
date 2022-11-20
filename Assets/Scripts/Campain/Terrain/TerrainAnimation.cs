@@ -5,94 +5,64 @@ using UnityEngine;
 [RequireComponent(typeof(HexagonTerrain))]
 public class TerrainAnimation : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private MeshRenderer baseMesh = default;
-    [SerializeField] private MeshRenderer stateMesh = default;
-    [SerializeField] private MeshRenderer provinceMesh = default;
-    [Header("Configurations")]
-    [SerializeField] private float maxYOffset = 1;
-    [SerializeField] private float speed = 1;
 
+    [Header("Animation Configuration")]
+    [SerializeField] private float animationSpeed = 2f;
+    [SerializeField] private Vector3 offsetPosition = Vector3.zero;
+    
+    private Vector3 startPosition;
+    
     private HexagonTerrain terrain = default;
-
-    Vector3 baseMeshStartPosition = Vector3.zero;
-    Vector3 stateMeshStartPosition = Vector3.zero;
-    Vector3 provinceMeshStartPosition = Vector3.zero;
-
-    private IEnumerator animationIEnumerator = default;
-
+    
     private void Awake ()
     {
+
+        startPosition = transform.position;
+        
         terrain = GetComponent<HexagonTerrain>();
-
-        baseMeshStartPosition = baseMesh.transform.position;
-        stateMeshStartPosition = stateMesh.transform.position;
-        provinceMeshStartPosition = provinceMesh.transform.position;
-
+        
         terrain.OnSelect += delegate
         {
-            if (animationIEnumerator != null) StopCoroutine(animationIEnumerator);
-            animationIEnumerator = SelectAnimationCoroutine();
-            StartCoroutine(animationIEnumerator);
+            StopAllCoroutines();
+            StartCoroutine(SelectCoroutine());
         };
 
         terrain.OnDeSelect += delegate
         {
-            if (animationIEnumerator != null) StopCoroutine(animationIEnumerator);
-            animationIEnumerator = DeSelectAnimationCoroutine();
-            StartCoroutine(animationIEnumerator);
+            StopAllCoroutines();
+            StartCoroutine(DeSelectCoroutine());
         };
     }
 
-    private IEnumerator SelectAnimationCoroutine() 
+    private IEnumerator SelectCoroutine()
     {
         float t = 0;
-        Vector3 currentBaseMeshStartPosition = baseMesh.transform.position;
-        Vector3 currentStateMeshStartPosition = stateMesh.transform.position;
-        Vector3 currentProvinceMeshStartPosition = provinceMesh.transform.position;
-
-        Vector3 targetBaseMeshStartPosition = baseMeshStartPosition;
-        targetBaseMeshStartPosition.y += maxYOffset;
-
-        Vector3 targetStateMeshStartPosition = stateMeshStartPosition;
-        targetStateMeshStartPosition.y += maxYOffset * 2 / 3;
-
-        Vector3 targetProvinceMeshStartPosition = provinceMeshStartPosition;
-        targetProvinceMeshStartPosition.y += maxYOffset / 3;
-
-        while (t < 1) 
-        {
-
-            baseMesh.transform.position = Vector3.Lerp(currentBaseMeshStartPosition, targetBaseMeshStartPosition, t);
-            stateMesh.transform.position = Vector3.Lerp(currentStateMeshStartPosition, targetStateMeshStartPosition, t);
-            provinceMesh.transform.position = Vector3.Lerp(currentProvinceMeshStartPosition, targetProvinceMeshStartPosition, t);
-
-            t += Time.deltaTime * speed;
-            yield return null;
-        }
-    }
-
-    private IEnumerator DeSelectAnimationCoroutine() 
-    {
-        float t = 0;
-        Vector3 currentBaseMeshStartPosition = baseMesh.transform.position;
-        Vector3 currentStateMeshStartPosition = stateMesh.transform.position;
-        Vector3 currentProvinceMeshStartPosition = provinceMesh.transform.position;
-
-        Vector3 targetBaseMeshStartPosition = baseMeshStartPosition;
-        Vector3 targetStateMeshStartPosition = stateMeshStartPosition;
-        Vector3 targetProvinceMeshStartPosition = provinceMeshStartPosition;
-
+        Vector3 currentPosition = transform.position;
+        Vector3 endPosition = startPosition + offsetPosition;
+        
         while (t < 1)
         {
-
-            baseMesh.transform.position = Vector3.Lerp(currentBaseMeshStartPosition, targetBaseMeshStartPosition, t);
-            stateMesh.transform.position = Vector3.Lerp(currentStateMeshStartPosition, targetStateMeshStartPosition, t);
-            provinceMesh.transform.position = Vector3.Lerp(currentProvinceMeshStartPosition, targetProvinceMeshStartPosition, t);
-
-            t += Time.deltaTime * speed;
+            transform.position = Vector3.Lerp(currentPosition, endPosition, t);
+            t += Time.deltaTime * animationSpeed;
             yield return null;
         }
+
+        transform.position = endPosition;
+    }
+
+    private IEnumerator DeSelectCoroutine()
+    {
+        float t = 0;
+        Vector3 currentPosition = transform.position;
+        
+        while (t < 1)
+        {
+            transform.position = Vector3.Lerp(currentPosition, startPosition, t);
+            t += Time.deltaTime * animationSpeed;
+            yield return null;
+        }
+
+        transform.position = startPosition;
     }
 
 }

@@ -33,8 +33,25 @@ public class WorldBuilderHexagon : MonoBehaviour
                 hexagon.transform.rotation = Quaternion.identity;
                 pos.z += worldData.ZDistance * 2;
                 hexagons.Add(hexagon);
+
+                if (IsTerrainMountain(i, j))
+                {
+                    hexagon.TerrainGraphicType = TerrainGraphicType.UnreachableMountain;
+                }
+                else
+                {
+                    hexagon.TerrainGraphicType = TerrainGraphicType.UnreachableWater;
+                }
+                
             }
         }
+    }
+
+    private bool IsTerrainMountain(int i, int j)
+    {
+        bool closeToTheLeft = i < worldData.mountainRangeSize || j < worldData.mountainRangeSize;
+        bool closeToTheRight = i >= worldData.Columns - worldData.mountainRangeSize || j >= worldData.Rows - worldData.mountainRangeSize;
+        return closeToTheLeft || closeToTheRight;
     }
 
     public void ResetHexagons ()
