@@ -53,15 +53,15 @@ MonoBehaviour:
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
-      EnemyPosition: {x: 13.202942, y: -0.7499981, z: 9.360163}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      EnemyPosition: {x: 13.202941, y: -0.7499993, z: 9.360163}
+      EnemyRotation: {x: -0, y: 244.49908, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: 3
     - EnemyIndex: 1
       UnitLevel: 0
-      EnemyPosition: {x: 13.533616, y: -0.7500019, z: -0.49359894}
-      EnemyRotation: {x: -0, y: 270, z: 0}
+      EnemyPosition: {x: 13.533617, y: -0.7500062, z: -0.49359867}
+      EnemyRotation: {x: -0, y: 271.41705, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: -1
       OwnLaneFlags: 3
@@ -77,11 +77,12 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 3
+        controlPointLife: 5
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
         unlockBonusRange: 0
-        unlockHealAmount: 0
+        unlockHealAmount: 100
       ControlEnemiesIndex: 0000000001000000
   - LevelName: Level 3
     GoldIncome: 1
@@ -138,11 +139,12 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 2
+        controlPointLife: 10
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
         unlockBonusRange: 0
-        unlockHealAmount: 0
+        unlockHealAmount: 70
       ControlEnemiesIndex: 000000000100000002000000
   - LevelName: Level 4
     GoldIncome: 1
@@ -154,67 +156,69 @@ MonoBehaviour:
     Enemies:
     - EnemyIndex: 0
       UnitLevel: 0
-      EnemyPosition: {x: 28.015106, y: 0, z: -8}
+      EnemyPosition: {x: 60, y: -0.7499962, z: -1.9999999}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 4
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 1
       UnitLevel: 0
-      EnemyPosition: {x: 28.015108, y: -0.9653897, z: -12}
+      EnemyPosition: {x: 55.17, y: -0.75, z: 2}
       EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 6
-      OwnLaneFlags: 4
+      TypeOfEnemy: 1
+      AttackLaneFlags: -1
+      OwnLaneFlags: -1
     - EnemyIndex: 2
-      UnitLevel: 0
-      EnemyPosition: {x: 17.01511, y: 0, z: 11}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 0
-      AttackLaneFlags: 3
-      OwnLaneFlags: 1
-    - EnemyIndex: 3
       UnitLevel: 0
       EnemyPosition: {x: 17.015108, y: 0, z: 7.036008}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
       AttackLaneFlags: 3
       OwnLaneFlags: 1
-    - EnemyIndex: 4
+    - EnemyIndex: 3
       UnitLevel: 0
-      EnemyPosition: {x: 55, y: -0.75, z: 10}
-      EnemyRotation: {x: -0, y: 270, z: 0}
-      TypeOfEnemy: 1
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
-    - EnemyIndex: 5
-      UnitLevel: 0
-      EnemyPosition: {x: 55, y: -0.7499962, z: -10}
+      EnemyPosition: {x: 17.01511, y: 0, z: 11}
       EnemyRotation: {x: -0, y: 270, z: 0}
       TypeOfEnemy: 0
-      AttackLaneFlags: -1
-      OwnLaneFlags: -1
+      AttackLaneFlags: 3
+      OwnLaneFlags: 1
+    - EnemyIndex: 4
+      UnitLevel: 0
+      EnemyPosition: {x: 28.015108, y: -0.9653897, z: -12}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 4
+    - EnemyIndex: 5
+      UnitLevel: 0
+      EnemyPosition: {x: 28.015106, y: 0, z: -8}
+      EnemyRotation: {x: -0, y: 270, z: 0}
+      TypeOfEnemy: 0
+      AttackLaneFlags: 6
+      OwnLaneFlags: 4
     ControlPoints:
-    - ControlPosition: {x: 29.128967, y: 0, z: 0}
-      ControlRotation: {x: -0, y: 0, z: 0}
-      ControlData:
-        controlLanesFlags: 4
-        controlBonusDamage: 0
-        controlBonusRange: 25
-        unlockBonusDamage: 0
-        unlockBonusRange: 0
-        unlockHealAmount: 0
-      ControlEnemiesIndex: 0100000000000000
     - ControlPosition: {x: 18.128967, y: 0, z: 0}
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 1
+        controlPointLife: 7
+        controlBonusDamage: 0
+        controlBonusRange: 25
+        unlockBonusDamage: 50
+        unlockBonusRange: 0
+        unlockHealAmount: 0
+      ControlEnemiesIndex: 0200000003000000
+    - ControlPosition: {x: 29.128967, y: 0, z: 0}
+      ControlRotation: {x: -0, y: 0, z: 0}
+      ControlData:
+        controlLanesFlags: 4
+        controlPointLife: 5
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
         unlockBonusRange: 0
-        unlockHealAmount: 0
-      ControlEnemiesIndex: 0300000002000000
+        unlockHealAmount: 40
+      ControlEnemiesIndex: 0400000005000000
   - LevelName: Level 5
     GoldIncome: 1
     GoldOnComplete: 150
@@ -284,6 +288,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 1
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -294,6 +299,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 2
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -304,6 +310,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 4
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -386,6 +393,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 2
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 0
         unlockBonusDamage: 0
@@ -396,6 +404,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 6
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -471,6 +480,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 1
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -481,6 +491,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 4
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -491,6 +502,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 2
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -580,6 +592,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 2
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -590,6 +603,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 1
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -600,6 +614,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 4
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -724,6 +739,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 2
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -734,6 +750,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: -1
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -907,6 +924,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 4
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -917,6 +935,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: 1
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
@@ -927,6 +946,7 @@ MonoBehaviour:
       ControlRotation: {x: -0, y: 0, z: 0}
       ControlData:
         controlLanesFlags: -1
+        controlPointLife: 25
         controlBonusDamage: 0
         controlBonusRange: 25
         unlockBonusDamage: 0
