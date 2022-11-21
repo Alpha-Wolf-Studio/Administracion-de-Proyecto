@@ -67,6 +67,7 @@ public class ControlPointWithEnemies : MonoBehaviour
     public void AssignData(ControlPointData controlData, List<Enemy> enemies)
     {
         controlPointData = controlData;
+        controlPointLife = controlData.controlPointLife;
         
         enemiesInControlPoint = enemies;
         unitsToUnlock = enemies.Count;
