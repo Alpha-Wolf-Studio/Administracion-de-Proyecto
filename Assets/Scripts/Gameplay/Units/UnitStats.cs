@@ -36,7 +36,7 @@ public class UnitStats
 
         tempCurrentShape = unitStat.tempCurrentShape;
         tempColor = unitStat.tempColor;
-
+        
         SetStatsByLevel(unitLevel, idUnit);
     }
 
@@ -76,14 +76,14 @@ public class UnitStats
 
     public void SetStatsByLevel(int currentUnitLevel, int idUnit)
     {
-        life += (life * LevelProgression.Life(idUnit)) * currentUnitLevel;
-        damage += (damage * LevelProgression.Damage(idUnit)) * currentUnitLevel;
+        life += UnitUpgradeScriptableObject.Instance.Life(idUnit, currentUnitLevel);
+        damage += UnitUpgradeScriptableObject.Instance.Damage(idUnit, currentUnitLevel);
     }
 
     public float GetLifeLevel(int currentUnitLevel, int idUnit)
     {
         float newLife = life;
-        newLife += (life * LevelProgression.Life(idUnit)) * currentUnitLevel;
+        newLife += UnitUpgradeScriptableObject.Instance.Life(idUnit, currentUnitLevel);
 
         return newLife;
     }
@@ -91,7 +91,7 @@ public class UnitStats
     public float GetDamageLevel(int currentUnitLevel, int idUnit)
     {
         float newDamage = damage;
-        newDamage += (damage * LevelProgression.Damage(idUnit)) * currentUnitLevel;
+        newDamage += UnitUpgradeScriptableObject.Instance.Damage(idUnit, currentUnitLevel);
 
         return newDamage;
     }

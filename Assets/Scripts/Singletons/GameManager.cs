@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [SerializeField] private List<SpritesPerArmy> spritesArmy = new List<SpritesPerArmy>();
     [Space(10)]
     [SerializeField] private WorldBuilderData worldData = default;
+    [SerializeField] private UnitUpgradeScriptableObject unitUpgrades;
 
     private string pathPlayerData = "PlayerData";
     [SerializeField] private PlayerData playerData;
@@ -64,6 +65,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     void LoadAllStatsSaved()
     {
+
+        unitUpgrades.SetUpgradesInstance();
+        
         bool noMoreTexts = false;
         int index = 0;
 
