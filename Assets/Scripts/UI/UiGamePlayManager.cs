@@ -35,9 +35,9 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelTextComponent;
 
     private UiGeneral uiGeneral;
-    private TextMeshProUGUI winGoldText = default;
-    private TextMeshProUGUI winGoldIncomeText = default;
-    private TextMeshProUGUI WinDiamondText = default;
+    private TextMeshProUGUI winGoldText;
+    private TextMeshProUGUI winGoldIncomeText;
+    private TextMeshProUGUI WinDiamondText;
     
     private void Start()
     {

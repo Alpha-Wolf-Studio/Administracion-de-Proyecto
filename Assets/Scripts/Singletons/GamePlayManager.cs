@@ -12,6 +12,19 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     [SerializeField] private Unit[] currentLevelPrefabUnits = default;
     [SerializeField] private Projectile[] currentLevelPrefabProjectiles = default;
 
+    [Header("Forest Terrain")] 
+    [SerializeField] private GameObject baseForestEnvironment;
+    [SerializeField] private GameObject baseForestBurrowMesh;
+    
+    [Header("Desert Terrain")]
+    [SerializeField] private GameObject baseDesertEnvironment;
+    [SerializeField] private GameObject baseDesertBurrowMesh;
+    
+    [Header("Tundra Terrain")]
+    [SerializeField] private GameObject baseTundraEnvironment;
+    [SerializeField] private GameObject baseTundraBurrowMesh;
+    
+    
     public Unit[] CurrentLevelPrefabUnits => currentLevelPrefabUnits;
     public Projectile[] CurrentLevelPrefabProjectiles => currentLevelPrefabProjectiles;
 
@@ -31,6 +44,9 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
         unitToDestroy.SetValues(enemyBaseStats, 0);
         
         levelSelected = GameManager.Get().CurrentSelectedLevel;
+        
+        if (IsTerrainAssigned() && IsBurrowAssigned())
+            SetCurrentTerrain(levelSelected.TerrainType);
     }
 
     void GameOverWin()
@@ -51,4 +67,56 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     }
 
     public TroopManager GetPlayerTroopManager() => playerTroopManager;
+
+    private void SetCurrentTerrain(TerrainGraphicType terrainGraphicType)
+    {
+
+            
+        DeSelectAllTerrains();
+
+        switch (terrainGraphicType)
+        {
+            case TerrainGraphicType.Desert:
+                baseDesertEnvironment.SetActive(true);
+                baseDesertBurrowMesh.SetActive(true);
+                break;
+            
+            case TerrainGraphicType.Forest:
+                baseForestEnvironment.SetActive(true);
+                baseForestBurrowMesh.SetActive(true);
+                break;
+            
+            case TerrainGraphicType.Snow:
+                baseTundraEnvironment.SetActive(true);
+                baseTundraBurrowMesh.SetActive(true);
+                break;
+            
+            default:
+                baseForestEnvironment.SetActive(true);
+                baseForestBurrowMesh.SetActive(true);
+                break;
+        }
+    }
+
+    private void DeSelectAllTerrains()
+    {
+        baseForestEnvironment.SetActive(false);
+        baseDesertEnvironment.SetActive(false);
+        baseTundraEnvironment.SetActive(false);
+        
+        baseForestBurrowMesh.SetActive(false);
+        baseDesertBurrowMesh.SetActive(false);
+        baseTundraBurrowMesh.SetActive(false);
+    }
+
+    private bool IsTerrainAssigned()
+    {
+        return baseForestEnvironment != null && baseDesertEnvironment != null && baseTundraEnvironment != null;
+    }
+
+    private bool IsBurrowAssigned()
+    {
+        return baseForestBurrowMesh != null && baseDesertBurrowMesh != null && baseTundraBurrowMesh != null;
+    }
+    
 }

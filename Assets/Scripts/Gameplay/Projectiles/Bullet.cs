@@ -5,6 +5,7 @@ public class Bullet : Projectile
 {
 
     private UnitStats attackerStats;
+    private Collider enemyCollider;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -22,11 +23,13 @@ public class Bullet : Projectile
 
     IEnumerator MoveFoward()
     {
-        while (true)
+        while (enemyCollider != null)
         {
+            transform.LookAt(enemyCollider.bounds.center, Vector3.up);
             transform.position += transform.forward * (velocity * Time.deltaTime);
             yield return null;
         }
+        Destroy(gameObject);
     }
 
     public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
@@ -35,7 +38,7 @@ public class Bullet : Projectile
         attackerStats = stats;
         velocity = stats.bulletSpeed;
         damage = stats.damage;
-        transform.LookAt(target.bounds.center, Vector3.up);
+        enemyCollider = target;
     }
 
 }

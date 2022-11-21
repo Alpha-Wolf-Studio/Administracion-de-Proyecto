@@ -1,15 +1,25 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UiButtonSpawnUnit : MonoBehaviour
+public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField] private int index = 0;
-    [SerializeField] private Image buttonImage = default;
-    [SerializeField] private Image overlayImage = default;
-    private TroopManager troopManager;
+    public MilitaryType militaryType;
+    public int idUnit;
+    private int troopAmount;
+
+    [SerializeField] private Image overlayImage;
+    [SerializeField] private TMP_Text textAmount;
 
     private float currentCooldown = -1;
-    private float maxCooldown = 1;
+    private const float maxCooldown = 0.2f;
+
+    public void Set (int amount)
+    {
+        troopAmount = amount;
+        textAmount.text = troopAmount.ToString();
+    }
 
     private void Update()
     {
@@ -25,21 +35,12 @@ public class UiButtonSpawnUnit : MonoBehaviour
         }
     }
 
-    public void UpdateValues(int newIndex, float troopCooldown, TroopManager troopManagerPlayer)
+    public void OnPointerDown (PointerEventData eventData)
     {
-        troopManager = troopManagerPlayer;
-        index = newIndex;
-        maxCooldown = troopCooldown;
-
-        var sprite = GameManager.Get().GetCurrentSprite(index);
-        buttonImage.sprite = sprite;
-        overlayImage.sprite = sprite;
-    }
-
-    public void OnButtonSpawnUnit()
-    {
-        troopManager.OnButtonCreateTroop(index);
+        GamePlayManager.Get().GetPlayerTroopManager().OnButtonCreateTroop(idUnit, militaryType);
         currentCooldown = maxCooldown;
+        troopAmount--;
+        textAmount.text = troopAmount.ToString();
         overlayImage.raycastTarget = true;
     }
 }

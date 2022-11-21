@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UiMilitaryBase : MonoBehaviour
 {
-    private readonly int maxUnitsStatic = 3;
     [SerializeField] private GameObject prefabUnitComponent;
     [SerializeField] private Transform panelContentUnit;
 
@@ -117,19 +116,20 @@ public class UiMilitaryBase : MonoBehaviour
         for (int i = 0; i < unitsFiltered.Count; i++)
         {
             units[i].gameObject.SetActive(true);
-            units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(unitsFiltered[i].IdUnit);
+            units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(unitsFiltered[i].IdUnit, (MilitaryType) mainCategorySelect);
             units[i].UpdateFillLife(unitsFiltered[i].IdUnit, unitsFiltered[i].Life);
         }
 
+        int lenghtUnits = GameManager.Get().unitsStatsLoaded.Count;
         for (int i = unitsFiltered.Count; i < maxUnits; i++)
         {
             units[i].gameObject.SetActive(true);
-            units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(maxUnitsStatic);
+            units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(lenghtUnits, (MilitaryType) mainCategorySelect);
         }
 
         for (int i = 0; i < buttonsUpgrades.Count; i++)
         {
-            buttonsUpgrades[i].SetImage(GameManager.Get().GetCurrentSprite(subCategorySelect));
+            buttonsUpgrades[i].SetImage(GameManager.Get().GetCurrentSprite(subCategorySelect, (MilitaryType) mainCategorySelect));
         }
 
         for (int i = 0; i < modelsUnits.Count; i++)
