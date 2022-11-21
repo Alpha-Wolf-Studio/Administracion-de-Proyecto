@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1a02c0c86fcdcfa4b9daa20081a1f4fb, type: 2}
+      objectReference: {fileID: 2100000, guid: 30654b18897b27343b8213e6573f8ae2, type: 2}
     - target: {fileID: 919132149155446097, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Name
       value: Model_Tundra_Tundra_Back
@@ -255,7 +255,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1a02c0c86fcdcfa4b9daa20081a1f4fb, type: 2}
+      objectReference: {fileID: 2100000, guid: 30654b18897b27343b8213e6573f8ae2, type: 2}
     - target: {fileID: 919132149155446097, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Name
       value: Model_Terrain_Tundra_Front

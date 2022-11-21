@@ -21021,7 +21021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &753229086119611204
 Transform:
   m_ObjectHideFlags: 0
@@ -49321,7 +49321,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 23976866d7f506a4091284ca0ae3d8f3, type: 2}
+      objectReference: {fileID: 2100000, guid: 4f7d9a993bd71114ba490d0fdc7a9bbd, type: 2}
     - target: {fileID: 919132149155446097, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Name
       value: Model_Terrain_Forest_Front
@@ -49399,7 +49399,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 23976866d7f506a4091284ca0ae3d8f3, type: 2}
+      objectReference: {fileID: 2100000, guid: 4f7d9a993bd71114ba490d0fdc7a9bbd, type: 2}
     - target: {fileID: 919132149155446097, guid: c57fd57d1b22ec8469dc42d477c082e8, type: 3}
       propertyPath: m_Name
       value: Model_Terrain_Forest_Back
