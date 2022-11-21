@@ -37,7 +37,7 @@ public class UnitStats
         tempCurrentShape = unitStat.tempCurrentShape;
         tempColor = unitStat.tempColor;
 
-        SetStatsByLevel(unitLevel);
+        SetStatsByLevel(unitLevel, idUnit);
     }
 
     public void ResetBonusStats()
@@ -64,7 +64,6 @@ public class UnitStats
     public float fireRate = 0.8f; // Mejorable
     public float bulletSpeed = 10f;
 
-    public float plusPerLevel = 0.5f;
     public int moneyPerLevel = 100;
 
     [Space(10)] public bool canMove = true;
@@ -75,27 +74,24 @@ public class UnitStats
     public Color tempColor = Color.black;
     // End Temp
 
-    public void SetStatsByLevel(int currentUnitLevel)
+    public void SetStatsByLevel(int currentUnitLevel, int idUnit)
     {
-        life += (life * plusPerLevel) * currentUnitLevel;
-        damage += (damage * plusPerLevel) * currentUnitLevel;
-        //velocity += (velocity * plusPerLevel) * currentUnitLevel;
-        //rangeAttack += (rangeAttack * plusPerLevel) * currentUnitLevel;
-        //fireRate += (fireRate * plusPerLevel) * currentUnitLevel;
+        life += (life * LevelProgression.Life(idUnit)) * currentUnitLevel;
+        damage += (damage * LevelProgression.Damage(idUnit)) * currentUnitLevel;
     }
 
-    public float GetLifeLevel(int currentUnitLevel)
+    public float GetLifeLevel(int currentUnitLevel, int idUnit)
     {
         float newLife = life;
-        newLife += (life * plusPerLevel) * currentUnitLevel;
+        newLife += (life * LevelProgression.Life(idUnit)) * currentUnitLevel;
 
         return newLife;
     }
 
-    public float GetDamageLevel(int currentUnitLevel)
+    public float GetDamageLevel(int currentUnitLevel, int idUnit)
     {
         float newDamage = damage;
-        newDamage += (damage * plusPerLevel) * currentUnitLevel;
+        newDamage += (damage * LevelProgression.Damage(idUnit)) * currentUnitLevel;
 
         return newDamage;
     }

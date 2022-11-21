@@ -51,7 +51,10 @@ MonoBehaviour:
   controlPointData:
     controlLanesFlags: -1
     controlBonusDamage: 0
+    controlBonusRange: 0
     unlockBonusDamage: 0
+    unlockBonusRange: 0
+    unlockHealAmount: 0
   enemiesInControlPoint: []
   controlPointLife: 25
   unlockPointsTransforms:
@@ -121,7 +124,29 @@ MonoBehaviour:
     rangeAttack: 5
     fireRate: 0.8
     bulletSpeed: 10
-    plusPerLevel: 0.5
+    moneyPerLevel: 100
+    canMove: 1
+    canShoot: 1
+    tempCurrentShape: 0
+    tempColor: {r: 0, g: 0, b: 0, a: 1}
+  initialStats:
+    nameUnit: No name
+    idUnit: 0
+    unitType: 0
+    movementType: 0
+    attackType: 0
+    unitsDamageables: 
+    unitsPlusDamage: 
+    unitsRestDamage: 
+    resistanceFactor: 1
+    bonusRange: 0
+    life: 10
+    damage: 1
+    velocity: 2
+    radiusSight: 5
+    rangeAttack: 5
+    fireRate: 0.8
+    bulletSpeed: 10
     moneyPerLevel: 100
     canMove: 1
     canShoot: 1
