@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlPointData:
-    controlLanesFlags: 3
+    controlLanesFlags: -1
+    controlPointLife: 25
     controlBonusDamage: 0
     controlBonusRange: 0
     unlockBonusDamage: 0
