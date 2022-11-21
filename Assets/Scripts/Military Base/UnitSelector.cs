@@ -36,7 +36,7 @@ public class UnitSelector : MonoBehaviour
     {
         btnUnitsSelector[index].onClick.AddListener(() => SetCurrentUnit(index));
         btnUnitsSelector[index].gameObject.SetActive(true);
-        btnUnitsSelector[index].image.sprite = GameManager.Get().GetCurrentSprite(index);
+        btnUnitsSelector[index].image.sprite = GameManager.Get().GetCurrentSprite(index,0);// Todo: Harcodeado el 0
     }
 
     void SetCurrentUnit (int index)

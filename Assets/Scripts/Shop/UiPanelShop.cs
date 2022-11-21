@@ -33,7 +33,7 @@ public class UiPanelShop : MonoBehaviour
         LoadUnitUi(0);
     }
 
-    private void LoadUnitUi(int unitIndex)
+    private void LoadUnitUi (int unitIndex)
     {
         int maxLevelUnits = 10;
         currentUnit = unitIndex;
@@ -44,15 +44,15 @@ public class UiPanelShop : MonoBehaviour
         btnUpgrade.interactable = unitLevel != maxLevelUnits;
         textNameUnit.text = GameManager.Get().unitsStatsLoaded[unitIndex].nameUnit + "( " + unitLevel + " )";
 
-        float unitLife = GameManager.Get().unitsStatsLoaded[unitIndex].GetLifeLevel(unitLevel);
-        float unitNextLife = GameManager.Get().unitsStatsLoaded[unitIndex].GetLifeLevel(unitNextLevel);
-        float unitMaxLife = GameManager.Get().unitsStatsLoaded[unitIndex].GetLifeLevel(maxLevelUnits);
+        float unitLife = GameManager.Get().unitsStatsLoaded[unitIndex].GetLifeLevel(unitLevel, unitIndex);
+        float unitNextLife = GameManager.Get().unitsStatsLoaded[unitIndex].GetLifeLevel(unitNextLevel, unitIndex);
+        float unitMaxLife = GameManager.Get().unitsStatsLoaded[unitIndex].GetLifeLevel(maxLevelUnits, unitIndex);
         Vector3 currMaxLife = new Vector3(unitLife, unitNextLife, unitMaxLife);
         shopStat[0].UpdateUi(unitLife, unitNextLife, unitMaxLife, unitLevel);
 
-        float unitDamage = GameManager.Get().unitsStatsLoaded[unitIndex].GetDamageLevel(unitLevel);
-        float unitNextDamage = GameManager.Get().unitsStatsLoaded[unitIndex].GetDamageLevel(unitNextLevel);
-        float unitMaxDamage = GameManager.Get().unitsStatsLoaded[unitIndex].GetDamageLevel(maxLevelUnits);
+        float unitDamage = GameManager.Get().unitsStatsLoaded[unitIndex].GetDamageLevel(unitLevel, unitIndex);
+        float unitNextDamage = GameManager.Get().unitsStatsLoaded[unitIndex].GetDamageLevel(unitNextLevel, unitIndex);
+        float unitMaxDamage = GameManager.Get().unitsStatsLoaded[unitIndex].GetDamageLevel(maxLevelUnits, unitIndex);
         Vector3 currMaxDamage = new Vector3(unitDamage, unitNextDamage, unitMaxDamage);
         shopStat[1].UpdateUi(unitDamage, unitNextDamage, unitMaxDamage, unitLevel);
     }

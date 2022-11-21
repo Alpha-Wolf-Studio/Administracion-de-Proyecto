@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public static string unitsStatsPath = "UnitStat";
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] private List<SpritesPerArmy> spritesArmy = new List<SpritesPerArmy>();
     [Space(10)]
     [SerializeField] private WorldBuilderData worldData = default;
 
@@ -286,7 +286,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public int GetLevelsUnitsArmy(int i) => playerData.LevelUnitsArmy[i];
     public int GetLevelsUnitsMercenary(int i) => playerData.LevelUnitsMercenary[i];
     public Mesh GetCurrentMesh(int index) => meshes[index];
-    public Sprite GetCurrentSprite(int index) => sprites[index];
+    public Sprite GetCurrentSprite (int idUnit, MilitaryType militaryType) => spritesArmy[(int) militaryType].sprites[idUnit];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
 
     public void HealAllUnits ()
@@ -383,5 +383,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                 return 0;
         }
     }
+}
 
+[System.Serializable]
+class SpritesPerArmy
+{
+    public List<Sprite> sprites = new List<Sprite>();
 }
