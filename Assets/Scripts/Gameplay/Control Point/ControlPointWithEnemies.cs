@@ -20,10 +20,7 @@ public class ControlPointWithEnemies : MonoBehaviour
     [SerializeField] private Transform[] unlockPointsTransforms;
     [SerializeField] private int flagMaterialIndex = 1;
     [SerializeField] private List<Renderer> flagsRenderers;
-    [SerializeField] private float changeFlagSpeed = 1;
-    [SerializeField] private Color enemiesColor;
-    [SerializeField] private Color alliesColor;
-    
+
     [Header("3 Lanes Control Point")]
     [SerializeField] private GameObject baseControlPoint3Lanes;
 
@@ -70,11 +67,6 @@ public class ControlPointWithEnemies : MonoBehaviour
         enemiesInControlPoint = enemies;
         unitsToUnlock = enemies.Count;
 
-        foreach (var rend in flagsRenderers)
-        {
-            rend.materials[flagMaterialIndex].color = enemiesColor;
-        }
-        
         SetCheckpointSize();
 
         unit = GetComponent<Unit>();
@@ -106,8 +98,6 @@ public class ControlPointWithEnemies : MonoBehaviour
                 enemy.UnlockRedirectDamageUnit();
                 enemy.Unit.TakeDamage(float.MaxValue, enemy.Unit.stats);
             }
-            
-            StartCoroutine(ControlChangeCoroutine());
         };
     }
 
@@ -124,26 +114,6 @@ public class ControlPointWithEnemies : MonoBehaviour
         var controlEnemyIndexes = enemiesInControlPoint.Select(enemy => enemy.EnemyIndex).ToList();
         configuration.ControlEnemiesIndex = controlEnemyIndexes;
         return configuration;
-    }
-
-    private IEnumerator ControlChangeCoroutine()
-    {
-        float t = 0;
-        while (t < 1)
-        {
-            foreach (var rend in flagsRenderers)
-            {
-                rend.materials[flagMaterialIndex].color = Color.Lerp(enemiesColor, alliesColor, t);
-            }
-            t += Time.deltaTime * changeFlagSpeed;
-            yield return null;
-        }
-        
-        foreach (var rend in flagsRenderers)
-        {
-            rend.materials[flagMaterialIndex].color = alliesColor;
-        }
-        
     }
 
     private void SetCheckpointSize()
