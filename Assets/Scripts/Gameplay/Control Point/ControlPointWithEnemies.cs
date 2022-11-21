@@ -61,6 +61,7 @@ public class ControlPointWithEnemies : MonoBehaviour
             return;
         
         SetCheckpointSize();
+        controlPointData.controlPointLife = controlPointLife;
     }
 
     public void AssignData(ControlPointData controlData, List<Enemy> enemies)

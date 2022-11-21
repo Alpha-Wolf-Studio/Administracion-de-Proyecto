@@ -4,6 +4,7 @@ using UnityEngine;
 public class ControlPointData
 {
     public LanesFlags controlLanesFlags = default;
+    public float controlPointLife = 25f;
     [Header("Control Bonus")]
     [Range(0, 500)] public float controlBonusDamage = 0;
     [Range(0, 500)] public float controlBonusRange = 0;
