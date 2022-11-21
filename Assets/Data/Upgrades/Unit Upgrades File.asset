@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1617b269a9a5bd94187cb79adecd721b, type: 3}
+  m_Name: Unit Upgrades File
+  m_EditorClassIdentifier: 
+  upgrades:
+  - UnitName: Rifle
+    UnitID: 0
+    UpgradeByLevel:
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 3
+      DamageAmount: 0.07
+    - LifeAmount: 6.9
+      DamageAmount: 0.13845
+    - LifeAmount: 11.97
+      DamageAmount: 0.2214485
+    - LifeAmount: 18.56
+      DamageAmount: 0.32
+  - UnitName: Grenade Launcher
+    UnitID: 1
+    UpgradeByLevel:
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 1.35
+      DamageAmount: 0.32
+    - LifeAmount: 2.8215
+      DamageAmount: 0.6528
+    - LifeAmount: 4.425435
+      DamageAmount: 0.998912
+    - LifeAmount: 6.17
+      DamageAmount: 1.36
+  - UnitName: Tank
+    UnitID: 2
+    UpgradeByLevel:
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 0
+      DamageAmount: 0.1
+    - LifeAmount: 0
+      DamageAmount: 0.201
+    - LifeAmount: 0
+      DamageAmount: 0.30301
+    - LifeAmount: 0
+      DamageAmount: 0.41
+  - UnitName: Balloon
+    UnitID: 3
+    UpgradeByLevel:
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 0
+      DamageAmount: 0
+    - LifeAmount: 0
+      DamageAmount: 0
