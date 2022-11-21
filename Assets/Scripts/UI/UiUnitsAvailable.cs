@@ -8,15 +8,17 @@ public class UiUnitsAvailable : MonoBehaviour
     [SerializeField] private GameObject pfButton;
     private List<GameObject> buttonsLoaded = new List<GameObject>();
 
-    private void Awake()
+    private void Awake ()
     {
         UiSetCustomUnit.Get().OnNewUnitSaved += AddNewButton;
     }
-    void Start()
+
+    void Start ()
     {
         LoadButtons();
     }
-    private void LoadButtons()
+
+    private void LoadButtons ()
     {
         buttonsLoaded.Clear();
         for (int i = 0; i < GameManager.Get().unitsStatsLoaded.Count; i++)
@@ -25,8 +27,8 @@ public class UiUnitsAvailable : MonoBehaviour
             buttonsLoaded.Add(go);
 
             int indexShape = (int) GameManager.Get().unitsStatsLoaded[i].tempCurrentShape;
-            Image goImage= go.GetComponent<Image>();
-            goImage.sprite = GameManager.Get().GetCurrentSprite(indexShape);
+            Image goImage = go.GetComponent<Image>();
+            goImage.sprite = GameManager.Get().GetCurrentSprite(indexShape, 0);
             goImage.color = GameManager.Get().unitsStatsLoaded[i].tempColor;
 
             UiButtonCreatorUnit buttonCreatorUnit = go.GetComponent<UiButtonCreatorUnit>();
@@ -34,14 +36,14 @@ public class UiUnitsAvailable : MonoBehaviour
         }
     }
 
-    private void AddNewButton(int i)
+    private void AddNewButton (int i)
     {
         GameObject go = Instantiate(pfButton, Vector3.zero, Quaternion.identity, transform);
         buttonsLoaded.Add(go);
 
-        int indexShape = (int)GameManager.Get().unitsStatsLoaded[i].tempCurrentShape;
+        int indexShape = (int) GameManager.Get().unitsStatsLoaded[i].tempCurrentShape;
         Image goImage = go.GetComponent<Image>();
-        goImage.sprite = GameManager.Get().GetCurrentSprite(indexShape);
+        goImage.sprite = GameManager.Get().GetCurrentSprite(indexShape, 0);
         goImage.color = GameManager.Get().unitsStatsLoaded[i].tempColor;
 
         UiButtonCreatorUnit buttonCreatorUnit = go.GetComponent<UiButtonCreatorUnit>();

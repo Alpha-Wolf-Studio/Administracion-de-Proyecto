@@ -60,7 +60,7 @@ public class UnitsMilitary : MonoBehaviour
                 break;
         }
 
-        btnUnitsMilitary[index].imageUnit.sprite = GameManager.Get().GetCurrentSprite(idUnit);
+        btnUnitsMilitary[index].imageUnit.sprite = GameManager.Get().GetCurrentSprite(idUnit, militaryType);
     }
 
     void AddNewUnit ()
