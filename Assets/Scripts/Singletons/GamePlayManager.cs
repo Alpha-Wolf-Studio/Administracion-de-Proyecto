@@ -111,12 +111,12 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
 
     private bool IsTerrainAssigned()
     {
-        return baseForestEnvironment.activeSelf && baseDesertEnvironment.activeSelf && baseTundraEnvironment.activeSelf;
+        return baseForestEnvironment != null && baseDesertEnvironment != null && baseTundraEnvironment != null;
     }
 
     private bool IsBurrowAssigned()
     {
-        return baseForestBurrowMesh.activeSelf && baseDesertBurrowMesh.activeSelf && baseTundraBurrowMesh.activeSelf;
+        return baseForestBurrowMesh != null && baseDesertBurrowMesh != null && baseTundraBurrowMesh != null;
     }
     
 }
