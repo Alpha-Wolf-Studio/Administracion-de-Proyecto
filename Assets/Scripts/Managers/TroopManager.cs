@@ -60,10 +60,10 @@ public class TroopManager : MonoBehaviour
         
     }
     
-    public void OnButtonCreateTroop(int tropIndex)
+    public void OnButtonCreateTroop(int tropIndex, MilitaryType militaryType)
     {
-        var prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
-        var prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
+        Unit[] prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
+        Projectile[] prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
 
         if (prefabUnits == null || prefabUnits.Length <= tropIndex)
         {
@@ -91,11 +91,18 @@ public class TroopManager : MonoBehaviour
         //if (arrow) arrow.SetColor(troopColor);                                                                                 // Temporal
 
         UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
-
-        // Todo: Ac� solo agarra el nivel de las Army, debe agarrar el correspondiente
-        unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]);
         
-        var unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
+        switch (militaryType)
+        {
+            case MilitaryType.Army:
+                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]);
+                break;
+            case MilitaryType.Mercenary:
+                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsMercenaryPlayer()[tropIndex]);
+                break;
+        }
+
+        IShootBehaviour unitShootBehaviour = unit.GetComponent<IShootBehaviour>();
         if (unitShootBehaviour != null) 
         {
             Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
