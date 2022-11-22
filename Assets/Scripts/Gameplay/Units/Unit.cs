@@ -17,9 +17,15 @@ public class Unit : MonoBehaviour
     public LanesFlags OwnLaneFlags;
 
     [SerializeField] private List<UnitBehaviour> unitBehaviours = default;
-    [SerializeField] private SkinnedMeshRenderer baseTroopMeshRenderer = default;
+    [SerializeField] private List<SkinnedMeshRenderer> baseTroopMeshRenderers = default;
 
-    public void SetBaseTroopMaterial(Material mat) => baseTroopMeshRenderer.material = mat;
+    public void SetBaseTroopMaterial(Material mat)
+    {
+        foreach (var rend in baseTroopMeshRenderers)
+        {
+            rend.material = mat;
+        }
+    }
 
     private Unit redirectDamageUnit = null;
     

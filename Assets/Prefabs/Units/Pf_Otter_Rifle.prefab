@@ -1922,7 +1922,9 @@ MonoBehaviour:
   AttackLaneFlags: 0
   OwnLaneFlags: 0
   unitBehaviours: []
-  baseTroopMeshRenderer: {fileID: 948333490759813929}
+  baseTroopMeshRenderers:
+  - {fileID: 7290863353377846120}
+  - {fileID: 948333490759813929}
   stats:
     nameUnit: No name
     idUnit: 0
@@ -1941,7 +1943,6 @@ MonoBehaviour:
     rangeAttack: 5
     fireRate: 0.8
     bulletSpeed: 10
-    plusPerLevel: 0.5
     moneyPerLevel: 100
     canMove: 1
     canShoot: 1
@@ -1965,7 +1966,6 @@ MonoBehaviour:
     rangeAttack: 5
     fireRate: 0.8
     bulletSpeed: 10
-    plusPerLevel: 0.5
     moneyPerLevel: 100
     canMove: 1
     canShoot: 1
