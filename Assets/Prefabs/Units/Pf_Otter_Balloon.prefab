@@ -23624,7 +23624,10 @@ MonoBehaviour:
   unitBehaviours:
   - {fileID: 2792718557445937307}
   - {fileID: 1600999654067641830}
-  baseTroopMeshRenderer: {fileID: 1261063069776617664}
+  baseTroopMeshRenderers:
+  - {fileID: 1261063069776617664}
+  - {fileID: 1097039983993414564}
+  - {fileID: 1693605769108308524}
   stats:
     nameUnit: No name
     idUnit: 0
@@ -23643,7 +23646,29 @@ MonoBehaviour:
     rangeAttack: 5
     fireRate: 0.8
     bulletSpeed: 10
-    plusPerLevel: 0.5
+    moneyPerLevel: 100
+    canMove: 1
+    canShoot: 1
+    tempCurrentShape: 0
+    tempColor: {r: 0, g: 0, b: 0, a: 1}
+  initialStats:
+    nameUnit: No name
+    idUnit: 0
+    unitType: 0
+    movementType: 0
+    attackType: 0
+    unitsDamageables: 
+    unitsPlusDamage: 
+    unitsRestDamage: 
+    resistanceFactor: 1
+    bonusRange: 0
+    life: 10
+    damage: 1
+    velocity: 2
+    radiusSight: 5
+    rangeAttack: 5
+    fireRate: 0.8
+    bulletSpeed: 10
     moneyPerLevel: 100
     canMove: 1
     canShoot: 1

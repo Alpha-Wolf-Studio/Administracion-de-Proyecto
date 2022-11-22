@@ -13,6 +13,7 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private LayerMask layerToAttack = default;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private List<Unit> unitsAlive = default;
+    [SerializeField] private Material mercenaryMaterial;
     //[SerializeField] private Color troopColor = Color.blue; // Temporal
 
     private ControlPointData currentControlPointData = new ControlPointData(); 
@@ -57,15 +58,17 @@ public class TroopManager : MonoBehaviour
         {
             SetUnitBonuses(unit);
         }
-        
     }
     
-    public void OnButtonCreateTroop(int tropIndex, MilitaryType militaryType)
+    public void OnButtonCreateTroop(int troopIndex, MilitaryType militaryType, int troopAmount)
     {
+        if (troopAmount <= 0)
+            return;
+        
         Unit[] prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
         Projectile[] prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
 
-        if (prefabUnits == null || prefabUnits.Length <= tropIndex)
+        if (prefabUnits == null || prefabUnits.Length <= troopIndex)
         {
             Debug.LogWarning("No existe el indice de esa tropa!!");
             return;
@@ -74,7 +77,7 @@ public class TroopManager : MonoBehaviour
 
         Vector3 spawnPosition = lanes[selectedLaneIndex].StartPosition;
 
-        Unit unit = Instantiate(prefabUnits[tropIndex], spawnPosition, Quaternion.identity, transform);
+        Unit unit = Instantiate(prefabUnits[troopIndex], spawnPosition, Quaternion.identity, transform);
         unit.gameObject.layer = layerToTroop;
         unit.signDirection = unitsGoToRight ? 1 : -1;
         unit.interactableMask = layerToInteract;
@@ -90,15 +93,16 @@ public class TroopManager : MonoBehaviour
         //var arrow = unit.gameObject.GetComponentInChildren<UITeamArrow>();                                                     // Temporal
         //if (arrow) arrow.SetColor(troopColor);                                                                                 // Temporal
 
-        UnitStats unitStats = GameManager.Get().GetUnitStats(tropIndex);
+        UnitStats unitStats = GameManager.Get().GetUnitStats(troopIndex);
         
         switch (militaryType)
         {
             case MilitaryType.Army:
-                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[tropIndex]);
+                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[troopIndex]);
                 break;
             case MilitaryType.Mercenary:
-                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsMercenaryPlayer()[tropIndex]);
+                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsMercenaryPlayer()[troopIndex]);
+                unit.SetBaseTroopMaterial(mercenaryMaterial);
                 break;
         }
 
