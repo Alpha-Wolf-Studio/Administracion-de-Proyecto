@@ -128,7 +128,7 @@ public class Unit : MonoBehaviour
         Handles.color = Color.yellow;
         Handles.DrawWireDisc(transform.position, Vector3.up, stats.radiusSight);
         Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position, Vector3.up, stats.rangeAttack);
+        Handles.DrawWireDisc(transform.position, Vector3.up, stats.rangeAttack + stats.bonusRange);
     }
 #endif
 }
