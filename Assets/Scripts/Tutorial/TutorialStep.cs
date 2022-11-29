@@ -8,6 +8,9 @@ public class TutorialStep : MonoBehaviour
     [SerializeField] private Transform arrow;
     [SerializeField] private StepType doBehaviour;
 
+    [SerializeField] private string textTutorial;
+    [SerializeField] private OtterAnimation otterAnimation;
+
     private void Start ()
     {
         btnHit.onClick.AddListener(SetToDoneStep);

@@ -5,6 +5,9 @@ public class PlayerData
 {
     private const int diferentsOtters = 4;
 
+    public int tutorialIndex = 0;
+    public int tutorialStep = 0;
+
     public long LastSavedTime;
 
     public int LastLevelComplete = 97;

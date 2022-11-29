@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         StartCoroutine(IncomeExtraGoldCoroutine());
         StartCoroutine(HealUnitsCoroutine());
         Time.timeScale = 1;
+        TutorialManager.Get().StartTutorial(playerData.tutorialIndex, playerData.tutorialStep);
     }
 
     private void OnDestroy() // Todo: Probar que esto funcione cuando android te cierra el proceso
@@ -386,6 +387,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             default:
                 return 0;
         }
+    }
+
+    public void ResetPlayerData()
+    {
+        playerData = new PlayerData();
+        SavePlayerData();
     }
 }
 

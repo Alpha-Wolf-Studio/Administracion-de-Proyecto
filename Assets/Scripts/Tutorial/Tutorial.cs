@@ -7,7 +7,7 @@ public class Tutorial : MonoBehaviour
     public event System.Action OnTutorialDone;
     public int currentStep;
     public List<TutorialStep> steps = new List<TutorialStep>();
-
+    
     private void Awake ()
     {
         for (int i = 0; i < steps.Count; i++)
@@ -18,11 +18,12 @@ public class Tutorial : MonoBehaviour
 
     private void Start ()
     {
-        EnableStep();
+        EnableStep(0);
     }
 
-    public void EnableStep ()
+    public void EnableStep (int loadStep)
     {
+        currentStep = loadStep;
         for (int i = 0; i < steps.Count; i++)
         {
             steps[i].gameObject.SetActive(false);

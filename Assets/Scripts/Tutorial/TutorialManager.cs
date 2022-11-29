@@ -8,22 +8,25 @@ public class TutorialManager : MonoBehaviourSingleton<TutorialManager>
     [SerializeField] private List<Tutorial> tutorials = new List<Tutorial>();
     public bool TestInitialTutorial;
 
-    private void Start ()
+    public override void Awake ()
     {
+        base.Awake();
         for (int i = 0; i < tutorials.Count; i++)
         {
             tutorials[i].OnTutorialDone += NextTutorial;
         }
     }
 
-    void Update ()
+    public void StartTutorial (int index, int step)
     {
-        if (TestInitialTutorial)
+        if (index == -1 || step == -1)
         {
-            TestInitialTutorial = false;
-            tutorials[0].gameObject.SetActive(true);
-            tutorials[0].EnableStep();
+            gameObject.SetActive(false);
+            return;
         }
+
+        tutorials[index].gameObject.SetActive(true);
+        tutorials[index].EnableStep(step);
     }
 
     private void NextTutorial ()
@@ -35,7 +38,7 @@ public class TutorialManager : MonoBehaviourSingleton<TutorialManager>
         else
         {
             tutorials[currentTutorial].gameObject.SetActive(true);
-            tutorials[currentTutorial].EnableStep();
+            tutorials[currentTutorial].EnableStep(0);
         }
     }
 }
