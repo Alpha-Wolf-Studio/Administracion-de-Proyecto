@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UpgradeHealUnits : UpgradeBase
 {
@@ -42,7 +41,6 @@ public class UpgradeHealUnits : UpgradeBase
                 lifeRemaining += (units[i].Life - maxLifeUnit);
             }
 
-            cost = 0;
             if (uiMilitaryBase.upgradeProgression.heal.isMultiplicateLifeAndLevel)
                 cost = (int) ((lifeRemaining * multiplyPerLife) * ((levelUnit + 1) * multiplyPerLevel));
             else

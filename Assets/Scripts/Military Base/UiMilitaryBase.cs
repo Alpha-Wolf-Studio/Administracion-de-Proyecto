@@ -21,6 +21,11 @@ public class UiMilitaryBase : MonoBehaviour
     [SerializeField] private List<UnitData> unitsFiltered;
     [SerializeField] private List<GameObject> modelsUnits = new List<GameObject>();
 
+    private void Awake ()
+    {
+        HealthRecoverCalculator.OnUnitsHeal += UpdateUnitsFiltered;
+    }
+
     private void Start ()
     {
         for (int i = 0; i < buttonsUpgrades.Count; i++)
@@ -49,6 +54,11 @@ public class UiMilitaryBase : MonoBehaviour
         SetSelectable();
         UpdateUnitsFiltered();
         UpdateUpgrades();
+    }
+
+    private void OnDestroy ()
+    {
+        HealthRecoverCalculator.OnUnitsHeal -= UpdateUnitsFiltered;
     }
 
     private void OnPressMainCategory (int index)

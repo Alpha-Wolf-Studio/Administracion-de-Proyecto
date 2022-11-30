@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class UpgradeBuySlot : UpgradeBase
 {
     public override void UpdateCost ()

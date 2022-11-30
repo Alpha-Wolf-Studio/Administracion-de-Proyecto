@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class UpgradeLevelUpUnit : UpgradeBase
 {
     public override void UpdateCost ()
