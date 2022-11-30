@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
 {
     public event Action OnUpdateUpgrade;
+    public bool isInited;
     private Image image;
     protected UiMilitaryBase uiMilitaryBase;
     [SerializeField] protected TMP_Text textCost;
@@ -21,6 +22,7 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
 
     public void Initialize (UiMilitaryBase uiMilitaryBase)
     {
+        isInited = true;
         this.uiMilitaryBase = uiMilitaryBase;
         UpdateCost();
     }

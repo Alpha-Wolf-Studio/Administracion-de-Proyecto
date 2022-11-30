@@ -19,7 +19,8 @@ namespace PrivateClassUpgrades
     {
         public int armyMultiplyPerLevel;
         public int armyMultiplyPerLevelPlus;
-        [Space(5)] public int mercenaryMultiplyPerLevel;
+        [Space(5)] 
+        public int mercenaryMultiplyPerLevel;
         public int mercenaryMultiplyPerLevelPlus;
     }
 
@@ -28,9 +29,11 @@ namespace PrivateClassUpgrades
     {
         public int armyMultiplyPerLevel;
         public int armyMultiplyPerLife;
-        [Space(5)] public int mercenaryMultiplyPerLevel;
+        [Space(5)] 
+        public int mercenaryMultiplyPerLevel;
         public int mercenaryMultiplyPerLife;
-        [Space(5)] public bool isMultiplicateLifeAndLevel;
+        [Space(5)] 
+        public bool isMultiplicateLifeAndLevel;
     }
 
     [System.Serializable]
@@ -38,13 +41,15 @@ namespace PrivateClassUpgrades
     {
         public int baseMultiplyArmy;
         public int baseMultiplyMercenary;
-        [Space(5)] public int constMultiplicator;
+        [Space(5)] 
+        public int constMultiplicator;
     }
 
     [System.Serializable]
     public class LvlUp
     {
         public int armyLevelMultiplicator;
-        [Space(5)] public int mercenaryLevelMultiplicator;
+        [Space(5)] 
+        public int mercenaryLevelMultiplicator;
     }
 }

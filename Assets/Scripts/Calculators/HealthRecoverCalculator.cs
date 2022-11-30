@@ -19,7 +19,6 @@ public static class HealthRecoverCalculator
 
     public static void RecalculateHealth(PlayerData playerData, int secondsDifference)
     {
-
         float healAmount = HealAmountPerSeconds * secondsDifference;
 
         foreach (var unitData in playerData.DataArmies)

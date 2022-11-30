@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Upgrades Progression
   m_EditorClassIdentifier: 
   expand:
-    armyMultiplyPerLevel: 10
-    armyMultiplyPerLevelPlus: 5
+    armyMultiplyPerLevel: 500
+    armyMultiplyPerLevelPlus: 500
     mercenaryMultiplyPerLevel: 15
     mercenaryMultiplyPerLevelPlus: 5
   heal:
     armyMultiplyPerLevel: 10
-    armyMultiplyPerLife: 10
-    mercenaryMultiplyPerLevel: 15
+    armyMultiplyPerLife: 2
+    mercenaryMultiplyPerLevel: 3
     mercenaryMultiplyPerLife: 5
     isMultiplicateLifeAndLevel: 0
   buy:

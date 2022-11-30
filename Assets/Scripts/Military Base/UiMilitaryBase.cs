@@ -154,13 +154,16 @@ public class UiMilitaryBase : MonoBehaviour
         {
             modelsUnits[i].SetActive(i == subCategorySelect);
         }
+
+        UpdateUpgrades();
     }
 
     void UpdateUpgrades ()
     {
         for (int i = 0; i < buttonsUpgrades.Count; i++)
         {
-            buttonsUpgrades[i].UpdateCost();
+            if (buttonsUpgrades[i].isInited)
+                buttonsUpgrades[i].UpdateCost();
         }
     }
 

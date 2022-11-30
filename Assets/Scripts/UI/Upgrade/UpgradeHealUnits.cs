@@ -54,14 +54,15 @@ public class UpgradeHealUnits : UpgradeBase
         {
             cost = 0;
         }
-            textCost.text = cost.ToString();
+
+        textCost.text = cost.ToString();
     }
 
     protected override void BuyUpgrade ()
     {
         if (uiMilitaryBase.GetUnitsFiltered().Count > 0)
         {
-            bool wasSuccessful = GameManager.Get().HealAllUnitsFiltered(cost, uiMilitaryBase.GetUnitsFiltered());
+            bool wasSuccessful = GameManager.Get().HealAllUnitsFiltered(cost, uiMilitaryBase.GetUnitsFiltered(), (MilitaryType) uiMilitaryBase.mainCategorySelect);
         }
     }
 }

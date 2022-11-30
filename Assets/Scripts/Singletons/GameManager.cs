@@ -294,7 +294,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Sprite GetCurrentSprite (int idUnit, MilitaryType militaryType) => spritesArmy[(int) militaryType].sprites[idUnit];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
 
-    public bool HealAllUnitsFiltered (int cost, List<UnitData> unitsFiltered)
+    public bool HealAllUnitsFiltered (int cost, List<UnitData> unitsFiltered, MilitaryType militaryType)
     {
         if (cost > playerData.CurrentGold)
             return false;
@@ -303,9 +303,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         if (unitsFiltered != null && unitsFiltered.Count > 0)
         {
             int idUnit = unitsFiltered[0].IdUnit;
+            float maxLife = GameManager.Get().GetUnitStats(idUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(idUnit, militaryType), idUnit);
             for (int i = 0; i < unitsFiltered.Count; i++)
             {
-                unitsFiltered[i].Life = unitsStatsLoaded[idUnit].life;
+                unitsFiltered[i].Life = maxLife;
             }
 
             SavePlayerData();
