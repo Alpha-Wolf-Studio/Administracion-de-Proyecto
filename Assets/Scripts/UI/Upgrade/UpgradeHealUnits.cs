@@ -38,7 +38,7 @@ public class UpgradeHealUnits : UpgradeBase
 
             for (int i = 0; i < units.Count; i++)
             {
-                lifeRemaining += (units[i].Life - maxLifeUnit);
+                lifeRemaining += (maxLifeUnit - units[i].Life);
             }
 
             if (uiMilitaryBase.upgradeProgression.heal.isMultiplicateLifeAndLevel)
@@ -49,12 +49,12 @@ public class UpgradeHealUnits : UpgradeBase
             cost = (int) ((lifeRemaining * multiplyPerLife) * (levelUnit * multiplyPerLevel));
             if (lifeRemaining < 1)
                 cost = 0;
-            textCost.text = cost.ToString();
         }
         else
         {
-            textCost.text = "0";
+            cost = 0;
         }
+            textCost.text = cost.ToString();
     }
 
     protected override void BuyUpgrade ()

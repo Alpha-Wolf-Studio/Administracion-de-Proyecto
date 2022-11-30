@@ -417,6 +417,19 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
     }
 
+    public int GetlevelUnit (int idUnit, MilitaryType militaryType)
+    {
+        switch (militaryType)
+        {
+            case MilitaryType.Army:
+                return playerData.LevelUnitsArmy[idUnit];
+            case MilitaryType.Mercenary:
+                return playerData.LevelUnitsMercenary[idUnit];
+            default:
+                return 0;
+        }
+    }
+
     public void ResetPlayerData()
     {
         playerData = new PlayerData();

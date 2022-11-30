@@ -48,17 +48,17 @@ public class UnitsMilitary : MonoBehaviour
         btnUnitsMilitary[index].gameObject.SetActive(true);
 
         int idUnit = 0;
-        switch (militaryType)
-        {
-            case MilitaryType.Army:
-                idUnit = GameManager.Get().GetUnitsArmy()[index].IdUnit;
-                btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsArmy()[index].Life);
-                break;
-            case MilitaryType.Mercenary:
-                idUnit = GameManager.Get().GetUnitsMercenary()[index].IdUnit;
-                btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsMercenary()[index].Life);
-                break;
-        }
+        //switch (militaryType)
+        //{
+        //    case MilitaryType.Army:
+        //        idUnit = GameManager.Get().GetUnitsArmy()[index].IdUnit;
+        //        btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsArmy()[index].Life);
+        //        break;
+        //    case MilitaryType.Mercenary:
+        //        idUnit = GameManager.Get().GetUnitsMercenary()[index].IdUnit;
+        //        btnUnitsMilitary[index].UpdateFillLife(idUnit, GameManager.Get().GetUnitsMercenary()[index].Life);
+        //        break;
+        //}
 
         btnUnitsMilitary[index].imageUnit.sprite = GameManager.Get().GetCurrentSprite(idUnit, militaryType);
     }
