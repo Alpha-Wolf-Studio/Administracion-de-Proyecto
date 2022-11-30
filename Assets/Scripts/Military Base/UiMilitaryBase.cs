@@ -8,16 +8,17 @@ public class UiMilitaryBase : MonoBehaviour
     [SerializeField] private GameObject prefabUnitComponent;
     [SerializeField] private Transform panelContentUnit;
 
-    [Space(15)] [SerializeField] private List<Button> mainCategories = new List<Button>();
+    [Space(15)] 
+    [SerializeField] private List<Button> mainCategories = new List<Button>();
     [SerializeField] private List<Button> subCategories = new List<Button>();
     [SerializeField] private List<UnitMilitaryComponent> units = new List<UnitMilitaryComponent>();
 
     public int mainCategorySelect;
     public int subCategorySelect;
 
+    public UpgradeProgression upgradeProgression;
     [SerializeField] private List<UpgradeBase> buttonsUpgrades = new List<UpgradeBase>();
     [SerializeField] private List<UnitData> unitsFiltered;
-
     [SerializeField] private List<GameObject> modelsUnits = new List<GameObject>();
 
     private void Start ()
@@ -47,6 +48,7 @@ public class UiMilitaryBase : MonoBehaviour
 
         SetSelectable();
         UpdateUnitsFiltered();
+        UpdateUpgrades();
     }
 
     private void OnPressMainCategory (int index)
@@ -54,6 +56,7 @@ public class UiMilitaryBase : MonoBehaviour
         mainCategorySelect = index;
         SetSelectable();
         UpdateUnitsFiltered();
+        UpdateUpgrades();
     }
 
     private void OnPressSubCategories (int index)
@@ -61,6 +64,7 @@ public class UiMilitaryBase : MonoBehaviour
         subCategorySelect = index;
         SetSelectable();
         UpdateUnitsFiltered();
+        UpdateUpgrades();
     }
 
     private void SetSelectable ()
@@ -137,4 +141,14 @@ public class UiMilitaryBase : MonoBehaviour
             modelsUnits[i].SetActive(i == subCategorySelect);
         }
     }
+
+    void UpdateUpgrades ()
+    {
+        for (int i = 0; i < buttonsUpgrades.Count; i++)
+        {
+            buttonsUpgrades[i].UpdateCost();
+        }
+    }
+
+    public List<UnitData> GetUnitsFiltered () => unitsFiltered;
 }

@@ -294,23 +294,33 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Sprite GetCurrentSprite (int idUnit, MilitaryType militaryType) => spritesArmy[(int) militaryType].sprites[idUnit];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
 
-    public void HealAllUnits ()
+    public bool HealAllUnitsFiltered (int cost, List<UnitData> unitsFiltered)
     {
-        foreach (UnitData army in playerData.DataArmies)
+        if (cost > playerData.CurrentGold)
+            return false;
+        playerData.CurrentGold -= cost;
+
+        if (unitsFiltered != null && unitsFiltered.Count > 0)
         {
-            army.Life = unitsStatsLoaded[army.IdUnit].life;
-        }
-        foreach (UnitData mercenaries in playerData.DataMercenaries)
-        {
-            mercenaries.Life = unitsStatsLoaded[mercenaries.IdUnit].life;
+            int idUnit = unitsFiltered[0].IdUnit;
+            for (int i = 0; i < unitsFiltered.Count; i++)
+            {
+                unitsFiltered[i].Life = unitsStatsLoaded[idUnit].life;
+            }
+
+            SavePlayerData();
+            OnHealtAllUnits?.Invoke();
         }
 
-        SavePlayerData();
-        OnHealtAllUnits?.Invoke();
+        return true;
     }
 
-    public void BuyArmy (int idUnit)
+    public bool BuyArmy (int cost, int idUnit)
     {
+        if (cost > playerData.CurrentGold)
+            return false;
+        playerData.CurrentGold -= cost;
+
         UnitData[] newUnitData = new UnitData[playerData.DataArmies.Length + 1];
 
         for (int i = 0; i < playerData.DataArmies.Length; i++)
@@ -322,10 +332,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         playerData.DataArmies = newUnitData;
         SavePlayerData();
         OnAddUnitArmy?.Invoke();
+
+        return true;
     }
 
-    public void BuyMercenary (int idUnit)
+    public bool BuyMercenary (int cost, int idUnit)
     {
+        if (cost > playerData.CurrentGold)
+            return false;
+        playerData.CurrentGold -= cost;
+
         UnitData[] newUnitData = new UnitData[playerData.DataMercenaries.Length + 1];
 
         for (int i = 0; i < playerData.DataMercenaries.Length; i++)
@@ -338,10 +354,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         playerData.DataMercenaries = newUnitData;
         SavePlayerData();
         OnAddUnitMercenary?.Invoke();
+        return true;
     }
 
-    public void LevelUpUnit (int idUnit, MilitaryType militaryType)
+    public bool LevelUpUnit (int cost, int idUnit, MilitaryType militaryType)
     {
+        if (cost > playerData.CurrentGold)
+            return false;
+        playerData.CurrentGold -= cost;
+
         switch (militaryType)
         {
             case MilitaryType.Army:
@@ -354,13 +375,18 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
         SavePlayerData();
         OnAddLevelUnit?.Invoke();
+        return true;
     }
 
     public UnitData[] GetUnitsArmy () => playerData.DataArmies;
     public UnitData[] GetUnitsMercenary() => playerData.DataMercenaries;
 
-    public bool BuySlot (int idUnit, MilitaryType militaryType)
+    public bool BuySlot (int cost, int idUnit, MilitaryType militaryType)
     {
+        if (cost > playerData.CurrentGold)
+            return false;
+        playerData.CurrentGold -= cost;
+
         switch (militaryType)
         {
             case MilitaryType.Army:
@@ -373,6 +399,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                 Debug.LogWarning("No existe este Military Type!");
                 return false;
         }
+
+        SavePlayerData();
         return true;
     }
 
