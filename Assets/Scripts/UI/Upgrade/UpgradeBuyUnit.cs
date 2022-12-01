@@ -37,13 +37,14 @@ public class UpgradeBuyUnit : UpgradeBase
             switch ((MilitaryType) uiMilitaryBase.mainCategorySelect)
             {
                 case MilitaryType.Army:
-                    wasSuccessful = GameManager.Get().BuyArmy(cost, uiMilitaryBase.subCategorySelect);
+                    wasSuccessful = GameManager.Get().BuyArmy(cost, uiMilitaryBase.subCategorySelect, MilitaryType.Army);
                     break;
                 case MilitaryType.Mercenary:
-                    wasSuccessful = GameManager.Get().BuyMercenary(cost, uiMilitaryBase.subCategorySelect);
+                    wasSuccessful = GameManager.Get().BuyMercenary(cost, uiMilitaryBase.subCategorySelect, MilitaryType.Mercenary);
                     break;
             }
-        }
 
+            SetTryBuy(wasSuccessful);
+        }
     }
 }

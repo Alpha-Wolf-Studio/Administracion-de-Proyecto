@@ -33,5 +33,6 @@ public class UpgradeBuySlot : UpgradeBase
     protected override void BuyUpgrade ()
     {
         bool wasSuccessful = GameManager.Get().BuySlot(cost, uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
+        SetTryBuy(wasSuccessful);
     }
 }

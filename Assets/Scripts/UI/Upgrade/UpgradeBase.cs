@@ -13,6 +13,8 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
     [SerializeField] protected TMP_Text textCost;
     protected int cost;
     private Animator animator;
+    private static readonly int Successful = Animator.StringToHash("Successful");
+    private static readonly int Fail = Animator.StringToHash("Fail");
 
     private void Awake ()
     {
@@ -38,4 +40,16 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
     public void SetImage (Sprite sprite) => image.sprite = sprite;
 
     protected abstract void BuyUpgrade ();
+
+    protected void SetTryBuy (bool wasSuccessfulBuy)
+    {
+        if (wasSuccessfulBuy)
+        {
+            animator.SetTrigger(Successful);
+        }
+        else
+        {
+            animator.SetTrigger(Fail);
+        }
+    }
 }

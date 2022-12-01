@@ -63,6 +63,7 @@ public class UpgradeHealUnits : UpgradeBase
         if (uiMilitaryBase.GetUnitsFiltered().Count > 0)
         {
             bool wasSuccessful = GameManager.Get().HealAllUnitsFiltered(cost, uiMilitaryBase.GetUnitsFiltered(), (MilitaryType) uiMilitaryBase.mainCategorySelect);
+            SetTryBuy(wasSuccessful);
         }
     }
 }
