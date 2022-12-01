@@ -316,19 +316,20 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public bool BuyArmy (int cost, int idUnit)
+    public bool BuyArmy (int cost, int idUnit, MilitaryType militaryType)
     {
         if (cost > playerData.CurrentGold)
             return false;
         playerData.CurrentGold -= cost;
 
         UnitData[] newUnitData = new UnitData[playerData.DataArmies.Length + 1];
+        float maxLife = GameManager.Get().GetUnitStats(idUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(idUnit, militaryType), idUnit);
 
         for (int i = 0; i < playerData.DataArmies.Length; i++)
         {
             newUnitData[i] = playerData.DataArmies[i];
         }
-        newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, unitsStatsLoaded[idUnit].life);
+        newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, maxLife);
 
         playerData.DataArmies = newUnitData;
         SavePlayerData();
@@ -337,20 +338,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public bool BuyMercenary (int cost, int idUnit)
+    public bool BuyMercenary (int cost, int idUnit, MilitaryType militaryType)
     {
         if (cost > playerData.CurrentGold)
             return false;
         playerData.CurrentGold -= cost;
 
         UnitData[] newUnitData = new UnitData[playerData.DataMercenaries.Length + 1];
+        float maxLife = GameManager.Get().GetUnitStats(idUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(idUnit, militaryType), idUnit);
 
         for (int i = 0; i < playerData.DataMercenaries.Length; i++)
         {
             newUnitData[i] = playerData.DataMercenaries[i];
         }
 
-        newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, unitsStatsLoaded[idUnit].life);
+        newUnitData[newUnitData.Length - 1] = new UnitData(idUnit, unitsStatsLoaded[idUnit].unitType, maxLife);
 
         playerData.DataMercenaries = newUnitData;
         SavePlayerData();
