@@ -7,6 +7,7 @@ public class TutorialManager : MonoBehaviourSingleton<TutorialManager>
     [SerializeField] private int currentTutorial;
     [SerializeField] private List<Tutorial> tutorials = new List<Tutorial>();
     public bool TestInitialTutorial;
+    [SerializeField] private GameObject tutorialParent;
 
     public override void Awake ()
     {

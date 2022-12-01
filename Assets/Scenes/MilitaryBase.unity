@@ -921,9 +921,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnGoToCampaing: {fileID: 2037149570}
   btnBuyUnit: {fileID: 2807585022306957218}
-  btnBuySlot: {fileID: 0}
-  btnUpgradeUnit: {fileID: 0}
-  btnHealthUnits: {fileID: 0}
+  btnBuySlot: {fileID: 2807585022306957221}
+  btnUpgradeUnit: {fileID: 2807585022306957220}
+  btnHealthUnits: {fileID: 2807585022306957219}
   btnFilterMercenary: {fileID: 1277221193}
   btnFilterGranade: {fileID: 729225562}
 --- !u!1001 &494551741
@@ -4745,6 +4745,39 @@ MonoBehaviour:
 --- !u!114 &2807585022306957218 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1799102924, guid: 66c223ee2f5619a46b070a9c7e51b32e, type: 3}
+  m_PrefabInstance: {fileID: 2807585022306957207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2807585022306957219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4650738300815363984, guid: 66c223ee2f5619a46b070a9c7e51b32e, type: 3}
+  m_PrefabInstance: {fileID: 2807585022306957207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2807585022306957220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3020087996863344380, guid: 66c223ee2f5619a46b070a9c7e51b32e, type: 3}
+  m_PrefabInstance: {fileID: 2807585022306957207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2807585022306957221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4729568251775423395, guid: 66c223ee2f5619a46b070a9c7e51b32e, type: 3}
   m_PrefabInstance: {fileID: 2807585022306957207}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

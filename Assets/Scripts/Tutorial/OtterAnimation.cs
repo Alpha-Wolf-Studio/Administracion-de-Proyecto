@@ -6,20 +6,55 @@ using UnityEngine.UI;
 
 public class OtterAnimation : MonoBehaviour
 {
+    public Action OnEndWriting;
     private static readonly int AnimTypeOtter = Animator.StringToHash("TutoAnimTypeOtter");
     [SerializeField] private Animator animator;
-    private TutoAnimTypeOtter tutoAnimTypeOtter = TutoAnimTypeOtter.Spawn;
-    [SerializeField] private float timeTextCompleted = 1f;
+    [SerializeField] private TMP_Text textTutorial;
+    [SerializeField] private float maxTimeTextCompleted = 5f;
     [SerializeField] private string textInBoxTutorial;
-    private TMP_Text textTutorial;
+
+    private TutoAnimTypeOtter tutoAnimTypeOtter = TutoAnimTypeOtter.Spawn;
     private IEnumerator coroutineWritingText;
-    
+    private float timeTextCompleted;
+
+    [SerializeField] private float maxCountTimeIdle = 5.0f;
+    private float countTimeIdle;
+    [SerializeField] private float maxCountTimeAngry= 3.0f;
+    private float countTimeAngry;
 
     private void OnEnable ()
     {
-        SetAnimation(TutoAnimTypeOtter.Spawn);
-
+        timeTextCompleted = maxTimeTextCompleted;
         SetCoroutineWritingText(true);
+    }
+
+    private void Update ()
+    {
+        switch (tutoAnimTypeOtter)
+        {
+            case TutoAnimTypeOtter.Spawn:
+                break;
+            case TutoAnimTypeOtter.Idle:
+                countTimeIdle += Time.deltaTime;
+                if (countTimeIdle > maxCountTimeIdle)
+                {
+                    SetAnimation(TutoAnimTypeOtter.Angry);
+                    countTimeIdle = 0;
+                }
+                break;
+            case TutoAnimTypeOtter.Speak:
+                break;
+            case TutoAnimTypeOtter.Angry:
+                countTimeAngry += Time.deltaTime;
+                if (countTimeAngry > maxCountTimeAngry)
+                {
+                    SetAnimation(TutoAnimTypeOtter.Idle);
+                    countTimeAngry = 0;
+                }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public void SetAnimation (TutoAnimTypeOtter animTypeOtter)
@@ -42,19 +77,26 @@ public class OtterAnimation : MonoBehaviour
 
     private IEnumerator WritingText ()
     {
+        yield return new WaitForSeconds(0.5f);
         int maxLenghtString = textInBoxTutorial.Length;
         SetAnimation(TutoAnimTypeOtter.Speak);
 
         while (timeTextCompleted > 0)
         {
             timeTextCompleted -= Time.deltaTime;
-            float lerp = (1 - timeTextCompleted) * maxLenghtString;
+            float lerp = (maxTimeTextCompleted - timeTextCompleted) * maxLenghtString/ maxTimeTextCompleted;
             textTutorial.text = textInBoxTutorial.Substring(0, (int) lerp);
+            yield return null;
         }
 
         SetAnimation(TutoAnimTypeOtter.Idle);
         textTutorial.text = textInBoxTutorial;
-        yield return null;
+        OnEndWriting?.Invoke();
+    }
+
+    public void EndWriting ()
+    {
+        timeTextCompleted = 0;
     }
 }
 

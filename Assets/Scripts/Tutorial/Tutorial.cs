@@ -30,6 +30,8 @@ public class Tutorial : MonoBehaviour
         }
 
         steps[currentStep].gameObject.SetActive(true);
+
+        steps[currentStep].otterAnimation.SetAnimation(currentStep == 0 ? TutoAnimTypeOtter.Spawn : TutoAnimTypeOtter.Speak);
     }
 
     private void NextStep ()
