@@ -1,5 +1,7 @@
 {
-    "LastSavedTime": 1669050947159,
+    "tutorialIndex": -1,
+    "tutorialStep": -1,
+    "LastSavedTime": 1669072873112,
     "LastLevelComplete": 16,
     "CampaingStatus": [
         0,
@@ -228,7 +230,7 @@
         0,
         0
     ],
-    "CurrentGold": 11039935,
+    "CurrentGold": 11258895,
     "CurrentDiamond": 53,
     "PlayerName": "Sauron",
     "LevelUnitsArmy": [

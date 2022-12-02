@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Cheats : MonoBehaviour
 {
-    [SerializeField] private Button btnActiveTutorial;
+    [SerializeField] private Button btnResetStats;
     [SerializeField] private Button btnCheatOpener;
     [SerializeField] private Button btnGold;
     [SerializeField] private Button btnDiam;
@@ -22,7 +21,7 @@ public class Cheats : MonoBehaviour
 
     private void Start ()
     {
-        btnActiveTutorial.onClick.AddListener(ActivateTutorial);
+        btnResetStats.onClick.AddListener(ResetStats);
         panelCheats.SetActive(isOpen);
 
         btnCheatOpener.onClick.AddListener(PanelCheats);
@@ -65,8 +64,10 @@ public class Cheats : MonoBehaviour
         playerCampaignManager.CompleteCurrentLevel();
     }
 
-    void ActivateTutorial ()
+    void ResetStats ()
     {
+        GameManager.Get().ResetPlayerData();
+        CustomSceneManager.Get().LoadScene("Campaign");
         TutorialManager.Get().TestInitialTutorial = true;
     }
 }

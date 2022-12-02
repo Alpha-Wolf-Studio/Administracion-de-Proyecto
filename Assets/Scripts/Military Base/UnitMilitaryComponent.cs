@@ -13,7 +13,7 @@ public class UnitMilitaryComponent : MonoBehaviour
         GameManager.Get().OnHealtAllUnits += SetFullLife;
     }
 
-    private void SetFullLife()
+    private void SetFullLife ()
     {
         imageFillLife.fillAmount = 1;
     }
@@ -23,10 +23,9 @@ public class UnitMilitaryComponent : MonoBehaviour
         imageContentLife.SetActive(isEnable);
     }
 
-    public void UpdateFillLife (int idUnit, float currentLife)
+    public void UpdateFillLife (int maxLife, float currentLife)
     {
         imageContentLife.SetActive(true);
-        float maxLife = imageFillLife.fillAmount = GameManager.Get().unitsStatsLoaded[idUnit].life;
         imageFillLife.fillAmount = currentLife / maxLife;
     }
 }

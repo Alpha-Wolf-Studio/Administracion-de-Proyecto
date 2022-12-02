@@ -60,11 +60,8 @@ public class TroopManager : MonoBehaviour
         }
     }
     
-    public void OnButtonCreateTroop(int troopIndex, MilitaryType militaryType, int troopAmount)
+    public void OnButtonCreateTroop(int troopIndex, MilitaryType militaryType)
     {
-        if (troopAmount <= 0)
-            return;
-        
         Unit[] prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
         Projectile[] prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
 

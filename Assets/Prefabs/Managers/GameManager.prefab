@@ -64,6 +64,8 @@ MonoBehaviour:
   worldData: {fileID: 11400000, guid: 5da217c790ee20d40b0f5317af3f53c1, type: 2}
   unitUpgrades: {fileID: 11400000, guid: 000ec387cf7017e478458644b662c682, type: 2}
   playerData:
+    tutorialIndex: 0
+    tutorialStep: 0
     LastSavedTime: 0
     LastLevelComplete: 0
     CampaingStatus: 
