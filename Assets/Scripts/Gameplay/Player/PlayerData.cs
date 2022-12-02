@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -10,12 +11,12 @@ public class PlayerData
 
     public long LastSavedTime;
 
-    public int LastLevelComplete = 97;
-    public int[] CampaingStatus;
+    public int LastLevelComplete = 0;
+    public int[] CampaingStatus = Array.Empty<int>();
 
-    public int CurrentGold;
-    public int CurrentDiamond;
-    public string PlayerName;
+    public int CurrentGold = 100;
+    public int CurrentDiamond = 1;
+    public string PlayerName = "None";
 
     public int[] LevelUnitsArmy = new int[diferentsOtters];
     public int[] LevelUnitsMercenary = new int[diferentsOtters];
@@ -23,8 +24,8 @@ public class PlayerData
     public int[] maxAmountArmy = new int[diferentsOtters];
     public int[] maxAmountMercenary = new int[diferentsOtters];
 
-    public UnitData[] DataArmies;
-    public UnitData[] DataMercenaries;
+    public UnitData[] DataArmies = Array.Empty<UnitData>();
+    public UnitData[] DataMercenaries = Array.Empty<UnitData>();
 
     public void SaveUnitsArmy (List<Unit> units)
     {
