@@ -37,7 +37,7 @@ public static class GoldCalculator
             if ((TerrainManager.TerrainState)playerData.CampaingStatus[i] == TerrainManager.TerrainState.Unlocked)
             {
 
-                var levelData = worldData.LevelsData.GetLevelData(i);
+                var levelData = worldData.LevelsData.GetLevelDataByFalseIndex(i);
                 if (levelData != null)
                 {
                     _incomeGold += levelData.GoldIncome;
