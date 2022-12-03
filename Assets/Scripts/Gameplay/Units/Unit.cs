@@ -8,6 +8,7 @@ using UnityEditor;
 public class Unit : MonoBehaviour
 {
     public Action<float, float> OnTakeDamage;
+    public Action<float, float> OnHeal;
     public Action OnDie;
     public Action OnDamageRedirect;
     public LayerMask enemyMask;
@@ -95,6 +96,7 @@ public class Unit : MonoBehaviour
         stats.life += amount;
         if (stats.life > initialStats.life)
             stats.life = initialStats.life;
+        OnHeal?.Invoke(stats.life, initialStats.life);
     }
     
     public void TakeDamage(float damage, UnitStats attackerStats)
