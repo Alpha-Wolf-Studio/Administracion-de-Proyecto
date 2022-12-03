@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7373448726363681753}
   - component: {fileID: 953862116810311074}
   m_Layer: 5
-  m_Name: Button Active Tutorial
+  m_Name: Button ResetStats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00078d02c19d73e4d8a67420ff79e615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnActiveTutorial: {fileID: 953862116810311074}
+  btnResetStats: {fileID: 953862116810311074}
   btnCheatOpener: {fileID: 3733661277874497581}
   btnGold: {fileID: 3733661278042463536}
   btnDiam: {fileID: 3733661278717519454}
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Active Tutorial
+  m_text: Reset Stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

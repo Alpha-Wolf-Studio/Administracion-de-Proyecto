@@ -1,6 +1,8 @@
 {
-    "LastSavedTime": 1669050947159,
-    "LastLevelComplete": 16,
+    "tutorialIndex": 0,
+    "tutorialStep": 0,
+    "LastSavedTime": 1670079489568,
+    "LastLevelComplete": 0,
     "CampaingStatus": [
         0,
         0,
@@ -97,7 +99,7 @@
         0,
         0,
         0,
-        0,
+        1,
         0,
         0,
         0,
@@ -228,27 +230,31 @@
         0,
         0
     ],
-    "CurrentGold": 11039935,
-    "CurrentDiamond": 53,
-    "PlayerName": "Sauron",
+    "CurrentGold": 100,
+    "CurrentDiamond": 1,
+    "PlayerName": "None",
     "LevelUnitsArmy": [
-        1,
+        0,
+        0,
         0,
         0
     ],
     "LevelUnitsMercenary": [
         0,
-        2,
+        0,
+        0,
         0
     ],
     "maxAmountArmy": [
-        12,
-        5,
+        1,
+        1,
+        1,
         0
     ],
     "maxAmountMercenary": [
-        8,
-        6,
+        1,
+        1,
+        1,
         0
     ],
     "DataArmies": [
@@ -258,86 +264,21 @@
             "Life": 10.0
         },
         {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
             "IdUnit": 1,
             "UnitType": 1,
             "Life": 15.0
         },
         {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
+            "IdUnit": 2,
+            "UnitType": 4,
+            "Life": 30.0
         }
     ],
     "DataMercenaries": [
         {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
+            "IdUnit": 2,
+            "UnitType": 4,
+            "Life": 30.0
         },
         {
             "IdUnit": 1,
@@ -348,16 +289,6 @@
             "IdUnit": 0,
             "UnitType": 1,
             "Life": 10.0
-        },
-        {
-            "IdUnit": 0,
-            "UnitType": 1,
-            "Life": 10.0
-        },
-        {
-            "IdUnit": 1,
-            "UnitType": 1,
-            "Life": 15.0
         }
     ]
 }

@@ -19,12 +19,12 @@ public static class HealthRecoverCalculator
 
     public static void RecalculateHealth(PlayerData playerData, int secondsDifference)
     {
-
         float healAmount = HealAmountPerSeconds * secondsDifference;
 
         foreach (var unitData in playerData.DataArmies)
         {
-            float maxLife = GameManager.Get().unitsStatsLoaded[unitData.IdUnit].life;
+            float maxLife = GameManager.Get().GetUnitStats(unitData.IdUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(unitData.IdUnit, MilitaryType.Army), unitData.IdUnit);
+
             if (unitData.Life < maxLife)
             {
                 unitData.Life += healAmount;
@@ -35,7 +35,7 @@ public static class HealthRecoverCalculator
 
         foreach (var unitData in playerData.DataMercenaries)
         {
-            float maxLife = GameManager.Get().unitsStatsLoaded[unitData.IdUnit].life;
+            float maxLife = GameManager.Get().GetUnitStats(unitData.IdUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(unitData.IdUnit, MilitaryType.Mercenary), unitData.IdUnit);
             if (unitData.Life < maxLife)
             {
                 unitData.Life += healAmount;

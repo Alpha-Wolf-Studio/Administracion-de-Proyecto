@@ -29,17 +29,17 @@ public class Upgrades : MonoBehaviour
 
     private void HealAllUnits ()
     {
-        GameManager.Get().HealAllUnits();
+        //GameManager.Get().HealAllUnits();
     }
 
     private void BuyArmy ()
     {
-        GameManager.Get().BuyArmy(unitSelector.currentUnit);
+        //GameManager.Get().BuyArmy(unitSelector.currentUnit);
     }
 
     private void BuyMercenary ()
     {
-        GameManager.Get().BuyMercenary(unitSelector.currentUnit);
+        //GameManager.Get().BuyMercenary(unitSelector.currentUnit);
     }
 
     private void LevelUpUnit ()
