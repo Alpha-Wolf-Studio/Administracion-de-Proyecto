@@ -5,8 +5,8 @@ public static class HealthRecoverCalculator
     
     public static Action OnUnitsHeal;
 
-    public const int SecondsBetweenHeal = 1;
-    public static readonly float HealAmountPerSeconds = .25f;
+    public const int SecondsBetweenHeal = 10;
+    public static readonly float HealAmountPerSeconds = 0.0066f;
     
     public static void GetOfflineHealth(PlayerData playerData) 
     {
