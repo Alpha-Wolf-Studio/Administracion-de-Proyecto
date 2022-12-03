@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,7 +20,9 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
 
     private void Start ()
     {
+        ChangeCurrentIncome();
         GoldCalculator.OnIncomeGoldChange += ChangeCurrentIncome;
+        
         textNickName.text = GameManager.Get().GetPlayerName();
         btnProfile.onClick.AddListener(OnPressProfile);
         btnSettings.onClick.AddListener(OnPressSettings);
@@ -32,6 +35,13 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
     {
         textCurrentGold.text = GameManager.Get().GetPlayerGold().ToString("F0");
         textCurrentDiamond.text = GameManager.Get().GetPlayerDiamond().ToString("F0");
+    }
+
+    private void OnDestroy()
+    {
+        GoldCalculator.OnIncomeGoldChange -= ChangeCurrentIncome;
+        btnProfile.onClick.RemoveListener(OnPressProfile);
+        btnSettings.onClick.RemoveListener(OnPressSettings);
     }
 
     private void ChangeCurrentIncome ()
