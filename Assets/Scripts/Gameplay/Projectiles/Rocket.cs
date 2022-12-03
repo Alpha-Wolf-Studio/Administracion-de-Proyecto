@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class Rocket : Projectile
     [SerializeField] private float explosionAoe = 5f;
     
     private Collider target;
-    private UnitStats attackerStats;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,9 +19,10 @@ public class Rocket : Projectile
 
             foreach (var collider in colliders)
             {
-                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
+                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, unitShooter.stats);
             }
-            Destroy(gameObject);
+
+            DestroyProjectile();
         }
     }
 
@@ -61,13 +62,20 @@ public class Rocket : Projectile
         StartCoroutine(LaunchCoroutine());
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
+    public override void SetAttributes(Unit unit, Collider target)
     {
-        this.maskToDamage = maskToDamage;
+        this.maskToDamage = unit.enemyMask;
         this.target = target;
-        velocity = stats.bulletSpeed;
-        damage = stats.damage;
-        attackerStats = stats;
+        unitShooter = unit;
+        velocity = unitShooter.stats.bulletSpeed;
+        damage = unitShooter.stats.damage;
+
+        unitShooter.OnDie += DestroyProjectile;
     }
 
+    public override void DestroyProjectile()
+    {
+        unitShooter.OnDie -= DestroyProjectile;
+        Destroy(gameObject);
+    }
 }

@@ -64,7 +64,7 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     {
         GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, projectileSpawn.position, Quaternion.identity, BulletParent.Get().GetTransform());
         Projectile projectile = projectileGameObject.GetComponent<Projectile>();
-        projectile.SetAttributes(GetComponent<Unit>().enemyMask, unit.stats);
+        projectile.SetAttributes(unit);
         projectile.StartProjectile();
     }
 
