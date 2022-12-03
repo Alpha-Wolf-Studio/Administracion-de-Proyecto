@@ -12,17 +12,17 @@
         4
     ],
     "unitsPlusDamage": [
-        1
+        0
     ],
     "unitsRestDamage": [
-        2
+        0
     ],
     "life": 15.0,
-    "damage": 2,
+    "damage": 5.0,
     "velocity": 3.0,
     "radiusSight": 20.0,
     "rangeAttack": 20.0,
-    "fireRate": 2,
+    "fireRate": 0.2,
     "bulletSpeed": 2.5,
     "canMove": true,
     "canShoot": true,
