@@ -583,10 +583,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 1132578602}
+  hasArrow: 0
   arrow: {fileID: 1161200480}
   doBehaviour: 2
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &314904307
 GameObject:
@@ -1322,10 +1323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 1787755929}
+  hasArrow: 0
   arrow: {fileID: 1941863438}
   doBehaviour: 6
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &993975094
 GameObject:
@@ -1440,10 +1442,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 573875830}
+  hasArrow: 0
   arrow: {fileID: 150042095}
   doBehaviour: 1
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &1023130330
 GameObject:
@@ -2511,10 +2514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 1209015933}
+  hasArrow: 0
   arrow: {fileID: 1023130331}
   doBehaviour: 1
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &1787755927
 GameObject:
@@ -2751,10 +2755,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 186187627}
+  hasArrow: 0
   arrow: {fileID: 1426970019}
   doBehaviour: 7
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &1798460903
 GameObject:
@@ -3142,10 +3147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 1801318002}
+  hasArrow: 0
   arrow: {fileID: 609201984}
   doBehaviour: 1
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &2129741691
 GameObject:
@@ -3733,10 +3739,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 9031914864674980090}
+  hasArrow: 0
   arrow: {fileID: 5255905060495434298}
   doBehaviour: 2
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &1986101673978526775
 GameObject:
@@ -4062,10 +4069,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 7605354949542380353}
+  hasArrow: 0
   arrow: {fileID: 211511867498875515}
   doBehaviour: 8
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &2973460721052778479
 GameObject:
@@ -5007,10 +5015,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 0}
   btnHit: {fileID: 8626439344753305894}
+  hasArrow: 0
   arrow: {fileID: 49440063779556371}
   doBehaviour: 5
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &4736516445174650898
 GameObject:
@@ -5296,10 +5305,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otterAnimation: {fileID: 4279636257169849001}
   btnHit: {fileID: 716583062453761629}
+  hasArrow: 0
   arrow: {fileID: 6940087921728705243}
   doBehaviour: 0
-  otterAnimation: {fileID: 0}
   btnSkip: {fileID: 0}
 --- !u!1 &6693912429090711282
 GameObject:
@@ -5656,6 +5666,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
+--- !u!114 &4279636257169849001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7798466379299772177, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
+  m_PrefabInstance: {fileID: 6295440032173977016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e757868a4cb46d438669c4a7e2602c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1621269342306561429 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4693316760767103021, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
@@ -5758,11 +5779,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
---- !u!224 &3737830958997318621 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7547734943730916761, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
-  m_PrefabInstance: {fileID: 6584686538936579652}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1664650068856937074 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5511148033394371638, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
@@ -5774,3 +5790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c856808013703f347ac8cec8a504fd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3737830958997318621 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7547734943730916761, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
+  m_PrefabInstance: {fileID: 6584686538936579652}
+  m_PrefabAsset: {fileID: 0}

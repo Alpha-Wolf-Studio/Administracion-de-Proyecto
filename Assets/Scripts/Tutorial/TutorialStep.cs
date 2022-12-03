@@ -21,12 +21,15 @@ public class TutorialStep : MonoBehaviour
     private void Start ()
     {
         btnHit.onClick.AddListener(SetToDoneStep);
-        btnSkip.onClick.AddListener(SkipWriting);
+        
+        if(btnSkip)
+            btnSkip.onClick.AddListener(SkipWriting);
     }
 
     void SkipWriting ()
     {
-        btnSkip.onClick.RemoveListener(SkipWriting);
+        if(btnSkip)
+            btnSkip.onClick.RemoveListener(SkipWriting);
         otterAnimation.EndWriting();
     }
 

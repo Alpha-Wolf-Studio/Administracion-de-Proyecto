@@ -68,6 +68,9 @@ public class Cheats : MonoBehaviour
     {
         GameManager.Get().ResetPlayerData();
         CustomSceneManager.Get().LoadScene("Campaign");
-        TutorialManager.Get().TestInitialTutorial = true;
+
+        var tutorialManager = TutorialManager.Get();
+        if(tutorialManager)
+            TutorialManager.Get().TestInitialTutorial = true;
     }
 }
