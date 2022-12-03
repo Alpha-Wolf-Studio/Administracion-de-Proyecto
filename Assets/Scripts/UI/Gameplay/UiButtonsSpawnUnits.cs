@@ -33,7 +33,6 @@ public class UiButtonsSpawnUnits : MonoBehaviour
             int indexUnit = btnSpawnUnit[i].idUnit;
 
             int amount = amountMilitary[indexMilitary].amountId[indexUnit];
-
             btnSpawnUnit[i].Set(amount);
         }
     }

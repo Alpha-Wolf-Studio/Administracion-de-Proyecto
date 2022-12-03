@@ -32,7 +32,8 @@ public class UiComponentLife : MonoBehaviour
     private void Start()
     {
         unit.OnTakeDamage += TakeDamageUI;
-        imageFill.color = lifeColors.Evaluate(1);
+        imageFill.fillAmount = unit.stats.life / unit.initialStats.life;
+        imageFill.color = lifeColors.Evaluate(imageFill.fillAmount);
     }
 
     private void Update()

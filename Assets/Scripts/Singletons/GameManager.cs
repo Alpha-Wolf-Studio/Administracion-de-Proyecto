@@ -247,6 +247,47 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SavePlayerData();
     }
 
+    public void SetPostLevelUnits(List<KeyValuePair<int, Unit>> armyUnits, List<KeyValuePair<int, Unit>> mercenaryUnits)
+    {
+        foreach (var unitKeyValuePair in armyUnits)
+        {
+            if (unitKeyValuePair.Value == null || unitKeyValuePair.Value.stats.life <= 0)
+            {
+                List<UnitData> temporalList = new List<UnitData>(playerData.DataArmies);
+                temporalList.RemoveAt(unitKeyValuePair.Key);
+                playerData.DataArmies = temporalList.ToArray();
+            }
+            else
+            {
+                float newLifeAmount = unitKeyValuePair.Value.stats.life;
+                if (newLifeAmount > 0)
+                {
+                    playerData.DataArmies[unitKeyValuePair.Key].Life = newLifeAmount;
+                }
+            }
+        }
+        
+        foreach (var unitKeyValuePair in mercenaryUnits)
+        {
+            if (unitKeyValuePair.Value == null || unitKeyValuePair.Value.stats.life <= 0)
+            {
+                List<UnitData> temporalList = new List<UnitData>(playerData.DataMercenaries);
+                temporalList.RemoveAt(unitKeyValuePair.Key);
+                playerData.DataMercenaries = temporalList.ToArray();
+            }
+            else
+            {
+                float newLifeAmount = unitKeyValuePair.Value.stats.life;
+                if (newLifeAmount > 0)
+                {
+                    playerData.DataMercenaries[unitKeyValuePair.Key].Life = newLifeAmount;
+                }
+            }
+            
+        }
+        
+    }
+    
     private bool IsPositionNeighbourHexagonal (int i, int j, int levelX, int levelY)
     {
 
@@ -264,7 +305,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public string GetPlayerName() => playerData.PlayerName;
     public int[] GetLevelUnitsArmyPlayer() => playerData.LevelUnitsArmy;
+    public float GetLifeUnitsArmyPlayer(int unitIndex) => playerData.DataArmies[unitIndex].Life;
     public int[] GetLevelUnitsMercenaryPlayer() => playerData.LevelUnitsMercenary;
+    public float GetLifeUnitsMercenaryPlayer(int unitIndex) => playerData.DataMercenaries[unitIndex].Life;
     public int GetLastLevelPlayer() => playerData.LastLevelComplete;
     public int SetLastLevelPlayer(int level) => playerData.LastLevelComplete = level;
 
@@ -295,10 +338,37 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
     public int GetLevelsUnitsArmy(int i) => playerData.LevelUnitsArmy[i];
     public int GetLevelsUnitsMercenary(int i) => playerData.LevelUnitsMercenary[i];
+    
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite (int idUnit, MilitaryType militaryType) => spritesArmy[(int) militaryType].sprites[idUnit];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
 
+    public List<int> GetAllArmyUnitsIndexWithType(int typeIndex)
+    {
+        List<int> mercenaryIndex = new List<int>();
+        
+        for (int i = 0; i < playerData.DataArmies.Length; i++)
+        {
+            if(playerData.DataArmies[i].IdUnit == typeIndex)
+                mercenaryIndex.Add(i);    
+        }
+
+        return mercenaryIndex;
+    }
+    
+    public List<int> GetAllMercenaryUnitsIndexWithType(int typeIndex)
+    {
+        List<int> mercenaryIndex = new List<int>();
+        
+        for (int i = 0; i < playerData.DataMercenaries.Length; i++)
+        {
+            if(playerData.DataMercenaries[i].IdUnit == typeIndex)
+                mercenaryIndex.Add(i);    
+        }
+        
+        return mercenaryIndex;
+    }
+    
     public bool HealAllUnitsFiltered (int cost, List<UnitData> unitsFiltered, MilitaryType militaryType)
     {
         if (cost > playerData.CurrentGold)

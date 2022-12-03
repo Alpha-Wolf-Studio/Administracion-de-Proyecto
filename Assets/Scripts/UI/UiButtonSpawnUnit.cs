@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +16,7 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
     private float currentCooldown = -1;
     private const float maxCooldown = 0.2f;
     private Button button;
+    private List<int> unitsIndexList = new List<int>();
 
     private void Awake ()
     {
@@ -28,9 +29,15 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
         troopAmount = amount;
         isAvailable = troopAmount > 0;
         textAmount.text = troopAmount.ToString();
-     
+
         if (!isAvailable)
+        {
+            ButtonDisableLogic();
             overlayImage.fillAmount = 1;
+        }
+        unitsIndexList = militaryType == MilitaryType.Army
+            ? GameManager.Get().GetAllArmyUnitsIndexWithType(idUnit)
+            : GameManager.Get().GetAllMercenaryUnitsIndexWithType(idUnit);
     }
 
     private void Update ()
@@ -52,15 +59,20 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
     {
         if (!isAvailable)
             return;
-        GamePlayManager.Get().GetPlayerTroopManager().OnButtonCreateTroop(idUnit, militaryType);
         currentCooldown = maxCooldown;
+        
         troopAmount--;
         textAmount.text = troopAmount.ToString();
         overlayImage.raycastTarget = true;
+        
+        GamePlayManager.Get().GetPlayerTroopManager().OnButtonCreateTroop(idUnit, unitsIndexList[troopAmount], militaryType);
 
         isAvailable = troopAmount > 0;
         if (!isAvailable)
+        {
+            ButtonDisableLogic();
             enabled = false;
+        }
         overlayImage.fillAmount = 1;
     }
 
@@ -70,7 +82,6 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
         {
             overlayImage.raycastTarget = true;
             textAmount.text = "";
-            button.interactable = false;
         }
     }
 
