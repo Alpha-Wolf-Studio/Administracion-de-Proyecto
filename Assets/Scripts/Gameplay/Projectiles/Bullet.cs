@@ -1,22 +1,21 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Bullet : Projectile
 {
-
-    private UnitStats attackerStats;
     private Collider enemyCollider;
     
     private void OnTriggerEnter(Collider other)
     {
         if (Utils.LayerEquals(maskToDamage, other.gameObject.layer))
         {
-            other.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
-            Destroy(gameObject);
+            other.gameObject.GetComponent<Unit>().TakeDamage(damage, unitShooter.stats);
+            DestroyProjectile();
         }
     }
 
-    public override void StartProjectile() 
+    public override void StartProjectile()
     {
         StartCoroutine(MoveFoward());
     }
@@ -29,16 +28,24 @@ public class Bullet : Projectile
             transform.position += transform.forward * (velocity * Time.deltaTime);
             yield return null;
         }
+        DestroyProjectile();
+    }
+
+    public override void SetAttributes(Unit unit, Collider target = null)
+    {
+        this.maskToDamage = unit.enemyMask;
+        unitShooter = unit;
+        velocity = unitShooter.stats.bulletSpeed;
+        damage = unitShooter.stats.damage;
+        enemyCollider = target;
+        unitShooter.OnDie += DestroyProjectile;
+    }
+
+    public override void DestroyProjectile()
+    {
+        unitShooter.OnDie -= DestroyProjectile;
         Destroy(gameObject);
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
-    {
-        this.maskToDamage = maskToDamage;
-        attackerStats = stats;
-        velocity = stats.bulletSpeed;
-        damage = stats.damage;
-        enemyCollider = target;
-    }
 
 }

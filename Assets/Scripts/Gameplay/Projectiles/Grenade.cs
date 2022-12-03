@@ -9,7 +9,6 @@ public class Grenade : Projectile
     [SerializeField] private float arcVariance = 5f;
     
     private Collider target;
-    private UnitStats attackerStats;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -19,9 +18,9 @@ public class Grenade : Projectile
 
             foreach (var collider in colliders)
             {
-                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
+                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, unitShooter.stats);
             }
-            Destroy(gameObject);
+            DestroyProjectile();
         }
     }
 
@@ -49,14 +48,22 @@ public class Grenade : Projectile
         StartCoroutine(ArcCoroutine());
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target)
+    public override void DestroyProjectile()
     {
-        this.maskToDamage = maskToDamage;
+        unitShooter.OnDie -= DestroyProjectile;
+        Destroy(gameObject);
+    }
+
+    public override void SetAttributes(Unit unit, Collider target = null)
+    {
+        this.maskToDamage = unit.enemyMask;
         this.target = target;
-        velocity = stats.bulletSpeed;
-        damage = stats.damage;
-        attackerStats = stats;
+        unitShooter = unit;
+        velocity = unitShooter.stats.bulletSpeed;
+        damage = unitShooter.stats.damage;
         transform.LookAt(target.bounds.center, Vector3.up);
+
+        unitShooter.OnDie += DestroyProjectile;
     }
 
 }

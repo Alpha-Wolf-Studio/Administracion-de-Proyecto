@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,6 @@ public class DropBomb : Projectile
     [Header("Drop Bomb Specific")]
     [SerializeField] private float explosionAoe = 5f;
 
-    private UnitStats attackerStats;
-    
     private void OnTriggerEnter(Collider other)
     {
         if (Utils.LayerEquals(maskToDamage, other.gameObject.layer) || other.gameObject.layer == groundLayer)
@@ -18,23 +17,30 @@ public class DropBomb : Projectile
 
             foreach (var collider in colliders)
             {
-                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, attackerStats);
+                collider.gameObject.GetComponent<Unit>().TakeDamage(damage, unitShooter.stats);
             }
-            Destroy(gameObject);
+            DestroyProjectile();
         }
     }
 
-    public override void SetAttributes(LayerMask maskToDamage, UnitStats stats, Collider target = null)
+    public override void SetAttributes(Unit unit, Collider target = null)
     {
-        this.maskToDamage = maskToDamage;
-        attackerStats = stats;
-        velocity = stats.bulletSpeed;
-        damage = stats.damage;
+        this.maskToDamage = unit.enemyMask;
+        unitShooter = unit;
+        velocity = unitShooter.stats.bulletSpeed;
+        damage = unitShooter.stats.damage;
+        unit.OnDie += DestroyProjectile;
     }
 
     public override void StartProjectile()
     {
         StartCoroutine(MoveFoward());
+    }
+
+    public override void DestroyProjectile()
+    {
+        unitShooter.OnDie -= DestroyProjectile;
+        Destroy(gameObject);
     }
 
     IEnumerator MoveFoward()
@@ -45,5 +51,4 @@ public class DropBomb : Projectile
             yield return null;
         }
     }
-
 }
