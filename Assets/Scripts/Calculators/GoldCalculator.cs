@@ -8,7 +8,7 @@ public static class GoldCalculator
     private static int _incomeGold;
     public static int IncomeGold => _incomeGold;
 
-    public static readonly int SecondsBetweenIncome = 1;
+    public static readonly int SecondsBetweenIncome = 300;
 
     public static int GetOfflineGold(WorldBuilderData worldData, PlayerData playerData) 
     {
