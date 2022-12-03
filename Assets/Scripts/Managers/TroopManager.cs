@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +11,13 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private LayerMask layerToInteract = default;
     [SerializeField] private LayerMask layerToAttack = default;
     [SerializeField] private bool unitsGoToRight = true;
-    [SerializeField] private List<Unit> unitsAlive = default;
     [SerializeField] private Material mercenaryMaterial;
     //[SerializeField] private Color troopColor = Color.blue; // Temporal
 
-    private ControlPointData currentControlPointData = new ControlPointData(); 
-    
+    private ControlPointData currentControlPointData = new ControlPointData();
+    private List<KeyValuePair<int, Unit>> mercenaryUnitsSpawned = new List<KeyValuePair<int, Unit>>();
+    private List<KeyValuePair<int, Unit>> armyUnitsSpawned = new List<KeyValuePair<int, Unit>>();
+
     private void Awake()
     {
         currentControlPointData.ResetControlPointBonus();
@@ -40,27 +40,29 @@ public class TroopManager : MonoBehaviour
         ControlPointWithEnemies.OnControlPointGet += ControlPointUnlocked;
     }
 
-    private void OnDestroy()
-    {
-        ControlPointWithEnemies.OnControlPointGet -= ControlPointUnlocked;
-    }
-
     private void Start()
     {
         lanes[selectedLaneIndex].Selected = true;
     }
+    
+    private void OnDestroy()
+    {
+        ControlPointWithEnemies.OnControlPointGet -= ControlPointUnlocked;
+        GameManager.Get().SetPostLevelUnits(armyUnitsSpawned, mercenaryUnitsSpawned);
+    }
+
 
     private void ControlPointUnlocked(ControlPointData controlPointData, Transform[] unlockPoints)
     {
         currentControlPointData.AddControlPointBonus(controlPointData);
 
-        foreach (var unit in unitsAlive)
+        foreach (var unitKeyValuePair in armyUnitsSpawned)
         {
-            SetUnitBonuses(unit);
+            SetUnitBonuses(unitKeyValuePair.Value);
         }
     }
     
-    public void OnButtonCreateTroop(int troopIndex, MilitaryType militaryType)
+    public void OnButtonCreateTroop(int troopIndex, int unitDataIndex, MilitaryType militaryType)
     {
         Unit[] prefabUnits = GamePlayManager.Get().CurrentLevelPrefabUnits;
         Projectile[] prefabProjectiles = GamePlayManager.Get().CurrentLevelPrefabProjectiles;
@@ -81,7 +83,6 @@ public class TroopManager : MonoBehaviour
         unit.enemyMask = layerToAttack;
         unit.AttackLaneFlags = lanes[selectedLaneIndex].LaneFlags;
         unit.OwnLaneFlags = lanes[selectedLaneIndex].LaneFlags;
-        unitsAlive.Add(unit);
 
         //int indexImage = (int)GameManager.Get().unitsStatsLoaded[tropIndex].tempCurrentShape;                                  // Temporal
         //unitGameObject.GetComponent<MeshFilter>().mesh = GameManager.Get().GetCurrentMesh(indexImage);                         // Temporal
@@ -96,9 +97,13 @@ public class TroopManager : MonoBehaviour
         {
             case MilitaryType.Army:
                 unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[troopIndex]);
+                unit.stats.life = GameManager.Get().GetLifeUnitsArmyPlayer(unitDataIndex);
+                armyUnitsSpawned.Add(new KeyValuePair<int, Unit>(unitDataIndex, unit));
                 break;
             case MilitaryType.Mercenary:
                 unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsMercenaryPlayer()[troopIndex]);
+                unit.stats.life = GameManager.Get().GetLifeUnitsMercenaryPlayer(unitDataIndex);
+                mercenaryUnitsSpawned.Add(new KeyValuePair<int, Unit>(unitDataIndex, unit));
                 unit.SetBaseTroopMaterial(mercenaryMaterial);
                 break;
         }
@@ -115,6 +120,8 @@ public class TroopManager : MonoBehaviour
 
     private void SetUnitBonuses(Unit unit)
     {
+        if (!(unit.stats.life > 0)) return;
+        
         unit.stats.damage += unit.stats.damage * currentControlPointData.unlockBonusDamage / 100;
         unit.stats.bonusRange += (unit.stats.rangeAttack * currentControlPointData.unlockBonusRange) / 100;
         unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);

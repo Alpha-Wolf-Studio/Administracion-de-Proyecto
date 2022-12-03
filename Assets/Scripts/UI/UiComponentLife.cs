@@ -16,7 +16,7 @@ public class UiComponentLife : MonoBehaviour
     private float transparencyTime = 1f;
     private IEnumerator HideProcessIEnumerator = null;
 
-    private IEnumerator lifeBarReceiveDamageAnimationIEnumerator = null;
+    private IEnumerator AnimationIEnumerator = null;
     private float lastLifeFill = 1f;
 
     private void Awake()
@@ -32,7 +32,9 @@ public class UiComponentLife : MonoBehaviour
     private void Start()
     {
         unit.OnTakeDamage += TakeDamageUI;
-        imageFill.color = lifeColors.Evaluate(1);
+        unit.OnHeal += HealUI;
+        imageFill.fillAmount = unit.stats.life / unit.initialStats.life;
+        imageFill.color = lifeColors.Evaluate(imageFill.fillAmount);
     }
 
     private void Update()
@@ -48,13 +50,30 @@ public class UiComponentLife : MonoBehaviour
         if (currentLife < 0) 
             currentLife = 0;
 
-        if (lifeBarReceiveDamageAnimationIEnumerator != null)
+        if (AnimationIEnumerator != null)
         {
             imageFill.fillAmount = lastLifeFill;
-            StopCoroutine(lifeBarReceiveDamageAnimationIEnumerator);
+            StopCoroutine(AnimationIEnumerator);
         }
-        lifeBarReceiveDamageAnimationIEnumerator = lifeBarRecieveDamageAnimation(currentLife, maxLife);
-        StartCoroutine(lifeBarReceiveDamageAnimationIEnumerator);
+        AnimationIEnumerator = lifeBarRecieveDamageAnimation(currentLife, maxLife);
+        StartCoroutine(AnimationIEnumerator);
+    }
+    
+    void HealUI(float currentLife, float maxLife)
+    {
+        if (isAlwaysShown) canvasGroup.alpha = 1f; 
+        else ShowPanelAnimation();
+
+        if (currentLife < 0) 
+            currentLife = 0;
+
+        if (AnimationIEnumerator != null)
+        {
+            imageFill.fillAmount = lastLifeFill;
+            StopCoroutine(AnimationIEnumerator);
+        }
+        AnimationIEnumerator = LifeBarHealAnimation(currentLife, maxLife);
+        StartCoroutine(AnimationIEnumerator);
     }
 
     void ShowPanelAnimation()
@@ -68,19 +87,41 @@ public class UiComponentLife : MonoBehaviour
         StartCoroutine(HideProcessIEnumerator);
     }
 
+    private IEnumerator LifeBarHealAnimation(float currentLife, float maxLife)
+    {
+        float t = imageFill.fillAmount;
+        float fillAmount = currentLife / maxLife;
+        
+        while (t < currentLife / maxLife) 
+        {
+            t += Time.deltaTime;
+            imageFill.fillAmount = t;
+            imageFill.color = lifeColors.Evaluate(t);
+            lastLifeFill = imageFill.fillAmount;
+            yield return null;
+        }
+        
+        lastLifeFill = fillAmount;
+        imageFill.fillAmount = fillAmount;
+        imageFill.color = lifeColors.Evaluate(fillAmount);
+    }
+    
     private IEnumerator lifeBarRecieveDamageAnimation(float currentLife, float maxLife) 
     {
         float t = imageFill.fillAmount;
         float fillAmount = currentLife / maxLife;
-        lastLifeFill = fillAmount;
+        
         while (t > fillAmount) 
         {
             t -= Time.deltaTime;
             imageFill.fillAmount = t;
             imageFill.color = lifeColors.Evaluate(t);
+            lastLifeFill = imageFill.fillAmount;
             yield return null;
         }
+        
         imageFill.fillAmount = fillAmount;
+        lastLifeFill = fillAmount;
         imageFill.color = lifeColors.Evaluate(fillAmount);
     }
 
