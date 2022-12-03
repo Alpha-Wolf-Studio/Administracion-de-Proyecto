@@ -124,6 +124,7 @@ public class HexagonTerrain : MonoBehaviour
         levelData.LevelName = data.LevelName;
         levelData.GoldIncome = data.GoldIncome;
         levelData.GoldOnComplete = data.GoldOnComplete;
+        levelData.DiamondOnComplete = data.DiamondOnComplete;
         levelData.Enemies = data.Enemies;
         levelData.ControlPoints = data.ControlPoints;
         IsValid = true;
