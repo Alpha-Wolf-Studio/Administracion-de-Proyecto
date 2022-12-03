@@ -34,6 +34,7 @@ public class UiGeneral : MonoBehaviourSingleton<UiGeneral>
     private void Update ()
     {
         textCurrentGold.text = GameManager.Get().GetPlayerGold().ToString("F0");
+        textIncome.text = GoldCalculator.IncomeGold.ToString("F0");
         textCurrentDiamond.text = GameManager.Get().GetPlayerDiamond().ToString("F0");
     }
 
