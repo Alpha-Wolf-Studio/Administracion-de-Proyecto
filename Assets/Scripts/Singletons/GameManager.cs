@@ -441,6 +441,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void ResetPlayerData()
     {
         playerData = new PlayerData();
+        playerData.CampaingStatus = new int[worldData.Columns * worldData.Rows];
+        playerData.CampaingStatus[worldData.startingLevelIndex] = 1;
         SavePlayerData();
     }
 }

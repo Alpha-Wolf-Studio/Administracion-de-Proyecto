@@ -118,9 +118,9 @@ public class TerrainManager : MonoBehaviour
 
     public enum TerrainState 
     {
-        Unlocked,
+        Unavailable,
         Locked,
-        Unavailable
+        Unlocked
     }
 
     public static int[] GetDefaultTerrainEnumIndexes (int rows, int columns) 
