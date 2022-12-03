@@ -44,7 +44,7 @@ public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
         while (t < 1)
         {
             fadeImageCanvasGroup.alpha = t;
-            t += Time.deltaTime * fadeSpeed;
+            t += Time.unscaledDeltaTime * fadeSpeed;
             yield return null;
         }
     }
@@ -56,7 +56,7 @@ public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
         while (t > 0)
         {
             fadeImageCanvasGroup.alpha = t;
-            t -= Time.deltaTime * fadeSpeed;
+            t -= Time.unscaledDeltaTime * fadeSpeed;
             yield return null;
         }
     }
