@@ -26,9 +26,13 @@ public class UiMilitaryBase : MonoBehaviour
     [SerializeField] private List<CanvasGroup> upgradesHideMercenary = new List<CanvasGroup>();
 
     [SerializeField] private List<TMP_Text> textSubCategory = new List<TMP_Text>();
+    private List<string> savedTextSubCategory = new List<string>();
 
     private void Awake ()
     {
+        for (int i = 0; i < textSubCategory.Count; i++)
+            savedTextSubCategory.Add(textSubCategory[i].text);
+
         HealthRecoverCalculator.OnUnitsHeal += UpdateUnitsFiltered;
     }
 
@@ -158,7 +162,7 @@ public class UiMilitaryBase : MonoBehaviour
         for (int i = 0; i < textSubCategory.Count; i++)
         {
             int level = GameManager.Get().GetlevelUnit(i, (MilitaryType) mainCategorySelect);
-            textSubCategory[i].text = string.Format(textSubCategory[i].text, (level + 1).ToString("F0"));
+            textSubCategory[i].text = string.Format(savedTextSubCategory[i], (level + 1).ToString("F0"));
         }
     }
 

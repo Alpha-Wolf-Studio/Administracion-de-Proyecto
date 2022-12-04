@@ -22,7 +22,7 @@ public class UpgradeLevelUpUnit : UpgradeBase
         textCost.text = cost.ToString();
     }
 
-    protected override void BuyUpgrade ()
+    public override void BuyUpgrade ()
     {
         bool wasSuccessful = GameManager.Get().LevelUpUnit(cost, currencyType, uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
         SetTryBuy(wasSuccessful);

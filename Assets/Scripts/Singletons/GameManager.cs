@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private string pathPlayerData = "PlayerData";
     [SerializeField] private PlayerData playerData;
     public LevelData CurrentSelectedLevel = new LevelData();
+    [SerializeField] private GameObject prefabTutorial;
+    private GameObject instanceTutorial;
 
     public override void Awake ()
     {
@@ -48,10 +50,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         StartCoroutine(HealUnitsCoroutine());
         Time.timeScale = 1;
 
-        var tutorialManager = TutorialManager.Get();
-        
-        if(tutorialManager)
-            TutorialManager.Get().StartTutorial(playerData.tutorialIndex, playerData.tutorialStep);
+        if (!playerData.doneTutorial)
+        {
+            instanceTutorial = Instantiate(prefabTutorial);
+            instanceTutorial.GetComponent<TutorialManager>().StartTutorial(0, 0);
+        }
     }
 
     private void OnDestroy() // Todo: Probar que esto funcione cuando android te cierra el proceso
@@ -308,22 +311,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public float GetLifeUnitsMercenaryPlayer(int unitIndex) => playerData.DataMercenaries[unitIndex].Life;
     public int GetLastLevelPlayer() => playerData.LastLevelComplete;
     public int SetLastLevelPlayer(int level) => playerData.LastLevelComplete = level;
-
-    public void AddLevelUnit (int idUnit, MilitaryType militaryType)
-    {
-        switch (militaryType)
-        {
-            case MilitaryType.Army:
-                playerData.LevelUnitsArmy[idUnit]++;
-                break;
-            case MilitaryType.Mercenary:
-                playerData.LevelUnitsMercenary[idUnit]++;
-                break;
-        }
-
-        SavePlayerData();
-    }
-
+    
     private void SavePlayerData ()
     {
         DateTimeOffset now = DateTimeOffset.UtcNow;
@@ -483,9 +471,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             case MilitaryType.Army:
                 playerData.LevelUnitsArmy[idUnit]++;
+                playerData.LevelUnitsMercenary[idUnit]++;
                 break;
             case MilitaryType.Mercenary:
-                playerData.LevelUnitsMercenary[idUnit]++;
+                // Don't use
                 break;
         }
 
@@ -567,6 +556,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Sprite GetSprite (CurrencyType currencyType)
     {
         return spritesCurrencyTypes[(int) currencyType];
+    }
+
+    public void SetTutorialDone ()
+    {
+        playerData.doneTutorial = true;
+        SavePlayerData();
+        Destroy(instanceTutorial.gameObject);
     }
 }
 

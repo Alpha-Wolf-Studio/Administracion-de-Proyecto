@@ -5,9 +5,8 @@ using System.Collections.Generic;
 public class PlayerData
 {
     private const int diferentsOtters = 4;
-
-    public int tutorialIndex = 0;
-    public int tutorialStep = 0;
+    public static int levelMoreMercenary = 5;
+    public bool doneTutorial;
 
     public long LastSavedTime;
 
@@ -29,9 +28,10 @@ public class PlayerData
 
     public PlayerData ()
     {
-        for (int i = 0; i < maxAmountMercenary.Length; i++)
+        for (int i = 0; i < diferentsOtters; i++)
         {
             maxAmountMercenary[i] = 12;
+            LevelUnitsMercenary[i] = levelMoreMercenary;
         }
     }
 

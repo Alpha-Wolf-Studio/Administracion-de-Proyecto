@@ -572,7 +572,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   unitsGoToRight: 1
-  unitsAlive: []
   mercenaryMaterial: {fileID: 2100000, guid: 4abe1a93d19fece47bd70ea0c7a4b22f, type: 2}
 --- !u!23 &375359671
 MeshRenderer:
@@ -1059,7 +1058,7 @@ MonoBehaviour:
   AttackLaneFlags: 0
   OwnLaneFlags: -1
   unitBehaviours: []
-  baseTroopMeshRenderer: {fileID: 0}
+  baseTroopMeshRenderers: []
   stats:
     nameUnit: Enemy Base
     idUnit: 0
@@ -1825,6 +1824,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 924370527348343145, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 924370527348343145, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 924370527348343145, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 924370527348343145, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4984511855554083442, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
       propertyPath: enemyManager
       value: 
@@ -1948,6 +1963,22 @@ PrefabInstance:
     - target: {fileID: 6839214740665465293, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853585137588856601, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853585137588856601, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853585137588856601, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853585137588856601, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf5903ef585a0574c93cfdaf73e7806a, type: 3}

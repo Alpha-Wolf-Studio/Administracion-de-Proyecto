@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 4291266479353495221}
   - component: {fileID: 9009948092163260636}
   - component: {fileID: 5919043436721074365}
-  - component: {fileID: 6584686539231445629}
+  - component: {fileID: 807760952961353179}
   m_Layer: 0
   m_Name: Image Arrow
   m_TagString: Untagged
@@ -318,25 +318,53 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &6584686539231445629
-Animator:
-  serializedVersion: 3
+--- !u!114 &807760952961353179
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590994041252535037}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4ff0008ea48ecf5448ade15576e31fc8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4d5c76ad6206442a3a01e6e97198ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endAnchoredPosition: {x: 0, y: 0}
+  maxTimeAnimation: 1
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.13953489
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
 --- !u!1 &2653040433122604867
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +621,7 @@ MonoBehaviour:
   btnHit: {fileID: 516034308205394570}
   hasArrow: 0
   arrow: {fileID: 4291266479353495221}
-  doBehaviour: 0
+  doBehaviour: 00000000
   btnSkip: {fileID: 3820550985451086121}
 --- !u!1 &9162093884534022231
 GameObject:
@@ -607,6 +635,7 @@ GameObject:
   - component: {fileID: 6896014934401296717}
   - component: {fileID: 7733873390072812998}
   - component: {fileID: 111558241099306341}
+  - component: {fileID: 300774384114488858}
   m_Layer: 0
   m_Name: Panel BackGround
   m_TagString: Untagged
@@ -654,14 +683,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.54509807}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 07cb9db8c3ca5754aa468b22d7707750, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -715,6 +744,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &300774384114488858
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9162093884534022231}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a286096c3bb4bc429c682fe0402d720, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6232735192825288696
 PrefabInstance:
   m_ObjectHideFlags: 0

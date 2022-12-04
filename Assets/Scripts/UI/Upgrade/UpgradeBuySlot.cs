@@ -25,7 +25,7 @@ public class UpgradeBuySlot : UpgradeBase
         textCost.text = cost.ToString();
     }
 
-    protected override void BuyUpgrade ()
+    public override void BuyUpgrade ()
     {
         bool wasSuccessful = GameManager.Get().BuySlot(cost, currencyType, uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
         SetTryBuy(wasSuccessful);

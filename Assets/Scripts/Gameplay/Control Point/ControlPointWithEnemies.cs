@@ -20,6 +20,7 @@ public class ControlPointWithEnemies : MonoBehaviour
     [SerializeField] private Transform[] unlockPointsTransforms;
     [SerializeField] private int flagMaterialIndex = 1;
     [SerializeField] private List<Renderer> flagsRenderers;
+    [SerializeField] private TMPro.TextMeshProUGUI[] flagBonusTexts;
 
     [Header("3 Lanes Control Point")]
     [SerializeField] private GameObject baseControlPoint3Lanes;
@@ -58,6 +59,7 @@ public class ControlPointWithEnemies : MonoBehaviour
             return;
         
         SetCheckpointSize();
+        SetBonusText();
         controlPointData.controlPointLife = controlPointLife;
     }
 
@@ -88,6 +90,8 @@ public class ControlPointWithEnemies : MonoBehaviour
             enemy.SetControlPoint(this);
         }
 
+        SetBonusText();
+        
         unit.OnDie += delegate
         {
             if (isUnlocked) return;
@@ -191,9 +195,46 @@ public class ControlPointWithEnemies : MonoBehaviour
         
     }
     
-
     private bool LaneFlagSelected(LanesFlags flag)
     {
         return controlPointData.controlLanesFlags.HasFlag(flag);
     }
+
+    private void SetBonusText()
+    {
+
+        string bonusString = "";
+        Color bonusColor;
+        
+        if (controlPointData.unlockBonusDamage > controlPointData.unlockHealAmount)
+        {
+            if (controlPointData.unlockBonusDamage > controlPointData.unlockBonusRange)
+            {
+                bonusString = "Damage " + controlPointData.unlockBonusDamage + "%";
+                bonusColor = Color.red;
+            }
+            else
+            {
+                bonusString = "Range " + controlPointData.unlockBonusRange + "%";
+                bonusColor = Color.yellow;
+            }
+        }
+        else if (controlPointData.unlockHealAmount > controlPointData.unlockBonusRange)
+        {
+            bonusString = "Heal " + controlPointData.unlockHealAmount + "%";
+            bonusColor = Color.green;
+        }
+        else
+        {
+            bonusString = "Range " + controlPointData.unlockBonusRange + "%";
+            bonusColor = Color.yellow;
+        }
+
+        foreach (var text in flagBonusTexts)
+        {
+            text.text = bonusString;
+            text.color = bonusColor;
+        }
+    }
+    
 }
