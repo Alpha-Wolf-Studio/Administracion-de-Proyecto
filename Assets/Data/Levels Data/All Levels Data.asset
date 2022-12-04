@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelsList:
   - LevelName: 1 - Otterdun
-    GoldIncome: 0
+    GoldIncome: 10
     GoldOnComplete: 100
     DiamondOnComplete: 0
     Index: 95
@@ -41,7 +41,7 @@ MonoBehaviour:
         unlockHealAmount: 100
       ControlEnemiesIndex: 00000000
   - LevelName: 2 - Ottgen
-    GoldIncome: 0
+    GoldIncome: 20
     GoldOnComplete: 300
     DiamondOnComplete: 0
     Index: 96
@@ -82,7 +82,7 @@ MonoBehaviour:
         unlockHealAmount: 100
       ControlEnemiesIndex: 0000000001000000
   - LevelName: 3 - Otter Harbor
-    GoldIncome: 0
+    GoldIncome: 25
     GoldOnComplete: 300
     DiamondOnComplete: 0
     Index: 111
@@ -144,7 +144,7 @@ MonoBehaviour:
         unlockHealAmount: 70
       ControlEnemiesIndex: 000000000100000002000000
   - LevelName: 4 - Fishlusha
-    GoldIncome: 0
+    GoldIncome: 35
     GoldOnComplete: 300
     DiamondOnComplete: 0
     Index: 126
@@ -217,9 +217,9 @@ MonoBehaviour:
         unlockHealAmount: 40
       ControlEnemiesIndex: 0400000005000000
   - LevelName: 5 - Ottahara
-    GoldIncome: 0
+    GoldIncome: 45
     GoldOnComplete: 500
-    DiamondOnComplete: 0
+    DiamondOnComplete: 1
     Index: 112
     ProvinceIndex: 2
     TerrainType: 1
@@ -315,7 +315,7 @@ MonoBehaviour:
         unlockHealAmount: 0
       ControlEnemiesIndex: 0600000007000000
   - LevelName: 6 - El Otterlein
-    GoldIncome: 0
+    GoldIncome: 55
     GoldOnComplete: 500
     DiamondOnComplete: 0
     Index: 97
@@ -409,9 +409,9 @@ MonoBehaviour:
         unlockHealAmount: 70
       ControlEnemiesIndex: 00000000010000000200000003000000
   - LevelName: 7 - Notterdy
-    GoldIncome: 0
+    GoldIncome: 70
     GoldOnComplete: 500
-    DiamondOnComplete: 0
+    DiamondOnComplete: 1
     Index: 113
     ProvinceIndex: 2
     TerrainType: 1
@@ -500,7 +500,7 @@ MonoBehaviour:
         unlockHealAmount: 50
       ControlEnemiesIndex: 0100000005000000
   - LevelName: 8 - Fisherlin
-    GoldIncome: 0
+    GoldIncome: 75
     GoldOnComplete: 500
     DiamondOnComplete: 0
     Index: 127
@@ -612,9 +612,9 @@ MonoBehaviour:
         unlockHealAmount: 0
       ControlEnemiesIndex: 0400000005000000
   - LevelName: 9 - Sardine
-    GoldIncome: 0
+    GoldIncome: 80
     GoldOnComplete: 750
-    DiamondOnComplete: 0
+    DiamondOnComplete: 1
     Index: 128
     ProvinceIndex: 3
     TerrainType: 2
@@ -748,7 +748,7 @@ MonoBehaviour:
         unlockHealAmount: 0
       ControlEnemiesIndex: 0c0000000b0000000a00000009000000
   - LevelName: 10 - Fishtalingrad
-    GoldIncome: 0
+    GoldIncome: 100
     GoldOnComplete: 1000
     DiamondOnComplete: 0
     Index: 114
