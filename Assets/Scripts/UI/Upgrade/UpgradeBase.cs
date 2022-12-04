@@ -1,4 +1,5 @@
-using System;
+using System.Collections.Generic;
+using PrivateClassUnits;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
 {
-    public event Action OnUpdateUpgrade;
+    public event System.Action OnUpdateUpgrade;
     public bool isInited;
     public bool canUse = true;
     private Image image;
@@ -18,9 +19,12 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
     private Animator animator;
     private static readonly int Successful = Animator.StringToHash("Successful");
     private static readonly int Fail = Animator.StringToHash("Fail");
+    private AudioSource audioSource;
+    [SerializeField] private List<AudioPerUnits> unitsAudios = new List<AudioPerUnits>();
 
     private void Awake ()
     {
+        audioSource = GetComponent<AudioSource>();
         image = GetComponent<Image>();
         animator = GetComponent<Animator>();
     }
@@ -57,11 +61,35 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
     {
         if (wasSuccessfulBuy)
         {
+            List<AudioClip> audios = unitsAudios[uiMilitaryBase.subCategorySelect].audiosBuySuccessful;
+            if (audios != null && audios.Count > 0)
+                PlayAudio(audios[Random.Range(0, audios.Count)]);
+
             animator.SetTrigger(Successful);
         }
         else
         {
+            List<AudioClip> audios = unitsAudios[uiMilitaryBase.subCategorySelect].audiosBuyFail;
+            if (audios != null && audios.Count > 0)
+                PlayAudio(audios[Random.Range(0, audios.Count)]);
+
             animator.SetTrigger(Fail);
         }
+    }
+
+    private void PlayAudio (AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+}
+
+namespace PrivateClassUnits
+{
+    [System.Serializable]
+    public class AudioPerUnits
+    {
+        public List<AudioClip> audiosBuySuccessful = new List<AudioClip>();
+        public List<AudioClip> audiosBuyFail = new List<AudioClip>();
     }
 }
