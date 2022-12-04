@@ -19,6 +19,7 @@ public class DropBomb : Projectile
                 collider.gameObject.GetComponent<Unit>().TakeDamage(damage, unitShooter.stats);
             }
             DestroyProjectile();
+            PlayAudio(audioImpact);
         }
     }
 

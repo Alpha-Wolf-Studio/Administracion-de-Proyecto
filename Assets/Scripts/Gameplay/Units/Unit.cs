@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
 public class Unit : MonoBehaviour
 {
     public Action<float, float> OnTakeDamage;
@@ -20,7 +23,11 @@ public class Unit : MonoBehaviour
     [SerializeField] private List<UnitBehaviour> unitBehaviours = default;
     [SerializeField] private List<SkinnedMeshRenderer> baseTroopMeshRenderers = default;
 
-    public void SetBaseTroopMaterial(Material mat)
+    private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> audiosDamage = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> audiosHeal = new List<AudioClip>();
+
+    public void SetBaseTroopMaterial (Material mat)
     {
         foreach (var rend in baseTroopMeshRenderers)
         {
@@ -29,31 +36,31 @@ public class Unit : MonoBehaviour
     }
 
     private Unit redirectDamageUnit = null;
-    
+
     public Unit RedirectDamageUnit
     {
         get => redirectDamageUnit;
         set
         {
             redirectDamageUnit = value;
-            
-            if(redirectDamageUnit)
+
+            if (redirectDamageUnit)
                 OnDamageRedirect?.Invoke();
         }
-    } 
+    }
 
     private Collider collider;
 
     [HideInInspector] public UnitStats stats;
     [HideInInspector] public UnitStats initialStats;
 
-    private void Awake()
+    private void Awake ()
     {
         SetUnitBehaviours();
         collider = GetComponent<Collider>();
     }
 
-    private IEnumerator Start()
+    private IEnumerator Start ()
     {
         while (gameObject)
         {
@@ -70,7 +77,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void SetUnitBehaviours() 
+    private void SetUnitBehaviours ()
     {
         var behavioursArray = GetComponents<UnitBehaviour>();
         if (behavioursArray.Length > 0)
@@ -81,32 +88,35 @@ public class Unit : MonoBehaviour
             {
                 unitBehaviours.Add(behaviour);
             }
+
             unitBehaviours.Sort((a, b) => b.Priority.CompareTo(a.Priority));
         }
     }
 
-    public void SetValues(UnitStats stats, int unitLevel)
+    public void SetValues (UnitStats stats, int unitLevel)
     {
         this.stats = new UnitStats(stats, unitLevel);
         initialStats = new UnitStats(stats, unitLevel);
     }
-    
-    public void Heal(float amount)
+
+    public void Heal (float amount)
     {
         stats.life += amount;
         if (stats.life > initialStats.life)
             stats.life = initialStats.life;
         OnHeal?.Invoke(stats.life, initialStats.life);
+
+        PlayAudio(audiosHeal);
     }
-    
-    public void TakeDamage(float damage, UnitStats attackerStats)
+
+    public void TakeDamage (float damage, UnitStats attackerStats)
     {
         if (RedirectDamageUnit)
         {
             RedirectDamageUnit.TakeDamage(damage, attackerStats);
             return;
         }
-        
+
         if (!attackerStats.unitsDamageables.Exists(i => i == stats.unitType)) return;
 
         if (attackerStats.unitsPlusDamage.Exists(i => i == stats.unitType))
@@ -118,14 +128,27 @@ public class Unit : MonoBehaviour
         if (stats.life <= 0)
         {
             OnDie?.Invoke();
-            if(collider)
+            if (collider)
                 collider.enabled = false;
         }
 
         OnTakeDamage?.Invoke(stats.life, initialStats.life);
+
+        if (stats.life > 0)
+            PlayAudio(audiosDamage);
     }
+
+    private void PlayAudio (List<AudioClip> audios)
+    {
+        if (!audioSource)
+            return;
+        AudioClip clip = audiosDamage[Random.Range(0, audiosDamage.Count)];
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmos ()
     {
         Handles.color = Color.yellow;
         Handles.DrawWireDisc(transform.position, Vector3.up, stats.radiusSight);

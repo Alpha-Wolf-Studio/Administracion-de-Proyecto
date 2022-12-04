@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
 {
@@ -19,9 +21,26 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
 
     public void SetPrefabProjectile(Projectile proj) => prefabProjectile = proj;
 
+    private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> audioShoots = new List<AudioClip>();
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         unit = GetComponent<Unit>();
+        OnAttacking += EjecuteAudioShoot;
+    }
+
+    private void EjecuteAudioShoot (bool isAttack)
+    {
+        if (!audioSource)
+            return;
+        if (!isAttack)
+            return;
+
+        AudioClip clip = audioShoots[Random.Range(0, audioShoots.Count)];
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public override void Execute()
