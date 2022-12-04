@@ -7,6 +7,7 @@ public class Grenade : Projectile
     [Header("Grenade Specific")]
     [SerializeField] private float explosionAoe = 5f;
     [SerializeField] private float arcVariance = 5f;
+    [SerializeField] private GameObject onContactParticles;
     
     private Collider target;
     
@@ -52,6 +53,7 @@ public class Grenade : Projectile
     public override void DestroyProjectile()
     {
         unitShooter.OnDie -= DestroyProjectile;
+        Instantiate(onContactParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

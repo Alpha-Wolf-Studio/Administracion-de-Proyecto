@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DropBomb : Projectile
@@ -8,6 +6,7 @@ public class DropBomb : Projectile
 
     [Header("Drop Bomb Specific")]
     [SerializeField] private float explosionAoe = 5f;
+    [SerializeField] private GameObject onContactParticles;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,6 +39,7 @@ public class DropBomb : Projectile
     public override void DestroyProjectile()
     {
         unitShooter.OnDie -= DestroyProjectile;
+        Instantiate(onContactParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

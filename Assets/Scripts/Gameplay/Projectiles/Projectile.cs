@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
 {
+    
     [Header("Projectile General")]
     [SerializeField] protected int groundLayer = 9;
 

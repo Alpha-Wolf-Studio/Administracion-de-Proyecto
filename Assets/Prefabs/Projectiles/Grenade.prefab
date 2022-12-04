@@ -128,3 +128,4 @@ MonoBehaviour:
   groundLayer: 9
   explosionAoe: 5
   arcVariance: 5
+  onContactParticles: {fileID: 6684402634672615810, guid: f88e99f3d38b951429ad6ea612d84f33, type: 3}
