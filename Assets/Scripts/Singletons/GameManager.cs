@@ -132,6 +132,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SavePlayerData();
     }
 
+    
+    public bool GetPlayerGameCompleteState() => playerData.gameComplete;
+    public void SetPlayerGameCompleteState(bool state) => playerData.gameComplete = state;
+
     public void SetTerrainStates (List<HexagonTerrain> hexagonTerrains)
     {
         playerData.CampaingStatus = new int[hexagonTerrains.Count];
@@ -344,6 +348,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Mesh GetCurrentMesh(int index) => meshes[index];
     public Sprite GetCurrentSprite (int idUnit, MilitaryType militaryType) => spritesArmy[(int) militaryType].sprites[idUnit];
     public int GetLastLevelCompleted() => playerData.LastLevelComplete;
+    public bool IsLastLevelCampaignEnd()
+    {
+        var levelsList = worldData.LevelsData.levelsList;
+        return playerData.LastLevelComplete == levelsList[levelsList.Count - 1].Index - worldData.startingLevelIndex;
+    }
 
     public List<int> GetAllArmyUnitsIndexWithType(int typeIndex)
     {

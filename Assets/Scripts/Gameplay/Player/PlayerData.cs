@@ -12,6 +12,7 @@ public class PlayerData
 
     public int LastLevelComplete = 0;
     public int[] CampaingStatus = Array.Empty<int>();
+    public bool gameComplete = false;
 
     public int CurrentGold = 100;
     public int CurrentDiamond = 1;
