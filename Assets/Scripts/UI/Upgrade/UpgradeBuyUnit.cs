@@ -16,12 +16,12 @@ public class UpgradeBuyUnit : UpgradeBase
                 baseCost = uiMilitaryBase.upgradeProgression.buy[uiMilitaryBase.subCategorySelect].baseCostArmy;
                 break;
             case (int) MilitaryType.Mercenary:
-                levelUnit = GameManager.Get().GetLevelsUnitsMercenary(uiMilitaryBase.subCategorySelect);
+                levelUnit = GameManager.Get().GetLevelsUnitsMercenary(uiMilitaryBase.subCategorySelect) - PlayerData.levelMoreMercenary;
                 baseCost = uiMilitaryBase.upgradeProgression.buy[uiMilitaryBase.subCategorySelect].baseCostMercenary;
                 break;
         }
 
-        cost = (int)(Mathf.Pow(2, levelUnit) * baseCost);
+        cost = (int) (Mathf.Pow(2, levelUnit) * baseCost);
         textCost.text = cost.ToString();
     }
 
