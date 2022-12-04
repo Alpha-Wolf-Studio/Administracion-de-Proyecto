@@ -10,12 +10,7 @@ public class UnitMilitaryComponent : MonoBehaviour
     private float startFillAmount;
     private float maxTimeAnimationHeal = 0.5f;
     float healingTime = 10;
-
-    private void OnEnable ()
-    {
-        imageContentLife.SetActive(false);
-    }
-
+    
     private void Start ()
     {
         GameManager.Get().OnHealtAllUnits += SetFullLife;
@@ -48,7 +43,14 @@ public class UnitMilitaryComponent : MonoBehaviour
     {
         if (healingTime < maxTimeAnimationHeal)
             return;
-        imageContentLife.SetActive(true);
-        imageFillLife.fillAmount = currentLife / maxLife;
+        if (maxLife == 0 && currentLife == 0)
+        {
+            imageContentLife.SetActive(false);
+        }
+        else
+        {
+            imageContentLife.SetActive(true);
+            imageFillLife.fillAmount = currentLife / maxLife;
+        }
     }
 }

@@ -25,6 +25,11 @@ public class UpgradeLevelUpUnit : UpgradeBase
     public override void BuyUpgrade ()
     {
         bool wasSuccessful = GameManager.Get().LevelUpUnit(cost, currencyType, uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
+        if (wasSuccessful)
+        {
+            GameManager.Get().HealAllUnitsFiltered(0, currencyType, uiMilitaryBase.GetUnitsFiltered(), (MilitaryType)uiMilitaryBase.mainCategorySelect);
+        }
+
         SetTryBuy(wasSuccessful);
     }
 }
