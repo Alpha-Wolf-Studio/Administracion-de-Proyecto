@@ -31,6 +31,8 @@ public class UiManagerCampaign : MonoBehaviour
 
     public void GoToMenuMilitaryBase ()
     {
+        if (!audioSource)
+            return;
         audioSource.clip = audioMilitaryBase;
         audioSource.Play();
         CustomSceneManager.Get().LoadScene("MilitaryBase");
