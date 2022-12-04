@@ -204,30 +204,26 @@ public class ControlPointWithEnemies : MonoBehaviour
     {
 
         string bonusString = "";
-        Color bonusColor;
+        Color bonusColor = Color.white;
         
         if (controlPointData.unlockBonusDamage > controlPointData.unlockHealAmount)
         {
             if (controlPointData.unlockBonusDamage > controlPointData.unlockBonusRange)
             {
                 bonusString = "Damage " + controlPointData.unlockBonusDamage + "%";
-                bonusColor = Color.red;
             }
             else
             {
                 bonusString = "Range " + controlPointData.unlockBonusRange + "%";
-                bonusColor = Color.yellow;
             }
         }
         else if (controlPointData.unlockHealAmount > controlPointData.unlockBonusRange)
         {
             bonusString = "Heal " + controlPointData.unlockHealAmount + "%";
-            bonusColor = Color.green;
         }
         else
         {
             bonusString = "Range " + controlPointData.unlockBonusRange + "%";
-            bonusColor = Color.yellow;
         }
 
         foreach (var text in flagBonusTexts)

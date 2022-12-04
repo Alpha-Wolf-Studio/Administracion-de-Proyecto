@@ -33,7 +33,7 @@ public class UiMilitaryBase : MonoBehaviour
         for (int i = 0; i < textSubCategory.Count; i++)
             savedTextSubCategory.Add(textSubCategory[i].text);
 
-        HealthRecoverCalculator.OnUnitsHeal += UpdateUnitsFiltered;
+        HealthRecoverCalculator.OnUnitsHeal += UpdateHealsUnits;
     }
 
     private void Start ()
@@ -68,7 +68,7 @@ public class UiMilitaryBase : MonoBehaviour
 
     private void OnDestroy ()
     {
-        HealthRecoverCalculator.OnUnitsHeal -= UpdateUnitsFiltered;
+        HealthRecoverCalculator.OnUnitsHeal -= UpdateHealsUnits;
     }
 
     private void OnPressMainCategory (int index)
@@ -85,6 +85,14 @@ public class UiMilitaryBase : MonoBehaviour
         SetSelectable();
         UpdateUnitsFiltered();
         UpdateUpgrades();
+    }
+
+    void UpdateHealsUnits ()
+    {
+        for (int i = 0; i < unitsFiltered.Count; i++)
+        {
+            units[i].UpdateFillLife(maxLifeUnitsSelected, unitsFiltered[i].Life);
+        }
     }
 
     private void SetSelectable ()
@@ -152,6 +160,7 @@ public class UiMilitaryBase : MonoBehaviour
         {
             units[i].gameObject.SetActive(true);
             units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(lenghtUnits, (MilitaryType) mainCategorySelect);
+            units[i].UpdateFillLife(0, 0);
         }
 
         for (int i = 0; i < modelsUnits.Count; i++)
