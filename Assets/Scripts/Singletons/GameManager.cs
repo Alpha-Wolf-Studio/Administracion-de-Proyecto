@@ -252,15 +252,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void SetPostLevelUnits(List<KeyValuePair<int, Unit>> armyUnits, List<KeyValuePair<int, Unit>> mercenaryUnits)
     {
+        
         foreach (var unitKeyValuePair in armyUnits)
         {
-            if (unitKeyValuePair.Value == null || unitKeyValuePair.Value.stats.life <= 0)
-            {
-                List<UnitData> temporalList = new List<UnitData>(playerData.DataArmies);
-                temporalList.RemoveAt(unitKeyValuePair.Key);
-                playerData.DataArmies = temporalList.ToArray();
-            }
-            else
+            if (unitKeyValuePair.Value != null && unitKeyValuePair.Value.stats.life > 0)
             {
                 float newLifeAmount = unitKeyValuePair.Value.stats.life;
                 if (newLifeAmount > 0)
@@ -272,13 +267,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         
         foreach (var unitKeyValuePair in mercenaryUnits)
         {
-            if (unitKeyValuePair.Value == null || unitKeyValuePair.Value.stats.life <= 0)
-            {
-                List<UnitData> temporalList = new List<UnitData>(playerData.DataMercenaries);
-                temporalList.RemoveAt(unitKeyValuePair.Key);
-                playerData.DataMercenaries = temporalList.ToArray();
-            }
-            else
+            if (unitKeyValuePair.Value != null && unitKeyValuePair.Value.stats.life > 0)
             {
                 float newLifeAmount = unitKeyValuePair.Value.stats.life;
                 if (newLifeAmount > 0)
@@ -287,6 +276,33 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                 }
             }
         }
+
+        List<int> indexToRemoveList = new List<int>();
+        List<UnitData> temporalList = new List<UnitData>(playerData.DataArmies);
+        
+        foreach (var unitKeyValuePair in armyUnits)
+        {
+            if (unitKeyValuePair.Value == null || unitKeyValuePair.Value.stats.life <= 0)
+            {
+                indexToRemoveList.Add(unitKeyValuePair.Key);
+            }
+        }
+        temporalList.RemoveAllIndices(indexToRemoveList);
+        playerData.DataArmies = temporalList.ToArray();
+
+        indexToRemoveList.Clear();
+        temporalList.Clear();
+        temporalList = new List<UnitData>(playerData.DataMercenaries);
+        foreach (var unitKeyValuePair in mercenaryUnits)
+        {
+            if (unitKeyValuePair.Value == null || unitKeyValuePair.Value.stats.life <= 0)
+            {
+                indexToRemoveList.Add(unitKeyValuePair.Key);
+            }
+        }
+        temporalList.RemoveAllIndices(indexToRemoveList);
+        playerData.DataMercenaries = temporalList.ToArray();
+
     }
     
     private bool IsPositionNeighbourHexagonal (int i, int j, int levelX, int levelY)
