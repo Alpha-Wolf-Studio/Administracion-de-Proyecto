@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public List<UnitStats> unitsStatsLoaded = new List<UnitStats>();
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private List<SpritesPerArmy> spritesArmy = new List<SpritesPerArmy>();
+    [SerializeField] private List<Sprite> spritesCurrencyTypes = new List<Sprite>();
     [Space(10)]
     [SerializeField] private WorldBuilderData worldData = default;
     [SerializeField] private UnitUpgradeScriptableObject unitUpgrades;
@@ -194,7 +195,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     
     public void OnLevelWin (int level)
     {
-
         playerData.LastLevelComplete = level - worldData.startingLevelIndex;
         playerData.CurrentGold += worldData.LevelsData.GetLevelDataByFalseIndex(level).GoldOnComplete;
         playerData.CurrentDiamond += worldData.LevelsData.GetLevelDataByFalseIndex(level).DiamondOnComplete;
@@ -283,9 +283,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                     playerData.DataMercenaries[unitKeyValuePair.Key].Life = newLifeAmount;
                 }
             }
-            
         }
-        
     }
     
     private bool IsPositionNeighbourHexagonal (int i, int j, int levelX, int levelY)
@@ -369,11 +367,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return mercenaryIndex;
     }
     
-    public bool HealAllUnitsFiltered (int cost, List<UnitData> unitsFiltered, MilitaryType militaryType)
+    public bool HealAllUnitsFiltered (int cost,CurrencyType currencyType, List<UnitData> unitsFiltered, MilitaryType militaryType)
     {
-        if (cost > playerData.CurrentGold)
-            return false;
-        playerData.CurrentGold -= cost;
+        switch (currencyType)
+        {
+            case CurrencyType.Gold:
+                if (cost > playerData.CurrentGold)
+                    return false;
+                playerData.CurrentGold -= cost;
+                break;
+            case CurrencyType.Diamond:
+                if (cost > playerData.CurrentDiamond)
+                    return false;
+                playerData.CurrentDiamond -= cost;
+                break;
+        }
 
         if (unitsFiltered != null && unitsFiltered.Count > 0)
         {
@@ -391,11 +399,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public bool BuyArmy (int cost, int idUnit, MilitaryType militaryType)
+    public bool BuyArmy (int cost,CurrencyType currencyType, int idUnit, MilitaryType militaryType)
     {
-        if (cost > playerData.CurrentGold)
-            return false;
-        playerData.CurrentGold -= cost;
+        switch (currencyType)
+        {
+            case CurrencyType.Gold:
+                if (cost > playerData.CurrentGold)
+                    return false;
+                playerData.CurrentGold -= cost;
+                break;
+            case CurrencyType.Diamond:
+                if (cost > playerData.CurrentDiamond)
+                    return false;
+                playerData.CurrentDiamond -= cost;
+                break;
+        }
 
         UnitData[] newUnitData = new UnitData[playerData.DataArmies.Length + 1];
         float maxLife = GameManager.Get().GetUnitStats(idUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(idUnit, militaryType), idUnit);
@@ -413,11 +431,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public bool BuyMercenary (int cost, int idUnit, MilitaryType militaryType)
+    public bool BuyMercenary (int cost,CurrencyType currencyType, int idUnit, MilitaryType militaryType)
     {
-        if (cost > playerData.CurrentGold)
-            return false;
-        playerData.CurrentGold -= cost;
+        switch (currencyType)
+        {
+            case CurrencyType.Gold:
+                if (cost > playerData.CurrentGold)
+                    return false;
+                playerData.CurrentGold -= cost;
+                break;
+            case CurrencyType.Diamond:
+                if (cost > playerData.CurrentDiamond)
+                    return false;
+                playerData.CurrentDiamond -= cost;
+                break;
+        }
 
         UnitData[] newUnitData = new UnitData[playerData.DataMercenaries.Length + 1];
         float maxLife = GameManager.Get().GetUnitStats(idUnit).GetLifeLevel(GameManager.Get().GetlevelUnit(idUnit, militaryType), idUnit);
@@ -435,11 +463,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return true;
     }
 
-    public bool LevelUpUnit (int cost, int idUnit, MilitaryType militaryType)
+    public bool LevelUpUnit (int cost, CurrencyType currencyType, int idUnit, MilitaryType militaryType)
     {
-        if (cost > playerData.CurrentGold)
-            return false;
-        playerData.CurrentGold -= cost;
+        switch (currencyType)
+        {
+            case CurrencyType.Gold:
+                if (cost > playerData.CurrentGold)
+                    return false;
+                playerData.CurrentGold -= cost;
+                break;
+            case CurrencyType.Diamond:
+                if (cost > playerData.CurrentDiamond)
+                    return false;
+                playerData.CurrentDiamond -= cost;
+                break;
+        }
 
         switch (militaryType)
         {
@@ -459,11 +497,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public UnitData[] GetUnitsArmy () => playerData.DataArmies;
     public UnitData[] GetUnitsMercenary() => playerData.DataMercenaries;
 
-    public bool BuySlot (int cost, int idUnit, MilitaryType militaryType)
+    public bool BuySlot (int cost,CurrencyType currencyType, int idUnit, MilitaryType militaryType)
     {
-        if (cost > playerData.CurrentGold)
-            return false;
-        playerData.CurrentGold -= cost;
+        switch (currencyType)
+        {
+            case CurrencyType.Gold:
+                if (cost > playerData.CurrentGold)
+                    return false;
+                playerData.CurrentGold -= cost;
+                break;
+            case CurrencyType.Diamond:
+                if (cost > playerData.CurrentDiamond)
+                    return false;
+                playerData.CurrentDiamond -= cost;
+                break;
+        }
 
         switch (militaryType)
         {
@@ -515,10 +563,21 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         playerData.CampaingStatus[worldData.startingLevelIndex] = 1;
         SavePlayerData();
     }
+
+    public Sprite GetSprite (CurrencyType currencyType)
+    {
+        return spritesCurrencyTypes[(int) currencyType];
+    }
 }
 
 [System.Serializable]
 class SpritesPerArmy
 {
     public List<Sprite> sprites = new List<Sprite>();
+}
+
+public enum CurrencyType
+{
+    Gold,
+    Diamond
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UpgradeHealUnits : UpgradeBase
 {
@@ -8,28 +9,18 @@ public class UpgradeHealUnits : UpgradeBase
 
         if (units.Count > 0)
         {
-            int multiplyPerLevel = 0;
-            int multiplyPerLife = 0;
-
-            int idUnits = units[0].IdUnit;
+            int idUnits = uiMilitaryBase.subCategorySelect;
             int levelUnit = 0;
+            int baseCost = 0;
 
             switch (uiMilitaryBase.mainCategorySelect)
             {
                 case (int) MilitaryType.Army:
                     levelUnit = GameManager.Get().GetLevelsUnitsArmy(idUnits);
-                    multiplyPerLevel = uiMilitaryBase.upgradeProgression.heal.armyMultiplyPerLevel;
-                    multiplyPerLife = uiMilitaryBase.upgradeProgression.heal.armyMultiplyPerLife;
+                    baseCost = uiMilitaryBase.upgradeProgression.heal[uiMilitaryBase.subCategorySelect].baseCostArmy;
                     break;
                 case (int) MilitaryType.Mercenary:
-                    levelUnit = GameManager.Get().GetLevelsUnitsMercenary(idUnits);
-                    multiplyPerLevel = uiMilitaryBase.upgradeProgression.heal.mercenaryMultiplyPerLevel;
-                    multiplyPerLife = uiMilitaryBase.upgradeProgression.heal.mercenaryMultiplyPerLife;
-                    break;
-                default:
-                    levelUnit = 0;
-                    multiplyPerLevel = 0;
-                    multiplyPerLife = 0;
+                    // Don't use.
                     break;
             }
 
@@ -37,16 +28,9 @@ public class UpgradeHealUnits : UpgradeBase
             float lifeRemaining = 0;
 
             for (int i = 0; i < units.Count; i++)
-            {
                 lifeRemaining += (maxLifeUnit - units[i].Life);
-            }
 
-            if (uiMilitaryBase.upgradeProgression.heal.isMultiplicateLifeAndLevel)
-                cost = (int) ((lifeRemaining * multiplyPerLife) * ((levelUnit + 1) * multiplyPerLevel));
-            else
-                cost = (int) ((lifeRemaining * multiplyPerLife) + ((levelUnit + 1) * multiplyPerLevel));
-
-            cost = (int) ((lifeRemaining * multiplyPerLife) * (levelUnit * multiplyPerLevel));
+            cost = (int) (Mathf.Pow(2, levelUnit) * baseCost);
             if (lifeRemaining < 1)
                 cost = 0;
         }
@@ -62,7 +46,7 @@ public class UpgradeHealUnits : UpgradeBase
     {
         if (uiMilitaryBase.GetUnitsFiltered().Count > 0)
         {
-            bool wasSuccessful = GameManager.Get().HealAllUnitsFiltered(cost, uiMilitaryBase.GetUnitsFiltered(), (MilitaryType) uiMilitaryBase.mainCategorySelect);
+            bool wasSuccessful = GameManager.Get().HealAllUnitsFiltered(cost, currencyType, uiMilitaryBase.GetUnitsFiltered(), (MilitaryType) uiMilitaryBase.mainCategorySelect);
             SetTryBuy(wasSuccessful);
         }
     }

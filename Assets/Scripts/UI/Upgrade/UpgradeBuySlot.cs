@@ -1,28 +1,23 @@
+using UnityEngine;
+
 public class UpgradeBuySlot : UpgradeBase
 {
     public override void UpdateCost ()
     {
-        int multiplyPerLevel = 0;
-        int multiplyPerLevelPlus = 0;
+        int baseCost = 0;
 
         switch (uiMilitaryBase.mainCategorySelect)
         {
             case (int) MilitaryType.Army:
-                multiplyPerLevel = uiMilitaryBase.upgradeProgression.expand.armyMultiplyPerLevel;
-                multiplyPerLevelPlus = uiMilitaryBase.upgradeProgression.expand.armyMultiplyPerLevelPlus;
+                baseCost = uiMilitaryBase.upgradeProgression.expand[uiMilitaryBase.subCategorySelect].baseCostArmy;
                 break;
             case (int) MilitaryType.Mercenary:
-                multiplyPerLevel = uiMilitaryBase.upgradeProgression.expand.mercenaryMultiplyPerLevel;
-                multiplyPerLevelPlus = uiMilitaryBase.upgradeProgression.expand.mercenaryMultiplyPerLevelPlus;
-                break;
-            default:
-                multiplyPerLevel = 0;
-                multiplyPerLevelPlus = 0;
+                // Don't use.
                 break;
         }
 
         int amountUnits = GameManager.Get().GetMaxUnits(uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
-        cost = amountUnits * multiplyPerLevel + (amountUnits - 1) * multiplyPerLevelPlus;
+        cost = baseCost;
 
         if (amountUnits < 1)
             cost = 0;
@@ -32,7 +27,7 @@ public class UpgradeBuySlot : UpgradeBase
 
     protected override void BuyUpgrade ()
     {
-        bool wasSuccessful = GameManager.Get().BuySlot(cost, uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
+        bool wasSuccessful = GameManager.Get().BuySlot(cost, currencyType, uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
         SetTryBuy(wasSuccessful);
     }
 }

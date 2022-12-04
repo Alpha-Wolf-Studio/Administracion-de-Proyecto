@@ -11,7 +11,8 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
     private Collider[] enemyColliders;
 
     private float timeForNextShot = -1;
-    public bool CheckReAttack { get; set; } = false;
+    private bool firstAttack = false;
+    public bool CheckReAttack { get; set; } = true;
     public Action OnReAttack { get; set; }
     
     public float TimeForNextShot => timeForNextShot;
@@ -23,23 +24,26 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
         unit = GetComponent<Unit>();
     }
 
-    private void Update()
-    {
-        if (!CheckReAttack) return;
-        if (timeForNextShot > 0) timeForNextShot -= Time.deltaTime;
-    }
-
     public override void Execute()
     {
-        if (timeForNextShot < 0)
+        if (firstAttack)
         {
-            if (CheckReAttack)
+            firstAttack = false;
+            OnAttacking?.Invoke(true);
+            timeForNextShot = 1 / unit.stats.fireRate;
+        }
+        else if (CheckReAttack)
+        {
+            if (timeForNextShot > 0)
             {
+                timeForNextShot -= Time.deltaTime;
+            }
+            else
+            {
+                timeForNextShot = 1 / unit.stats.fireRate;
                 OnReAttack?.Invoke();
                 CheckReAttack = false;
             }
-            timeForNextShot = 1 / unit.stats.fireRate;
-            OnAttacking?.Invoke(true);
         }
         
         Vector3 enemyPosition = enemyColliders[0].transform.position;
@@ -71,11 +75,17 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
         enemyColliders = System.Array.FindAll(enemyColliders, IsEnemyValid).ToArray(); // SYSTEM ARRAY
 
         bool enemyInSight = enemyColliders.Length > 0;
+
+        if (!enemyInSight)
+        {
+            CheckReAttack = false;
+            firstAttack = true;
+        }
         
         OnAttacking?.Invoke(enemyInSight);
         return enemyInSight;
     }
-
+    
     private bool IsEnemyValid(Collider collider)
     {
         bool colliderIsNotNull = collider != null;

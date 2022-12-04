@@ -21,6 +21,7 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     private Unit unit = default;
 
     private float timeForNextShot = -1;
+    private bool firstAttack = true;
     
     private float startHeight = 0;
 
@@ -54,12 +55,6 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
         transform.position = startPosition;
     }
 
-    private void Update()
-    {
-        if (!CheckReAttack) return;
-        if (timeForNextShot > 0) timeForNextShot -= Time.deltaTime;
-    }
-
     public void SpawnProjectile() 
     {
         GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, projectileSpawn.position, Quaternion.identity, BulletParent.Get().GetTransform());
@@ -72,15 +67,24 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
 
     public override void Execute()
     {
-        if (timeForNextShot < 0)
+        if (firstAttack)
         {
-            if (CheckReAttack)
+            firstAttack = false;
+            OnAttacking?.Invoke(true);
+            timeForNextShot = 1 / unit.stats.fireRate;
+        }
+        else if (CheckReAttack)
+        {
+            if (timeForNextShot > 0)
             {
+                timeForNextShot -= Time.deltaTime;
+            }
+            else
+            {
+                timeForNextShot = 1 / unit.stats.fireRate;
                 OnReAttack?.Invoke();
                 CheckReAttack = false;
             }
-            timeForNextShot = 1 / unit.stats.fireRate;
-            OnAttacking?.Invoke(true);
         }
         
         Transform ownTransform = transform;
