@@ -1,16 +1,27 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiManagerMilitaryBase : MonoBehaviour
 {
     [SerializeField] private Button btnGoToCampaing;
+    private AudioSource audioSource;
+
+    private void Awake ()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Start ()
     {
         btnGoToCampaing.onClick.AddListener(GoToMenuCampaing);
     }
 
-    public void GoToMenuCampaing ()=> CustomSceneManager.Get().LoadScene("Campaign");
+    public void GoToMenuCampaing ()
+    {
+        CustomSceneManager.Get().LoadScene("Campaign");
+        audioSource.Play();
+    } 
 
     //------------------------------------------------------------------------------------------------
     [Space(15)]
