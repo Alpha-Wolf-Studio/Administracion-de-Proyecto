@@ -34,9 +34,10 @@ public class Grenade : Projectile
         {
             t += Time.deltaTime * velocity;
             if (target != null) targetPosition = target.transform.position;
-            Vector3 nextPosition = Vector3.Lerp(startPosition, targetPosition, t);
-            nextPosition.y += Mathf.Sin(Mathf.PI * t) * arcVariance;
-            transform.position = nextPosition;
+            Vector3 nextPosition = GetNextPosition(startPosition, targetPosition, t);
+            var ownTransform = transform;
+            ownTransform.forward = (nextPosition - ownTransform.position).normalized;
+            ownTransform.position = nextPosition;
 
             yield return null;
         }
@@ -66,4 +67,11 @@ public class Grenade : Projectile
         unitShooter.OnDie += DestroyProjectile;
     }
 
+    private Vector3 GetNextPosition(Vector3 startPosition, Vector3 targetPosition, float t)
+    {
+        Vector3 nextPosition = Vector3.Lerp(startPosition, targetPosition, t);
+        nextPosition.y += Mathf.Sin(Mathf.PI * t) * arcVariance;
+        return nextPosition;
+    }
+    
 }
