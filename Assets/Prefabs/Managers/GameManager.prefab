@@ -61,6 +61,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8d389e6ba94dd2b479902c702a46a797, type: 3}
     - {fileID: 21300000, guid: e4cc1c686345e8f439166e85d2f599ad, type: 3}
     - {fileID: 21300000, guid: ab0e4ad447d3d444582cd92d8870cbc9, type: 3}
+  spritesCurrencyTypes:
+  - {fileID: 21300000, guid: e6996f3bd431ca644a9277f3d1a0534b, type: 3}
+  - {fileID: 21300000, guid: 4e601f61af20ca64aa570faea2856250, type: 3}
   worldData: {fileID: 11400000, guid: 5da217c790ee20d40b0f5317af3f53c1, type: 2}
   unitUpgrades: {fileID: 11400000, guid: 000ec387cf7017e478458644b662c682, type: 2}
   playerData:

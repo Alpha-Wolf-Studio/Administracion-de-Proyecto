@@ -27,6 +27,14 @@ public class PlayerData
     public UnitData[] DataArmies = Array.Empty<UnitData>();
     public UnitData[] DataMercenaries = Array.Empty<UnitData>();
 
+    public PlayerData ()
+    {
+        for (int i = 0; i < maxAmountMercenary.Length; i++)
+        {
+            maxAmountMercenary[i] = 12;
+        }
+    }
+
     public void SaveUnitsArmy (List<Unit> units)
     {
         DataArmies = new UnitData[units.Count];

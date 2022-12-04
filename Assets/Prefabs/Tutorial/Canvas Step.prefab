@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &282065285404947712
 RectTransform:
   m_ObjectHideFlags: 0
@@ -148,18 +148,18 @@ RectTransform:
   m_GameObject: {fileID: 584654445482427822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4897522, y: 0.7527169, z: 1.56816}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8085503359972876590}
   - {fileID: 4291266479353495221}
   m_Father: {fileID: 7547734943730916761}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -504, y: -573.04004}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &458745166161384355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.015195131, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.015195131, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -505,8 +505,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 6412668698036879998}
-  - {fileID: 282065285404947712}
   - {fileID: 1683533828590950357}
+  - {fileID: 282065285404947712}
   - {fileID: 435120877514257104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -736,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693316760767103021, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4693316760767103021, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
       propertyPath: m_AnchorMax.x
@@ -812,11 +812,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
---- !u!224 &1683533828590950357 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4693316760767103021, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
-  m_PrefabInstance: {fileID: 6232735192825288696}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4199228936750629097 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7798466379299772177, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
@@ -828,3 +823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e757868a4cb46d438669c4a7e2602c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1683533828590950357 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4693316760767103021, guid: c79504c9c66926140b8c569bd27fd420, type: 3}
+  m_PrefabInstance: {fileID: 6232735192825288696}
+  m_PrefabAsset: {fileID: 0}

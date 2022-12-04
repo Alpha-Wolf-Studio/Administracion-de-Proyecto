@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using PrivateClassUpgrades;
 using UnityEngine;
@@ -6,50 +5,40 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Upgrades Progression", menuName = "Upgrades/Upgrades Progression", order = 2)]
 public class UpgradeProgression : ScriptableObject
 {
-    public Expand expand;
-    public Heal heal;
-    public Buy buy;
-    public LvlUp lvlUp;
+    public List<Buy> buy = new List<Buy>();
+    public List<Expand> expand = new List<Expand>();
+    public List<LvlUp> lvlUp = new List<LvlUp>();
+    public List<Heal> heal = new List<Heal>();
 }
 
 namespace PrivateClassUpgrades
 {
     [System.Serializable]
-    public class Expand
-    {
-        public int armyMultiplyPerLevel;
-        public int armyMultiplyPerLevelPlus;
-        [Space(5)] 
-        public int mercenaryMultiplyPerLevel;
-        public int mercenaryMultiplyPerLevelPlus;
-    }
-
-    [System.Serializable]
-    public class Heal
-    {
-        public int armyMultiplyPerLevel;
-        public int armyMultiplyPerLife;
-        [Space(5)] 
-        public int mercenaryMultiplyPerLevel;
-        public int mercenaryMultiplyPerLife;
-        [Space(5)] 
-        public bool isMultiplicateLifeAndLevel;
-    }
-
-    [System.Serializable]
     public class Buy
     {
-        public int baseMultiplyArmy;
-        public int baseMultiplyMercenary;
-        [Space(5)] 
-        public int constMultiplicator;
+        public string name = "";
+        public int baseCostArmy;
+        public int baseCostMercenary;
+    }
+
+    [System.Serializable]
+    public class Expand
+    {
+        public string name = "";
+        public int baseCostArmy;
     }
 
     [System.Serializable]
     public class LvlUp
     {
-        public int armyLevelMultiplicator;
-        [Space(5)] 
-        public int mercenaryLevelMultiplicator;
+        public string name = "";
+        public int baseCost;
+    }
+
+    [System.Serializable]
+    public class Heal
+    {
+        public string name = "";
+        public int baseCostArmy;
     }
 }

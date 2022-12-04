@@ -1,28 +1,27 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UpgradeBuyUnit : UpgradeBase
 {
     public override void UpdateCost ()
     {
-        int constMultiplicator = uiMilitaryBase.upgradeProgression.buy.constMultiplicator;
-
         List<UnitData> units = uiMilitaryBase.GetUnitsFiltered();
-        int multiply = 1;
+        int levelUnit = 0;
+        int baseCost = 0;
 
         switch (uiMilitaryBase.mainCategorySelect)
         {
             case (int) MilitaryType.Army:
-                multiply = uiMilitaryBase.upgradeProgression.buy.baseMultiplyArmy;
+                levelUnit = GameManager.Get().GetLevelsUnitsArmy(uiMilitaryBase.subCategorySelect);
+                baseCost = uiMilitaryBase.upgradeProgression.buy[uiMilitaryBase.subCategorySelect].baseCostArmy;
                 break;
             case (int) MilitaryType.Mercenary:
-                multiply = uiMilitaryBase.upgradeProgression.buy.baseMultiplyMercenary;
-                break;
-            default:
-                multiply = 1;
+                levelUnit = GameManager.Get().GetLevelsUnitsMercenary(uiMilitaryBase.subCategorySelect);
+                baseCost = uiMilitaryBase.upgradeProgression.buy[uiMilitaryBase.subCategorySelect].baseCostMercenary;
                 break;
         }
 
-        cost = units.Count * constMultiplicator * multiply;
+        cost = (int)(Mathf.Pow(2, levelUnit) * baseCost);
         textCost.text = cost.ToString();
     }
 
@@ -37,10 +36,10 @@ public class UpgradeBuyUnit : UpgradeBase
             switch ((MilitaryType) uiMilitaryBase.mainCategorySelect)
             {
                 case MilitaryType.Army:
-                    wasSuccessful = GameManager.Get().BuyArmy(cost, uiMilitaryBase.subCategorySelect, MilitaryType.Army);
+                    wasSuccessful = GameManager.Get().BuyArmy(cost, currencyType, uiMilitaryBase.subCategorySelect, MilitaryType.Army);
                     break;
                 case MilitaryType.Mercenary:
-                    wasSuccessful = GameManager.Get().BuyMercenary(cost, uiMilitaryBase.subCategorySelect, MilitaryType.Mercenary);
+                    wasSuccessful = GameManager.Get().BuyMercenary(cost, currencyType, uiMilitaryBase.subCategorySelect, MilitaryType.Mercenary);
                     break;
             }
 
