@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,9 @@ public class UiMilitaryBase : MonoBehaviour
     [SerializeField] private List<UpgradeBase> buttonsUpgrades = new List<UpgradeBase>();
     [SerializeField] private List<UnitData> unitsFiltered;
     [SerializeField] private List<GameObject> modelsUnits = new List<GameObject>();
+    [SerializeField] private List<CanvasGroup> upgradesHideMercenary = new List<CanvasGroup>();
+
+    [SerializeField] private List<TMP_Text> textSubCategory = new List<TMP_Text>();
 
     private void Awake ()
     {
@@ -94,6 +98,16 @@ public class UiMilitaryBase : MonoBehaviour
 
     private void UpdateUnitsFiltered ()
     {
+        UpdateUnits();
+        UpdateUpgrades();
+    }
+
+    private void UpdateUnits ()
+    {
+        int maxUnits = GameManager.Get().GetMaxUnits(subCategorySelect, (MilitaryType) mainCategorySelect);
+        levelUnitSelected = GameManager.Get().GetlevelUnit(subCategorySelect, (MilitaryType) mainCategorySelect);
+        maxLifeUnitsSelected = (int) GameManager.Get().GetUnitStats(subCategorySelect).GetLifeLevel(levelUnitSelected, subCategorySelect);
+
         switch ((MilitaryType) mainCategorySelect)
         {
             case MilitaryType.Army:
@@ -108,12 +122,7 @@ public class UiMilitaryBase : MonoBehaviour
         }
 
         for (int i = 0; i < units.Count; i++)
-        {
             units[i].gameObject.SetActive(false);
-        }
-
-        if (unitsFiltered == null || unitsFiltered.Count == 0)
-            return;
 
         for (int i = unitsFiltered.Count - 1; i >= 0; i--)
         {
@@ -126,10 +135,6 @@ public class UiMilitaryBase : MonoBehaviour
             UnitMilitaryComponent unit = Instantiate(prefabUnitComponent, panelContentUnit).GetComponent<UnitMilitaryComponent>();
             units.Add(unit);
         }
-
-        int maxUnits = GameManager.Get().GetMaxUnits(subCategorySelect, (MilitaryType) mainCategorySelect);
-        levelUnitSelected = GameManager.Get().GetlevelUnit(subCategorySelect, (MilitaryType)mainCategorySelect);
-        maxLifeUnitsSelected = (int) GameManager.Get().GetUnitStats(subCategorySelect).GetLifeLevel(levelUnitSelected, subCategorySelect);
 
         for (int i = 0; i < unitsFiltered.Count; i++)
         {
@@ -145,25 +150,57 @@ public class UiMilitaryBase : MonoBehaviour
             units[i].imageUnit.sprite = GameManager.Get().GetCurrentSprite(lenghtUnits, (MilitaryType) mainCategorySelect);
         }
 
-        for (int i = 0; i < buttonsUpgrades.Count; i++)
-        {
-            buttonsUpgrades[i].SetImage(GameManager.Get().GetCurrentSprite(subCategorySelect, (MilitaryType) mainCategorySelect));
-        }
-
         for (int i = 0; i < modelsUnits.Count; i++)
         {
             modelsUnits[i].SetActive(i == subCategorySelect);
         }
 
-        UpdateUpgrades();
+        for (int i = 0; i < textSubCategory.Count; i++)
+        {
+            int level = GameManager.Get().GetlevelUnit(i, (MilitaryType) mainCategorySelect);
+            textSubCategory[i].text = string.Format(textSubCategory[i].text, (level + 1).ToString("F0"));
+        }
     }
 
-    void UpdateUpgrades ()
+    private void UpdateUpgrades ()
     {
+        for (int i = 0; i < buttonsUpgrades.Count; i++)
+        {
+            buttonsUpgrades[i].SetImage(GameManager.Get().GetCurrentSprite(subCategorySelect, (MilitaryType)mainCategorySelect));
+        }
+
         for (int i = 0; i < buttonsUpgrades.Count; i++)
         {
             if (buttonsUpgrades[i].isInited)
                 buttonsUpgrades[i].UpdateCost();
+        }
+
+        if (mainCategorySelect == (int)MilitaryType.Mercenary)
+        {
+            buttonsUpgrades[1].canUse = false;
+            buttonsUpgrades[2].canUse = false;
+            buttonsUpgrades[3].canUse = false;
+
+            for (int i = 0; i < upgradesHideMercenary.Count; i++)
+            {
+                upgradesHideMercenary[i].interactable = false;
+                upgradesHideMercenary[i].alpha = 0;
+                buttonsUpgrades[i].SetCurrencyType(CurrencyType.Diamond);
+            }
+        }
+        else
+        {
+            buttonsUpgrades[0].currencyType = CurrencyType.Gold;
+            buttonsUpgrades[1].canUse = true;
+            buttonsUpgrades[2].canUse = true;
+            buttonsUpgrades[3].canUse = true;
+
+            for (int i = 0; i < upgradesHideMercenary.Count; i++)
+            {
+                upgradesHideMercenary[i].interactable = true;
+                upgradesHideMercenary[i].alpha = 1;
+                buttonsUpgrades[i].SetCurrencyType(CurrencyType.Gold);
+            }
         }
     }
 

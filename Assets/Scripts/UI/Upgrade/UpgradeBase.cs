@@ -8,10 +8,13 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
 {
     public event Action OnUpdateUpgrade;
     public bool isInited;
+    public bool canUse = true;
     private Image image;
+    [SerializeField] private Image imageCurrencyType;
     protected UiMilitaryBase uiMilitaryBase;
     [SerializeField] protected TMP_Text textCost;
     protected int cost;
+    public CurrencyType currencyType = CurrencyType.Gold;
     private Animator animator;
     private static readonly int Successful = Animator.StringToHash("Successful");
     private static readonly int Fail = Animator.StringToHash("Fail");
@@ -25,14 +28,23 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
     public void Initialize (UiMilitaryBase uiMilitaryBase)
     {
         isInited = true;
+        canUse = true;
         this.uiMilitaryBase = uiMilitaryBase;
         UpdateCost();
+    }
+
+    public void SetCurrencyType (CurrencyType currencyType)
+    {
+        this.currencyType = currencyType;
+        imageCurrencyType.sprite = GameManager.Get().GetSprite(currencyType);
     }
 
     public abstract void UpdateCost ();
 
     public void OnPointerClick (PointerEventData eventData)
     {
+        if (!canUse)
+            return;
         BuyUpgrade();
         OnUpdateUpgrade?.Invoke();
     }

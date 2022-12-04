@@ -12,21 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af4f3ca818a6394cae0debe838c01e5, type: 3}
   m_Name: Upgrades Progression
   m_EditorClassIdentifier: 
-  expand:
-    armyMultiplyPerLevel: 500
-    armyMultiplyPerLevelPlus: 500
-    mercenaryMultiplyPerLevel: 15
-    mercenaryMultiplyPerLevelPlus: 5
-  heal:
-    armyMultiplyPerLevel: 10
-    armyMultiplyPerLife: 2
-    mercenaryMultiplyPerLevel: 3
-    mercenaryMultiplyPerLife: 5
-    isMultiplicateLifeAndLevel: 0
   buy:
-    baseMultiplyArmy: 50
-    baseMultiplyMercenary: 100
-    constMultiplicator: 5
+  - name: Rifle
+    baseCostArmy: 50
+    baseCostMercenary: 1
+  - name: Granade
+    baseCostArmy: 100
+    baseCostMercenary: 2
+  - name: Tank
+    baseCostArmy: 300
+    baseCostMercenary: 3
+  - name: Globo
+    baseCostArmy: 0
+    baseCostMercenary: 0
+  expand:
+  - name: Rifle
+    baseCostArmy: 25
+  - name: Granade
+    baseCostArmy: 50
+  - name: Tank
+    baseCostArmy: 75
+  - name: Globo
+    baseCostArmy: 0
   lvlUp:
-    armyLevelMultiplicator: 10
-    mercenaryLevelMultiplicator: 2
+  - name: Rifle
+    baseCost: 1000
+  - name: Granade
+    baseCost: 3000
+  - name: Tank
+    baseCost: 5000
+  - name: Globo
+    baseCost: 0
+  heal:
+  - name: Rifle
+    baseCostArmy: 40
+  - name: Granade
+    baseCostArmy: 75
+  - name: Tank
+    baseCostArmy: 250
+  - name: Globo
+    baseCostArmy: 0
