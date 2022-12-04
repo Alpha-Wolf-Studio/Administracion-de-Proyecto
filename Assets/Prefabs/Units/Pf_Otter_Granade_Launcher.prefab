@@ -743,6 +743,16 @@ MonoBehaviour:
   - {fileID: 587522205217373929}
   - {fileID: 4780109091553275967}
   - {fileID: 1997258386345974634}
+  audiosDamage:
+  - {fileID: 8300000, guid: 915197a6b9140114f862ed02e62e201b, type: 3}
+  - {fileID: 8300000, guid: ac9290740f140934cb1b42c96a3033b3, type: 3}
+  - {fileID: 8300000, guid: e03dc639980dabc4b81a5717303c8651, type: 3}
+  - {fileID: 8300000, guid: 857d278d4a214294da4903a71995b02c, type: 3}
+  - {fileID: 8300000, guid: d7ac4f3391b664b4e871bb8839394eab, type: 3}
+  audiosHeal:
+  - {fileID: 8300000, guid: 171ead83a5af2db44bae50b3dc49a372, type: 3}
+  - {fileID: 8300000, guid: 3856eeda2dc13d946a0ac75b5b3a3a66, type: 3}
+  - {fileID: 8300000, guid: 0d45b525764eef44e9048c3590e0a19e, type: 3}
   stats:
     nameUnit: No name
     idUnit: 0
@@ -816,6 +826,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 1
   projectileSpawn: {fileID: 4576157016957174491}
+  audioShoots:
+  - {fileID: 8300000, guid: 2340ad57c83547b439090a115a8afe27, type: 3}
+  - {fileID: 8300000, guid: 8d79dbb907ae6bb4c906c239f7032c0e, type: 3}
 --- !u!114 &5817097950873832632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +846,11 @@ MonoBehaviour:
   timeFalling: 2
   fallSpeed: 2
   fallAcceleration: 0
+  audiosDie:
+  - {fileID: 8300000, guid: c99676f150b75a84d849b57cb6f417b8, type: 3}
+  - {fileID: 8300000, guid: 497d0e99210d2b5468d9de7617c920d4, type: 3}
+  - {fileID: 8300000, guid: d44642d6a4ba5a84aaa130a38fda50bd, type: 3}
+  - {fileID: 8300000, guid: a85ff53b972a5b64ea08205721cc8773, type: 3}
 --- !u!54 &3486362038803053824
 Rigidbody:
   m_ObjectHideFlags: 0

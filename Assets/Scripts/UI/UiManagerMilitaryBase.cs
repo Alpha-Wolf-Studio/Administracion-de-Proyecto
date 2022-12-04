@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +18,8 @@ public class UiManagerMilitaryBase : MonoBehaviour
 
     public void GoToMenuCampaing ()
     {
+        if (!audioSource)
+            return;
         CustomSceneManager.Get().LoadScene("Campaign");
         audioSource.Play();
     } 

@@ -29,6 +29,9 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
     private const float MidZPosition = 0f;
     private const float BotZPosition = -10f;
 
+    [SerializeField] private List<AudioClip> audioShoots = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> audioImpact = new List<AudioClip>();
+
     public void SetPrefabProjectile(Projectile proj)
     {
         prefabProjectile = proj;
@@ -61,6 +64,7 @@ public class UnitCustomBalloonBehaviour : UnitBehaviour, IShootBehaviour
         Projectile projectile = projectileGameObject.GetComponent<Projectile>();
         projectile.SetAttributes(unit);
         projectile.StartProjectile();
+        projectile.SetAudios(audioShoots, audioImpact);
     }
 
     public override bool IsBehaviourExecutable() => true;

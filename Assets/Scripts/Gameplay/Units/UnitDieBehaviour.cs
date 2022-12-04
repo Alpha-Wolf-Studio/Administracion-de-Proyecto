@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitDieBehaviour : UnitBehaviour
@@ -13,14 +13,32 @@ public class UnitDieBehaviour : UnitBehaviour
     private Unit unit = default;
     private bool isUnitDead = false;
     private float currentTime = 0;
-    
+
+    [SerializeField] private List<AudioClip> audiosDie = new List<AudioClip>();
+    private AudioSource audioSource;
+
+    private void Awake ()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         unit = GetComponent<Unit>();
+        unit.OnDie += EjecuteAudioDie;
         unit.OnDie += delegate
         {
             isUnitDead = true;
         };
+    }
+
+    private void EjecuteAudioDie ()
+    {
+        if (!audioSource)
+            return;
+        AudioClip clip = audiosDie[Random.Range(0, audiosDie.Count)];
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public override bool IsBehaviourExecutable() => isUnitDead;

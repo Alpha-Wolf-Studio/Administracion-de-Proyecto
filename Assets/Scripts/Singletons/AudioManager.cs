@@ -26,12 +26,16 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     
     public void PlayMusicMenu()
     {
+        if (!audioSource)
+            return;
         audioSource.clip = clipMainMenu;
         audioSource.Play();
     }
 
     public void PlayMusicGamePlay()
     {
+        if (!audioSource)
+            return;
         audioSource.clip = clipGamePlay;
         audioSource.Play();
     }

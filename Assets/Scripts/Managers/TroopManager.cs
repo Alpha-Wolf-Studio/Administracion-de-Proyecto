@@ -12,6 +12,7 @@ public class TroopManager : MonoBehaviour
     [SerializeField] private LayerMask layerToAttack = default;
     [SerializeField] private bool unitsGoToRight = true;
     [SerializeField] private Material mercenaryMaterial;
+    [SerializeField] private int mercenaryExtraLevels = 1;
     //[SerializeField] private Color troopColor = Color.blue; // Temporal
 
     private ControlPointData currentControlPointData = new ControlPointData();
@@ -97,12 +98,10 @@ public class TroopManager : MonoBehaviour
         {
             case MilitaryType.Army:
                 unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[troopIndex]);
-                unit.stats.life = GameManager.Get().GetLifeUnitsArmyPlayer(unitDataIndex);
                 armyUnitsSpawned.Add(new KeyValuePair<int, Unit>(unitDataIndex, unit));
                 break;
             case MilitaryType.Mercenary:
-                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsMercenaryPlayer()[troopIndex]);
-                unit.stats.life = GameManager.Get().GetLifeUnitsMercenaryPlayer(unitDataIndex);
+                unit.SetValues(unitStats, GameManager.Get().GetLevelUnitsArmyPlayer()[troopIndex] + mercenaryExtraLevels);
                 mercenaryUnitsSpawned.Add(new KeyValuePair<int, Unit>(unitDataIndex, unit));
                 unit.SetBaseTroopMaterial(mercenaryMaterial);
                 break;

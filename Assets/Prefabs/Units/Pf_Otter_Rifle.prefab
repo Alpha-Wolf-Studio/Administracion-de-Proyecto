@@ -1926,6 +1926,16 @@ MonoBehaviour:
   baseTroopMeshRenderers:
   - {fileID: 7290863353377846120}
   - {fileID: 948333490759813929}
+  audiosDamage:
+  - {fileID: 8300000, guid: 915197a6b9140114f862ed02e62e201b, type: 3}
+  - {fileID: 8300000, guid: ac9290740f140934cb1b42c96a3033b3, type: 3}
+  - {fileID: 8300000, guid: e03dc639980dabc4b81a5717303c8651, type: 3}
+  - {fileID: 8300000, guid: 857d278d4a214294da4903a71995b02c, type: 3}
+  - {fileID: 8300000, guid: d7ac4f3391b664b4e871bb8839394eab, type: 3}
+  audiosHeal:
+  - {fileID: 8300000, guid: 171ead83a5af2db44bae50b3dc49a372, type: 3}
+  - {fileID: 8300000, guid: 3856eeda2dc13d946a0ac75b5b3a3a66, type: 3}
+  - {fileID: 8300000, guid: 0d45b525764eef44e9048c3590e0a19e, type: 3}
   stats:
     nameUnit: No name
     idUnit: 0
@@ -1999,6 +2009,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 1
   projectileSpawn: {fileID: 4576157016957174491}
+  audioShoots:
+  - {fileID: 8300000, guid: 75b9b44f9b0de674c97c41e5f95739b3, type: 3}
+  - {fileID: 8300000, guid: 207a21d8b88c65446a962a38ff168869, type: 3}
+  - {fileID: 8300000, guid: 8d17c03a6e019374d9b35e9ce04160b7, type: 3}
+  - {fileID: 8300000, guid: 225bffc80fb1f3048a64a6c439fd4b41, type: 3}
+  - {fileID: 8300000, guid: 89f2a73ffb9ec1949bab82cc18dfcf3c, type: 3}
+  - {fileID: 8300000, guid: 2bd0b68527503664f976add3af4aaf19, type: 3}
+  - {fileID: 8300000, guid: b7f1cbe5db7a1f846b46bc01792eab7b, type: 3}
 --- !u!114 &3189819208153907607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,6 +2034,11 @@ MonoBehaviour:
   timeFalling: 2
   fallSpeed: 2
   fallAcceleration: 0
+  audiosDie:
+  - {fileID: 8300000, guid: c99676f150b75a84d849b57cb6f417b8, type: 3}
+  - {fileID: 8300000, guid: 497d0e99210d2b5468d9de7617c920d4, type: 3}
+  - {fileID: 8300000, guid: d44642d6a4ba5a84aaa130a38fda50bd, type: 3}
+  - {fileID: 8300000, guid: a85ff53b972a5b64ea08205721cc8773, type: 3}
 --- !u!54 &3486362038803053824
 Rigidbody:
   m_ObjectHideFlags: 0

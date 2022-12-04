@@ -112,6 +112,8 @@ MonoBehaviour:
   OwnLaneFlags: 0
   unitBehaviours: []
   baseTroopMeshRenderers: []
+  audiosDamage: []
+  audiosHeal: []
   stats:
     nameUnit: No name
     idUnit: 0
