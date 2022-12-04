@@ -560,7 +560,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void SetTutorialDone ()
     {
-        playerData.doneTutorial = false;
+        playerData.doneTutorial = true;
         SavePlayerData();
         Destroy(instanceTutorial.gameObject);
     }
