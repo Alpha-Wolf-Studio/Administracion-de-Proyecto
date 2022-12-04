@@ -1,16 +1,17 @@
-using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
 {
+    [Header("Fade Configurations")] 
+    private static readonly int IsOpen = Animator.StringToHash("IsClose");
+    [SerializeField] private Animator animator;
 
-    [Header("Fade Configurations")]
+    [SerializeField] private GameObject ourCanvas;
     [SerializeField] private CanvasGroup fadeImageCanvasGroup = default;
     [SerializeField] private float fadeSpeed = 1f;
-    
-    
+
     public override void Awake()
     {
         base.Awake();
@@ -20,6 +21,7 @@ public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
     private void Start()
     {
         StartCoroutine(FadeOut());
+        ourCanvas.SetActive(true);
     }
 
     public void LoadScene(string scene)
@@ -32,8 +34,10 @@ public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
         Time.timeScale = 1;
         var asyncOperation = SceneManager.LoadSceneAsync(scene);
         asyncOperation.allowSceneActivation = false;
+        animator.SetBool(IsOpen, true);
         yield return StartCoroutine(FadeIn());
         asyncOperation.allowSceneActivation = true;
+        animator.SetBool(IsOpen, false);
         yield return StartCoroutine(FadeOut());
     }
     
@@ -60,5 +64,4 @@ public class CustomSceneManager : MonoBehaviourSingleton<CustomSceneManager>
             yield return null;
         }
     }
-
 }
