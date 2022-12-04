@@ -67,8 +67,7 @@ MonoBehaviour:
   worldData: {fileID: 11400000, guid: 5da217c790ee20d40b0f5317af3f53c1, type: 2}
   unitUpgrades: {fileID: 11400000, guid: 000ec387cf7017e478458644b662c682, type: 2}
   playerData:
-    tutorialIndex: 0
-    tutorialStep: 0
+    doneTutorial: 0
     LastSavedTime: 0
     LastLevelComplete: 0
     CampaingStatus: 
@@ -94,3 +93,4 @@ MonoBehaviour:
     TerrainType: 0
     Enemies: []
     ControlPoints: []
+  prefabTutorial: {fileID: 3450321211130935437, guid: 5bc5023b09b22144493da8bb3399ff6e, type: 3}

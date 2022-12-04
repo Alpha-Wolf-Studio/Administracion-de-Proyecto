@@ -35,11 +35,18 @@ public class TutorialManager : MonoBehaviourSingleton<TutorialManager>
         tutorials[currentTutorial].gameObject.SetActive(false);
         currentTutorial++;
         if (currentTutorial >= tutorials.Count)
-            tutorialWasCompleted = true;
+        {
+            GameManager.Get().SetTutorialDone();
+        }
         else
         {
-            tutorials[currentTutorial].gameObject.SetActive(true);
-            tutorials[currentTutorial].EnableStep(0);
+            Invoke(nameof(DelayStartNextTutorial), 1f);
         }
+    }
+
+    void DelayStartNextTutorial ()
+    {
+        tutorials[currentTutorial].gameObject.SetActive(true);
+        tutorials[currentTutorial].EnableStep(0);
     }
 }

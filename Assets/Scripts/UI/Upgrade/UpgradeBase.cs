@@ -51,7 +51,7 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
 
     public void SetImage (Sprite sprite) => image.sprite = sprite;
 
-    protected abstract void BuyUpgrade ();
+    public abstract void BuyUpgrade ();
 
     protected void SetTryBuy (bool wasSuccessfulBuy)
     {

@@ -42,7 +42,7 @@ public class UpgradeHealUnits : UpgradeBase
         textCost.text = cost.ToString();
     }
 
-    protected override void BuyUpgrade ()
+    public override void BuyUpgrade ()
     {
         if (uiMilitaryBase.GetUnitsFiltered().Count > 0)
         {

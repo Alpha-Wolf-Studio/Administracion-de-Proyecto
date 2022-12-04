@@ -35,6 +35,7 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
             ButtonDisableLogic();
             overlayImage.fillAmount = 1;
         }
+
         unitsIndexList = militaryType == MilitaryType.Army
             ? GameManager.Get().GetAllArmyUnitsIndexWithType(idUnit)
             : GameManager.Get().GetAllMercenaryUnitsIndexWithType(idUnit);
@@ -57,14 +58,20 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown (PointerEventData eventData)
     {
+        SpawnUnit();
+    }
+
+    public void SpawnUnit ()
+    {
         if (!isAvailable)
             return;
+
         currentCooldown = maxCooldown;
-        
+
         troopAmount--;
         textAmount.text = troopAmount.ToString();
         overlayImage.raycastTarget = true;
-        
+
         GamePlayManager.Get().GetPlayerTroopManager().OnButtonCreateTroop(idUnit, unitsIndexList[troopAmount], militaryType);
 
         isAvailable = troopAmount > 0;
@@ -73,10 +80,11 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
             ButtonDisableLogic();
             enabled = false;
         }
+
         overlayImage.fillAmount = 1;
     }
 
-    private void ButtonDisableLogic()
+    private void ButtonDisableLogic ()
     {
         if (troopAmount <= 0)
         {
@@ -84,5 +92,4 @@ public class UiButtonSpawnUnit : MonoBehaviour, IPointerDownHandler
             textAmount.text = "";
         }
     }
-
 }

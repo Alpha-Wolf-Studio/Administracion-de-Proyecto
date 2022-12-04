@@ -2,16 +2,16 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class OtterAnimation : MonoBehaviour
 {
     public Action OnEndWriting;
     private static readonly int AnimTypeOtter = Animator.StringToHash("TutoAnimTypeOtter");
+    private static readonly int HasSpawn = Animator.StringToHash("HasSpawn");
     [SerializeField] private Animator animator;
     [SerializeField] private TMP_Text textTutorial;
     [SerializeField] private float maxTimeTextCompleted = 5f;
-    [SerializeField] private string textInBoxTutorial;
+    [SerializeField] [TextArea(3, 10)] private string textInBoxTutorial;
 
     private TutoAnimTypeOtter tutoAnimTypeOtter = TutoAnimTypeOtter.Spawn;
     private IEnumerator coroutineWritingText;
@@ -21,9 +21,13 @@ public class OtterAnimation : MonoBehaviour
     private float countTimeIdle;
     [SerializeField] private float maxCountTimeAngry= 3.0f;
     private float countTimeAngry;
+    [SerializeField] private bool isSpawn;
 
     private void OnEnable ()
     {
+        animator.SetBool(HasSpawn, isSpawn);
+        if (!isSpawn)
+            SetAnimation(TutoAnimTypeOtter.Idle);
         timeTextCompleted = maxTimeTextCompleted;
         SetCoroutineWritingText(true);
     }

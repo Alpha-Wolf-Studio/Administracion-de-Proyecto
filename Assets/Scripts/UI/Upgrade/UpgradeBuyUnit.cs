@@ -25,7 +25,7 @@ public class UpgradeBuyUnit : UpgradeBase
         textCost.text = cost.ToString();
     }
 
-    protected override void BuyUpgrade ()
+    public override void BuyUpgrade ()
     {
         int filteredAmount = uiMilitaryBase.GetUnitsFiltered().Count;
         int slotsAvailables = GameManager.Get().GetMaxUnits(uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);

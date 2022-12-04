@@ -6,8 +6,7 @@ public class PlayerData
 {
     private const int diferentsOtters = 4;
     public static int levelMoreMercenary = 5;
-    public int tutorialIndex = 0;
-    public int tutorialStep = 0;
+    public bool doneTutorial;
 
     public long LastSavedTime;
 

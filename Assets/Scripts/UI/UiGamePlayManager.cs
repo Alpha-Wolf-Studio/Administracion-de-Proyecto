@@ -6,15 +6,14 @@ using UnityEngine.UI;
 public class UiGamePlayManager : MonoBehaviour
 {
 
-    [Header("Level Data")] 
-    [SerializeField] private EnemyManager enemyManager = default;
+    [Header("Level Data")] [SerializeField]
+    private EnemyManager enemyManager = default;
+
     [SerializeField] private GameObject enemiesDebugPanel = default;
     [SerializeField] private Button saveAllCurrentEnemiesButton = default;
     [SerializeField] private Button resetAllCurrentEnemiesButton = default;
     [SerializeField] private Button clearAllCurrentEnemiesButton = default;
-    [Space(10)]
-    
-    [SerializeField] private Button[] btnToMenu;
+    [Space(10)] [SerializeField] private Button[] btnToMenu;
     [SerializeField] private Button[] btnToReset;
     [SerializeField] private Button btnToCampaign;
 
@@ -26,20 +25,19 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private CanvasGroup uiPanelWin;
     [SerializeField] private CanvasGroup uiPanelLose;
 
-    [Header("Win Panel")] 
-    [SerializeField] private GameObject panelWinGold;
+    [Header("Win Panel")] [SerializeField] private GameObject panelWinGold;
     [SerializeField] private GameObject panelWinIncomeGold;
     [SerializeField] private GameObject panelWinDiamond;
-    
-    [Space(10)]
-    [SerializeField] private TextMeshProUGUI levelTextComponent;
+
+    [Space(10)] [SerializeField] private TextMeshProUGUI levelTextComponent;
 
     private UiGeneral uiGeneral;
     private TextMeshProUGUI winGoldText;
     private TextMeshProUGUI winGoldIncomeText;
     private TextMeshProUGUI WinDiamondText;
-    
-    private void Start()
+    [SerializeField] private UiButtonSpawnUnit btnRifleArmy;
+
+    private void Start ()
     {
         uiPanelWin.gameObject.SetActive(false);
         uiPanelLose.gameObject.SetActive(false);
@@ -57,7 +55,7 @@ public class UiGamePlayManager : MonoBehaviour
         GamePlayManager.OnGameOver += GameOverUi;
 
         levelTextComponent.text = GameManager.Get().CurrentSelectedLevel.LevelName;
-        
+
 #if UNITY_EDITOR
         saveAllCurrentEnemiesButton.onClick.AddListener(enemyManager.SaveAllDataInLevel);
         clearAllCurrentEnemiesButton.onClick.AddListener(enemyManager.ClearAllDataInLevel);
@@ -74,10 +72,10 @@ public class UiGamePlayManager : MonoBehaviour
         winGoldText = panelWinGold.GetComponentInChildren<TextMeshProUGUI>();
         winGoldIncomeText = panelWinIncomeGold.GetComponentInChildren<TextMeshProUGUI>();
         WinDiamondText = panelWinDiamond.GetComponentInChildren<TextMeshProUGUI>();
-        
+
     }
 
-    private void OnDestroy()
+    private void OnDestroy ()
     {
 #if UNITY_EDITOR
         saveAllCurrentEnemiesButton.onClick.RemoveListener(enemyManager.SaveAllDataInLevel);
@@ -92,11 +90,11 @@ public class UiGamePlayManager : MonoBehaviour
         }
     }
 
-    private void OnButtonToMainMenu() => CustomSceneManager.Get().LoadScene("Campaign");
-    private void OnButtonReset() => CustomSceneManager.Get().LoadScene("Gameplay");
-    private void OnButtonCampaign() => CustomSceneManager.Get().LoadScene("Campaign");
+    private void OnButtonToMainMenu () => CustomSceneManager.Get().LoadScene("Campaign");
+    private void OnButtonReset () => CustomSceneManager.Get().LoadScene("Gameplay");
+    private void OnButtonCampaign () => CustomSceneManager.Get().LoadScene("Campaign");
 
-    void GameOverUi(bool isWin)
+    void GameOverUi (bool isWin)
     {
         uiPanelWin.gameObject.SetActive(isWin);
         uiPanelLose.gameObject.SetActive(!isWin);
@@ -107,7 +105,7 @@ public class UiGamePlayManager : MonoBehaviour
             int currentWonGold = currentSelectedLevel.GoldOnComplete;
             int currentWonIncomeGold = currentSelectedLevel.GoldIncome;
             int currentWonDiamond = currentSelectedLevel.DiamondOnComplete;
-            
+
             panelWinGold.SetActive(currentWonGold > 0);
             panelWinIncomeGold.SetActive(currentWonIncomeGold > 0);
             panelWinDiamond.SetActive(currentWonDiamond > 0);
@@ -118,17 +116,22 @@ public class UiGamePlayManager : MonoBehaviour
         }
     }
 
-    void OnButtonPause()
+    void OnButtonPause ()
     {
         Time.timeScale = 0;
         uiPanelGameplay.gameObject.SetActive(false);
         uiPanelPause.gameObject.SetActive(true);
     }
 
-    void OnButtonDisablePause()
+    void OnButtonDisablePause ()
     {
         Time.timeScale = 1;
         uiPanelGameplay.gameObject.SetActive(true);
         uiPanelPause.gameObject.SetActive(false);
+    }
+
+    public void ExceptSpawnRifle ()
+    {
+        btnRifleArmy.SpawnUnit();
     }
 }
