@@ -95,8 +95,9 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
             bool isUnit = unitComponent != null;
             
             if (isUnit)
-            {
-               return AnyFlagContained(unitComponent.OwnLaneFlags, unit.AttackLaneFlags);
+            { 
+                bool isUnitDamageable = unit.stats.unitsDamageables.Exists(i => i == unitComponent.stats.unitType);
+                return AnyFlagContained(unitComponent.OwnLaneFlags, unit.AttackLaneFlags) && isUnitDamageable;
             }
         }
         return false;
