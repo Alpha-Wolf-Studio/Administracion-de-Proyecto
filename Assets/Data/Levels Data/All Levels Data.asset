@@ -15,7 +15,7 @@ MonoBehaviour:
   levelsList:
   - LevelName: 1 - Otterdun
     GoldIncome: 10
-    GoldOnComplete: 100
+    GoldOnComplete: 175
     DiamondOnComplete: 0
     Index: 95
     ProvinceIndex: 1
