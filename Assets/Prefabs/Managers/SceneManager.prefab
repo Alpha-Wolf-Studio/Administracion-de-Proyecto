@@ -353,7 +353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6710680163682287305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -100
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &4893690101975954234
 MonoBehaviour:
@@ -782,6 +782,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   animator: {fileID: 1563050794}
-  ourCanvas: {fileID: 1744441765552491166}
+  ourCanvas: {fileID: 5332824274469904300}
   fadeImageCanvasGroup: {fileID: 7037655632704502627}
   fadeSpeed: 1
