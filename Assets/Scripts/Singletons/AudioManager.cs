@@ -22,9 +22,8 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     [SerializeField] private List<AudioClip> audioRetire = new List<AudioClip>();
     [SerializeField] private List<AudioClip> audioAttack = new List<AudioClip>();
 
-    public override void Awake ()
+    private void Start ()
     {
-        base.Awake();
         PlayMusic();
     }
 
