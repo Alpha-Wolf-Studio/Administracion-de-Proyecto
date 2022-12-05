@@ -56,7 +56,6 @@ public class UiMainMenuManager : MonoBehaviour
     {
         Time.timeScale = 1;
         AddListeners();
-        AudioManager.Get().PlayMusicMenu();
         textVersion.text = "Version: " + Application.version;
         btnMusicOnOff.image.sprite = AudioManager.Get().isMusicOn ? spriteAudioOn : spriteAudioOff;
         btnEffectOnOff.image.sprite = AudioManager.Get().isEffectOn ? spriteAudioOn : spriteAudioOff;

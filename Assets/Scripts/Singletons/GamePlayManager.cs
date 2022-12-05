@@ -36,7 +36,6 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     {
         Time.timeScale = 1; 
         unitToDestroy.OnDie += GameOverWin;
-        AudioManager.Get().PlayMusicGamePlay();
         isGameOver = false;
 
         UnitStats enemyBaseStats = new UnitStats();
@@ -53,6 +52,7 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     {
         if (!isGameOver)
         {
+            AudioManager.Get().PlayAudioWin();
             GameManager.Get().OnLevelWin(levelSelected.Index);
             OnGameOver?.Invoke(true);
         }
@@ -62,6 +62,7 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
     {
         if (!isGameOver)
         {
+            AudioManager.Get().PlayAudioLose();
             OnGameOver?.Invoke(false);
         }
     }
@@ -70,8 +71,6 @@ public class GamePlayManager : MonoBehaviourSingleton<GamePlayManager>
 
     private void SetCurrentTerrain(TerrainGraphicType terrainGraphicType)
     {
-
-            
         DeSelectAllTerrains();
 
         switch (terrainGraphicType)

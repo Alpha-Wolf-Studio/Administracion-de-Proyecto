@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -6,49 +5,64 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private AudioClip clipMainMenu;
-    [SerializeField] private AudioClip clipGamePlay;
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip audioMusic;
+    [SerializeField] private AudioSource audioSourceMusic;
+    [SerializeField] private AudioSource audioSourceSfx;
+
     public bool isMusicOn = true;
     public bool isEffectOn = true;
 
-    private AudioSource sourceMusic;
-    private List<AudioSource> sourceSfx = new List<AudioSource>();
-
     private float minVolume = -80;
-    private float maxVolume = 0;
+    private float maxVolumeMusic = -10;
+    private float maxVolumeSfx = 0;
+    private float maxVolumeAnbient = -6;
 
-    public override void Awake()
+    [SerializeField] private List<AudioClip> audioWin = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> audioLose = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> audioRetire = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> audioAttack = new List<AudioClip>();
+
+    public override void Awake ()
     {
         base.Awake();
-        audioSource = GetComponent<AudioSource>();
-    }
-    
-    public void PlayMusicMenu()
-    {
-        if (!audioSource)
-            return;
-        audioSource.clip = clipMainMenu;
-        audioSource.Play();
+        PlayMusic();
     }
 
-    public void PlayMusicGamePlay()
+    public void PlayMusic ()
     {
-        if (!audioSource)
-            return;
-        audioSource.clip = clipGamePlay;
-        audioSource.Play();
+        audioSourceMusic.clip = audioMusic;
+        audioSourceMusic.Play();
     }
 
-    public void EnableMusic()
+    public void EnableMusic ()
     {
         isMusicOn = !isMusicOn;
-        audioMixer.SetFloat("VolMusic", isMusicOn ? maxVolume : minVolume);
+        audioMixer.SetFloat("VolMusic", isMusicOn ? maxVolumeMusic : minVolume);
     }
 
-    public void EnableEffect()
+    public void EnableEffect ()
     {
         isEffectOn = !isEffectOn;
-        audioMixer.SetFloat("VolEffect", isEffectOn ? maxVolume : minVolume);
+        audioMixer.SetFloat("VolEffect", isEffectOn ? maxVolumeSfx : minVolume);
+        audioMixer.SetFloat("VolAmbient", isEffectOn ? maxVolumeAnbient : minVolume);
+    }
+
+    public void PlayAudioWin () => PlayAudio(audioSourceSfx, audioWin);
+    public void PlayAudioLose () => PlayAudio(audioSourceSfx, audioLose);
+    public void PlayAudioRetire () => PlayAudio(audioSourceSfx, audioRetire);
+    public void PlayAudioAttack () => PlayAudio(audioSourceSfx, audioAttack);
+
+
+    void PlayAudio (AudioSource audioSource, List<AudioClip> clips)
+    {
+        if (!audioSource)
+        {
+            Debug.Log("No hay AudioSource");
+            return;
+        }
+
+        AudioClip clip = audioWin[Random.Range(0, audioWin.Count)];
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }
