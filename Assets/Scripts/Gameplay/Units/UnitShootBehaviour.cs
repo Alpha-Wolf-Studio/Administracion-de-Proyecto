@@ -28,19 +28,23 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         unit = GetComponent<Unit>();
-        OnAttacking += EjecuteAudioShoot;
     }
 
-    private void EjecuteAudioShoot (bool isAttack)
+    private void EjecuteAudioShoot ()
     {
         if (!audioSource)
-            return;
-        if (!isAttack)
-            return;
+            audioSource = GetComponent<AudioSource>();
 
+        PlayAudioShoot();
+
+        Invoke(nameof(PlayAudioShoot), Random.Range(0, 0.6f));
+        Invoke(nameof(PlayAudioShoot), Random.Range(0, 0.6f));
+    }
+
+    void PlayAudioShoot ()
+    {
         AudioClip clip = audioShoots[Random.Range(0, audioShoots.Count)];
-        audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.PlayOneShot(clip);
     }
 
     public override void Execute()
@@ -75,9 +79,10 @@ public class UnitShootBehaviour : UnitBehaviour, IShootBehaviour
         OnMoving?.Invoke(false);
     }
 
-    public void SpawnProjectile() 
+    public void SpawnProjectile()
     {
-        if(enemyColliders.Length > 0 && enemyColliders[0] != null) 
+        EjecuteAudioShoot();
+        if(enemyColliders.Length > 0 && enemyColliders[0] != null)
         {
             GameObject projectileGameObject = Instantiate(prefabProjectile.gameObject, projectileSpawn.position, Quaternion.identity, BulletParent.Get().GetTransform());
             Projectile projectile = projectileGameObject.GetComponent<Projectile>();

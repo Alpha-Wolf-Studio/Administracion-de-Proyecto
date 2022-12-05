@@ -51,7 +51,6 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     public void PlayAudioRetire () => PlayAudio(audioSourceSfx, audioRetire);
     public void PlayAudioAttack () => PlayAudio(audioSourceSfx, audioAttack);
 
-
     void PlayAudio (AudioSource audioSource, List<AudioClip> clips)
     {
         if (!audioSource)
@@ -62,6 +61,6 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
         AudioClip clip = audioWin[Random.Range(0, audioWin.Count)];
         audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.PlayOneShot(clip);
     }
 }
