@@ -37,6 +37,6 @@ public abstract class Projectile : MonoBehaviour
         audioSource.Stop();
         AudioClip clip = audios[Random.Range(0, audios.Count)];
         audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.PlayOneShot(clip);
     }
 }

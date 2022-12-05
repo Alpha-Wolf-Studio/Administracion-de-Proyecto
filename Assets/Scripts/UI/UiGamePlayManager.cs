@@ -1,19 +1,18 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UiGamePlayManager : MonoBehaviour
 {
 
-    [Header("Level Data")] [SerializeField]
-    private EnemyManager enemyManager = default;
-
+    [Header("Level Data")] 
+    [SerializeField] private EnemyManager enemyManager = default;
     [SerializeField] private GameObject enemiesDebugPanel = default;
     [SerializeField] private Button saveAllCurrentEnemiesButton = default;
     [SerializeField] private Button resetAllCurrentEnemiesButton = default;
     [SerializeField] private Button clearAllCurrentEnemiesButton = default;
-    [Space(10)] [SerializeField] private Button[] btnToMenu;
+    [Space(10)] 
+    [SerializeField] private Button[] btnToMenu;
     [SerializeField] private Button[] btnToReset;
     [SerializeField] private Button btnToCampaign;
 
@@ -29,7 +28,8 @@ public class UiGamePlayManager : MonoBehaviour
     [SerializeField] private GameObject panelWinIncomeGold;
     [SerializeField] private GameObject panelWinDiamond;
 
-    [Space(10)] [SerializeField] private TextMeshProUGUI levelTextComponent;
+    [Space(10)] 
+    [SerializeField] private TextMeshProUGUI levelTextComponent;
 
     private UiGeneral uiGeneral;
     private TextMeshProUGUI winGoldText;
@@ -39,6 +39,7 @@ public class UiGamePlayManager : MonoBehaviour
 
     private void Start ()
     {
+        btnToMenu[2].onClick.AddListener(PlayAudioRetire);
         uiPanelWin.gameObject.SetActive(false);
         uiPanelLose.gameObject.SetActive(false);
 
@@ -72,7 +73,6 @@ public class UiGamePlayManager : MonoBehaviour
         winGoldText = panelWinGold.GetComponentInChildren<TextMeshProUGUI>();
         winGoldIncomeText = panelWinIncomeGold.GetComponentInChildren<TextMeshProUGUI>();
         WinDiamondText = panelWinDiamond.GetComponentInChildren<TextMeshProUGUI>();
-
     }
 
     private void OnDestroy ()
@@ -133,5 +133,10 @@ public class UiGamePlayManager : MonoBehaviour
     public void ExceptSpawnRifle ()
     {
         btnRifleArmy.SpawnUnit();
+    }
+
+    void PlayAudioRetire ()
+    {
+        AudioManager.Get().PlayAudioRetire();
     }
 }

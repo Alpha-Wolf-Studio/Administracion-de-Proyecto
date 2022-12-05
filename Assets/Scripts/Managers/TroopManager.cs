@@ -113,16 +113,18 @@ public class TroopManager : MonoBehaviour
             Projectile currentProjectilePrefab = prefabProjectiles[(int)unitStats.attackType];
             unitShootBehaviour.SetPrefabProjectile(currentProjectilePrefab);
         }
-        
-        SetUnitBonuses(unit);
+
+        SetUnitBonuses(unit, isNewUnit: true);
     }
 
-    private void SetUnitBonuses(Unit unit)
+    private void SetUnitBonuses(Unit unit, bool isNewUnit = false)
     {
-        if (!(unit.stats.life > 0)) return;
+        if (!(unit.stats.life > 0) || unit == null) return;
         
         unit.stats.damage += unit.stats.damage * currentControlPointData.unlockBonusDamage / 100;
         unit.stats.bonusRange += (unit.stats.rangeAttack * currentControlPointData.unlockBonusRange) / 100;
-        unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);
+        
+        if(!isNewUnit)
+            unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);
     }
 }

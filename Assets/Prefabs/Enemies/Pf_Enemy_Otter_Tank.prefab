@@ -7485,11 +7485,14 @@ MonoBehaviour:
   unitBehaviours: []
   baseTroopMeshRenderers: []
   audiosDamage:
-  - {fileID: 8300000, guid: 915197a6b9140114f862ed02e62e201b, type: 3}
-  - {fileID: 8300000, guid: ac9290740f140934cb1b42c96a3033b3, type: 3}
-  - {fileID: 8300000, guid: e03dc639980dabc4b81a5717303c8651, type: 3}
-  - {fileID: 8300000, guid: 857d278d4a214294da4903a71995b02c, type: 3}
-  - {fileID: 8300000, guid: d7ac4f3391b664b4e871bb8839394eab, type: 3}
+  - {fileID: 8300000, guid: c3e411019a7ef0d4daa4a60cb24f850b, type: 3}
+  - {fileID: 8300000, guid: 56dab1439ff164642bb0445c8c49a4f0, type: 3}
+  - {fileID: 8300000, guid: 334a4823af649e04ab2d41ce5e0b9d40, type: 3}
+  - {fileID: 8300000, guid: 3b3b65adca35fdd47bce2c07ece471b4, type: 3}
+  - {fileID: 8300000, guid: 7c47c5e2ed3d60446b4030fa65fb3f3e, type: 3}
+  - {fileID: 8300000, guid: 90ff67c63a567ea4788da583bee3d385, type: 3}
+  - {fileID: 8300000, guid: d8bbafc063e013d4a877e8f688b53579, type: 3}
+  - {fileID: 8300000, guid: 518a7cdc51c51eb42b0c1b7e1cd30228, type: 3}
   audiosHeal:
   - {fileID: 8300000, guid: c483dbe4f4f4a9e4c943bd7d5751323c, type: 3}
   stats:
