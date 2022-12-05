@@ -146,7 +146,7 @@ MonoBehaviour:
   - LevelName: 4 - Fishlusha
     GoldIncome: 35
     GoldOnComplete: 300
-    DiamondOnComplete: 0
+    DiamondOnComplete: 1
     Index: 126
     ProvinceIndex: 2
     TerrainType: 1
@@ -219,7 +219,7 @@ MonoBehaviour:
   - LevelName: 5 - Ottahara
     GoldIncome: 45
     GoldOnComplete: 500
-    DiamondOnComplete: 1
+    DiamondOnComplete: 0
     Index: 112
     ProvinceIndex: 2
     TerrainType: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   - LevelName: 7 - Notterdy
     GoldIncome: 70
     GoldOnComplete: 500
-    DiamondOnComplete: 1
+    DiamondOnComplete: 2
     Index: 113
     ProvinceIndex: 2
     TerrainType: 1
@@ -614,7 +614,7 @@ MonoBehaviour:
   - LevelName: 9 - Sardine
     GoldIncome: 80
     GoldOnComplete: 750
-    DiamondOnComplete: 1
+    DiamondOnComplete: 3
     Index: 128
     ProvinceIndex: 3
     TerrainType: 2
