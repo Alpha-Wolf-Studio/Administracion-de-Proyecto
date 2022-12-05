@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +14,7 @@ public class TutorialStep : MonoBehaviour
     [SerializeField] private List<StepType> doBehaviour = new List<StepType>();
     [SerializeField] private Button btnSkip;
     [SerializeField] private float waitingTime;
+    [SerializeField] private TutorialDrag drag;
 
     private void Awake ()
     {
@@ -26,7 +26,11 @@ public class TutorialStep : MonoBehaviour
         if (waitingTime > 0)
             return;
 
-        btnHit.onClick.AddListener(SetToDoneStep);
+        if (!drag)
+            btnHit.onClick.AddListener(SetToDoneStep);
+        else
+            drag.onSuccessful += SetToDoneStep;
+
         if (btnSkip)
             btnSkip.onClick.AddListener(SkipWriting);
     }
@@ -127,5 +131,6 @@ public enum StepType
     ChangeToMercenary,
     GoBattleToCampaing,
     SelectMidLane,
-    SpawnRifleUnit
+    SpawnRifleUnit,
+    Drag
 }
