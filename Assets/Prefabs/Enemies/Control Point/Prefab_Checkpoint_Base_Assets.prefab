@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 687587150798927203}
   - component: {fileID: 8389187997503479417}
   - component: {fileID: 6568676133387513889}
+  - component: {fileID: -499453295730227029}
   m_Layer: 8
   m_Name: Prefab_Checkpoint_Base_Assets
   m_TagString: Untagged
@@ -112,8 +113,17 @@ MonoBehaviour:
   OwnLaneFlags: 0
   unitBehaviours: []
   baseTroopMeshRenderers: []
-  audiosDamage: []
-  audiosHeal: []
+  audiosDamage:
+  - {fileID: 8300000, guid: c3e411019a7ef0d4daa4a60cb24f850b, type: 3}
+  - {fileID: 8300000, guid: 56dab1439ff164642bb0445c8c49a4f0, type: 3}
+  - {fileID: 8300000, guid: 334a4823af649e04ab2d41ce5e0b9d40, type: 3}
+  - {fileID: 8300000, guid: 3b3b65adca35fdd47bce2c07ece471b4, type: 3}
+  - {fileID: 8300000, guid: 7c47c5e2ed3d60446b4030fa65fb3f3e, type: 3}
+  - {fileID: 8300000, guid: 90ff67c63a567ea4788da583bee3d385, type: 3}
+  - {fileID: 8300000, guid: d8bbafc063e013d4a877e8f688b53579, type: 3}
+  - {fileID: 8300000, guid: 518a7cdc51c51eb42b0c1b7e1cd30228, type: 3}
+  audiosHeal:
+  - {fileID: 8300000, guid: c483dbe4f4f4a9e4c943bd7d5751323c, type: 3}
   stats:
     nameUnit: No name
     idUnit: 0
@@ -160,6 +170,102 @@ MonoBehaviour:
     canShoot: 1
     tempCurrentShape: 0
     tempColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!82 &-499453295730227029
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198471136576434137}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4031239937757079503, guid: 244017241d1fcfc4a8c89127cb7774f8, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &296851812594056989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1762,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3295,7 +3401,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3629,7 +3735,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4251,7 +4357,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5256,7 +5362,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278512639
-  m_fontColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

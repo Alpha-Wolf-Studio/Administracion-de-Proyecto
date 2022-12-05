@@ -13,9 +13,9 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     public bool isEffectOn = true;
 
     private float minVolume = -80;
-    private float maxVolumeMusic = -10;
+    private float maxVolumeMusic = -15;
     private float maxVolumeSfx = 0;
-    private float maxVolumeAnbient = -6;
+    private float maxVolumeAmbience = -5;
 
     [SerializeField] private List<AudioClip> audioWin = new List<AudioClip>();
     [SerializeField] private List<AudioClip> audioLose = new List<AudioClip>();
@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     {
         isEffectOn = !isEffectOn;
         audioMixer.SetFloat("VolEffect", isEffectOn ? maxVolumeSfx : minVolume);
-        audioMixer.SetFloat("VolAmbient", isEffectOn ? maxVolumeAnbient : minVolume);
+        audioMixer.SetFloat("VolAmbient", isEffectOn ? maxVolumeAmbience : minVolume);
     }
 
     public void PlayAudioWin () => PlayAudio(audioSourceSfx, audioWin);
@@ -53,14 +53,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
     void PlayAudio (AudioSource audioSource, List<AudioClip> clips)
     {
-        if (!audioSource)
-        {
-            Debug.Log("No hay AudioSource");
-            return;
-        }
-
-        AudioClip clip = audioWin[Random.Range(0, audioWin.Count)];
-        audioSource.clip = clip;
+        AudioClip clip = clips[Random.Range(0, clips.Count)];
         audioSource.PlayOneShot(clip);
     }
 }
