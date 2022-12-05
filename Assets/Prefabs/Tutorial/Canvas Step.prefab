@@ -623,6 +623,8 @@ MonoBehaviour:
   arrow: {fileID: 4291266479353495221}
   doBehaviour: 00000000
   btnSkip: {fileID: 3820550985451086121}
+  waitingTime: 0
+  drag: {fileID: 0}
 --- !u!1 &9162093884534022231
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +694,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 07cb9db8c3ca5754aa468b22d7707750, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
