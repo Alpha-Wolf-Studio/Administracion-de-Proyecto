@@ -23,7 +23,6 @@ public class UiManagerCampaign : MonoBehaviour
         btnGoToGameplay.onClick.AddListener(GoToMenuGameplay);
         btnGoToMilitaryBase.onClick.AddListener(GoToMenuMilitaryBase);
         btnCloseCampaignCompletePanel.onClick.AddListener(CampaignCompletePanelCloseButtonPressed);
-        AudioManager.Get().PlayMusic();
         
         bool isLastLevelCompleteLastLevelCampaign =  GameManager.Get().IsLastLevelCampaignEnd();
         
