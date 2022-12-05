@@ -62,9 +62,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         SavePlayerData();
     }
 
-    private void LoadAllPlayerData() 
+    private void LoadAllPlayerData()
     {
-        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData, true));
+
+        bool usePlayerPrefs = false;
+#if  !UNITY_EDITOR && UNITY_ANDROID
+        playerPrefs = true;  
+#endif
+        
+        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData, playerPref: usePlayerPrefs));
         if (playerData == null)
         {
             ResetPlayerData();
@@ -340,12 +346,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         long unixTimeMilliseconds = now.ToUnixTimeMilliseconds();
         playerData.LastSavedTime = unixTimeMilliseconds;
 
-        bool playerPref = false;
+        bool usePlayerPref = false;
         #if UNITY_ANDROID && !UNITY_EDITOR
-        playerPref = true;
+        usePlayerPref = true;
         #endif
         
-        LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true), playerPref);
+        LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true), playerPref: usePlayerPref);
     }
 
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
