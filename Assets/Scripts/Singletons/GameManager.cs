@@ -65,16 +65,18 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void LoadAllPlayerData() 
     {
         playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData, true));
-        if(playerData.CampaingStatus == null) 
+        if (playerData == null)
         {
-            playerData.CampaingStatus = TerrainManager.GetDefaultTerrainEnumIndexes(worldData.Rows, worldData.Columns);
+            ResetPlayerData();
+            SavePlayerData();
         }
+        
+        playerData.CampaingStatus ??= TerrainManager.GetDefaultTerrainEnumIndexes(worldData.Rows, worldData.Columns);
         CurrentSelectedLevel = worldData.LevelsData.GetLevelData(playerData.LastLevelComplete);
     }
 
     void LoadAllStatsSaved()
     {
-
         unitUpgrades.SetUpgradesInstance();
         
         bool noMoreTexts = false;
@@ -338,7 +340,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         long unixTimeMilliseconds = now.ToUnixTimeMilliseconds();
         playerData.LastSavedTime = unixTimeMilliseconds;
 
-        LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true));
+        bool playerPref = false;
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        playerPref = true;
+        #endif
+        
+        LoadAndSave.SaveToFile(pathPlayerData, JsonUtility.ToJson(playerData, true), playerPref);
     }
 
     public UnitStats GetUnitStats(int index) => unitsStatsLoaded[index];
