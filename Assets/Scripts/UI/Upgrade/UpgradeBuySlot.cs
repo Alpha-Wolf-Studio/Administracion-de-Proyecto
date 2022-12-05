@@ -17,11 +17,8 @@ public class UpgradeBuySlot : UpgradeBase
         }
 
         int amountUnits = GameManager.Get().GetMaxUnits(uiMilitaryBase.subCategorySelect, (MilitaryType) uiMilitaryBase.mainCategorySelect);
+        
         cost = baseCost;
-
-        if (amountUnits < 1)
-            cost = 0;
-
         textCost.text = cost.ToString();
     }
 

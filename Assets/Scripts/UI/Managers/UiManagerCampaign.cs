@@ -7,7 +7,6 @@ public class UiManagerCampaign : MonoBehaviour
     [SerializeField] private Button btnGoToGameplay;
     [SerializeField] private Button btnGoToMilitaryBase;
     [SerializeField] private AudioClip audioMilitaryBase;
-    [SerializeField] private List<AudioClip> audioAttack=new List<AudioClip>();
 
     [Header("Campaign Complete")] 
     [SerializeField] private GameObject campaignCompletePanel;
@@ -24,7 +23,6 @@ public class UiManagerCampaign : MonoBehaviour
         btnGoToGameplay.onClick.AddListener(GoToMenuGameplay);
         btnGoToMilitaryBase.onClick.AddListener(GoToMenuMilitaryBase);
         btnCloseCampaignCompletePanel.onClick.AddListener(CampaignCompletePanelCloseButtonPressed);
-        AudioManager.Get().PlayMusicMenu();
         
         bool isLastLevelCompleteLastLevelCampaign =  GameManager.Get().IsLastLevelCampaignEnd();
         
@@ -33,7 +31,6 @@ public class UiManagerCampaign : MonoBehaviour
             campaignCompletePanel.SetActive(true);
             GameManager.Get().SetPlayerGameCompleteState(true);
         }
-        
     }
 
     private void CampaignCompletePanelCloseButtonPressed()
@@ -43,15 +40,12 @@ public class UiManagerCampaign : MonoBehaviour
     
     public void GoToMenuGameplay ()
     {
-        audioSource.clip = audioAttack[Random.Range(0, audioAttack.Count)];
-        audioSource.Play();
+        AudioManager.Get().PlayAudioAttack();
         CustomSceneManager.Get().LoadScene("Gameplay");
     }
 
     public void GoToMenuMilitaryBase ()
     {
-        if (!audioSource)
-            return;
         audioSource.clip = audioMilitaryBase;
         audioSource.Play();
         CustomSceneManager.Get().LoadScene("MilitaryBase");

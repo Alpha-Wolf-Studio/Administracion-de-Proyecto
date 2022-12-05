@@ -80,7 +80,7 @@ public abstract class UpgradeBase : MonoBehaviour, IPointerClickHandler
     private void PlayAudio (AudioClip clip)
     {
         audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.PlayOneShot(clip);
     }
 }
 

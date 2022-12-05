@@ -10,11 +10,12 @@ public class LoadAndSave
         if (playerPref)
         {
             if (PlayerPrefs.HasKey(filename))
-            { 
+            {
                 return PlayerPrefs.GetString(filename);
             }
+            
+            return null;
         }
-        
         TextAsset textAsset = (TextAsset)Resources.Load(filename);
         if (textAsset == null) return null;
         string stringData = textAsset.text;

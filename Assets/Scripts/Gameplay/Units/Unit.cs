@@ -134,17 +134,22 @@ public class Unit : MonoBehaviour
 
         OnTakeDamage?.Invoke(stats.life, initialStats.life);
 
-        if (stats.life > 0)
+        if (stats.life > 0 && Math.Abs(stats.life - initialStats.life) > 0.1f)
             PlayAudio(audiosDamage);
     }
 
     private void PlayAudio (List<AudioClip> audios)
     {
         if (!audioSource)
+            audioSource = GetComponent<AudioSource>();
+        if (audios == null || audios.Count < 1)
+        {
             return;
-        AudioClip clip = audiosDamage[Random.Range(0, audiosDamage.Count)];
-        audioSource.clip = clip;
-        audioSource.Play();
+        }
+
+        AudioClip clip = audios[Random.Range(0, audios.Count)];
+        if (clip)
+            audioSource.PlayOneShot(clip);
     }
 
 #if UNITY_EDITOR

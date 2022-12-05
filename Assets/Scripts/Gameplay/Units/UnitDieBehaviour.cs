@@ -38,7 +38,7 @@ public class UnitDieBehaviour : UnitBehaviour
             return;
         AudioClip clip = audiosDie[Random.Range(0, audiosDie.Count)];
         audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.PlayOneShot(clip);
     }
 
     public override bool IsBehaviourExecutable() => isUnitDead;
