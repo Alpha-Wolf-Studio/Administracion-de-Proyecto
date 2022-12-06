@@ -66,11 +66,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
 
         bool usePlayerPrefs = false;
+        bool useResourcesLoad = true;
 #if  !UNITY_EDITOR && UNITY_ANDROID
-        playerPrefs = true;  
+        usePlayerPrefs = true;  
+        useResourcesLoad = false;
+#elif !UNITY_EDITOR
+        useResourcesLoad = false;
 #endif
-        
-        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData, playerPref: usePlayerPrefs));
+
+        playerData = JsonUtility.FromJson<PlayerData>(LoadAndSave.LoadFromFile(pathPlayerData, playerPref: usePlayerPrefs, resourcesLoad: useResourcesLoad));
         if (playerData == null)
         {
             ResetPlayerData();

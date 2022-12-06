@@ -5,7 +5,7 @@ using UnityEngine;
 public class LoadAndSave
 {
 
-    public static string LoadFromFile(string filename, bool playerPref = false)
+    public static string LoadFromFile(string filename, bool playerPref = false, bool resourcesLoad = true)
     {
         if (playerPref)
         {
@@ -16,9 +16,21 @@ public class LoadAndSave
             
             return null;
         }
-        TextAsset textAsset = (TextAsset)Resources.Load(filename);
-        if (textAsset == null) return null;
-        string stringData = textAsset.text;
+        string stringData = null;
+
+        if (resourcesLoad)
+        {
+            TextAsset textAsset = (TextAsset)Resources.Load(filename);
+            if (textAsset == null) return null;
+            stringData = textAsset.text;
+        }
+        else
+        {
+            string path = Application.dataPath + "/Resources/" + filename + ".txt";
+            if(File.Exists(path))
+                stringData = File.ReadAllText(path);
+            
+        }
         return stringData;
     }
 
@@ -36,25 +48,7 @@ public class LoadAndSave
 
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.Refresh();
-#else
-                File.WriteAllText(filename + ".txt", stringData);
 #endif
-        }
-    }
-
-    public static void OverwriteResourceFile(string filename, bool playerPref = false)
-    {
-        string path = filename + ".txt";
-        string data = File.ReadAllText(path);
-
-        if (playerPref)
-        {
-            PlayerPrefs.SetString(filename, data);
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            SaveToFile(filename, data, true);
         }
     }
 }
