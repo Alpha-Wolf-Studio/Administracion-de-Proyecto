@@ -1549,6 +1549,8 @@ PrefabInstance:
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
       value: If you need more units, recruit them and expand your unit slots here!
+        I will buy your first slot and unit for you this time. You will have to do
+        your own buying next time!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -2708,9 +2710,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: "As soon as you destroy the enemy \rburrow, the campament is conquered.
+      value: As soon as you destroy the enemy burrow, the campament is conquered.
         You already know the basics to conquer any campament. Keep it up and good
-        luck brother!"
+        luck brother!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
