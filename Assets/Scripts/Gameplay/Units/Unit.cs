@@ -106,7 +106,7 @@ public class Unit : MonoBehaviour
         stats.life += amount;
         if (stats.life > initialStats.life)
             stats.life = initialStats.life;
-        OnHeal?.Invoke(stats.life, initialStats.life);
+        if(amount > 1) OnHeal?.Invoke(stats.life, initialStats.life);
 
         PlayAudio(audiosHeal);
     }

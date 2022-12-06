@@ -126,7 +126,8 @@ public class TroopManager : MonoBehaviour
 
         if (isNewUnit) return;
         unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);
-        unit.OnReceiveBonusDamage?.Invoke();
-        unit.OnReceiveBonusRange?.Invoke();
+        
+        if(currentControlPointData.unlockBonusDamage > 5) unit.OnReceiveBonusDamage?.Invoke();
+        if(currentControlPointData.unlockBonusRange > 5) unit.OnReceiveBonusRange?.Invoke();
     }
 }
