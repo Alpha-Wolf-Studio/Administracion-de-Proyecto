@@ -729,8 +729,8 @@ PrefabInstance:
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
       value: Back to the army! Here you can select between different classes of units.
-        The more you play, more type of classes you will unlock! special agents that
-        you can recruit with diamonds!
+        The more you play, you will buy more units, buy stronger units and upgrade
+        them.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -883,7 +883,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: And if they are damaged in combat, you will be able to heal them.
+      value: And if they are damaged in combat, you will be able to heal them for
+        a small amount of gold here.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -1261,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: If they need more power, train them!
+      value: If they need more power, train them here!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -1547,7 +1548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: If you need more, recruit them and expand your unit slots!
+      value: If you need more units, recruit them and expand your unit slots here!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -1712,7 +1713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: Here, you can select between your units and the mercenaries. Mercenaries
+      value: Here you can select between your units and the mercenaries. Mercenaries
         are more powerful special agents that you can recruit with diamonds!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
@@ -2550,7 +2551,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 9a4f3feac8bbce0439228de62f5d275c, type: 3}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: These are your available units
+      value: These are your available units.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -2707,8 +2708,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: You already know the necessary bases to defend this territory. Keep
-        it up!
+      value: "As soon as you destroy the enemy \rburrow, the campament is conquered.
+        You already know the basics to conquer any campament. Keep it up and good
+        luck brother!"
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -2846,7 +2848,7 @@ PrefabInstance:
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
       value: Very well! Now you're going to have to call one of your units to fight
-        that bastard.
+        that bastards.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -3300,6 +3302,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
+      propertyPath: textInBoxTutorial
+      value: This is the closest enemy campament! They aren't expecting us so we
+        should be able to defeat them easily.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
       value: 4
       objectReference: {fileID: 0}
@@ -3687,7 +3694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: In this map you can select wich enemy campament you want to attack.
+      value: In this map you can select which enemy campament you want to attack.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -3844,8 +3851,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: Everytime you conquer a territory, it will generate a passive gold income
-        automatically every a certain amount of time.
+      value: Every time you conquer a territory, it will generate a passive gold
+        income periodically after a certain amount of time.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -4139,8 +4146,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: Here are the rewards that the chief is giving us for conquer an enemy
-        campament. The more difficult the territory, the more rewards you will get!
+      value: Here are the rewards that the chief is giving us for conquering an enemy
+        campament. The more difficult the campament, the more rewards you will get!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -4697,8 +4704,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: Hey! We found a new camp of enemies. You will have three lines available
-        per battle. Select the middle line to send your unit there to fight.!
+      value: You will have three lines available per battle. There is an enemy checkpoint
+        in the center, so let's bring the fight to them. Select the middle line to
+        send your unit there to fight!
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
@@ -4843,8 +4851,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: textInBoxTutorial
-      value: This is what your military base looks like. Here, you can see in detail
-        each of your units.
+      value: This is what your military base looks like. Here, you can see each of
+        your units details.
       objectReference: {fileID: 0}
     - target: {fileID: 4199228936750629097, guid: 5b04017dff206ae45bf897ea49242273, type: 3}
       propertyPath: maxTimeTextCompleted
