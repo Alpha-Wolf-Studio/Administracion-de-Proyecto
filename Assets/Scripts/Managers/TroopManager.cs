@@ -123,8 +123,10 @@ public class TroopManager : MonoBehaviour
         
         unit.stats.damage += unit.stats.damage * currentControlPointData.unlockBonusDamage / 100;
         unit.stats.bonusRange += (unit.stats.rangeAttack * currentControlPointData.unlockBonusRange) / 100;
-        
-        if(!isNewUnit)
-            unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);
+
+        if (isNewUnit) return;
+        unit.Heal(unit.initialStats.life * currentControlPointData.unlockHealAmount / 100);
+        unit.OnReceiveBonusDamage?.Invoke();
+        unit.OnReceiveBonusRange?.Invoke();
     }
 }

@@ -14,6 +14,8 @@ public class Unit : MonoBehaviour
     public Action<float, float> OnHeal;
     public Action OnDie;
     public Action OnDamageRedirect;
+    public Action OnReceiveBonusDamage;
+    public Action OnReceiveBonusRange;
     public LayerMask enemyMask;
     public LayerMask interactableMask;
     public int signDirection = 1;

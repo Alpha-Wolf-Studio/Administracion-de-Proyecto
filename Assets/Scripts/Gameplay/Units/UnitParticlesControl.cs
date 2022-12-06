@@ -8,6 +8,8 @@ public class UnitParticlesControl : MonoBehaviour
     public UnityEvent OnDieEvent;
     public UnityEvent OnTakeDamageEvent;
     public UnityEvent OnHealEvent;
+    public UnityEvent OnReceiveBonusDamageEvent;
+    public UnityEvent OnReceiveBonusRangeEvent;
     
     [SerializeField] private Unit unit;
 
@@ -27,6 +29,16 @@ public class UnitParticlesControl : MonoBehaviour
         unit.OnHeal += delegate(float initialLife, float maxLife)
         {
             OnHealEvent?.Invoke();
+        };
+        
+        unit.OnReceiveBonusDamage += delegate
+        {
+            OnReceiveBonusDamageEvent?.Invoke();
+        };
+        
+        unit.OnReceiveBonusRange += delegate
+        {
+            OnReceiveBonusRangeEvent?.Invoke();
         };
     }
 }
