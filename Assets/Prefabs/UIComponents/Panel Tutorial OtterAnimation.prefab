@@ -64,7 +64,7 @@ MonoBehaviour:
   maxTimeTextCompleted: 10
   textInBoxTutorial: Hi my brother! This is your campaign menu. Here, you will be
     able to follow the events of your war step by step, check enemy territories and
-    your general economy. Let's take a look for each
+    your general economy. Let's take a look at each one of them.
   maxCountTimeIdle: 5
   maxCountTimeAngry: 3
   isSpawn: 0
